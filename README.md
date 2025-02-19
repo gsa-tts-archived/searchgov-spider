@@ -5,11 +5,6 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 * [About](#about)
 * [Quick Start](#quick-start)
 * [Helpful Links](#helpful-links)
-* [Architecture](docs/architecture.md)
-* [Advanced Setup and Use](docs/advanced_setup_and_use.md)
-* [Deployments](docs/deployments.md)
-* [Operations](docs/operations.md)
-* [Running Scrapydweb UI](docs/running_scrapydwebui.md)
 
 ## About
 With the move away from using Bing to provide search results for some domains, we need a solution that can index sites that were previously indexed by Bing and/or that do not have standard sitemaps.  Additionally, the Scrutiny desktop application is being run manually to provide coverage for a few dozen domains that cannot be otherwise indexed.  The spider application is our solution to both the Bing problem and the removal of manual steps.  The documentation here represents the most current state of the application and our design.
@@ -73,8 +68,20 @@ The output of this scrape is one or more csv files containing URLs in the [outpu
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
 
 ## Helpful Links
+* [Architecture](docs/architecture.md)
+
+* [Advanced Setup and Use](docs/advanced_setup_and_use.md)
+
+* [Deployments](docs/deployments.md)
+
+* [Operations](docs/operations.md)
+
+* [Running Scrapydweb UI](docs/running_scrapydwebui.md)
+
 * [Spider Schedules and Configs README](search_gov_crawler/search_gov_spiders/utility_files/README.md)
   * [Current Scrutiny-only Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production-scrutiny.json)
   * [Current Full Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production.json)
+
 * [Scheduler Entrypoint - scrapy_scheduler.py](search_gov_crawler/scrapy_scheduler.py)
+
 * [Benchmark Entrypoint - benchmark.py](search_gov_crawler/benchmark.py)
