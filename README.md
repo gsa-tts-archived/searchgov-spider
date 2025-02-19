@@ -5,9 +5,9 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 * [About](#about)
   * [Technologies](#technologies)
   * [Core Scrapy File Strcture](#core-scrapy-file-structure)
-  * [Scrapy Web Crawler](#scrapy-web-crawler)
 * [Quick Start](#quick-start)
 * [Helpful Links](#helpful-links)
+* [Architecture Diagram](docs/architecture.md)
 * [Advanced Setup and Use](docs/advanced_setup_and_use.md)
 * [Deployments](docs/deployments.md)
 * [Operations](docs/operations.md)
@@ -56,8 +56,7 @@ playwright install --with-deps
 playwright install chrome --force
 ```
 
-3. Run A Spider For A Specific Domain:
-In the same directory specified above, enter the command below, adding the domain and starting URL for the crawler:
+3. Run A Spider:
 ```bash
 # to run for a non-js domain:
 scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=csv
@@ -66,8 +65,15 @@ scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=
 scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=csv
 ```
 
+4. Check Output:
 The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
 
+5. Go Deeper:
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
 
 ## Helpful Links
+* [Spider Schedules and Configs README](search_gov_crawler/search_gov_spiders/utility_files/README.md)
+  * [Current Scrutiny-only Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production-scrutiny.json)
+  * [Current Full Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production.json)
+* [Scheduler Entrypoint - scrapy_scheduler.py](search_gov_crawler/scrapy_scheduler.py)
+* [Benchmark Entrypoint - benchmark.py](search_gov_crawler/benchmark.py)

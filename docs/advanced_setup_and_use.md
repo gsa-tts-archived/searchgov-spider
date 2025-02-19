@@ -1,5 +1,5 @@
 # Setup and Use
-This page gives a more
+This page gives a more detailed description and further instructions on running the spider in various ways.
 
 #### Table of contents
 * [Environment Variables](#environment-variables)
