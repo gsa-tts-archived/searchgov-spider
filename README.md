@@ -48,7 +48,7 @@ python -m venv venv
 
 2. Install required python modules:
 ```bash
-pip install -r ./search_gov_crawler/requirements.txt
+pip install -r requirements.txt
 
 # required for domains that need javascript
 playwright install --with-deps
@@ -68,7 +68,7 @@ scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_ur
 
 The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
 
-5. Go Deeper:
+5. Learn More:
 
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
 
