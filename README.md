@@ -3,8 +3,6 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 
 #### Table of contents
 * [About](#about)
-  * [Technologies](#technologies)
-  * [Core Scrapy File Strcture](#core-scrapy-file-structure)
 * [Quick Start](#quick-start)
 * [Helpful Links](#helpful-links)
 * [Architecture Diagram](docs/architecture.md)
@@ -50,8 +48,9 @@ python -m venv venv
 
 2. Install required python modules:
 ```bash
-# make sure the virtual environment is activate
 pip install -r ./search_gov_crawler/requirements.txt
+
+# required for domains that need javascript
 playwright install --with-deps
 playwright install chrome --force
 ```
