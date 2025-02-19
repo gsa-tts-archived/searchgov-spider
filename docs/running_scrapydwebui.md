@@ -9,17 +9,21 @@ Due to various design and security decisions, we have never deployed with a UI. 
 0. Source virtual environment, update dependencies, and change working directory to `search_gov_crawler`
 
 1. Start scrapyd
-
-        $ scrapyd
+```bash
+scrapyd
+```
 
 2. Build latest version of scrapy project (if any changes have been made since last run)
-
-        $ scrapyd-deploy local -p search_gov_spiders
+```bash
+scrapyd-deploy local -p search_gov_spiders
+```
 
 3. Start logparser
-
-        $ python -m search_gov_logparser
+```bash
+python -m search_gov_logparser
+```
 
 4. Start scrapydweb
-
-        $ python -m search_gov_scrapydweb
+```bash
+python -m search_gov_scrapydweb
+```
