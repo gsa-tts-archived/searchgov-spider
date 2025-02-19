@@ -5,7 +5,7 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 * [About](#about)
 * [Quick Start](#quick-start)
 * [Helpful Links](#helpful-links)
-* [Architecture Diagram](docs/architecture.md)
+* [Architecture](docs/architecture.md)
 * [Advanced Setup and Use](docs/advanced_setup_and_use.md)
 * [Deployments](docs/deployments.md)
 * [Operations](docs/operations.md)
@@ -65,9 +65,11 @@ scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_ur
 ```
 
 4. Check Output:
+
 The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
 
 5. Go Deeper:
+
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
 
 ## Helpful Links
