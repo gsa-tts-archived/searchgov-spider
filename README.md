@@ -80,6 +80,7 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 
 * [Spider Schedules and Configs README](search_gov_crawler/search_gov_spiders/utility_files/README.md)
   * [Current Scrutiny-only Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production-scrutiny.json)
+
   * [Current Full Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production.json)
 
 * [Scheduler Entrypoint - scrapy_scheduler.py](search_gov_crawler/scrapy_scheduler.py)
