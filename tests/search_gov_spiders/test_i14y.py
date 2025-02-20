@@ -9,7 +9,7 @@ def test_convert_html_valid_article():
         <meta name="description" content="Test article description.">
         <meta name="keywords" content="test, article, keywords">
         <meta property="og:image" content="https://example.com/image.jpg">
-        <meta name="lang" content="en">
+        <meta name="language" content="en">
     </head>
     <body>
         <h1>Test Article Title</h1>
@@ -101,12 +101,19 @@ def test_convert_html_with_publish_date():
 
 def test_convert_html_languages():
     html_content = """
-        <html lang="zh">
+        <html>
             <head>
                 <title>Some Title</title>
                 <meta name="description" content="这是一个测试描述">
-                <meta name="lang" content="zh">
+                <meta name="language" content="zh">
             </head>
+            <body>
+                <div>
+                    <p>
+                        労化合測断秒化任面件気子人球分向無圧。了作果批入選教済球主運私信成笑論情禁。首着場研打表阪東日善能最囲値名陣必。想必愛交備見事新演内高青録断狙。詳期斉幕善確込対危継属会提円和動会分子。中常特処秘局創企真刊葉戸獲人師。前場明持二本聞通調写何観。薫大本設紋証済球取縮不園。辺案惑報湖買含応給奥専申琴真集情月続。
+                    </p>
+                </div>
+            </body>
         </html>
     """
     url = "https://example.cn/article"
@@ -114,5 +121,6 @@ def test_convert_html_languages():
     result = conversion.convert_html(html_content, url)
 
     assert result is not None
+    assert result["content_zh"] == "労化合測断秒化任面件気子人球分向無圧。了作果批入選教済球主運私信成笑論情禁。首着場研打表阪東日善能最囲値名陣必。想必愛交備見事新演内高青録断狙。詳期斉幕善確込対危継属会提円和動会分子。中常特処秘局創企真刊葉戸獲人師。前場明持二本聞通調写何観。薫大本設紋証済球取縮不園。辺案惑報湖買含応給奥専申琴真集情月続。"
     assert result["title_zh"] == "Some Title"
     assert result["description_zh"] == content.sanitize_text("这是一个测试描述")

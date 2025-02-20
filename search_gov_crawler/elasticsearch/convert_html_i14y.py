@@ -40,7 +40,8 @@ def convert_html(html_content: str, url: str):
     basename, extension = get_base_extension(url)
     sha_id = generate_url_sha256(path)
 
-    valid_language = f"_{article.meta_lang}" if article.meta_lang in ALLOWED_LANGUAGE_CODE else ""
+    language = article.meta_lang or article_backup["language"]
+    valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
     i14y_doc = {
         "audience": article_backup["audience"],
