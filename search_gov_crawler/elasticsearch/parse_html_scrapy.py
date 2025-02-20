@@ -37,7 +37,7 @@ def get_meta_values(html_selector: Selector, meta_names: list) -> dict:
     meta_values = {}
     
     for name in meta_names:
-        value = html_selector.xpath(f'//meta[@content and (@name="{name}" or @property="{name}")]/@content').get()
+        value = html_selector.xpath(f"//meta[@content and (@name=\"{name}\" or @property=\"{name}\")]/@content").get()
         meta_values[name] = value if value else None
     
     return meta_values
@@ -52,8 +52,18 @@ def convert_html_scrapy(html_content: str) -> dict:
     ])
 
     return_obj["audience"] = meta_tags["audience"]
-    return_obj["title"] = html_selector.xpath("//title/text()").get() or html_selector.css("title::text").get() or meta_tags["og:title"] or meta_tags["og:site_name"] or meta_tags["pagename"]
-    return_obj["language"] = html_selector.xpath("//html/@lang").get() or html_selector.css("html::attr(lang)").get() or meta_tags["language"]
+    return_obj["title"] = (
+        html_selector.xpath("//title/text()").get()
+        or html_selector.css("title::text").get()
+        or meta_tags["og:title"]
+        or meta_tags["og:site_name"]
+        or meta_tags["pagename"]
+    )
+    return_obj["language"] = (
+        html_selector.xpath("//html/@lang").get()
+        or html_selector.css("html::attr(lang)").get()
+        or meta_tags["language"]
+    )
     if return_obj["language"]:
         return_obj["language"] = return_obj["language"].split("-")[0].lower()
     return_obj["url"] = meta_tags["url"]
