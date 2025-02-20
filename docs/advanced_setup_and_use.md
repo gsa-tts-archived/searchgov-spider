@@ -49,7 +49,7 @@ python ./search_gov_crawler/elasticsearch/install_nltk.py
 
 2. Start elasticsearch using the docker compose file at the project root:
 ```bash
-# ensure CWD is the project root
+# ensure current working directory is the project root
 docker compose up
 ```
 
@@ -63,6 +63,9 @@ Make sure to follow [Quick Start](../README.md#quick-start) steps, before runnin
 2. Run a scrapy crawl command
 
 ```bash
+# write URLs to a CSV
+scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=csv
+
 # post URLs to an endpoint
 scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=endpoint
 
