@@ -1,10 +1,5 @@
 from scrapy import Selector
-import re
-
-def clean_str(s: str) -> str:
-    if not s:
-        return s
-    return re.sub(r"\s+", " ", s).strip()
+import search_gov_crawler.search_gov_spiders.helpers.content as content
 
 def extract_article_content(html_selector: Selector) -> str:
     """
@@ -23,7 +18,7 @@ def extract_article_content(html_selector: Selector) -> str:
     content_text = body.xpath(".//text()[not(ancestor::a) and not(ancestor::button) and not(ancestor::style) and not(ancestor::script)]").getall()
     
     content_text = " ".join(text.strip() for text in content_text if text.strip())
-    return clean_str(content_text)
+    return content.replace_whitespace(content_text)
 
 
 def get_meta_values(html_selector: Selector, meta_names: list) -> dict:
@@ -75,7 +70,7 @@ def convert_html_scrapy(html_content: str) -> dict:
     return_obj["thumbnail_url"] = meta_tags["og:image"]
 
     for key in return_obj:
-        return_obj[key] = clean_str(return_obj[key])
+        return_obj[key] = content.replace_whitespace(return_obj[key])
 
     return_obj["content"] = extract_article_content(html_selector)
 
