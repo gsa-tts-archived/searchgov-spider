@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 import search_gov_crawler.search_gov_spiders.helpers.content as content
+from search_gov_crawler.elasticsearch.parse_html_scrapy import convert_html_scrapy
 
 
 ALLOWED_LANGUAGE_CODE = {
@@ -18,37 +19,40 @@ ALLOWED_LANGUAGE_CODE = {
 }
 
 def convert_html(html_content: str, url: str):
-    """Extracts and processes article content from HTML using newspaper3k."""
+    """Extracts and processes article content from HTML using newspaper4k."""
     article = newspaper.Article(url=url)
     article.download(input_html=html_content)
     article.parse()
     article.nlp()
 
-    title = article.title or article.meta_site_name or None
-    description = article.meta_description or article.summary or None
-    main_content = article.text or description or None
+    article_backup = convert_html_scrapy(html_content=html_content)
+    main_content = article.text or article_backup["content"]
 
     if not main_content:
         return None
+        
+    title = article.title or article.meta_site_name or article_backup["title"] or None
+    description = article.meta_description or article.summary or article_backup["description"] or None
 
     time_now_str = current_utc_iso()
-    path = article.url or url
+    path = article.url or article_backup["url"] or url
 
     basename, extension = get_base_extension(url)
     sha_id = generate_url_sha256(path)
 
-    valid_language = f"_{article.meta_lang}" if article.meta_lang in ALLOWED_LANGUAGE_CODE else ""
+    language = article.meta_lang or article_backup["language"]
+    valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
     i14y_doc = {
-        "audience": None,
-        "changed": None,
+        "audience": article_backup["audience"],
+        "changed": article_backup["changed"],
         "click_count": None,
         "content_type": "article",
-        "created_at": time_now_str,
+        "created_at": article_backup["created_at"] or time_now_str,
         "created": None,
         "_id": sha_id,
         "id": sha_id,
-        "thumbnail_url": article.meta_img or article.top_image or None,
+        "thumbnail_url": article.meta_img or article.top_image or article_backup["thumbnail_url"] or None,
         "language": article.meta_lang,
         "mime_type": "text/html",
         "path": path,
@@ -56,9 +60,9 @@ def convert_html(html_content: str, url: str):
         "searchgov_custom1": None,
         "searchgov_custom2": None,
         "searchgov_custom3": None,
-        "tags": article.tags or article.keywords or article.meta_keywords,
+        "tags": article.tags or article.keywords or article.meta_keywords or article_backup["keywords"],
         "updated_at": time_now_str,
-        "updated": article.publish_date,
+        "updated": article.publish_date or article_backup["created_at"],
         f"title{valid_language}": title,
         f"description{valid_language}": content.sanitize_text(description),
         f"content{valid_language}": content.sanitize_text(main_content),
