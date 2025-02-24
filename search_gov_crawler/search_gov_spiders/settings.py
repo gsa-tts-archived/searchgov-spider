@@ -8,7 +8,10 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import os
-from datetime import datetime
+from datetime import UTC, datetime
+from pathlib import Path
+
+spider_start = datetime.now(tz=UTC)
 
 # Settings for logging and json logging
 LOG_ENABLED = False
@@ -46,13 +49,17 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # set to True for BFO
 AJAXCRAWL_ENABLED = True
 
-# setting for how deep we want to go 
+# setting for how deep we want to go
 DEPTH_LIMIT = os.environ.get("SPIDER_DEPTH_LIMIT", "3")
-#  
+
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
+
+# use on-disk job queue
+JOBDIR = f"jobs/{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}"
+SCHEDULER_DEBUG = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -96,12 +103,10 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 # SPIDERMON SETTINGS
-now = datetime.now()
-date_time = now.today().isoformat()
-dirname = os.path.dirname(__file__)
-body_html_template = os.path.join(dirname, "actions", "results.jinja")
+date_time = spider_start.isoformat()
+body_html_template = Path(__file__).parent / "actions" / "results.jinja"
 
-SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "False")
+SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "True")
 SPIDERMON_MIN_ITEMS = 1000
 SPIDERMON_TIME_INTERVAL = 1  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 100
