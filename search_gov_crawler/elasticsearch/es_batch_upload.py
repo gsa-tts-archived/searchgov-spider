@@ -17,6 +17,10 @@ logging.getLogger("elastic_transport.transport").setLevel("ERROR")
 class SearchGovElasticsearch:
     """Defines the shape and methods of the spider's connection to Elasticsearch"""
 
+    # SearchGovElasticsearch.create_index is a static variable that will be set to False
+    # after each check imitating lazy singleton pattern
+    create_index: bool = False
+
     def __init__(self, batch_size: int = 50):
         self._current_batch = []
         self._batch_size = batch_size
@@ -78,27 +82,48 @@ class SearchGovElasticsearch:
                 ssl_show_warn=False,
                 basic_auth=(self._env_es_username, self._env_es_password),
             )
-            self._create_index_if_not_exists(spider)
+            if SearchGovElasticsearch.create_index:
+                self._create_index_if_not_exists(spider)
+            SearchGovElasticsearch.create_index = False
         return self._es_client
 
     def _create_index_if_not_exists(self, spider: Spider):
         """
         Creates an index in Elasticsearch if it does not exist.
+        If the index exists, it updates the alias settings.
         """
         index_name = self._env_es_index_name
+        alias_name = self._env_es_index_alias
         try:
             es_client = self._get_client(spider)
             if not es_client.indices.exists(index=index_name):
                 index_settings = {
                     "settings": {"index": {"number_of_shards": 6, "number_of_replicas": 1}},
-                    "aliases": {self._env_es_index_alias: {}},
+                    "aliases": {alias_name: {}} if alias_name else {},
                 }
                 es_client.indices.create(index=index_name, body=index_settings)
                 spider.logger.info(f"Index '{index_name}' created successfully.")
             else:
-                spider.logger.info(f"Index '{index_name}' already exists.")
+                current_aliases = es_client.indices.get_alias(name=index_name)
+                existing_alias = list(current_aliases.get(index_name, {}).get("aliases", {}).keys())
+                
+                # Remove existing alias if present
+                if existing_alias:
+                    es_client.indices.update_aliases({
+                        "actions": [{"remove": {"index": index_name, "alias": existing_alias[0]}}]
+                    })
+                    spider.logger.info(f"Removed existing alias '{existing_alias[0]}' from index '{index_name}'.")
+
+                # Add new alias if defined
+                if alias_name:
+                    es_client.indices.update_aliases({
+                        "actions": [{"add": {"index": index_name, "alias": alias_name}}]
+                    })
+                    spider.logger.info(f"Set alias '{alias_name}' for index '{index_name}'.")
+                else:
+                    spider.logger.info(f"No alias set for index '{index_name}'.")
         except Exception as e:
-            spider.logger.error(f"Error creating/checking index: {str(e)}")
+            spider.logger.error(f"Error creating/updating index: {str(e)}")
 
     def _create_actions(self, docs: list[dict[Any, Any]]) -> list[dict[str, Any]]:
         """

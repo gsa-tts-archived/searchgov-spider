@@ -21,6 +21,7 @@ from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
+from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
 load_dotenv()
 
@@ -121,6 +122,7 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     for apscheduler_job in apscheduler_jobs:
         scheduler.add_job(**apscheduler_job, jobstore="memory")
 
+    SearchGovElasticsearch.create_index = True
     # Run Scheduler
     scheduler.start()
 
