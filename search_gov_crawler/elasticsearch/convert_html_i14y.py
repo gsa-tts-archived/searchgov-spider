@@ -1,7 +1,6 @@
 import os
 import hashlib
 import newspaper
-import tldextract
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
@@ -74,12 +73,17 @@ def convert_html(html_content: str, url: str):
 
     return i14y_doc
 
+def ensure_http_prefix(url: str):
+    return url if url.startswith(("http://", "https://")) else f"https://{url}"
+
 def get_url_path(url: str) -> str:
     """Extracts the path from a URL."""
+    url = ensure_http_prefix(url)
     return urlparse(url).path
 
 def get_base_extension(url: str) -> tuple[str, str]:
     """Extracts the basename and file extension from a URL."""
+    url = ensure_http_prefix(url)
     basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))
     return basename, extension
 
@@ -89,11 +93,11 @@ def current_utc_iso() -> str:
 
 def generate_url_sha256(url: str) -> str:
     """Generates a SHA-256 hash for a given URL."""
+    url = ensure_http_prefix(url)
     return hashlib.sha256(url.encode()).hexdigest()
 
 def get_domain_name(url: str) -> str:
     """Extracts the domain from a URL, support www (only if the url was parsed with it) ensuring consistency."""
-    parsed = urlparse(url if url.startswith(('http://', 'https://')) else f'https://{url}')
-    extracted = tldextract.extract(parsed.netloc)
-    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip('.')
-    return domain
+    url = ensure_http_prefix(url)
+    parsed = urlparse(url)
+    return parsed.netloc
