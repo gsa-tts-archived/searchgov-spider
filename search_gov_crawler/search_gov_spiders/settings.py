@@ -58,7 +58,8 @@ SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
 # Enable on-disk job queue using pid and start time as unique name
-JOBDIR = f"jobs/{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}"
+# https://docs.scrapy.org/en/latest/topics/jobs.html
+JOBDIR = str(Path(__file__).parent.parent / "jobs" / f"{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}")
 SCHEDULER_DEBUG = True
 
 # Enable or disable spider middlewares
