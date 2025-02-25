@@ -122,7 +122,8 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     for apscheduler_job in apscheduler_jobs:
         scheduler.add_job(**apscheduler_job, jobstore="memory")
 
-    SearchGovElasticsearch.create_index = True
+    es = SearchGovElasticsearch()
+    es.create_index_if_not_exists()
     # Run Scheduler
     scheduler.start()
 

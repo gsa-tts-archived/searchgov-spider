@@ -105,5 +105,5 @@ def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file):
     with caplog.at_level("INFO"):
         start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
-    assert len(caplog.messages) == 5
+    assert len(caplog.messages) == 7
     assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages

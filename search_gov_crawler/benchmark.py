@@ -122,7 +122,8 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
             **crawl_site.to_dict(exclude=("schedule",)),
         )
         scheduler.add_job(**apscheduler_job, jobstore="memory")
-    SearchGovElasticsearch.create_index = True
+    es = SearchGovElasticsearch()
+    es.create_index_if_not_exists()
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
     scheduler.shutdown()  # this will wait until all jobs are finished
@@ -165,7 +166,8 @@ def benchmark_from_args(
     scheduler = init_scheduler()
     apscheduler_job = create_apscheduler_job(**apscheduler_job_kwargs)
     scheduler.add_job(**apscheduler_job, jobstore="memory")
-    SearchGovElasticsearch.create_index = True
+    es = SearchGovElasticsearch()
+    es.create_index_if_not_exists()
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
     scheduler.shutdown()  # wait until all jobs are finished
