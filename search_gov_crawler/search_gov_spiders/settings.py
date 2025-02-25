@@ -57,7 +57,7 @@ DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
-# use on-disk job queue
+# Enable on-disk job queue using pid and start time as unique name
 JOBDIR = f"jobs/{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}"
 SCHEDULER_DEBUG = True
 
@@ -78,6 +78,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
+    "search_gov_spiders.extensions.on_disk_queue.OnDiskSchedulerQueue": 500,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 
@@ -106,7 +107,7 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 date_time = spider_start.isoformat()
 body_html_template = Path(__file__).parent / "actions" / "results.jinja"
 
-SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "True")
+SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "False")
 SPIDERMON_MIN_ITEMS = 1000
 SPIDERMON_TIME_INTERVAL = 1  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 100
