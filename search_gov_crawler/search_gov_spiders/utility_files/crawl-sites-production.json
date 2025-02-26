@@ -72,15 +72,6 @@
         "starting_urls": "https://www.mynavyhr.navy.mil/"
     },
     {
-        "name": "NIH Diversity",
-        "allow_query_string": false,
-        "allowed_domains": "diversity.nih.gov",
-        "handle_javascript": false,
-        "schedule": "30 09 * * MON",
-        "output_target": "endpoint",
-        "starting_urls": "https://diversity.nih.gov/"
-    },
-    {
         "name": "NIH LRP",
         "allow_query_string": false,
         "allowed_domains": "lrp.nih.gov",
