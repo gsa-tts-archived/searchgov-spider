@@ -1,25 +1,31 @@
-import os
 import hashlib
+import os
+from datetime import UTC, datetime
+from urllib.parse import urlparse
+
 import newspaper
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-import search_gov_crawler.search_gov_spiders.helpers.content as content
 from search_gov_crawler.elasticsearch.parse_html_scrapy import convert_html_scrapy
+from search_gov_crawler.search_gov_spiders.helpers import content
 
+# fmt: off
+ALLOWED_LANGUAGE_CODE = (
+    "ar", "bg", "bn", "ca", "cs", "da", "de", "el", "en", "es", "et", "fa", "fr",
+    "he", "hi", "hr", "ht", "hu", "hy", "id", "it", "ja", "km", "ko", "lt", "lv",
+    "mk", "nl", "pl", "ps", "pt", "ro", "ru", "sk", "so", "sq", "sr", "sw", "th",
+    "tr", "uk", "ur", "uz", "vi", "zh",
+)
+# fmt: on
 
-ALLOWED_LANGUAGE_CODE = {
-    lang: True for lang in [
-        "ar", "bg", "bn", "ca", "cs", "da", "de", "el", "en", "es", "et", "fa", "fr",
-        "he", "hi", "hr", "ht", "hu", "hy", "id", "it", "ja", "km", "ko", "lt", "lv",
-        "mk", "nl", "pl", "ps", "pt", "ro", "ru", "sk", "so", "sq", "sr", "sw", "th",
-        "tr", "uk", "ur", "uz", "vi", "zh"
-    ]
-}
 
 def convert_html(html_content: str, url: str):
     """Extracts and processes article content from HTML using newspaper4k."""
-    article = newspaper.Article(url=url)
+    config = newspaper.Config()
+    config.fetch_images = False  # we are not using images, do not fetch!
+    config.clean_article_html = False  # we are not using article_html, so don't clean it!
+    article = newspaper.Article(url=url, config=config)
     article.download(input_html=html_content)
     article.parse()
     article.nlp()
@@ -29,7 +35,7 @@ def convert_html(html_content: str, url: str):
 
     if not main_content:
         return None
-        
+
     title = article.title or article.meta_site_name or article_backup["title"] or None
     description = article.meta_description or article.summary or article_backup["description"] or None
 
@@ -42,7 +48,7 @@ def convert_html(html_content: str, url: str):
     language = article.meta_lang or article_backup["language"]
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
-    i14y_doc = {
+    return {
         "audience": article_backup["audience"],
         "changed": article_backup["changed"],
         "click_count": None,
@@ -68,10 +74,9 @@ def convert_html(html_content: str, url: str):
         "basename": basename,
         "extension": extension or None,
         "url_path": get_url_path(url),
-        "domain_name": get_domain_name(url)
+        "domain_name": get_domain_name(url),
     }
 
-    return i14y_doc
 
 def ensure_http_prefix(url: str):
     return url if url.startswith(("http://", "https://")) else f"https://{url}"
@@ -81,20 +86,24 @@ def get_url_path(url: str) -> str:
     url = ensure_http_prefix(url)
     return urlparse(url).path
 
+
 def get_base_extension(url: str) -> tuple[str, str]:
     """Extracts the basename and file extension from a URL."""
     url = ensure_http_prefix(url)
     basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))
     return basename, extension
 
+
 def current_utc_iso() -> str:
     """Returns the current UTC timestamp in ISO format."""
-    return datetime.now(timezone.utc).isoformat(timespec="milliseconds") + "Z"
+    return datetime.now(tz=UTC).isoformat(timespec="milliseconds") + "Z"
+
 
 def generate_url_sha256(url: str) -> str:
     """Generates a SHA-256 hash for a given URL."""
     url = ensure_http_prefix(url)
     return hashlib.sha256(url.encode()).hexdigest()
+
 
 def get_domain_name(url: str) -> str:
     """Extracts the domain from a URL, support www (only if the url was parsed with it) ensuring consistency."""
