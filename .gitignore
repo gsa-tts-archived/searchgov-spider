@@ -200,5 +200,6 @@ cython_debug/
 .scrapy/
 scrapy_urls/
 dbs/
+jobs/
 
 .DS_Store

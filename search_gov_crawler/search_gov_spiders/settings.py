@@ -8,7 +8,10 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import os
-from datetime import datetime
+from datetime import UTC, datetime
+from pathlib import Path
+
+spider_start = datetime.now(tz=UTC)
 
 # Settings for logging and json logging
 LOG_ENABLED = False
@@ -46,13 +49,18 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # set to True for BFO
 AJAXCRAWL_ENABLED = True
 
-# setting for how deep we want to go 
+# setting for how deep we want to go
 DEPTH_LIMIT = os.environ.get("SPIDER_DEPTH_LIMIT", "3")
-#  
+
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
+
+# Enable on-disk job queue using pid and start time as unique name
+# https://docs.scrapy.org/en/latest/topics/jobs.html
+JOBDIR = str(Path(__file__).parent.parent / "jobs" / f"{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}")
+SCHEDULER_DEBUG = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -71,6 +79,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
+    "search_gov_spiders.extensions.on_disk_queue.OnDiskSchedulerQueue": 500,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 
@@ -96,10 +105,8 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 # SPIDERMON SETTINGS
-now = datetime.now()
-date_time = now.today().isoformat()
-dirname = os.path.dirname(__file__)
-body_html_template = os.path.join(dirname, "actions", "results.jinja")
+date_time = spider_start.isoformat()
+body_html_template = Path(__file__).parent / "actions" / "results.jinja"
 
 SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "False")
 SPIDERMON_MIN_ITEMS = 1000

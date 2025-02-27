@@ -1,16 +1,9 @@
 import csv
 import json
 from pathlib import Path
-from urllib.parse import urlparse
 from datetime import datetime, timedelta
-import tldextract
+from search_gov_crawler.elasticsearch.convert_html_i14y import get_domain_name
 
-def extract_domain(url: str) -> str:
-    """Extracts the domain from a URL, removing www and ensuring consistency."""
-    parsed = urlparse(url if url.startswith(('http://', 'https://')) else f'https://{url}')
-    extracted = tldextract.extract(parsed.netloc)
-    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip('.').replace("www.", "")
-    return domain
 
 def generate_cron_schedules(start_time="01:01 FRI", count=100, minute_interval=10):
     cron_schedules = []
@@ -51,7 +44,7 @@ def process_csv(input_csv, output_json, existing_entries=None, seen_domains=None
             "starting_urls": f"https://{raw_domain}/"
         }
         for i, raw_domain in enumerate(domains)
-        if (domain := extract_domain(raw_domain)) not in seen_domains and not seen_domains.add(domain)
+        if (domain := get_domain_name(raw_domain)) not in seen_domains and not seen_domains.add(domain)
     ]
     
     with output_path.open("w", encoding='utf-8') as f:
@@ -63,6 +56,6 @@ if __name__ == "__main__":
     with scrutiny_json_path.open() as f:
         existing_data = json.load(f)
     
-    seen_domains = {extract_domain(entry["starting_urls"]) for entry in existing_data}
+    seen_domains = {get_domain_name(entry["starting_urls"]) for entry in existing_data}
     
     process_csv("domains_bing_all.csv", "crawl-sites-production.json", existing_data, seen_domains)

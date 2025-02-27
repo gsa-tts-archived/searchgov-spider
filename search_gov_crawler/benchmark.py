@@ -29,11 +29,11 @@ import sys
 import time
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
-from dotenv import load_dotenv
 
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.background import BackgroundScheduler
+from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
@@ -56,7 +56,9 @@ def init_scheduler() -> BackgroundScheduler:
     or the default value from pythons concurrent.futures ThreadPoolExecutor.
     """
 
-    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", min(32, (os.cpu_count() or 1) + 4)))
+    # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
+    # but set to default of 5 to ensure consistent numbers between environments and for schedule
+    max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
     return BackgroundScheduler(

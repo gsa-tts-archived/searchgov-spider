@@ -92,9 +92,9 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
 @pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
 def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     if scrapy_max_workers:
-        monkeypatch.setenv("SCRAPY_MAX_WORKERS", scrapy_max_workers)
+        monkeypatch.setenv("SPIDER_SCRAPY_MAX_WORKERS", scrapy_max_workers)
     else:
-        monkeypatch.delenv("SCRAPY_MAX_WORKERS", raising=False)
+        monkeypatch.delenv("SPIDER_SCRAPY_MAX_WORKERS", raising=False)
 
     monkeypatch.setattr(os, "cpu_count", lambda: 10)
 
