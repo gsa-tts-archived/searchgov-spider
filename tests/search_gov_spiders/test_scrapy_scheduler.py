@@ -20,8 +20,6 @@ def mock_es_client():
     client.indices = MagicMock()
     client.indices.exists = MagicMock()
     client.indices.create = MagicMock()
-    client.indices.update_aliases = MagicMock()
-    client.indices.get_alias = MagicMock()
     return client
 
 def test_run_scrapy_crawl(caplog, monkeypatch):
@@ -117,5 +115,5 @@ def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock
         with caplog.at_level("INFO"):
             start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
-        assert len(caplog.messages) == 6
+        assert len(caplog.messages) == 5
         assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages

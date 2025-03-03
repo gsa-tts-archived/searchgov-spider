@@ -22,8 +22,6 @@ def mock_es_client():
     client.indices = MagicMock()
     client.indices.exists = MagicMock()
     client.indices.create = MagicMock()
-    client.indices.update_aliases = MagicMock()
-    client.indices.get_alias = MagicMock()
     return client
 
 @pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])

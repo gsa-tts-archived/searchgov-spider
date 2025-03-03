@@ -36,7 +36,6 @@ def search_gov_es():
     with patch.dict(os.environ, {
         "ES_HOSTS": "http://localhost:9200",
         "SPIDER_ES_INDEX_NAME": "test_index",
-        "SPIDER_ES_INDEX_ALIAS": "test_alias",
         "ES_USER": "test_user",
         "ES_PASSWORD": "test_password"
     }):
@@ -48,8 +47,6 @@ def mock_es_client():
     client.indices = MagicMock()
     client.indices.exists = MagicMock()
     client.indices.create = MagicMock()
-    client.indices.update_aliases = MagicMock()
-    client.indices.get_alias = MagicMock()
     return client
 
 # Mock convert_html function
@@ -153,9 +150,7 @@ def test_create_index_if_not_exists(search_gov_es, mock_es_client):
 def test_create_index_if_exists(search_gov_es, mock_es_client):
     with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
         mock_es_client.indices.exists.return_value = True
-        mock_es_client.indices.get_alias.return_value = {"test_index": {"aliases": {"old_alias": {}}}}
         search_gov_es.create_index_if_not_exists()
-        mock_es_client.indices.update_aliases.assert_called()
 
 def test_create_actions(search_gov_es):
     docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]
