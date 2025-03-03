@@ -29,16 +29,17 @@ import sys
 import time
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
-from dotenv import load_dotenv
 
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.background import BackgroundScheduler
+from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
+from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
 load_dotenv()
 
@@ -55,7 +56,9 @@ def init_scheduler() -> BackgroundScheduler:
     or the default value from pythons concurrent.futures ThreadPoolExecutor.
     """
 
-    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", min(32, (os.cpu_count() or 1) + 4)))
+    # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
+    # but set to default of 5 to ensure consistent numbers between environments and for schedule
+    max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
     return BackgroundScheduler(
@@ -121,7 +124,8 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
             **crawl_site.to_dict(exclude=("schedule",)),
         )
         scheduler.add_job(**apscheduler_job, jobstore="memory")
-
+    es = SearchGovElasticsearch()
+    es.create_index_if_not_exists()
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
     scheduler.shutdown()  # this will wait until all jobs are finished
@@ -164,7 +168,8 @@ def benchmark_from_args(
     scheduler = init_scheduler()
     apscheduler_job = create_apscheduler_job(**apscheduler_job_kwargs)
     scheduler.add_job(**apscheduler_job, jobstore="memory")
-
+    es = SearchGovElasticsearch()
+    es.create_index_if_not_exists()
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
     scheduler.shutdown()  # wait until all jobs are finished

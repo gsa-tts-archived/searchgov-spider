@@ -2,6 +2,7 @@ import io
 import json
 import logging
 import tempfile
+from pathlib import Path
 
 import pytest
 from scrapy.crawler import Crawler
@@ -14,6 +15,7 @@ from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     SearchGovSpiderFileHandler,
     SearchGovSpiderStreamHandler,
 )
+from search_gov_crawler.search_gov_spiders.extensions.on_disk_queue import OnDiskSchedulerQueue
 
 
 class SpiderForTest(Spider):
@@ -21,9 +23,11 @@ class SpiderForTest(Spider):
         return str(
             {
                 "allow_query_string": getattr(self, "allow_query_string", None),
+                "allowed_domain_paths": getattr(self, "allowed_domain_paths", None),
                 "allowed_domains": getattr(self, "allowed_domains", None),
                 "name": self.name,
                 "start_urls": self.start_urls,
+                "output_target": getattr(self, "output_target", None),
             },
         )
 
@@ -34,28 +38,36 @@ HANDLER_TEST_CASES = [
         SpiderForTest(
             name="handler_test",
             allow_query_string=False,
+            allowed_domain_paths=None,
             allowed_domains="example.com",
             start_urls="https://www.example.com",
+            output_target="csv",
         ),
         str(
             {
                 "allow_query_string": False,
+                "allowed_domain_paths": None,
                 "allowed_domains": "example.com",
                 "name": "handler_test",
                 "start_urls": "https://www.example.com",
+                "output_target": "csv",
             },
         ),
         SpiderForTest(
             name="handler_test",
             allow_query_string=True,
+            allowed_domain_paths=None,
             allowed_domains="example.com",
             start_urls="https://www.example.com",
+            output_target="csv",
         ),
         {
             "allow_query_string": True,
+            "allowed_domain_paths": None,
             "allowed_domains": "example.com",
             "name": "handler_test",
             "start_urls": "https://www.example.com",
+            "output_target": "csv",
         },
     ),
 ]
@@ -121,28 +133,73 @@ def fixture_project_settings(monkeypatch):
     return get_project_settings()
 
 
-def test_extension_from_crawler_not_configured(project_settings):
-    project_settings.set("JSON_LOGGING_ENABLED", False)
+@pytest.mark.parametrize(
+    ("extension_cls", "extension_settings", "error_message"),
+    [
+        (
+            JsonLogging,
+            ("JSON_LOGGING_ENABLED", False),
+            "JsonLogging extension is listed in settings.EXTENSIONS but is not enabled.",
+        ),
+        (
+            OnDiskSchedulerQueue,
+            ("JOBDIR", None),
+            "OnDiskSchedulerQueue extension is listed in settings.EXTENSIONS but JOBDIR is not set.",
+        ),
+    ],
+)
+def test_extension_from_crawler_not_configured(project_settings, extension_cls, extension_settings, error_message):
+    project_settings.set(*extension_settings)
 
-    with pytest.raises(NotConfigured, match="JsonLogging Extension is listed in Extension but is not enabled."):
-        JsonLogging.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
+    with pytest.raises(NotConfigured, match=error_message):
+        extension_cls.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
 
 
-def test_extension_from_crawler(project_settings):
-    extension = JsonLogging.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
-    assert isinstance(extension, JsonLogging)
+@pytest.mark.parametrize("extension_cls", [JsonLogging, OnDiskSchedulerQueue])
+def test_extension_from_crawler(project_settings, extension_cls):
+    extension = extension_cls.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
+    assert isinstance(extension, extension_cls)
 
 
 def test_extension_spider_opened(caplog):
     log = logging.getLogger("test_spider")
     log.setLevel(logging.INFO)
 
-    spider = Spider(name="test_spider", allowed_domains=["domain 1", "domain 2"], start_urls=["url 1", "url 2"])
+    spider = Spider(
+        name="test_spider",
+        allowed_domains=["domain 1", "domain 2"],
+        start_urls=["url 1", "url 2"],
+        output_target="csv",
+    )
     extension = JsonLogging(log_level=logging.INFO)
     with caplog.at_level(logging.INFO):
         extension.spider_opened(spider)
 
     assert (
-        "Starting spider test_spider with following args: allowed_domains=domain 1,domain 2 start_urls=url 1,url 2"
-        in caplog.messages
+        "Starting spider test_spider with following args: "
+        "allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls=url 1,url 2 output_target=csv"
+    ) in caplog.messages
+
+
+def test_extension_spider_closed(project_settings):
+    spider = Spider(
+        name="test_spider",
+        allowed_domains=["domain 1", "domain 2"],
+        start_urls=["url 1", "url 2"],
+        settings=project_settings,
     )
+
+    # setup temp dir as JOBDIR, populated and cleanup
+    with tempfile.TemporaryDirectory() as temp_dir:
+        job_dir = Path(temp_dir) / "test-job"
+        spider.settings.set("JOBDIR", str(job_dir))
+        job_dir.mkdir()
+        Path(job_dir / "test-file.txt").touch()
+        sub_directory = Path(job_dir / "test-dir")
+        sub_directory.mkdir()
+        Path(sub_directory / "test-file.txt").touch()
+
+        extension = OnDiskSchedulerQueue()
+        extension.spider_closed(spider)
+
+        assert not job_dir.exists()

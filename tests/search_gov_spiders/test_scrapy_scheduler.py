@@ -4,6 +4,8 @@ import subprocess
 import pytest
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
+from unittest.mock import patch, MagicMock
+from elasticsearch import Elasticsearch
 
 from search_gov_crawler.scrapy_scheduler import (
     init_scheduler,
@@ -12,6 +14,13 @@ from search_gov_crawler.scrapy_scheduler import (
     transform_crawl_sites,
 )
 
+@pytest.fixture
+def mock_es_client():
+    client = MagicMock(spec=Elasticsearch)
+    client.indices = MagicMock()
+    client.indices.exists = MagicMock()
+    client.indices.create = MagicMock()
+    return client
 
 def test_run_scrapy_crawl(caplog, monkeypatch):
     def mock_run(*_args, **_kwargs):
@@ -81,9 +90,9 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
 @pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
 def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     if scrapy_max_workers:
-        monkeypatch.setenv("SCRAPY_MAX_WORKERS", scrapy_max_workers)
+        monkeypatch.setenv("SPIDER_SCRAPY_MAX_WORKERS", scrapy_max_workers)
     else:
-        monkeypatch.delenv("SCRAPY_MAX_WORKERS", raising=False)
+        monkeypatch.delenv("SPIDER_SCRAPY_MAX_WORKERS", raising=False)
 
     monkeypatch.setattr(os, "cpu_count", lambda: 10)
 
@@ -99,11 +108,12 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
-def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file):
-    monkeypatch.setattr(BlockingScheduler, "start", lambda x: True)
+def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock_es_client):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
+        monkeypatch.setattr(BlockingScheduler, "start", lambda x: True)
 
-    with caplog.at_level("INFO"):
-        start_scrapy_scheduler(input_file=crawl_sites_test_file)
+        with caplog.at_level("INFO"):
+            start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
-    assert len(caplog.messages) == 5
-    assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages
+        assert len(caplog.messages) == 5
+        assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages

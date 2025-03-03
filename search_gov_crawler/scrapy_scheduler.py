@@ -1,26 +1,28 @@
 """
-Starts scrapy scheduler.  Takes job details from the crawl-sites-production.json file referenced below as CRAWL_SITES_FILE.
-Schedule is fully contained in-memory but current cron expression is stored in the input file so that on each
-deploy the schedule can pickup where it left off.
+Starts scrapy scheduler.  Takes job details from the crawl-sites-production.json file referenced below as
+CRAWL_SITES_FILE. Schedule is fully contained in-memory but current cron expression is stored in the input file
+so that on each deploy the schedule can pickup where it left off.
 
-Use the env var SCRAPY_MAX_WORKERS to control how many jobs can run at once.  If the max number of jobs are running
-when other jobs are supposed to run, those jobs will queue until one or more of the running jobs finishes.
+Use the env var SPIDER_SCRAPY_MAX_WORKERS to control how many jobs can run at once.  If the max number of
+jobs are running when other jobs are supposed to run, those jobs will queue until one or more of the running
+jobs finishes.
 """
 
 import logging
 import os
 import subprocess
 from pathlib import Path
-from dotenv import load_dotenv
 
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
+from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
+from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
 load_dotenv()
 
@@ -44,14 +46,15 @@ def run_scrapy_crawl(
     scrapy_env = os.environ.copy()
     scrapy_env["PYTHONPATH"] = str(Path(__file__).parent.parent)
 
-    subprocess.run(
-        f"scrapy crawl {spider} -a allow_query_string={allow_query_string} -a allowed_domains={allowed_domains} -a start_urls={start_urls} -a output_target={output_target}",
-        check=True,
-        cwd=Path(__file__).parent,
-        env=scrapy_env,
-        executable="/bin/bash",
-        shell=True,
+    cmd = (
+        f"scrapy crawl {spider}"
+        f" -a allow_query_string={allow_query_string}"
+        f" -a allowed_domains={allowed_domains}"
+        f" -a start_urls={start_urls}"
+        f" -a output_target={output_target}"
     )
+
+    subprocess.run(cmd, check=True, cwd=Path(__file__).parent, env=scrapy_env, executable="/bin/bash", shell=True)
     msg = (
         "Successfully completed scrapy crawl with args "
         "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s"
@@ -97,7 +100,7 @@ def init_scheduler() -> BlockingScheduler:
 
     # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
     # but set to default of 5 to ensure consistent numbers between environments and for schedule
-    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", "5"))
+    max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
     return BlockingScheduler(
@@ -121,6 +124,8 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     for apscheduler_job in apscheduler_jobs:
         scheduler.add_job(**apscheduler_job, jobstore="memory")
 
+    es = SearchGovElasticsearch()
+    es.create_index_if_not_exists()
     # Run Scheduler
     scheduler.start()
 
