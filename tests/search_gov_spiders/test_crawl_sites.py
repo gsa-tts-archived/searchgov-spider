@@ -49,7 +49,7 @@ def test_invalid_crawl_site_missing_field(fields, base_crawl_site_args):
     for field in fields:
         test_args[field] = None
 
-    match = f"All CrawlSite fields are required!  Add values for {",".join(fields)}"
+    match = f"All CrawlSite fields are required!  Add values for {','.join(fields)}"
     with pytest.raises(TypeError, match=match):
         CrawlSite(**test_args)
 
@@ -71,6 +71,7 @@ def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, e
     match = f"Invalid type! Field {field} with value {new_value} must be type {expected_type}"
     with pytest.raises(TypeError, match=match):
         CrawlSite(**test_args)
+
 
 @pytest.mark.parametrize(
     ("field", "new_value", "expected_type"),
@@ -118,17 +119,24 @@ def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
         CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)])
 
 
-def test_crawl_sites_file_is_valid():
+@pytest.mark.parametrize(
+    "file_name",
+    [
+        "crawl-sites-sample.json",
+        "crawl-sites-production.json",
+        "crawl-sites-production-scrutiny.json",
+    ],
+)
+def test_crawl_sites_file_is_valid(file_name):
     """
     Read in the actual crawl-sites-sample.json file and instantiate as a CrawlSites class.  This will run all built-in
     validations and hopefully let you know if the file is invalid prior to attempting to run it in the scheduler.
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
 
-    for file_name in ["crawl-sites-sample", "crawl-sites-production"]:
-        crawl_sites_file = (
-            Path(__file__).parent.parent.parent / f"search_gov_crawler/search_gov_spiders/utility_files/{file_name}.json"
-        )
+    crawl_sites_file = (
+        Path(__file__).parent.parent.parent / f"search_gov_crawler/search_gov_spiders/utility_files/{file_name}"
+    )
 
-        cs = CrawlSites.from_file(file=crawl_sites_file)
-        assert len(list(cs.scheduled())) > 0
+    cs = CrawlSites.from_file(file=crawl_sites_file)
+    assert len(list(cs.scheduled())) > 0
