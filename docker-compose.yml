@@ -20,6 +20,8 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+    networks:
+      - elastic
 
   es-node2:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
@@ -41,6 +43,8 @@ services:
       - es-data2:/usr/share/elasticsearch/data
     ports:
       - 9301:9300
+    networks:
+      - elastic
 
   es-node3:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
@@ -62,6 +66,20 @@ services:
       - es-data3:/usr/share/elasticsearch/data
     ports:
       - 9302:9300
+    networks:
+      - elastic
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.17.28
+    environment:
+      - ELASTICSEARCH_URL="http://es-node1:9200"
+      - ELASTICSEARCH_HOSTS="http://es-node1:9200"
+      - DISABLE_SECURITY_DASHBOARDS_PLUGIN="true"
+    ports:
+      - 5601:5601
+    networks:
+      - elastic
 
 volumes:
   es-data1:
@@ -70,3 +88,7 @@ volumes:
     driver: local
   es-data3:
     driver: local
+
+networks:
+  elastic:
+    driver: bridge

@@ -17,7 +17,9 @@ def search_gov_default(obj) -> dict | None:
             "name": obj.name,
             "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
+            "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
             "start_urls": obj.start_urls,
+            "output_target": getattr(obj, "output_target", None),
         }
 
     if isinstance(obj, Crawler):
@@ -83,7 +85,7 @@ class JsonLogging:
 
             for file_handler in file_handlers:
                 root_logger.addHandler(
-                    SearchGovSpiderFileHandler.from_hanlder(handler=file_handler, log_level=self.log_level)
+                    SearchGovSpiderFileHandler.from_hanlder(handler=file_handler, log_level=self.log_level),
                 )
                 self.file_hanlder_enabled = True
 
@@ -98,7 +100,8 @@ class JsonLogging:
         Required extension method that checks for configuration and connects extension methons to signals
         """
         if not crawler.settings.getbool("JSON_LOGGING_ENABLED"):
-            raise NotConfigured("JsonLogging Extension is listed in Extension but is not enabled.")
+            msg = "JsonLogging extension is listed in settings.EXTENSIONS but is not enabled."
+            raise NotConfigured(msg)
 
         ext = cls(log_level=crawler.settings.get("LOG_LEVEL", "INFO"))
         crawler.signals.connect(ext.spider_opened, signal=spider_opened)
@@ -111,8 +114,13 @@ class JsonLogging:
         spider_log = logging.getLogger(spider.name)
 
         spider_log.info(
-            "Starting spider %s with following args: allowed_domains=%s start_urls=%s",
+            (
+                "Starting spider %s with following args: "
+                "allowed_domains=%s allowed_domain_paths=%s start_urls=%s output_target=%s"
+            ),
             spider.name,
             ",".join(getattr(spider, "allowed_domains", [])),
+            ",".join(getattr(spider, "allowed_domains_paths", [])),
             ",".join(spider.start_urls),
+            getattr(spider, "output_target", None),
         )

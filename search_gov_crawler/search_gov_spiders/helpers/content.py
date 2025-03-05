@@ -45,4 +45,6 @@ def trim_whitespace(text: str) -> str:
 
 def replace_whitespace(text: str) -> str:
     """Replaces all whitespace characters like \n, \t, \r, etc. with spaces."""
+    if not text:
+        return ""
     return re.sub(r"\s+", " ", text).strip()

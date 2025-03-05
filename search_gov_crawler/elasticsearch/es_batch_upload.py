@@ -9,9 +9,15 @@ from elasticsearch import Elasticsearch, helpers
 from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
+from pythonjsonlogger.json import JsonFormatter
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport.transport").setLevel("ERROR")
+
+logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+log = logging.getLogger("search_gov_crawler.elasticsearch")
 
 
 class SearchGovElasticsearch:
@@ -23,7 +29,6 @@ class SearchGovElasticsearch:
         self._es_client = None
         self._env_es_hosts = os.environ.get("ES_HOSTS", "")
         self._env_es_index_name = os.environ.get("SPIDER_ES_INDEX_NAME", "")
-        self._env_es_index_alias = os.environ.get("SPIDER_ES_INDEX_ALIAS", "")
         self._env_es_username = os.environ.get("ES_USER", "")
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
@@ -67,38 +72,37 @@ class SearchGovElasticsearch:
             hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
         return hosts
 
-    def _get_client(self, spider: Spider):
+    def _get_client(self):
         """
         Lazily initializes the Elasticsearch client.
         """
         if not self._es_client:
-            self._es_client = Elasticsearch(
-                hosts=self._parse_es_urls(self._env_es_hosts),
-                verify_certs=False,
-                ssl_show_warn=False,
-                basic_auth=(self._env_es_username, self._env_es_password),
-            )
-            self._create_index_if_not_exists(spider)
+            try:
+                self._es_client = Elasticsearch(
+                    hosts=self._parse_es_urls(self._env_es_hosts),
+                    verify_certs=False,
+                    ssl_show_warn=False,
+                    basic_auth=(self._env_es_username, self._env_es_password),
+                )
+            except Exception as e:
+                log.error(f"Couldn't create an elasticsearch client: {str(e)}")
         return self._es_client
 
-    def _create_index_if_not_exists(self, spider: Spider):
+    def create_index_if_not_exists(self):
         """
         Creates an index in Elasticsearch if it does not exist.
         """
         index_name = self._env_es_index_name
         try:
-            es_client = self._get_client(spider)
+            es_client = self._get_client()
             if not es_client.indices.exists(index=index_name):
                 index_settings = {
                     "settings": {"index": {"number_of_shards": 6, "number_of_replicas": 1}},
-                    "aliases": {self._env_es_index_alias: {}},
                 }
                 es_client.indices.create(index=index_name, body=index_settings)
-                spider.logger.info(f"Index '{index_name}' created successfully.")
-            else:
-                spider.logger.info(f"Index '{index_name}' already exists.")
+                log.info(f"Index '{index_name}' created successfully.")
         except Exception as e:
-            spider.logger.error(f"Error creating/checking index: {str(e)}")
+            log.error(f"General error creating/updating index: {str(e)}")
 
     def _create_actions(self, docs: list[dict[Any, Any]]) -> list[dict[str, Any]]:
         """
@@ -114,7 +118,7 @@ class SearchGovElasticsearch:
         def _bulk_upload():
             try:
                 actions = self._create_actions(docs)
-                success, _ = helpers.bulk(self._get_client(spider), actions)
+                success, _ = helpers.bulk(self._get_client(), actions)
                 spider.logger.info("Loaded %s records to Elasticsearch!", success)
             except Exception as e:
                 spider.logger.error(f"Error in bulk upload: {str(e)}")

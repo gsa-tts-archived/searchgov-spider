@@ -42,8 +42,10 @@ max-line-length=120
 [tool.pylint.'MESSAGES CONTROL']
 disable= [
     "abstract-method",
-    "too-few-public-methods",
     "missing-class-docstring",
     "missing-module-docstring",
-    "missing-function-docstring"
+    "missing-function-docstring",
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-positional-arguments"
 ]
