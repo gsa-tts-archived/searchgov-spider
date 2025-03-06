@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  list-and-test:
+  python-lint-and-test:
     docker:
       - image: cimg/python:3.12
     steps:
@@ -33,7 +33,7 @@ jobs:
             . venv/bin/activate
             python -m pytest tests
 
-  check-domain-configs:
+  jsonnet-check-domain-configs:
     docker:
       - image: cimg/go:1.23.3
     environment:
@@ -58,7 +58,7 @@ jobs:
 
 workflows:
   version: 2
-  build-test:
+  lint-and-test:
     jobs:
-      - lint-and-test
-      - check-domain-configs
+      - python-lint-and-test
+      - jsonnet-check-domain-configs
