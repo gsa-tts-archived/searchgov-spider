@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -22,6 +22,7 @@ wait_for_elasticsearch_health() {
         ((counter++))
     done
     echo "Elasticsearch is healthy."
+    return 0
 }
 
 install_es_plugins() {
@@ -43,6 +44,7 @@ create_es_index() {
              -d "@es_index_settings.json"
         echo "Index '${SEARCHELASTIC_INDEX}' created successfully."
     fi
+    return 0
 }
 
 restart_elasticsearch() {
@@ -50,10 +52,10 @@ restart_elasticsearch() {
     pid=$(pgrep -f "org.elasticsearch.bootstrap.Elasticsearch" || true)
     if [ -n "$pid" ]; then
         echo "Killing Elasticsearch with PID(s): ${pid}"
+        sleep 10
         kill "$pid"
-        # Allow some time for Docker to restart the process
-        sleep 5
     fi
+    return 0
 }
 
 main() {
