@@ -27,8 +27,8 @@ class SearchGovElasticsearch:
         self._current_batch = []
         self._batch_size = batch_size
         self._es_client = None
-        self._env_es_hosts = os.environ.get("ES_HOSTS", "")
-        self._env_es_index_name = os.environ.get("SPIDER_ES_INDEX_NAME", "")
+        self._env_es_hosts = os.environ.get("ES_HOSTS", "http://localhost:9200")
+        self._env_es_index_name = os.environ.get("SEARCHELASTIC_INDEX", "development-i14y-documents-searchgov")
         self._env_es_username = os.environ.get("ES_USER", "")
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor

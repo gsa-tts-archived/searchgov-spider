@@ -35,7 +35,7 @@ def sample_spider():
 def search_gov_es():
     with patch.dict(os.environ, {
         "ES_HOSTS": "http://localhost:9200",
-        "SPIDER_ES_INDEX_NAME": "test_index",
+        "SEARCHELASTIC_INDEX": "test_index",
         "ES_USER": "test_user",
         "ES_PASSWORD": "test_password"
     }):
