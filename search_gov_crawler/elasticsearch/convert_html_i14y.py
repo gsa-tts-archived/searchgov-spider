@@ -83,7 +83,6 @@ def convert_html(html_content: str, url: str):
     }
 
 
-
 def ensure_http_prefix(url: str):
     return url if url.startswith(("http://", "https://")) else f"https://{url}"
 
