@@ -28,8 +28,12 @@ wait_for_elasticsearch_health() {
 install_es_plugins() {
     local plugins=(analysis-kuromoji analysis-icu analysis-smartcn)
     for plugin in "${plugins[@]}"; do
-        echo "Installing plugin: ${plugin}"
-        /usr/share/elasticsearch/bin/elasticsearch-plugin install "${plugin}"
+        if /usr/share/elasticsearch/bin/elasticsearch-plugin list | grep -q "${plugin}"; then
+            echo "Plugin ${plugin} is already installed, skipping."
+        else
+            echo "Installing plugin: ${plugin}"
+            /usr/share/elasticsearch/bin/elasticsearch-plugin install "${plugin}"
+        fi
     done
 }
 
