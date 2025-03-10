@@ -39,7 +39,7 @@ def search_gov_es():
         os.environ,
         {
             "ES_HOSTS": "http://localhost:9200",
-            "SPIDER_ES_INDEX_NAME": "test_index",
+            "SEARCHELASTIC_INDEX": "test_index",
             "ES_USER": "test_user",
             "ES_PASSWORD": "test_password",
         },
@@ -142,15 +142,6 @@ def test_parse_es_urls_valid_urls():
     ]
 
 
-def test_index_exists(mock_es_client, search_gov_es):
-    with patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
-        return_value=mock_es_client,
-    ):
-        search_gov_es.create_index_if_not_exists()
-        mock_es_client.indices.exists.assert_called_once_with(index="test_index")
-
-
 def test_get_client(search_gov_es, mock_es_client):
     with patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch", return_value=mock_es_client):
         client = search_gov_es._get_client()
@@ -169,25 +160,6 @@ def test_get_client_exception(search_gov_es):
         client = search_gov_es._get_client()
         assert client is None
         mock_log.exception.assert_called_once()
-
-
-def test_create_index_if_not_exists(search_gov_es, mock_es_client):
-    with patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
-        return_value=mock_es_client,
-    ):
-        mock_es_client.indices.exists.return_value = False
-        search_gov_es.create_index_if_not_exists()
-        mock_es_client.indices.create.assert_called_once()
-
-
-def test_create_index_if_exists(search_gov_es, mock_es_client):
-    with patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
-        return_value=mock_es_client,
-    ):
-        mock_es_client.indices.exists.return_value = True
-        search_gov_es.create_index_if_not_exists()
 
 
 def test_create_actions(search_gov_es):
