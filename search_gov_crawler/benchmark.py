@@ -38,9 +38,11 @@ from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
-from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import (
+    ALLOWED_CONTENT_TYPE_OUTPUT_MAP,
+)
 
 load_dotenv()
 
@@ -87,7 +89,8 @@ def create_apscheduler_job(
         "func": scrapy_scheduler.run_scrapy_crawl,
         "id": job_name,
         "name": job_name,
-        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
+        "next_run_time": datetime.now(tz=UTC)
+        + timedelta(seconds=runtime_offset_seconds),
         "args": [
             "domain_spider" if not handle_javascript else "domain_spider_js",
             allow_query_string,
@@ -176,10 +179,29 @@ def benchmark_from_args(
 if __name__ == "__main__":
     no_input_arg = all(arg not in sys.argv for arg in ["-f", "--input_file"])
 
-    parser = argparse.ArgumentParser(description="Run a scrapy schedule or benchmark based on input.")
-    parser.add_argument("-f", "--input_file", type=str, help="Path to file containing list of domains to schedule")
-    parser.add_argument("-d", "--allowed_domains", type=str, help="domains allowed to crawl", required=no_input_arg)
-    parser.add_argument("-u", "--starting_urls", type=str, help="url used to start crawl", required=no_input_arg)
+    parser = argparse.ArgumentParser(
+        description="Run a scrapy schedule or benchmark based on input."
+    )
+    parser.add_argument(
+        "-f",
+        "--input_file",
+        type=str,
+        help="Path to file containing list of domains to schedule",
+    )
+    parser.add_argument(
+        "-d",
+        "--allowed_domains",
+        type=str,
+        help="domains allowed to crawl",
+        required=no_input_arg,
+    )
+    parser.add_argument(
+        "-u",
+        "--starting_urls",
+        type=str,
+        help="url used to start crawl",
+        required=no_input_arg,
+    )
     parser.add_argument(
         "-o",
         "--output_target",
@@ -202,7 +224,13 @@ if __name__ == "__main__":
         default=False,
         help="Flag to enable capturing URLs with query strings",
     )
-    parser.add_argument("-t", "--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
+    parser.add_argument(
+        "-t",
+        "--runtime_offset",
+        type=int,
+        default=5,
+        help="Number of seconds to offset job start",
+    )
     args = parser.parse_args()
 
     if no_input_arg:
@@ -216,4 +244,6 @@ if __name__ == "__main__":
         }
         benchmark_from_args(**benchmark_args)
     else:
-        benchmark_from_file(input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset)
+        benchmark_from_file(
+            input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset
+        )

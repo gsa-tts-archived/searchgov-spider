@@ -20,8 +20,8 @@ from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
+from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
 
 load_dotenv()
 
@@ -31,14 +31,17 @@ log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
 CRAWL_SITES_FILE = (
     Path(__file__).parent
-    / "search_gov_spiders"
-    / "utility_files"
+    / "domains"
     / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
 
 
 def run_scrapy_crawl(
-    spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str, output_target: str
+    spider: str,
+    allow_query_string: bool,
+    allowed_domains: str,
+    start_urls: str,
+    output_target: str,
 ) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
@@ -53,12 +56,21 @@ def run_scrapy_crawl(
         f" -a output_target={output_target}"
     )
 
-    subprocess.run(cmd, check=True, cwd=Path(__file__).parent, env=scrapy_env, executable="/bin/bash", shell=True)
+    subprocess.run(
+        cmd,
+        check=True,
+        cwd=Path(__file__).parent,
+        env=scrapy_env,
+        executable="/bin/bash",
+        shell=True,
+    )
     msg = (
         "Successfully completed scrapy crawl with args "
         "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s"
     )
-    log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target)
+    log.info(
+        msg, spider, allow_query_string, allowed_domains, start_urls, output_target
+    )
 
 
 def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
@@ -76,9 +88,15 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
                 "func": run_scrapy_crawl,
                 "id": job_name.lower().replace(" ", "-").replace("---", "-"),
                 "name": job_name,
-                "trigger": CronTrigger.from_crontab(expr=crawl_site.schedule, timezone="UTC"),
+                "trigger": CronTrigger.from_crontab(
+                    expr=crawl_site.schedule, timezone="UTC"
+                ),
                 "args": [
-                    "domain_spider" if not crawl_site.handle_javascript else "domain_spider_js",
+                    (
+                        "domain_spider"
+                        if not crawl_site.handle_javascript
+                        else "domain_spider_js"
+                    ),
                     crawl_site.allow_query_string,
                     crawl_site.allowed_domains,
                     crawl_site.starting_urls,
