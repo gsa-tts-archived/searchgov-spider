@@ -98,7 +98,7 @@ def get_simple_content_type(content_type_header: str, output_target: str) -> str
 def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
     """Read in list of crawl sites from json file"""
     if not crawl_file_path:
-        crawl_file = Path(__file__).parent.parent / "utility_files" / "crawl-sites-production.json"
+        crawl_file = Path(__file__).parent.parent.parent / "domains" / "crawl-sites-production.json"
     else:
         crawl_file = Path(crawl_file_path)
 
