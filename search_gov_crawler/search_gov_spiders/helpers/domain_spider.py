@@ -1,6 +1,5 @@
 import json
 import re
-import os
 from pathlib import Path
 from typing import Any, Optional
 
@@ -85,7 +84,7 @@ def is_valid_content_type(content_type_header: Any, output_target: str) -> bool:
 def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
     """Read in list of crawl sites from json file"""
     if not crawl_file_path:
-        crawl_file = Path(__file__).parent.parent / "utility_files" / "crawl-sites-production.json"
+        crawl_file = Path(__file__).parent.parent.parent / "domains" / "crawl-sites-production.json"
     else:
         crawl_file = Path(crawl_file_path)
 
@@ -116,3 +115,18 @@ def default_allowed_domains(handle_javascript: bool, remove_paths: bool = True) 
                 allowed_domains.extend(domains.split(","))
 
     return allowed_domains
+
+
+def validate_spider_arguments(allowed_domains: str | None, start_urls: str | None, output_target: str) -> None:
+    """Common logic used to validate spider arguements and raise errors"""
+
+    if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
+        msg = "Invalid arguments: allowed_domains and start_urls must be used together or not at all."
+        raise ValueError(msg)
+
+    if output_target not in ALLOWED_CONTENT_TYPE_OUTPUT_MAP:
+        msg = (
+            "Invalid arguments: output_target must be one of the following: "
+            f"{list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys())}"
+        )
+        raise ValueError(msg)
