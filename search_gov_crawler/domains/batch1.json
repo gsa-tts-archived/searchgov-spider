@@ -1,0 +1,47 @@
+[
+    {
+        "allow_query_string": false,
+        "allowed_domains": "bep.gov",
+        "handle_javascript": true,
+        "name": "BEP",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://www.bep.gov"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "cdfifund.gov",
+        "handle_javascript": true,
+        "name": "CDFIFUND",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://www.cdfifund.gov"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "eisenhowerlibrary.gov/",
+        "handle_javascript": true,
+        "name": "EISENHOWER",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://www.eisenhowerlibrary.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "hydrogen.energy.gov/",
+        "handle_javascript": true,
+        "name": "HYDROGEN",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://www.hydrogen.energy.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "researchfestival.nih.gov/",
+        "handle_javascript": true,
+        "name": "RESEARCH FESTIVAL",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://researchfestival.nih.gov/"
+    }
+]
