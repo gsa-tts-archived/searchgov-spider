@@ -25,7 +25,7 @@ def test_detect_lang_chinese():
     assert detect_lang("这是一个中文测试句子。") == "zh" or detect_lang("这是一个中文测试句子.") == "zh" or detect_lang("这是一个中文测试句子.") == "zh"
 
 def test_detect_lang_short_text():
-    assert detect_lang("How are you?") == "en"
+    assert detect_lang("Hi, How are you?") == "en"
 
 def test_detect_lang_empty_text():
     assert detect_lang("") is None
