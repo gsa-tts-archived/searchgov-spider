@@ -23,7 +23,7 @@ def dummy_get_base_extension(url):
 def dummy_separate_file_name(filename):
     return "Fake Title from filename"
 
-def dummy_summarize_text(text):
+def dummy_summarize_text(text, lang_code):
     # Return a tuple: (description, list of keywords)
     return ("Fake description", ["keyword1", "keyword2"])
 

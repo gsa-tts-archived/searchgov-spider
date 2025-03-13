@@ -21,24 +21,42 @@ ALLOWED_LANGUAGE_CODE = {
 # fmt: on
 
 def null_date(article_date):
+    """
+    Convert falsey date values (like an empty string) to None,
+    which will yield a null value in elasticsearch
+
+    Args:
+        article_date (str | Any): Date value that needs to fallback to null
+
+    Returns:
+        str: Either the original date, or NoneValue
+    """
     return article_date or None
 
 def detect_lang(text: str) -> str:
+    """
+    Detect language based on charachters and encoding
+
+    Args:
+        text (str): The text with the language in question
+
+    Returns:
+        str: A two letter language code, eg: "en", "es", "zh", ...
+    """
     try:
-        return detect(text[:64])
+        lang = detect(text[:64])
+        return lang[:2] if len(lang) > 1 else None
     except Exception:
         pass
     return None
     
 
-def summarize_text(text: str, num_sentences=3, num_keywords=10, lang_code: str="en"):
+def summarize_text(text: str, lang_code: str=None):
     """
     Summarizes text and extracts keywords using nltk, and calculates execution time.
 
     Args:
-        text (str): The input text.
-        num_sentences (int): Number of sentences in the summary.
-        num_keywords (int): Number of keywords to extract.
+        text (str): extracted text/content
 
     Returns:
         tuple: (summary, keywords)
@@ -67,10 +85,10 @@ def summarize_text(text: str, num_sentences=3, num_keywords=10, lang_code: str="
                 else:
                     sentence_scores[sentence] += word_frequencies[word]
 
-    summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:num_sentences]
+    summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:3]
     summary = ' '.join(summary_sentences)
 
-    sorted_words = sorted(word_frequencies, key=word_frequencies.get, reverse=True)[:num_keywords]
+    sorted_words = sorted(word_frequencies, key=word_frequencies.get, reverse=True)[:10]
     keywords = ", ".join(sorted_words)
 
     return summary, keywords

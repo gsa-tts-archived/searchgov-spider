@@ -28,10 +28,6 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
     description = article.meta_description or article.summary or article_backup["description"] or None
     tags = article.tags or article.keywords or article.meta_keywords or article_backup["keywords"] or None
 
-    summary, keywords = summarize_text(main_content)
-    tags = tags or keywords
-    description = description or summary
-
     time_now_str = current_utc_iso()
     path = article.url or article_backup["url"] or url
 
@@ -41,6 +37,10 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
     language = article.meta_lang or article_backup["language"] or response_language or detect_lang(main_content)
     language = language[:2] if language else None
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
+
+    summary, keywords = summarize_text(text=main_content, lang_code=language)
+    tags = tags or keywords
+    description = description or summary
 
     return {
         "audience": article_backup["audience"],

@@ -21,16 +21,16 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     basename, extension = get_base_extension(url)
     title = meta_values.get("Title") or separate_file_name(f"{basename}.{extension}")
     main_content = get_pdf_text(reader) or title
-    description, keywords = summarize_text(main_content)
 
     sha_id = generate_url_sha256(url)
 
     language = meta_values.get("Lang") or response_language or detect_lang(main_content)
     language = language[:2] if language else None
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
+    
+    description, keywords = summarize_text(text=main_content, lang_code=language)
 
     time_now_str = current_utc_iso()
-
 
     return  {
         "audience": None,
