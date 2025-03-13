@@ -1,0 +1,56 @@
+[
+    {
+        "allow_query_string": false,
+        "allowed_domains": "fdc.nal.usda.gov/",
+        "handle_javascript": true,
+        "name": "FDC",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://fdc.nal.usda.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "energysaver.gov/",
+        "handle_javascript": true,
+        "name": "ENERGYSAVER",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://energysaver.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "computersforlearning.gov/",
+        "handle_javascript": true,
+        "name": "COMPUTERSFORLEARNINGS",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://computersforlearning.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "cdo.gov/",
+        "handle_javascript": true,
+        "name": "CDO_GOV",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://www.cdo.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "museum.archives.gov/",
+        "handle_javascript": true,
+        "name": "ARCHIVES MUSEUM",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://museum.archives.gov/"
+    },
+    {
+        "allow_query_string": false,
+        "allowed_domains": "selectusa.gov/",
+        "handle_javascript": true,
+        "name": "SELECTUSA",
+        "output_target": "csv",
+        "schedule": "30 09 * * MON",
+        "starting_urls": "https://selectusa.gov/"
+    }
+]
