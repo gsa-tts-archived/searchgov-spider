@@ -4,6 +4,7 @@ from scrapy.spiders.crawl import CrawlSpider, Rule
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.helpers import encoding
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+import os
 
 
 class DomainSpider(CrawlSpider):
@@ -53,8 +54,15 @@ class DomainSpider(CrawlSpider):
              -a output_target=elasticsearch```
     """
 
+    DEPTH_LIMIT = os.environ.get("SPIDER_DEPTH_LIMIT", "3")
     name: str = "domain_spider"
-    rules = (Rule(link_extractor=helpers.domain_spider_link_extractor, callback="parse_item", follow=True),)
+    rules = (
+        Rule(
+            link_extractor=helpers.domain_spider_link_extractor,
+            callback="parse_item",
+            follow=True,
+        ),
+    )
 
     def __init__(
         self,
@@ -63,6 +71,7 @@ class DomainSpider(CrawlSpider):
         allowed_domains: str | None = None,
         start_urls: str | None = None,
         output_target: str,
+        search_depth: int = DEPTH_LIMIT,
         **kwargs,
     ) -> None:
         helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
@@ -82,12 +91,31 @@ class DomainSpider(CrawlSpider):
         self.allowed_domain_paths = (
             allowed_domains.split(",")
             if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
+            else helpers.default_allowed_domains(
+                handle_javascript=False, remove_paths=False
+            )
         )
 
         self.start_urls = (
-            start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=False)
+            start_urls.split(",")
+            if start_urls
+            else helpers.default_starting_urls(handle_javascript=False)
         )
+
+    # OPTION 1- would like to do this since we already use update_settings in js spider
+    # def update_settings(cls, settings):
+    #     super().update_settings(settings)
+    #     settings.set("DEPTH_LIMIT", "some value", priority="spider")
+
+    # OPTION 2- EASIER ACCESS TO ARGS
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super().from_crawler(crawler, *args, **kwargs)
+        if "search_depth" in kwargs:
+            spider.settings.set(
+                "DEPTH_LIMIT", kwargs["search_depth"], priority="spider"
+            )
+        return spider
 
     def parse_item(self, response: Response):
         """
@@ -99,6 +127,12 @@ class DomainSpider(CrawlSpider):
         @scrapes url
         """
 
-        if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
+        if helpers.is_valid_content_type(
+            response.headers.get("content-type", None), output_target=self.output_target
+        ):
             html_content = encoding.decode_http_response(response_bytes=response.body)
-            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
+            yield SearchGovSpidersItem(
+                url=response.url,
+                html_content=html_content,
+                output_target=self.output_target,
+            )
