@@ -55,7 +55,7 @@ def test_separate_file_name_numbers():
     assert separate_file_name("file123Test.pdf") == "file 123 Test"
 
 def test_separate_file_name_symbols():
-    assert separate_file_name("file_with-symbols+test,file~name%test.pdf") == "file with symbols test file name test tar"
+    assert separate_file_name("file_with-symbols+test,file~name%test.pdf") == "file with symbols test file name test"
 
 def test_separate_file_name_no_extension():
     assert separate_file_name("noExtensionFile") == "no Extension File"

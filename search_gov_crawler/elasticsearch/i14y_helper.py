@@ -118,6 +118,8 @@ def get_base_extension(url: str) -> tuple[str, str]:
     """Extracts the basename and file extension from a URL."""
     url = ensure_http_prefix(url)
     basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))
+    if extension.startswith("."):
+        extension = extension[1:]
     return basename, extension
 
 
