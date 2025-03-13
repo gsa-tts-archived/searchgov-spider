@@ -1,0 +1,12 @@
+[
+   {
+      "allow_query_string": false,
+      "allowed_domains": "quotes.toscrape.com",
+      "handle_javascript": false,
+      "name": "QUOTES",
+      "output_target": "csv",
+      "schedule": "00 06 * * MON",
+      "starting_urls": "https://quotes.toscrape.com",
+      "search_depth": 2
+   }
+]

@@ -14,7 +14,8 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
         "handle_javascript": false,
         "schedule": null,
         "output_target": "csv",
-        "starting_urls": "https://www.example.com"
+        "starting_urls": "https://www.example.com",
+        "search_depth: 3
       }
     ]
   - Values in schedule are ignored for benchmark runs.
@@ -40,7 +41,9 @@ from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import (
+    ALLOWED_CONTENT_TYPE_OUTPUT_MAP,
+)
 
 load_dotenv()
 
@@ -77,6 +80,7 @@ def create_apscheduler_job(
     starting_urls: str,
     handle_javascript: bool,
     output_target: str,
+    search_depth: int,
     runtime_offset_seconds: int,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
@@ -87,13 +91,15 @@ def create_apscheduler_job(
         "func": scrapy_scheduler.run_scrapy_crawl,
         "id": job_name,
         "name": job_name,
-        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
+        "next_run_time": datetime.now(tz=UTC)
+        + timedelta(seconds=runtime_offset_seconds),
         "args": [
             "domain_spider" if not handle_javascript else "domain_spider_js",
             allow_query_string,
             allowed_domains,
             starting_urls,
             output_target,
+            search_depth,
         ],
     }
 
@@ -136,6 +142,7 @@ def benchmark_from_args(
     starting_urls: str,
     handle_javascript: bool,
     output_target: str,
+    search_depth: int,
     runtime_offset_seconds: int,
 ):
     """Run an individual benchmarking job based on args"""
@@ -152,6 +159,7 @@ def benchmark_from_args(
         starting_urls,
         handle_javascript,
         output_target,
+        search_depth,
         runtime_offset_seconds,
     )
 
@@ -162,6 +170,7 @@ def benchmark_from_args(
         "starting_urls": starting_urls,
         "handle_javascript": handle_javascript,
         "output_target": output_target,
+        "search_depth": search_depth,
         "runtime_offset_seconds": runtime_offset_seconds,
     }
 
@@ -176,10 +185,29 @@ def benchmark_from_args(
 if __name__ == "__main__":
     no_input_arg = all(arg not in sys.argv for arg in ["-f", "--input_file"])
 
-    parser = argparse.ArgumentParser(description="Run a scrapy schedule or benchmark based on input.")
-    parser.add_argument("-f", "--input_file", type=str, help="Path to file containing list of domains to schedule")
-    parser.add_argument("-d", "--allowed_domains", type=str, help="domains allowed to crawl", required=no_input_arg)
-    parser.add_argument("-u", "--starting_urls", type=str, help="url used to start crawl", required=no_input_arg)
+    parser = argparse.ArgumentParser(
+        description="Run a scrapy schedule or benchmark based on input."
+    )
+    parser.add_argument(
+        "-f",
+        "--input_file",
+        type=str,
+        help="Path to file containing list of domains to schedule",
+    )
+    parser.add_argument(
+        "-d",
+        "--allowed_domains",
+        type=str,
+        help="domains allowed to crawl",
+        required=no_input_arg,
+    )
+    parser.add_argument(
+        "-u",
+        "--starting_urls",
+        type=str,
+        help="url used to start crawl",
+        required=no_input_arg,
+    )
     parser.add_argument(
         "-o",
         "--output_target",
@@ -202,7 +230,20 @@ if __name__ == "__main__":
         default=False,
         help="Flag to enable capturing URLs with query strings",
     )
-    parser.add_argument("-t", "--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
+    parser.add_argument(
+        "-t",
+        "--runtime_offset",
+        type=int,
+        default=6,
+        help="Number of seconds to offset job start",
+    )
+    parser.add_argument(
+        "-sd",
+        "--search_depth",
+        type=int,
+        default=3,
+        help="How far down should spider crawl",
+    )
     args = parser.parse_args()
 
     if no_input_arg:
@@ -212,8 +253,11 @@ if __name__ == "__main__":
             "starting_urls": args.starting_urls,
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
+            "search_depth": args.search_depth,
             "runtime_offset_seconds": args.runtime_offset,
         }
         benchmark_from_args(**benchmark_args)
     else:
-        benchmark_from_file(input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset)
+        benchmark_from_file(
+            input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset
+        )
