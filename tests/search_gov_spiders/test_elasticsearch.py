@@ -20,8 +20,8 @@ html_content = """
     </body>
     </html>
 """
-response_bytes = html_content.encode()
 
+response_bytes = html_content.encode()
 
 @pytest.fixture
 def sample_spider():
