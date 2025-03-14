@@ -1,14 +1,18 @@
 import pytest
 from datetime import datetime
-
+from unittest.mock import patch, MagicMock
 from search_gov_crawler.elasticsearch import convert_pdf_i14y
 
 class FakePage:
     def __init__(self, text):
         self._text = text
+        self._object = {}
 
     def extract_text(self):
         return self._text
+    
+    def get_object(self):
+        return self._object
 
 class FakePdfReader:
     def __init__(self, stream, is_encrypted=False, pages=None, metadata=None):
@@ -138,8 +142,8 @@ def test_convert_pdf_normal(monkeypatch):
     assert result is not None
     # Since ALLOWED_LANGUAGE_CODE includes "en", we expect language suffix "_en" on these fields.
     assert result["title_en"] == "Fake Title"
-    assert result["description_en"] == "Fake description"
-    assert result["content_en"] == "This is the content of the PDF."
+    assert result["description_en"] == "Fake Title fake_basename.pdf Fake description"
+    assert result["content_en"] == "Fake Title fake_basename.pdf This is the content of the PDF. "
     assert result["_id"] == "dummy_sha"
     # Check values from dummy helpers.
     assert result["basename"] == "fake_basename"
@@ -155,3 +159,34 @@ def test_convert_pdf_encrypted(monkeypatch):
     url = "http://example.com/encrypted.pdf"
     result = convert_pdf_i14y.convert_pdf(response_bytes, url)
     assert result is None
+
+
+def test_add_title_and_filename():
+    """Test that add_title_and_filename correctly formats the content."""
+    doc = {
+        "title_en": "Sample PDF",
+        "basename": "sample",
+        "extension": "pdf",
+        "content_en": "This is some sample content."
+    }
+    convert_pdf_i14y.add_title_and_filename("content_en", "title_en", doc)
+    expected_content = "Sample PDF sample.pdf This is some sample content."
+    assert doc["content_en"] == expected_content
+
+
+def test_get_links_set():
+    """Test that get_links_set extracts unique links from PDF pages."""
+    # Mocking PdfReader and its pages
+    fake_page1 = MagicMock()
+    fake_page1.extract_text.return_value = "Visit https://example.com for more info."
+    
+    fake_page2 = MagicMock()
+    fake_page2.extract_text.return_value = "Check out www.test.com and also https://example.com"
+    
+    fake_reader = MagicMock()
+    fake_reader.pages = [fake_page1, fake_page2]
+    
+    links = convert_pdf_i14y.get_links_set(fake_reader)
+    expected_links = {"https://example.com", "www.test.com"}
+    
+    assert set(links) == expected_links

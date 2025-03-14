@@ -7,6 +7,52 @@ from search_gov_crawler.elasticsearch.i14y_helper import ALLOWED_LANGUAGE_CODE, 
     get_url_path, get_base_extension, current_utc_iso, generate_url_sha256, get_domain_name, \
     summarize_text, separate_file_name, detect_lang
 
+def add_title_and_filename(key: str, title_key: str, doc: dict):
+    """
+    Adds PDF's title and file name to the provided key.
+    Used mainly to improve index and relevance.
+
+    Args:
+        key: str The key to use to apply the change, eg "content"
+        doc: dict The i14y document the changes will be applied to
+
+    Returns:
+        None The changes are applied to the document as a referance/pointer
+    """
+    doc[key] = f"{doc[title_key]} {doc["basename"]}.{doc["extension"]} {doc[key]}"
+
+def get_links_set(reader: PdfReader):
+    """
+    Returns a set of links for all pages in the PDF
+
+    Args:
+        reader: PdfReader from pypdf
+
+    Returns:
+        (list[str]) unique set of links
+    """
+    key = "/Annots"
+    uri = "/URI"
+    ank = "/A"
+    links = {}
+
+    for page in reader.pages:
+        text = page.extract_text()
+        page_links = re.findall(r"https?://\S+|www\.\S+", text)
+        # Get all visible links
+        for link in page_links:
+            links[link] = link
+        
+        # Get all hidden links
+        page_object = page.get_object()
+        if key in page_object.keys():
+            ann = page_object[key]
+            for a in ann:
+                u = a.get_object()
+                if uri in u[ank].keys():
+                    link = u[ank][uri]
+                    links[link] = link
+    return links.values()
 
 def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     """Extracts and processes PDF content using pypdf."""
@@ -32,7 +78,11 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
 
     time_now_str = current_utc_iso()
 
-    return  {
+    content_key = f"content{valid_language}"
+    description_key = f"description{valid_language}"
+    title_key = f"title{valid_language}"
+
+    i14y_doc = {
         "audience": None,
         "changed": null_date(meta_values.get("ModDate") or meta_values.get("SourceModified")),
         "click_count": None,
@@ -52,14 +102,21 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
         "tags": keywords,
         "updated_at": time_now_str,
         "updated": null_date(meta_values.get("CreationDate")),
-        f"title{valid_language}": title,
-        f"description{valid_language}": content.sanitize_text(description),
-        f"content{valid_language}": content.sanitize_text(main_content),
+        title_key: title,
+        description_key: content.sanitize_text(description),
+        content_key: content.sanitize_text(main_content),
         "basename": basename,
         "extension": extension or None,
         "url_path": get_url_path(url),
         "domain_name": get_domain_name(url),
     }
+
+    add_title_and_filename(content_key, title_key, i14y_doc)
+    add_title_and_filename(description_key, title_key, i14y_doc)
+    all_links = get_links_set(reader)
+    i14y_doc[content_key] = f"{i14y_doc[content_key]} {" ".join(all_links) if len(all_links) > 0 else ""}"
+
+    return i14y_doc
     
 
 def get_pdf_text(reader: PdfReader) -> str:
