@@ -42,10 +42,7 @@ def run_scrapy_crawl(
     allowed_domains: str,
     start_urls: str,
     output_target: str,
-<<<<<<< Updated upstream
-=======
     search_depth: int,
->>>>>>> Stashed changes
 ) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
@@ -82,12 +79,9 @@ def run_scrapy_crawl(
         output_target,
         search_depth,
     )
-<<<<<<< Updated upstream
     log.info(
         msg, spider, allow_query_string, allowed_domains, start_urls, output_target
     )
-=======
->>>>>>> Stashed changes
 
 
 def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
@@ -109,17 +103,11 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
                     expr=crawl_site.schedule, timezone="UTC"
                 ),
                 "args": [
-<<<<<<< Updated upstream
                     (
                         "domain_spider"
                         if not crawl_site.handle_javascript
                         else "domain_spider_js"
                     ),
-=======
-                    "domain_spider"
-                    if not crawl_site.handle_javascript
-                    else "domain_spider_js",
->>>>>>> Stashed changes
                     crawl_site.allow_query_string,
                     crawl_site.allowed_domains,
                     crawl_site.starting_urls,

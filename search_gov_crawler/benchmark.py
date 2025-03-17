@@ -234,12 +234,7 @@ if __name__ == "__main__":
         "-t",
         "--runtime_offset",
         type=int,
-<<<<<<< Updated upstream
         default=5,
-        help="Number of seconds to offset job start",
-    )
-=======
-        default=6,
         help="Number of seconds to offset job start",
     )
     parser.add_argument(
@@ -250,7 +245,6 @@ if __name__ == "__main__":
         help="How far down should spider crawl",
         choices=range(1, 250),
     )
->>>>>>> Stashed changes
     args = parser.parse_args()
 
     if no_input_arg:
