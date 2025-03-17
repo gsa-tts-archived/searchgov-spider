@@ -80,7 +80,13 @@ def run_scrapy_crawl(
         search_depth,
     )
     log.info(
-        msg, spider, allow_query_string, allowed_domains, start_urls, output_target
+        msg,
+        spider,
+        allow_query_string,
+        allowed_domains,
+        start_urls,
+        output_target,
+        search_depth,
     )
 
 

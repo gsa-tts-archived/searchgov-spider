@@ -116,6 +116,7 @@ def test_valid_crawl_sites_scheduled(base_crawl_site_args):
         "allowed_domains": "another.example.com",
         "schedule": "* * * * *",
         "starting_urls": "https://another.example.com",
+        "search_depth": 3,
     }
 
     test_input = [
