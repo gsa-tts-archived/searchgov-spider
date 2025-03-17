@@ -243,6 +243,7 @@ if __name__ == "__main__":
         type=int,
         default=3,
         help="How far down should spider crawl",
+        choices=range(1, 250),
     )
     args = parser.parse_args()
 

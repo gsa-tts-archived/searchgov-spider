@@ -112,6 +112,10 @@ class DomainSpider(CrawlSpider):
     def from_crawler(cls, crawler, *args, **kwargs):
         spider = super().from_crawler(crawler, *args, **kwargs)
         if "search_depth" in kwargs:
+            if int(kwargs["search_depth"]) > 250 or int(kwargs["search_depth"]) < 1:
+                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {kwargs['search_depth']} "
+                raise ValueError(msg)
+
             spider.settings.set(
                 "DEPTH_LIMIT", kwargs["search_depth"], priority="spider"
             )
