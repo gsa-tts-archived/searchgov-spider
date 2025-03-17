@@ -102,12 +102,6 @@ class DomainSpider(CrawlSpider):
             else helpers.default_starting_urls(handle_javascript=False)
         )
 
-    # OPTION 1- would like to do this since we already use update_settings in js spider
-    # def update_settings(cls, settings):
-    #     super().update_settings(settings)
-    #     settings.set("DEPTH_LIMIT", "some value", priority="spider")
-
-    # OPTION 2- EASIER ACCESS TO ARGS
     @classmethod
     def from_crawler(cls, crawler, *args, **kwargs):
         spider = super().from_crawler(crawler, *args, **kwargs)

@@ -80,7 +80,9 @@ class DomainSpiderJs(CrawlSpider):
         """Moved settings update to this classmethod due to complexity."""
 
         super().update_settings(settings)
-        settings.set("PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider")
+        settings.set(
+            "PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider"
+        )
         settings.set("PLAYWRIGHT_BROWSER_TYPE", "chromium", priority="spider")
         settings.set("PLAYWRIGHT_LAUNCH_OPTIONS", {"headless": True}, priority="spider")
         settings.set(
@@ -116,10 +118,29 @@ class DomainSpiderJs(CrawlSpider):
         self.allowed_domain_paths = (
             allowed_domains.split(",")
             if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=True, remove_paths=False)
+            else helpers.default_allowed_domains(
+                handle_javascript=True, remove_paths=False
+            )
         )
-        self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
+        self.start_urls = (
+            start_urls.split(",")
+            if start_urls
+            else helpers.default_starting_urls(handle_javascript=True)
+        )
         self.output_target = output_target
+
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super().from_crawler(crawler, *args, **kwargs)
+        if "search_depth" in kwargs:
+            if int(kwargs["search_depth"]) > 250 or int(kwargs["search_depth"]) < 1:
+                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {kwargs['search_depth']} "
+                raise ValueError(msg)
+
+            spider.settings.set(
+                "DEPTH_LIMIT", kwargs["search_depth"], priority="spider"
+            )
+        return spider
 
     def parse_item(self, response: Response):
         """
@@ -131,9 +152,15 @@ class DomainSpiderJs(CrawlSpider):
         @scrapes url
         """
 
-        if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
+        if helpers.is_valid_content_type(
+            response.headers.get("content-type", None), output_target=self.output_target
+        ):
             html_content = encoding.decode_http_response(response_bytes=response.body)
-            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
+            yield SearchGovSpidersItem(
+                url=response.url,
+                html_content=html_content,
+                output_target=self.output_target,
+            )
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:
         """Set meta tags for playwright to run"""
