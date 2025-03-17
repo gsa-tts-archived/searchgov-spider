@@ -12,6 +12,7 @@ local CrawlSite(domain) = {
   schedule: domain.config.schedule,
   output_target: domain.config.output_target,
   starting_urls: domain.config.starting_urls,
+  search_depth: domain.config.search_depth,
 };
 
 // define output file names and their contents below
