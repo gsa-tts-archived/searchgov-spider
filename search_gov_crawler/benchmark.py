@@ -80,8 +80,8 @@ def create_apscheduler_job(
     starting_urls: str,
     handle_javascript: bool,
     output_target: str,
-    search_depth: int,
     runtime_offset_seconds: int,
+    search_depth: int,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -142,15 +142,15 @@ def benchmark_from_args(
     starting_urls: str,
     handle_javascript: bool,
     output_target: str,
-    search_depth: int,
     runtime_offset_seconds: int,
+    search_depth: int,
 ):
     """Run an individual benchmarking job based on args"""
 
     msg = (
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s "
-        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
+        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s search_depth=%s"
     )
     log.info(
         msg,
@@ -159,8 +159,8 @@ def benchmark_from_args(
         starting_urls,
         handle_javascript,
         output_target,
-        search_depth,
         runtime_offset_seconds,
+        search_depth,
     )
 
     apscheduler_job_kwargs = {
@@ -170,8 +170,8 @@ def benchmark_from_args(
         "starting_urls": starting_urls,
         "handle_javascript": handle_javascript,
         "output_target": output_target,
-        "search_depth": search_depth,
         "runtime_offset_seconds": runtime_offset_seconds,
+        "search_depth": search_depth,
     }
 
     scheduler = init_scheduler()
@@ -254,8 +254,8 @@ if __name__ == "__main__":
             "starting_urls": args.starting_urls,
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
-            "search_depth": args.search_depth,
             "runtime_offset_seconds": args.runtime_offset,
+            "search_depth": args.search_depth,
         }
         benchmark_from_args(**benchmark_args)
     else:

@@ -68,7 +68,7 @@ def run_scrapy_crawl(
     )
     msg = (
         "Successfully completed scrapy crawl with args "
-        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s search_depth=%s"
+        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s, search_depth=%s"
     )
     log.info(
         msg,
