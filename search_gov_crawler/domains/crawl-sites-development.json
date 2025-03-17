@@ -6,7 +6,8 @@
       "name": "Navy All Hands Magazine",
       "output_target": "endpoint",
       "schedule": "00 06 * * MON",
-      "starting_urls": "https://allhands.navy.mil/"
+      "starting_urls": "https://allhands.navy.mil/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -15,7 +16,8 @@
       "name": "USDA NFC Help Documentation",
       "output_target": "endpoint",
       "schedule": "30 07 * * MON",
-      "starting_urls": "https://help.nfc.usda.gov/"
+      "starting_urls": "https://help.nfc.usda.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -24,7 +26,8 @@
       "name": "DOD Army MWR",
       "output_target": "endpoint",
       "schedule": "30 08 * * MON",
-      "starting_urls": "https://www.armymwr.com/"
+      "starting_urls": "https://www.armymwr.com/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -33,7 +36,8 @@
       "name": "NOAA CoastWatch",
       "output_target": "endpoint",
       "schedule": "30 08 * * MON",
-      "starting_urls": "https://coastwatch.noaa.gov/cw/index.html"
+      "starting_urls": "https://coastwatch.noaa.gov/cw/index.html",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -42,7 +46,8 @@
       "name": "NOAA CoastWatch East Coast Node",
       "output_target": "endpoint",
       "schedule": "30 08 * * MON",
-      "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
+      "starting_urls": "https://eastcoast.coastwatch.noaa.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -51,7 +56,8 @@
       "name": "VA Benefits.va.gov",
       "output_target": "endpoint",
       "schedule": "30 08 * * MON",
-      "starting_urls": "https://benefits.va.gov/benefits/"
+      "starting_urls": "https://benefits.va.gov/benefits/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -60,7 +66,8 @@
       "name": "VA Research & Development",
       "output_target": "endpoint",
       "schedule": "30 08 * * MON",
-      "starting_urls": "https://www.research.va.gov/"
+      "starting_urls": "https://www.research.va.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -69,7 +76,8 @@
       "name": "DOD Defense Travel Management Office",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.travel.dod.mil/"
+      "starting_urls": "https://www.travel.dod.mil/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -78,7 +86,8 @@
       "name": "DOS AIS USVISA INFO",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://ais.usvisa-info.com/"
+      "starting_urls": "https://ais.usvisa-info.com/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -87,7 +96,8 @@
       "name": "Drought - Toolkit.climate.gov",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://toolkit.climate.gov"
+      "starting_urls": "https://toolkit.climate.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -96,7 +106,8 @@
       "name": "ED Office of Hearings and Appeals OHA",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://oha.ed.gov"
+      "starting_urls": "https://oha.ed.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -105,7 +116,8 @@
       "name": "FDA Import Alerts",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html"
+      "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -114,7 +126,8 @@
       "name": "Navy MyNavyHR",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.mynavyhr.navy.mil/"
+      "starting_urls": "https://www.mynavyhr.navy.mil/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -123,7 +136,8 @@
       "name": "NIH LRP",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.lrp.nih.gov/"
+      "starting_urls": "https://www.lrp.nih.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -132,7 +146,8 @@
       "name": "NIH ORWH",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://orwh.od.nih.gov/"
+      "starting_urls": "https://orwh.od.nih.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -150,7 +165,8 @@
       "name": "NOAA Coastwatch Great Lakes",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://coastwatch.glerl.noaa.gov/"
+      "starting_urls": "https://coastwatch.glerl.noaa.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -159,7 +175,8 @@
       "name": "NOAA CoastWatch West Coast",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
+      "starting_urls": "https://coastwatch.pfeg.noaa.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -168,7 +185,8 @@
       "name": "NOAA GOES-R",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.goes-r.gov"
+      "starting_urls": "https://www.goes-r.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -177,7 +195,8 @@
       "name": "TREAS - FinCEN",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.fincen.gov/"
+      "starting_urls": "https://www.fincen.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -186,7 +205,8 @@
       "name": "USCOURTS CACB",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.cacb.uscourts.gov"
+      "starting_urls": "https://www.cacb.uscourts.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -195,7 +215,8 @@
       "name": "USCOURTS ARE",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.are.uscourts.gov/"
+      "starting_urls": "https://www.are.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -204,7 +225,8 @@
       "name": "USCOURTS CAEP",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.caep.uscourts.gov/"
+      "starting_urls": "https://www.caep.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -213,7 +235,8 @@
       "name": "USCOURTS JPML",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.jpml.uscourts.gov"
+      "starting_urls": "https://www.jpml.uscourts.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -222,7 +245,8 @@
       "name": "USCOURTS MSND",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.msnd.uscourts.gov/"
+      "starting_urls": "https://www.msnd.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -231,7 +255,8 @@
       "name": "USCOURTS MSSD",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.mssd.uscourts.gov/"
+      "starting_urls": "https://www.mssd.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -240,7 +265,8 @@
       "name": "USCOURTS NCWBA",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.ncwba.uscourts.gov/"
+      "starting_urls": "https://www.ncwba.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -249,7 +275,8 @@
       "name": "USCOURTS PAWD",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.pawd.uscourts.gov/"
+      "starting_urls": "https://www.pawd.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -258,7 +285,8 @@
       "name": "USCOURTS UTB",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.utb.uscourts.gov/"
+      "starting_urls": "https://www.utb.uscourts.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -267,7 +295,8 @@
       "name": "USDA FPAC Business Center",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.fpacbc.usda.gov/index.html"
+      "starting_urls": "https://www.fpacbc.usda.gov/index.html",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -276,7 +305,8 @@
       "name": "VA Access To Care",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.accesstocare.va.gov"
+      "starting_urls": "https://www.accesstocare.va.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -285,7 +315,8 @@
       "name": "VA CFM Technical Information Library TIL",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.cfm.va.gov/til/"
+      "starting_urls": "https://www.cfm.va.gov/til/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -294,7 +325,8 @@
       "name": "VA CIDER Research",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.cider.research.va.gov"
+      "starting_urls": "https://www.cider.research.va.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": true,
@@ -303,7 +335,8 @@
       "name": "VA HERC Research",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.herc.research.va.gov/"
+      "starting_urls": "https://www.herc.research.va.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -312,7 +345,8 @@
       "name": "VA HSRD Research",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.hsrd.research.va.gov/"
+      "starting_urls": "https://www.hsrd.research.va.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -321,7 +355,8 @@
       "name": "VA My Health",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.myhealth.va.gov"
+      "starting_urls": "https://www.myhealth.va.gov",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -330,7 +365,8 @@
       "name": "VA Office of Accountability and Whistleblower Protection",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.va.gov/accountability/"
+      "starting_urls": "https://www.va.gov/accountability/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -339,7 +375,8 @@
       "name": "VA QUERI Research",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.queri.research.va.gov/"
+      "starting_urls": "https://www.queri.research.va.gov/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -348,7 +385,8 @@
       "name": "VA Resources",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.va.gov/resources/"
+      "starting_urls": "https://www.va.gov/resources/",
+      "search_depth": 3
    },
    {
       "allow_query_string": false,
@@ -357,6 +395,7 @@
       "name": "DOD DANTES",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "starting_urls": "https://www.dantes.mil/"
+      "starting_urls": "https://www.dantes.mil/",
+      "search_depth": 3
    }
 ]
