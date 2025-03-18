@@ -71,7 +71,6 @@ class DomainSpider(CrawlSpider):
         allowed_domains: str | None = None,
         start_urls: str | None = None,
         output_target: str,
-        search_depth: int = DEPTH_LIMIT,
         **kwargs,
     ) -> None:
         helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)

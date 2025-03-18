@@ -79,15 +79,6 @@ def run_scrapy_crawl(
         output_target,
         search_depth,
     )
-    log.info(
-        msg,
-        spider,
-        allow_query_string,
-        allowed_domains,
-        start_urls,
-        output_target,
-        search_depth,
-    )
 
 
 def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
