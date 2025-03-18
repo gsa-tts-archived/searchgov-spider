@@ -131,6 +131,7 @@ class DomainSpiderJs(CrawlSpider):
 
     @classmethod
     def from_crawler(cls, crawler, *args, **kwargs):
+        # DEPTH_LIMIT default is set in settings.py file. This default can be overridden either by command line argument (-a depth_limit=x) or within a json scheduling file.
         spider = super().from_crawler(crawler, *args, **kwargs)
         if "depth_limit" in kwargs:
             if int(kwargs["depth_limit"]) > 250 or int(kwargs["depth_limit"]) < 1:
