@@ -101,15 +101,14 @@ class DomainSpider(CrawlSpider):
         )
 
     @classmethod
-    def from_crawler(cls, crawler, *args, **kwargs):
+    def from_crawler(cls, crawler, depth_limit: int | None = None, *args, **kwargs):
         # DEPTH_LIMIT default is set in settings.py file. This default can be overridden either by command line argument (-a depth_limit=x) or within a json scheduling file.
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if "depth_limit" in kwargs:
-            if int(kwargs["depth_limit"]) > 250 or int(kwargs["depth_limit"]) < 1:
-                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {kwargs['depth_limit']} "
-                raise ValueError(msg)
+        if int(depth_limit) > 250 or int(depth_limit) < 1:
+            msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
+            raise ValueError(msg)
 
-            spider.settings.set("DEPTH_LIMIT", kwargs["depth_limit"], priority="spider")
+        spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
         return spider
 
     def parse_item(self, response: Response):
