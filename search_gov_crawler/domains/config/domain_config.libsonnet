@@ -10,7 +10,7 @@ Exports the domain config function used for all domain output targets. Expects t
   - search_depth: how far down you want the spider to crawl the site
 */
 
-function(allowed_domains, starting_urls, schedule, output_target, search_depth, options=[]) {
+function(allowed_domains, starting_urls, schedule, output_target, search_depth=3, options=[]) {
   allowed_domains: allowed_domains,
   allow_query_string: if ['allow_query_string'] == [o for o in options if o == 'allow_query_string'] then true else false,
   starting_urls: starting_urls,
