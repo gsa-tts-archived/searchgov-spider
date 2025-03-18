@@ -14,7 +14,7 @@ def fixture_base_crawl_site_args() -> dict:
         "handle_javascript": False,
         "output_target": "csv",
         "starting_urls": "https://www.example.com",
-        "search_depth": 3,
+        "depth_limit": 3,
     }
 
 
@@ -116,7 +116,7 @@ def test_valid_crawl_sites_scheduled(base_crawl_site_args):
         "allowed_domains": "another.example.com",
         "schedule": "* * * * *",
         "starting_urls": "https://another.example.com",
-        "search_depth": 3,
+        "depth_limit": 3,
     }
 
     test_input = [

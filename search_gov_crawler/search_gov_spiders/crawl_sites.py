@@ -7,7 +7,7 @@ from typing import Self
 @dataclass
 class CrawlSite:
     """
-    Represents a single crawl site record.  All fields required except schedule and search_depth.
+    Represents a single crawl site record.  All fields required except schedule and depth_limit.
     In normal operations, When schedule is blank, a job will not be scheduled.  When running
     a benchmark, schedule is ignored.
     """
@@ -18,7 +18,7 @@ class CrawlSite:
     handle_javascript: bool
     starting_urls: str
     output_target: str
-    search_depth: int
+    depth_limit: int
     schedule: str | None = None
 
     def __post_init__(self):
@@ -26,7 +26,7 @@ class CrawlSite:
         # check required fields
         missing_field_names = []
         for field in fields(self):
-            if field.name == "schedule" or field.name == "search_depth":
+            if field.name == "schedule" or field.name == "depth_limit":
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)

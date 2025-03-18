@@ -132,14 +132,12 @@ class DomainSpiderJs(CrawlSpider):
     @classmethod
     def from_crawler(cls, crawler, *args, **kwargs):
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if "search_depth" in kwargs:
-            if int(kwargs["search_depth"]) > 250 or int(kwargs["search_depth"]) < 1:
-                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {kwargs['search_depth']} "
+        if "depth_limit" in kwargs:
+            if int(kwargs["depth_limit"]) > 250 or int(kwargs["depth_limit"]) < 1:
+                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {kwargs['depth_limit']} "
                 raise ValueError(msg)
 
-            spider.settings.set(
-                "DEPTH_LIMIT", kwargs["search_depth"], priority="spider"
-            )
+            spider.settings.set("DEPTH_LIMIT", kwargs["depth_limit"], priority="spider")
         return spider
 
     def parse_item(self, response: Response):

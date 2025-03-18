@@ -15,7 +15,7 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
         "schedule": null,
         "output_target": "csv",
         "starting_urls": "https://www.example.com",
-        "search_depth: 3
+        "depth_limit: 3
       }
     ]
   - Values in schedule are ignored for benchmark runs.
@@ -81,7 +81,7 @@ def create_apscheduler_job(
     handle_javascript: bool,
     output_target: str,
     runtime_offset_seconds: int,
-    search_depth: int,
+    depth_limit: int,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -99,7 +99,7 @@ def create_apscheduler_job(
             allowed_domains,
             starting_urls,
             output_target,
-            search_depth,
+            depth_limit,
         ],
     }
 
@@ -143,14 +143,14 @@ def benchmark_from_args(
     handle_javascript: bool,
     output_target: str,
     runtime_offset_seconds: int,
-    search_depth: int,
+    depth_limit: int,
 ):
     """Run an individual benchmarking job based on args"""
 
     msg = (
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s "
-        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s search_depth=%s"
+        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s depth_limit=%s"
     )
     log.info(
         msg,
@@ -160,7 +160,7 @@ def benchmark_from_args(
         handle_javascript,
         output_target,
         runtime_offset_seconds,
-        search_depth,
+        depth_limit,
     )
 
     apscheduler_job_kwargs = {
@@ -171,7 +171,7 @@ def benchmark_from_args(
         "handle_javascript": handle_javascript,
         "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
-        "search_depth": search_depth,
+        "depth_limit": depth_limit,
     }
 
     scheduler = init_scheduler()
@@ -239,7 +239,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-sd",
-        "--search_depth",
+        "--depth_limit",
         type=int,
         default=3,
         help="How far down should spider crawl",
@@ -255,7 +255,7 @@ if __name__ == "__main__":
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
-            "search_depth": args.search_depth,
+            "depth_limit": args.depth_limit,
         }
         benchmark_from_args(**benchmark_args)
     else:

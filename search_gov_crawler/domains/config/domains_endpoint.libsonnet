@@ -10,7 +10,7 @@ local output_target = 'endpoint';
                          schedule='00 06 * * MON',
                          output_target=output_target,
                          options=['handle_javascript'],
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USDA NFC Help Documentation',
@@ -19,7 +19,7 @@ local output_target = 'endpoint';
                          schedule='30 07 * * MON',
                          output_target=output_target,
                          options=['handle_javascript'],
-                         search_depth=3),
+                         depth_limit=3),
   },
 
   // long running domains, start these early
@@ -29,7 +29,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.armymwr.com/',
                          output_target=output_target,
                          schedule='30 08 * * MON',
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NOAA CoastWatch',
@@ -37,7 +37,7 @@ local output_target = 'endpoint';
                          starting_urls='https://coastwatch.noaa.gov/cw/index.html',
                          schedule='30 08 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NOAA CoastWatch East Coast Node',
@@ -45,7 +45,7 @@ local output_target = 'endpoint';
                          starting_urls='https://eastcoast.coastwatch.noaa.gov/',
                          schedule='30 08 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA Benefits.va.gov',
@@ -53,7 +53,7 @@ local output_target = 'endpoint';
                          starting_urls='https://benefits.va.gov/benefits/',
                          schedule='30 08 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA Research & Development',
@@ -61,7 +61,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.research.va.gov/',
                          schedule='30 08 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
 
   // everything else starts at 0930
@@ -71,7 +71,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.travel.dod.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'DOS AIS USVISA INFO',
@@ -79,7 +79,7 @@ local output_target = 'endpoint';
                          starting_urls='https://ais.usvisa-info.com/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'Drought - Toolkit.climate.gov',
@@ -87,7 +87,7 @@ local output_target = 'endpoint';
                          starting_urls='https://toolkit.climate.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'ED Office of Hearings and Appeals OHA',
@@ -95,7 +95,7 @@ local output_target = 'endpoint';
                          starting_urls='https://oha.ed.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'FDA Import Alerts',
@@ -103,7 +103,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.accessdata.fda.gov/CMS_IA/default.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'Navy MyNavyHR',
@@ -111,7 +111,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.mynavyhr.navy.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NIH LRP',
@@ -119,7 +119,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.lrp.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NIH ORWH',
@@ -127,7 +127,7 @@ local output_target = 'endpoint';
                          starting_urls='https://orwh.od.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NIH National Institute of General Medical Sciences',
@@ -135,7 +135,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.nigms.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NOAA Coastwatch Great Lakes',
@@ -143,7 +143,7 @@ local output_target = 'endpoint';
                          starting_urls='https://coastwatch.glerl.noaa.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NOAA CoastWatch West Coast',
@@ -151,7 +151,7 @@ local output_target = 'endpoint';
                          starting_urls='https://coastwatch.pfeg.noaa.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'NOAA GOES-R',
@@ -159,7 +159,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.goes-r.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'TREAS - FinCEN',
@@ -167,7 +167,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.fincen.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS CACB',
@@ -175,7 +175,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.cacb.uscourts.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS ARE',
@@ -183,7 +183,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.are.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS CAEP',
@@ -191,7 +191,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.caep.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS JPML',
@@ -199,7 +199,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.jpml.uscourts.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS MSND',
@@ -207,7 +207,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.msnd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS MSSD',
@@ -215,7 +215,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.mssd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS NCWBA',
@@ -223,7 +223,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.ncwba.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS PAWD',
@@ -231,7 +231,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.pawd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USCOURTS UTB',
@@ -239,7 +239,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.utb.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'USDA FPAC Business Center',
@@ -247,7 +247,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.fpacbc.usda.gov/index.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA Access To Care',
@@ -255,7 +255,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.accesstocare.va.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA CFM Technical Information Library TIL',
@@ -263,7 +263,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.cfm.va.gov/til/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA CIDER Research',
@@ -271,7 +271,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.cider.research.va.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA HERC Research',
@@ -280,7 +280,7 @@ local output_target = 'endpoint';
                          schedule='30 09 * * MON',
                          output_target=output_target,
                          options=['allow_query_string'],
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA HSRD Research',
@@ -288,7 +288,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.hsrd.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA My Health',
@@ -296,7 +296,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.myhealth.va.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA Office of Accountability and Whistleblower Protection',
@@ -304,7 +304,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.va.gov/accountability/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA QUERI Research',
@@ -312,7 +312,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.queri.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'VA Resources',
@@ -320,7 +320,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.va.gov/resources/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
   {
     name: 'DOD DANTES',
@@ -328,6 +328,6 @@ local output_target = 'endpoint';
                          starting_urls='https://www.dantes.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         search_depth=3),
+                         depth_limit=3),
   },
 ]

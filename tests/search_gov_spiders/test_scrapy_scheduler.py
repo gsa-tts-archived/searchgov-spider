@@ -41,7 +41,7 @@ def test_run_scrapy_crawl(caplog, monkeypatch):
 
     assert (
         "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
-        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, output_target=csv, search_depth=3"
+        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, output_target=csv, depth_limit=3"
     ) in caplog.messages
 
 
