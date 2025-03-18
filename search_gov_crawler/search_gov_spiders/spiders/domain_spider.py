@@ -54,7 +54,6 @@ class DomainSpider(CrawlSpider):
              -a output_target=elasticsearch```
     """
 
-    DEPTH_LIMIT = os.environ.get("SPIDER_DEPTH_LIMIT", "3")
     name: str = "domain_spider"
     rules = (
         Rule(
