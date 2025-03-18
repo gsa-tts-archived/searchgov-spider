@@ -402,6 +402,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "researchfestival.nih.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIH Research Festival (nih-oir-research_festival)",
       "output_target": "elasticsearch",
@@ -411,6 +412,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "search.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Search.gov (usasearch)",
       "output_target": "elasticsearch",
@@ -420,6 +422,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "bep.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Bureau of Engraving and Printing (bep)",
       "output_target": "elasticsearch",
@@ -429,6 +432,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "hydrogen.energy.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Department of Energy - Hydrogen (doe-h2)",
       "output_target": "elasticsearch",
@@ -438,6 +442,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "eisenhowerlibrary.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Eisenhower Presidential Library (eisenhower)",
       "output_target": "elasticsearch",
@@ -447,6 +452,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "cdfifund.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "CDFI Fund (cdfifund)",
       "output_target": "elasticsearch",
