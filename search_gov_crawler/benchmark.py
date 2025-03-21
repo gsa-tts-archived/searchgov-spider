@@ -91,8 +91,7 @@ def create_apscheduler_job(
         "func": scrapy_scheduler.run_scrapy_crawl,
         "id": job_name,
         "name": job_name,
-        "next_run_time": datetime.now(tz=UTC)
-        + timedelta(seconds=runtime_offset_seconds),
+        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
         "args": [
             "domain_spider" if not handle_javascript else "domain_spider_js",
             allow_query_string,
@@ -185,9 +184,7 @@ def benchmark_from_args(
 if __name__ == "__main__":
     no_input_arg = all(arg not in sys.argv for arg in ["-f", "--input_file"])
 
-    parser = argparse.ArgumentParser(
-        description="Run a scrapy schedule or benchmark based on input."
-    )
+    parser = argparse.ArgumentParser(description="Run a scrapy schedule or benchmark based on input.")
     parser.add_argument(
         "-f",
         "--input_file",
@@ -207,14 +204,6 @@ if __name__ == "__main__":
         type=str,
         help="url used to start crawl",
         required=no_input_arg,
-    )
-    parser.add_argument(
-        "-o",
-        "--output_target",
-        type=str,
-        help="Point the output of the crawls to a backend",
-        required=no_input_arg,
-        choices=list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys()),
     )
     parser.add_argument(
         "-o",
@@ -267,6 +256,4 @@ if __name__ == "__main__":
         }
         benchmark_from_args(**benchmark_args)
     else:
-        benchmark_from_file(
-            input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset
-        )
+        benchmark_from_file(input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset)
