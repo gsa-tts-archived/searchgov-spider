@@ -1,11 +1,23 @@
 import re
+from datetime import datetime, timedelta
 from io import BytesIO
-from pypdf import PdfReader
-from datetime import UTC, datetime, timedelta
+
+from pypdf import PageObject, PdfReader
+
+from search_gov_crawler.elasticsearch.i14y_helper import (
+    ALLOWED_LANGUAGE_CODE,
+    current_utc_iso,
+    detect_lang,
+    generate_url_sha256,
+    get_base_extension,
+    get_domain_name,
+    get_url_path,
+    null_date,
+    separate_file_name,
+    summarize_text,
+)
 from search_gov_crawler.search_gov_spiders.helpers import content
-from search_gov_crawler.elasticsearch.i14y_helper import ALLOWED_LANGUAGE_CODE, null_date, \
-    get_url_path, get_base_extension, current_utc_iso, generate_url_sha256, get_domain_name, \
-    summarize_text, separate_file_name, detect_lang
+
 
 def add_title_and_filename(key: str, title_key: str, doc: dict):
     """
@@ -19,61 +31,35 @@ def add_title_and_filename(key: str, title_key: str, doc: dict):
     Returns:
         None The changes are applied to the document as a referance/pointer
     """
-    doc[key] = f"{doc[title_key]} {doc["basename"]}.{doc["extension"]} {doc[key]}"
+    doc[key] = f"{doc[title_key]} {doc['basename']}.{doc['extension']} {doc[key]}"
 
-def get_links_set(reader: PdfReader):
-    """
-    Returns a set of links for all pages in the PDF
-
-    Args:
-        reader: PdfReader from pypdf
-
-    Returns:
-        (list[str]) unique set of links
-    """
-    key = "/Annots"
-    uri = "/URI"
-    ank = "/A"
-    links = {}
-
-    for page in reader.pages:
-        text = page.extract_text()
-        page_links = re.findall(r"https?://\S+|www\.\S+", text)
-        # Get all visible links
-        for link in page_links:
-            links[link] = link
-        
-        # Get all hidden links
-        page_object = page.get_object()
-        if key in page_object.keys():
-            ann = page_object[key]
-            for a in ann:
-                u = a.get_object()
-                if uri in u[ank].keys():
-                    link = u[ank][uri]
-                    links[link] = link
-    return links.values()
 
 def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     """Extracts and processes PDF content using pypdf."""
-    pdf_stream = BytesIO(response_bytes)
-    reader = PdfReader(pdf_stream)
+    reader = PdfReader(stream=BytesIO(response_bytes))
 
     if reader.is_encrypted:
         return None
 
     meta_values = get_pdf_meta(reader)
-    
+
     basename, extension = get_base_extension(url)
     title = meta_values.get("Title") or separate_file_name(f"{basename}.{extension}")
-    main_content = get_pdf_text(reader) or title
+
+    # first set empty value and then page through entire pdf to get text and links
+    main_content = ""
+    all_links = set()
+    for page in reader.pages:
+        text = get_pdf_text(page)
+        main_content += f"{text} "
+        all_links.update(get_pdf_links(page, text))
 
     sha_id = generate_url_sha256(url)
 
     language = meta_values.get("Lang") or response_language or detect_lang(main_content)
     language = language[:2] if language else None
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
-    
+
     description, keywords = summarize_text(text=main_content, lang_code=language)
 
     time_now_str = current_utc_iso()
@@ -111,28 +97,39 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
         "domain_name": get_domain_name(url),
     }
 
+    # add title, filename, and links to content
     add_title_and_filename(content_key, title_key, i14y_doc)
     add_title_and_filename(description_key, title_key, i14y_doc)
-    all_links = get_links_set(reader)
-    i14y_doc[content_key] = f"{i14y_doc[content_key]} {" ".join(all_links) if len(all_links) > 0 else ""}"
+    i14y_doc[content_key] = f"{i14y_doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
 
     return i14y_doc
-    
 
-def get_pdf_text(reader: PdfReader) -> str:
-    """
-    Returns clean text/content from all pdf pages
 
-    Args:
-        reader: PdfReader from pypdf
+def get_pdf_text(page: PageObject) -> str:
+    """Given a page object, extract text from it."""
 
-    Returns:
-        (string) without new any special characters
-    """
-    text = ""
-    for page in reader.pages:
-        text += page.extract_text() + " "
-    return text
+    return page.extract_text() if page else ""
+
+
+def get_pdf_links(page: PageObject, text: str) -> set:
+    """Get unique set of all visible and hiddlen links on a page"""
+
+    links = set()
+
+    # visible links
+    links.update(re.findall(r"https?://\S+|www\.\S+", text))
+
+    # hidden links
+    page_object = page.get_object()
+    if "/Annots" in page_object.keys():
+        ann = page_object["/Annots"]
+        for a in ann:
+            u = a.get_object()
+            if "/URI" in u["/A"].keys():
+                link = u["/A"]["/URI"]
+                links.add(link)
+
+    return links
 
 
 def get_pdf_meta(reader: PdfReader):
@@ -171,7 +168,7 @@ def parse_if_date(value, apply_tz_offset: bool = False):
     if not isinstance(value, str) or not value.startswith("D:"):
         return content.sanitize_text(value)
 
-    date_string = value[2:] # Remove the "D:" prefix
+    date_string = value[2:]  # Remove the "D:" prefix
 
     """
     Example of matched date values:
@@ -192,11 +189,11 @@ def parse_if_date(value, apply_tz_offset: bool = False):
 
         try:
             dt = datetime(year, month, day, hour, minute, second)
-            if match.group(7) and apply_tz_offset: # handle timezone offset if matched
+            if match.group(7) and apply_tz_offset:  # handle timezone offset if matched
                 tz_sign = 1 if tz_hour >= 0 else -1
                 tz_offset = timedelta(hours=tz_hour, minutes=tz_minute)
                 dt = dt - tz_sign * tz_offset
             return dt
         except ValueError as err:
-            raise f"Failed to parse Date value \"{value}\":\n{str(err)}"
+            raise f'Failed to parse Date value "{value}":\n{str(err)}'
     return content.sanitize_text(value)
