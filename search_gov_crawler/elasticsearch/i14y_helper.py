@@ -9,6 +9,7 @@ from dateutil import parser
 from langdetect import detect
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from pythonjsonlogger.json import JsonFormatter
 
 # fmt: off
