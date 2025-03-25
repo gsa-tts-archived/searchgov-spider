@@ -4,7 +4,7 @@ from search_gov_crawler.search_gov_spiders.helpers import content
 from search_gov_crawler.search_gov_spiders.helpers import encoding
 from search_gov_crawler.elasticsearch.i14y_helper import (
     ALLOWED_LANGUAGE_CODE,
-    parse_date_safley,
+    parse_date_safely,
     get_url_path,
     get_base_extension,
     current_utc_iso,
@@ -52,10 +52,10 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
 
     return {
         "audience": article_backup["audience"],
-        "changed": parse_date_safley(article_backup["changed"]),
+        "changed": parse_date_safely(article_backup["changed"]),
         "click_count": None,
         "content_type": "article",
-        "created_at": parse_date_safley(article_backup["created_at"]) or time_now_str,
+        "created_at": parse_date_safely(article_backup["created_at"]) or time_now_str,
         "created": None,
         "_id": sha_id,
         "id": sha_id,
@@ -69,7 +69,7 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
         "searchgov_custom3": None,
         "tags": tags,
         "updated_at": time_now_str,
-        "updated": parse_date_safley(article.publish_date) or parse_date_safley(article_backup["created_at"]),
+        "updated": parse_date_safely(article.publish_date) or parse_date_safely(article_backup["created_at"]),
         f"title{valid_language}": title,
         f"description{valid_language}": content.sanitize_text(description),
         f"content{valid_language}": content.sanitize_text(main_content),

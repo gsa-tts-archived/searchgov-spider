@@ -22,7 +22,7 @@ ALLOWED_LANGUAGE_CODE = {
 # fmt: on
 
 
-def parse_date_safley(date_value: any) -> str:
+def parse_date_safely(date_value: any) -> str:
     """
     Convert falsey date values (like an empty string) to None,
     which will yield a null value in elasticsearch.

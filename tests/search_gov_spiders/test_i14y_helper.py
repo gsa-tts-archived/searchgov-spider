@@ -1,13 +1,13 @@
 from search_gov_crawler.elasticsearch.i14y_helper import (
-    parse_date_safley,
+    parse_date_safely,
     detect_lang,
     separate_file_name,
 )
 
 
-# Tests for parse_date_safley
-def test_parse_date_safley_valid_date():
-    assert parse_date_safley("2025-03-13") == "2025-03-13T00:00:00"
+# Tests for parse_date_safely
+def test_parse_date_safely_valid_date():
+    assert parse_date_safely("2025-03-13") == "2025-03-13T00:00:00"
 
 
 def test_for_known_date_issues():
@@ -23,23 +23,23 @@ def test_for_known_date_issues():
         "2024-02-22T00:00:00": "2024-02-22T00:00:00",
     }
     for date in sampleDates:
-        assert parse_date_safley(date) == sampleDates[date]
+        assert parse_date_safely(date) == sampleDates[date]
 
 
-def test_parse_date_safley_empty_string():
-    assert parse_date_safley("") is None
+def test_parse_date_safely_empty_string():
+    assert parse_date_safely("") is None
 
 
-def test_parse_date_safley_none():
-    assert parse_date_safley(None) is None
+def test_parse_date_safely_none():
+    assert parse_date_safely(None) is None
 
 
-def test_parse_date_safley_zero():
-    assert parse_date_safley(0) is None
+def test_parse_date_safely_zero():
+    assert parse_date_safely(0) is None
 
 
-def test_parse_date_safley_false():
-    assert parse_date_safley(False) is None
+def test_parse_date_safely_false():
+    assert parse_date_safely(False) is None
 
 
 # Tests for detect_lang

@@ -5,7 +5,7 @@ from datetime import UTC, datetime, timedelta
 from search_gov_crawler.search_gov_spiders.helpers import content
 from search_gov_crawler.elasticsearch.i14y_helper import (
     ALLOWED_LANGUAGE_CODE,
-    parse_date_safley,
+    parse_date_safely,
     get_url_path,
     get_base_extension,
     current_utc_iso,
@@ -96,10 +96,10 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
 
     i14y_doc = {
         "audience": None,
-        "changed": parse_date_safley(meta_values.get("ModDate") or meta_values.get("SourceModified")),
+        "changed": parse_date_safely(meta_values.get("ModDate") or meta_values.get("SourceModified")),
         "click_count": None,
         "content_type": None,
-        "created_at": parse_date_safley(meta_values.get("CreationDate")) or time_now_str,
+        "created_at": parse_date_safely(meta_values.get("CreationDate")) or time_now_str,
         "created": None,
         "_id": sha_id,
         "id": sha_id,
@@ -113,7 +113,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
         "searchgov_custom3": None,
         "tags": keywords,
         "updated_at": time_now_str,
-        "updated": parse_date_safley(meta_values.get("CreationDate")),
+        "updated": parse_date_safely(meta_values.get("CreationDate")),
         title_key: title,
         description_key: content.sanitize_text(description),
         content_key: content.sanitize_text(main_content),

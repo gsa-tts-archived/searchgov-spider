@@ -49,9 +49,9 @@ def dummy_current_utc_iso():
     return "2023-01-01T00:00:00Z"
 
 
-def dummy_parse_date_safley(date_str):
+def dummy_parse_date_safely(date_str):
     # For testing, simply return the date_str (or a default if none provided)
-    return date_str if date_str else "parse_date_safley"
+    return date_str if date_str else "parse_date_safely"
 
 
 def dummy_get_url_path(url):
@@ -77,7 +77,7 @@ def patch_helpers(monkeypatch):
     monkeypatch.setattr(convert_pdf_i14y, "generate_url_sha256", dummy_generate_url_sha256)
     monkeypatch.setattr(convert_pdf_i14y, "detect_lang", dummy_detect_lang)
     monkeypatch.setattr(convert_pdf_i14y, "current_utc_iso", dummy_current_utc_iso)
-    monkeypatch.setattr(convert_pdf_i14y, "parse_date_safley", dummy_parse_date_safley)
+    monkeypatch.setattr(convert_pdf_i14y, "parse_date_safely", dummy_parse_date_safely)
     monkeypatch.setattr(convert_pdf_i14y, "get_url_path", dummy_get_url_path)
     monkeypatch.setattr(convert_pdf_i14y, "get_domain_name", dummy_get_domain_name)
     monkeypatch.setattr(convert_pdf_i14y.content, "sanitize_text", dummy_sanitize_text)
