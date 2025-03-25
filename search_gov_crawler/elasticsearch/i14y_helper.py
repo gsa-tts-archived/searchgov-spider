@@ -1,13 +1,15 @@
 import hashlib
+import logging
 import os
 import re
 from datetime import UTC, datetime
 from urllib.parse import urlparse
-
+from dotenv import load_dotenv
 from dateutil import parser
 from langdetect import detect
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
+from pythonjsonlogger.json import JsonFormatter
 
 # fmt: off
 ALLOWED_LANGUAGE_CODE = {
@@ -20,6 +22,10 @@ ALLOWED_LANGUAGE_CODE = {
     "vi": "vietnamese", "zh": "chinese",
 }
 # fmt: on
+
+load_dotenv()
+logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 
 
 def parse_date_safely(date_value: any) -> str:
@@ -40,6 +46,8 @@ def parse_date_safely(date_value: any) -> str:
         datetime_format = "%Y-%m-%dT%H:%M:%S"
         return datetime_object.strftime(datetime_format)
     except ValueError:
+        if len(date_value) != 0:
+            logging.warning("Could not parse date: %s", date_value)
         return None
 
 
