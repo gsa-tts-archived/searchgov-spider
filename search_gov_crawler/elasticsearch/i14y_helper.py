@@ -1,13 +1,14 @@
-import re
-import os
 import hashlib
+import os
+import re
 from datetime import UTC, datetime
+from urllib.parse import urlparse
+
+import pytz
 from dateutil import parser
 from langdetect import detect
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize, sent_tokenize
-from urllib.parse import urlparse
-
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 # fmt: off
 ALLOWED_LANGUAGE_CODE = {
@@ -36,8 +37,9 @@ def parse_date_safley(date_value: any) -> str:
     if not isinstance(date_value, str):
         return None
     try:
-        datetime_object = parser.parse(date_value, ignoretz=True, fuzzy=True)
-        return datetime_object.isoformat() + "Z"
+        datetime_object = parser.parse(date_value, ignoretz=False, fuzzy=True)
+        utc = pytz.timezone("UTC")
+        return datetime_object.astimezone(utc)
     except ValueError:
         return None
 

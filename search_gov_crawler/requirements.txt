@@ -28,3 +28,4 @@ pypdf==5.3.1
 langdetect==1.0.9
 
 python-dateutil==2.9.0.post0
+pytz==2025.1
