@@ -25,7 +25,7 @@ ALLOWED_LANGUAGE_CODE = {
 def parse_date_safley(date_value: any) -> str:
     """
     Convert falsey date values (like an empty string) to None,
-    which will yield a null value in elasticsearch.Elastic takes time at UTC (Z timezone)
+    which will yield a null value in elasticsearch.
 
     Args:
         date_value (str | Any): Date value that needs to fallback to null
@@ -74,7 +74,6 @@ def summarize_text(text: str, lang_code: str = None):
 
     if (lang_code not in ALLOWED_LANGUAGE_CODE) or not text or type(text) != str:
         return None, None
-
     stop_words = set(stopwords.words(ALLOWED_LANGUAGE_CODE[lang_code]))
     sentences = sent_tokenize(text)
 
@@ -109,10 +108,7 @@ def separate_file_name(file_name):
     Separates a file name into words, maintaining capitalization.
     """
     base_name = file_name.rsplit(".", 1)[0].replace(".", " ")
-    words = re.split(
-        r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)",
-        base_name,
-    )
+    words = re.split(r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)", base_name)
     return " ".join(words)
 
 
