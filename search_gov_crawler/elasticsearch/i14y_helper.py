@@ -1,10 +1,11 @@
 import re
 import os
 import hashlib
+from datetime import UTC, datetime
+from dateutil import parser
 from langdetect import detect
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
-from datetime import UTC, datetime
 from urllib.parse import urlparse
 
 
@@ -20,7 +21,8 @@ ALLOWED_LANGUAGE_CODE = {
 }
 # fmt: on
 
-def null_date(article_date):
+
+def parse_date_safley(date_value: str) -> str:
     """
     Convert falsey date values (like an empty string) to None,
     which will yield a null value in elasticsearch
@@ -29,9 +31,16 @@ def null_date(article_date):
         article_date (str | Any): Date value that needs to fallback to null
 
     Returns:
-        str: Either the original date, or NoneValue
+        str: Either the date in isoformat (YYYY-MM-DD'T'HH:MM:SS), or None
     """
-    return article_date or None
+    if type(date_value) is not str:
+        return None
+    try:
+        datetime_object = parser.parse(date_value, ignoretz=True, fuzzy=True)
+        return datetime_object.isoformat() + "Z"
+    except ValueError:
+        return None
+
 
 def detect_lang(text: str) -> str:
     """
@@ -49,9 +58,9 @@ def detect_lang(text: str) -> str:
     except Exception:
         pass
     return None
-    
 
-def summarize_text(text: str, lang_code: str=None):
+
+def summarize_text(text: str, lang_code: str = None):
     """
     Summarizes text and extracts keywords using nltk, and calculates execution time.
 
@@ -64,7 +73,7 @@ def summarize_text(text: str, lang_code: str=None):
 
     if (lang_code not in ALLOWED_LANGUAGE_CODE) or not text or type(text) != str:
         return None, None
-    
+
     stop_words = set(stopwords.words(ALLOWED_LANGUAGE_CODE[lang_code]))
     sentences = sent_tokenize(text)
 
@@ -85,8 +94,10 @@ def summarize_text(text: str, lang_code: str=None):
                 else:
                     sentence_scores[sentence] += word_frequencies[word]
 
-    summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:3]
-    summary = ' '.join(summary_sentences)
+    summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[
+        :3
+    ]
+    summary = " ".join(summary_sentences)
 
     sorted_words = sorted(word_frequencies, key=word_frequencies.get, reverse=True)[:10]
     keywords = ", ".join(sorted_words)
@@ -99,7 +110,10 @@ def separate_file_name(file_name):
     Separates a file name into words, maintaining capitalization.
     """
     base_name = file_name.rsplit(".", 1)[0].replace(".", " ")
-    words = re.split(r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)", base_name)
+    words = re.split(
+        r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)",
+        base_name,
+    )
     return " ".join(words)
 
 
