@@ -7,7 +7,7 @@ from search_gov_crawler.elasticsearch.i14y_helper import (
 
 # Tests for parse_date_safley
 def test_parse_date_safley_valid_date():
-    assert parse_date_safley("2025-03-13") == "2025-03-13T04:00:00Z"
+    assert parse_date_safley("2025-03-13") == "2025-03-13T00:00:00Z"
 
 
 def test_for_known_date_issues():

@@ -21,7 +21,6 @@ updates:
           - "pypdf"
           - "langdetect"
           - "python-dateutil"
-          - "pytz"
       testing-and-linting:
         patterns:
           - "freezegun"
