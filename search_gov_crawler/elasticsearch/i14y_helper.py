@@ -22,18 +22,18 @@ ALLOWED_LANGUAGE_CODE = {
 # fmt: on
 
 
-def parse_date_safley(date_value: str) -> str:
+def parse_date_safley(date_value: any) -> str:
     """
     Convert falsey date values (like an empty string) to None,
-    which will yield a null value in elasticsearch
+    which will yield a null value in elasticsearch.Elastic takes time at UTC (Z timezone)
 
     Args:
-        article_date (str | Any): Date value that needs to fallback to null
+        date_value (str | Any): Date value that needs to fallback to null
 
     Returns:
         str: Either the date in isoformat (YYYY-MM-DD'T'HH:MM:SS), or None
     """
-    if type(date_value) is not str:
+    if not isinstance(date_value, str):
         return None
     try:
         datetime_object = parser.parse(date_value, ignoretz=True, fuzzy=True)
