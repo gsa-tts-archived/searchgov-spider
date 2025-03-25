@@ -39,7 +39,9 @@ def parse_date_safley(date_value: any) -> str:
     try:
         datetime_object = parser.parse(date_value, ignoretz=False, fuzzy=True)
         utc = pytz.timezone("UTC")
-        return datetime_object.astimezone(utc)
+        datetime_format = "%Y-%m-%dT%H:%M:%SZ"
+        new_date_value = datetime_object.astimezone(utc).strftime(datetime_format)
+        return new_date_value
     except ValueError:
         return None
 
