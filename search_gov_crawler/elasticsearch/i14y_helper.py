@@ -27,6 +27,7 @@ ALLOWED_LANGUAGE_CODE = {
 load_dotenv()
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+logger = logging.getLogger("search_gov_crawler.i14y_helper")
 
 
 def parse_date_safely(date_value: any) -> str:
@@ -48,7 +49,7 @@ def parse_date_safely(date_value: any) -> str:
         return datetime_object.strftime(datetime_format)
     except ValueError:
         if len(date_value) != 0:
-            logging.warning("Could not parse date: %s", date_value)
+            logger.warning("Could not parse date: %s", date_value)
         return None
 
 
