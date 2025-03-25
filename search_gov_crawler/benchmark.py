@@ -14,7 +14,8 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
         "handle_javascript": false,
         "schedule": null,
         "output_target": "csv",
-        "starting_urls": "https://www.example.com"
+        "starting_urls": "https://www.example.com",
+        "depth_limit: 3
       }
     ]
   - Values in schedule are ignored for benchmark runs.
@@ -80,6 +81,7 @@ def create_apscheduler_job(
     handle_javascript: bool,
     output_target: str,
     runtime_offset_seconds: int,
+    depth_limit: int,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -89,14 +91,14 @@ def create_apscheduler_job(
         "func": scrapy_scheduler.run_scrapy_crawl,
         "id": job_name,
         "name": job_name,
-        "next_run_time": datetime.now(tz=UTC)
-        + timedelta(seconds=runtime_offset_seconds),
+        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
         "args": [
             "domain_spider" if not handle_javascript else "domain_spider_js",
             allow_query_string,
             allowed_domains,
             starting_urls,
             output_target,
+            depth_limit,
         ],
     }
 
@@ -140,13 +142,14 @@ def benchmark_from_args(
     handle_javascript: bool,
     output_target: str,
     runtime_offset_seconds: int,
+    depth_limit: int,
 ):
     """Run an individual benchmarking job based on args"""
 
     msg = (
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s "
-        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
+        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s depth_limit=%s"
     )
     log.info(
         msg,
@@ -156,6 +159,7 @@ def benchmark_from_args(
         handle_javascript,
         output_target,
         runtime_offset_seconds,
+        depth_limit,
     )
 
     apscheduler_job_kwargs = {
@@ -166,6 +170,7 @@ def benchmark_from_args(
         "handle_javascript": handle_javascript,
         "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
+        "depth_limit": depth_limit,
     }
 
     scheduler = init_scheduler()
@@ -179,9 +184,7 @@ def benchmark_from_args(
 if __name__ == "__main__":
     no_input_arg = all(arg not in sys.argv for arg in ["-f", "--input_file"])
 
-    parser = argparse.ArgumentParser(
-        description="Run a scrapy schedule or benchmark based on input."
-    )
+    parser = argparse.ArgumentParser(description="Run a scrapy schedule or benchmark based on input.")
     parser.add_argument(
         "-f",
         "--input_file",
@@ -201,14 +204,6 @@ if __name__ == "__main__":
         type=str,
         help="url used to start crawl",
         required=no_input_arg,
-    )
-    parser.add_argument(
-        "-o",
-        "--output_target",
-        type=str,
-        help="Point the output of the crawls to a backend",
-        required=no_input_arg,
-        choices=list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys()),
     )
     parser.add_argument(
         "-o",
@@ -239,6 +234,14 @@ if __name__ == "__main__":
         default=5,
         help="Number of seconds to offset job start",
     )
+    parser.add_argument(
+        "-sd",
+        "--depth_limit",
+        type=int,
+        default=3,
+        help="How far down should spider crawl",
+        choices=range(1, 250),
+    )
     args = parser.parse_args()
 
     if no_input_arg:
@@ -249,9 +252,8 @@ if __name__ == "__main__":
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
+            "depth_limit": args.depth_limit,
         }
         benchmark_from_args(**benchmark_args)
     else:
-        benchmark_from_file(
-            input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset
-        )
+        benchmark_from_file(input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset)

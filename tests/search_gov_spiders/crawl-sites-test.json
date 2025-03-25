@@ -6,25 +6,28 @@
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
-        "starting_urls": "https://quotes.toscrape.com/"
+        "starting_urls": "https://quotes.toscrape.com/",
+        "depth_limit": 3
     },
     {
         "name": "Quotes 2",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com",
+        "allowed_domains": "quotes.toscrape.com/js",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
-        "starting_urls": "https://quotes.toscrape.com/js/"
+        "starting_urls": "https://quotes.toscrape.com/js/",
+        "depth_limit": 3
     },
     {
         "name": "Quotes 3",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com",
+        "allowed_domains": "quotes.toscrape.com/js-delayed",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
-        "starting_urls": "https://quotes.toscrape.com/js-delayed/"
+        "starting_urls": "https://quotes.toscrape.com/js-delayed/",
+        "depth_limit": 3
     },
     {
         "name": "Quotes 4",
@@ -33,6 +36,7 @@
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
-        "starting_urls": "https://quotes.toscrape.com/"
+        "starting_urls": "https://quotes.toscrape.com/",
+        "depth_limit": 3
     }
 ]
