@@ -2,37 +2,17 @@ import newspaper
 from search_gov_crawler.elasticsearch.parse_html_scrapy import convert_html_scrapy
 from search_gov_crawler.search_gov_spiders.helpers import content
 from search_gov_crawler.search_gov_spiders.helpers import encoding
-from search_gov_crawler.elasticsearch.i14y_helper import (
-    ALLOWED_LANGUAGE_CODE,
-    parse_date_safley,
-    get_url_path,
-    get_base_extension,
-    current_utc_iso,
-    generate_url_sha256,
-    get_domain_name,
-    detect_lang,
-    summarize_text,
-)
+from search_gov_crawler.elasticsearch.i14y_helper import ALLOWED_LANGUAGE_CODE, null_date, \
+    get_url_path, get_base_extension, current_utc_iso, generate_url_sha256, \
+    get_domain_name, detect_lang, summarize_text
 
 
 def convert_html(response_bytes: bytes, url: str, response_language: str = None):
-    """
-    Extracts and processes article content from HTML using newspaper4k.
-    Date Fields: There are five different date fields: created, changed, updated, created_at, and updated_at.
-    Document Dates (Fetched from document. If does not exists default is None):
-        created: When the document was initially created by domain.
-        changed and updated: When the document was modified on the domain. Fetched from document.If does not exist  fall back is created if neither exists use default None.
-
-    Index Dates (If does not exist default is time_now_str):
-        created_at: When the url record was created.
-        updated_at: When the url record was last updated.
-    """
+    """Extracts and processes article content from HTML using newspaper4k."""
     html_content = encoding.decode_http_response(response_bytes=response_bytes)
     config = newspaper.Config()
     config.fetch_images = False  # we are not using images, do not fetch!
-    config.clean_article_html = (
-        False  # we are not using article_html, so don't clean it!
-    )
+    config.clean_article_html = False  # we are not using article_html, so don't clean it!
     article = newspaper.Article(url=url, config=config)
     article.download(input_html=html_content)
     article.parse()
@@ -45,19 +25,8 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
         return None
 
     title = article.title or article.meta_site_name or article_backup["title"] or None
-    description = (
-        article.meta_description
-        or article.summary
-        or article_backup["description"]
-        or None
-    )
-    tags = (
-        article.tags
-        or article.keywords
-        or article.meta_keywords
-        or article_backup["keywords"]
-        or None
-    )
+    description = article.meta_description or article.summary or article_backup["description"] or None
+    tags = article.tags or article.keywords or article.meta_keywords or article_backup["keywords"] or None
 
     time_now_str = current_utc_iso()
     path = article.url or article_backup["url"] or url
@@ -65,12 +34,7 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
     basename, extension = get_base_extension(url)
     sha_id = generate_url_sha256(path)
 
-    language = (
-        article.meta_lang
-        or article_backup["language"]
-        or response_language
-        or detect_lang(main_content)
-    )
+    language = article.meta_lang or article_backup["language"] or response_language or detect_lang(main_content)
     language = language[:2] if language else None
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
@@ -78,27 +42,16 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
     tags = tags or keywords
     description = description or summary
 
-    created = parse_date_safley(article_backup["created_at"]) or parse_date_safley(
-        article.publish_date
-    )
-    changed = parse_date_safley(article_backup["changed"])
-    updated = parse_date_safley(article_backup["changed"])
-    created_at = time_now_str
-    updated_at = time_now_str
-
     return {
         "audience": article_backup["audience"],
-        "changed": changed,
+        "changed": null_date(article_backup["changed"]),
         "click_count": None,
         "content_type": "article",
-        "created": created,
-        "created_at": created_at,
+        "created_at": null_date(article_backup["created_at"]) or time_now_str,
+        "created": None,
         "_id": sha_id,
         "id": sha_id,
-        "thumbnail_url": article.meta_img
-        or article.top_image
-        or article_backup["thumbnail_url"]
-        or None,
+        "thumbnail_url": article.meta_img or article.top_image or article_backup["thumbnail_url"] or None,
         "language": language,
         "mime_type": "text/html",
         "path": path,
@@ -107,8 +60,8 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
         "searchgov_custom2": None,
         "searchgov_custom3": None,
         "tags": tags,
-        "updated_at": updated_at,
-        "updated": updated,
+        "updated_at": time_now_str,
+        "updated": null_date(article.publish_date) or null_date(article_backup["created_at"]),
         f"title{valid_language}": title,
         f"description{valid_language}": content.sanitize_text(description),
         f"content{valid_language}": content.sanitize_text(main_content),
