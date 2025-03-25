@@ -96,13 +96,10 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
 
     i14y_doc = {
         "audience": None,
-        "changed": parse_date_safley(
-            meta_values.get("ModDate") or meta_values.get("SourceModified")
-        ),
+        "changed": parse_date_safley(meta_values.get("ModDate") or meta_values.get("SourceModified")),
         "click_count": None,
         "content_type": None,
-        "created_at": parse_date_safley(meta_values.get("CreationDate"))
-        or time_now_str,
+        "created_at": parse_date_safley(meta_values.get("CreationDate")) or time_now_str,
         "created": None,
         "_id": sha_id,
         "id": sha_id,
@@ -129,9 +126,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     add_title_and_filename(content_key, title_key, i14y_doc)
     add_title_and_filename(description_key, title_key, i14y_doc)
     all_links = get_links_set(reader)
-    i14y_doc[content_key] = (
-        f"{i14y_doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
-    )
+    i14y_doc[content_key] = f"{i14y_doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
 
     return i14y_doc
 
@@ -208,9 +203,7 @@ def parse_if_date(value, apply_tz_offset: bool = False):
         minute = int(match.group(5)) if match.group(5) else 0
         second = int(match.group(6)) if match.group(6) else 0
         tz_hour = int(match.group(7)[:3]) if match.group(7) else 0
-        tz_minute = (
-            int(match.group(7)[4:]) if match.group(7) and len(match.group(7)) > 4 else 0
-        )
+        tz_minute = int(match.group(7)[4:]) if match.group(7) and len(match.group(7)) > 4 else 0
 
         try:
             dt = datetime(year, month, day, hour, minute, second)

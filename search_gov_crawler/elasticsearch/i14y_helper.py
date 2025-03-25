@@ -98,9 +98,7 @@ def summarize_text(text: str, lang_code: str = None):
                 else:
                     sentence_scores[sentence] += word_frequencies[word]
 
-    summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[
-        :3
-    ]
+    summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:3]
     summary = " ".join(summary_sentences)
 
     sorted_words = sorted(word_frequencies, key=word_frequencies.get, reverse=True)[:10]

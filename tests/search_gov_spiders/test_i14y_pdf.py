@@ -71,16 +71,10 @@ def dummy_sanitize_text(text):
 
 @pytest.fixture(autouse=True)
 def patch_helpers(monkeypatch):
-    monkeypatch.setattr(
-        convert_pdf_i14y, "get_base_extension", dummy_get_base_extension
-    )
-    monkeypatch.setattr(
-        convert_pdf_i14y, "separate_file_name", dummy_separate_file_name
-    )
+    monkeypatch.setattr(convert_pdf_i14y, "get_base_extension", dummy_get_base_extension)
+    monkeypatch.setattr(convert_pdf_i14y, "separate_file_name", dummy_separate_file_name)
     monkeypatch.setattr(convert_pdf_i14y, "summarize_text", dummy_summarize_text)
-    monkeypatch.setattr(
-        convert_pdf_i14y, "generate_url_sha256", dummy_generate_url_sha256
-    )
+    monkeypatch.setattr(convert_pdf_i14y, "generate_url_sha256", dummy_generate_url_sha256)
     monkeypatch.setattr(convert_pdf_i14y, "detect_lang", dummy_detect_lang)
     monkeypatch.setattr(convert_pdf_i14y, "current_utc_iso", dummy_current_utc_iso)
     monkeypatch.setattr(convert_pdf_i14y, "parse_date_safley", dummy_parse_date_safley)
@@ -152,9 +146,7 @@ def test_convert_pdf_normal(monkeypatch):
     """Test convert_pdf with a non-encrypted PDF simulation."""
     fake_metadata = {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"}
     pages = [FakePage("This is the content of the PDF.")]
-    fake_reader = FakePdfReader(
-        None, is_encrypted=False, pages=pages, metadata=fake_metadata
-    )
+    fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
     # Patch PdfReader so that any instantiation returns our fake_reader.
     monkeypatch.setattr(convert_pdf_i14y, "PdfReader", lambda stream: fake_reader)
 
@@ -167,10 +159,7 @@ def test_convert_pdf_normal(monkeypatch):
     # Since ALLOWED_LANGUAGE_CODE includes "en", we expect language suffix "_en" on these fields.
     assert result["title_en"] == "Fake Title"
     assert result["description_en"] == "Fake Title fake_basename.pdf Fake description"
-    assert (
-        result["content_en"]
-        == "Fake Title fake_basename.pdf This is the content of the PDF. "
-    )
+    assert result["content_en"] == "Fake Title fake_basename.pdf This is the content of the PDF. "
     assert result["_id"] == "dummy_sha"
     # Check values from dummy helpers.
     assert result["basename"] == "fake_basename"
@@ -209,9 +198,7 @@ def test_get_links_set():
     fake_page1.extract_text.return_value = "Visit https://example.com for more info."
 
     fake_page2 = MagicMock()
-    fake_page2.extract_text.return_value = (
-        "Check out www.test.com and also https://example.com"
-    )
+    fake_page2.extract_text.return_value = "Check out www.test.com and also https://example.com"
 
     fake_reader = MagicMock()
     fake_reader.pages = [fake_page1, fake_page2]

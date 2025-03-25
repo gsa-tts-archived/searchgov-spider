@@ -44,12 +44,7 @@ def test_parse_date_safley_false():
 
 # Tests for detect_lang
 def test_detect_lang_english():
-    assert (
-        detect_lang(
-            "This is a test sentence in English. And, this is another test sentence in English."
-        )
-        == "en"
-    )
+    assert detect_lang("This is a test sentence in English. And, this is another test sentence in English.") == "en"
 
 
 def test_detect_lang_spanish():
@@ -102,10 +97,7 @@ def test_separate_file_name_numbers():
 
 
 def test_separate_file_name_symbols():
-    assert (
-        separate_file_name("file_with-symbols+test,file~name%test.pdf")
-        == "file with symbols test file name test"
-    )
+    assert separate_file_name("file_with-symbols+test,file~name%test.pdf") == "file with symbols test file name test"
 
 
 def test_separate_file_name_no_extension():
@@ -113,9 +105,7 @@ def test_separate_file_name_no_extension():
 
 
 def test_separate_file_name_multiple_dots():
-    assert (
-        separate_file_name("file.with.multiple.dots.pdf") == "file with multiple dots"
-    )
+    assert separate_file_name("file.with.multiple.dots.pdf") == "file with multiple dots"
 
 
 def test_separate_file_name_empty():
