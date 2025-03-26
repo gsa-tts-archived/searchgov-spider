@@ -11,6 +11,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from pythonjsonlogger.json import JsonFormatter
+from typing import Any
+from dateutil.parser import ParserError
 
 # fmt: off
 ALLOWED_LANGUAGE_CODE = {
@@ -30,7 +32,7 @@ logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 logger = logging.getLogger("search_gov_crawler.i14y_helper")
 
 
-def parse_date_safely(date_value: any) -> str:
+def parse_date_safely(date_value: Any) -> str | None:
     """
     Convert falsey date values (like an empty string) to None,
     which will yield a null value in elasticsearch.
@@ -41,15 +43,20 @@ def parse_date_safely(date_value: any) -> str:
     Returns:
         str: Either the date in isoformat (YYYY-MM-DD'T'HH:MM:SS), or None
     """
-    if not isinstance(date_value, str):
+    datetime_format = "%Y-%m-%dT%H:%M:%S"
+
+    if date_value is None or date_value == "":
         return None
+
+    if isinstance(date_value, datetime):
+        return date_value.strftime(datetime_format)
+
     try:
         datetime_object = parser.parse(date_value, fuzzy=True)
-        datetime_format = "%Y-%m-%dT%H:%M:%S"
         return datetime_object.strftime(datetime_format)
-    except ValueError:
-        if len(date_value) != 0:
-            logger.warning("Could not parse date: %s", date_value)
+
+    except (ParserError, TypeError):
+        logger.warning("Could not parse date: '%s'", date_value)
         return None
 
 
