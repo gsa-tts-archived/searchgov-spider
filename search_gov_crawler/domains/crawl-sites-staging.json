@@ -1166,7 +1166,7 @@
       "handle_javascript": false,
       "name": "tricare_newsroom",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * SUN",
+      "schedule": "00 01 * * SUN",
       "starting_urls": "https://newsroom.tricare.mil/"
    },
    {
@@ -1176,7 +1176,7 @@
       "handle_javascript": false,
       "name": "tricare_martin",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * SUN",
+      "schedule": "00 02 * * SUN",
       "starting_urls": "https://martin.tricare.mil/"
    },
    {
@@ -1186,7 +1186,7 @@
       "handle_javascript": false,
       "name": "tricare_mhseurope",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * SUN",
+      "schedule": "00 03 * * SUN",
       "starting_urls": "https://mhs-europe.tricare.mil/"
    },
    {
@@ -1196,7 +1196,7 @@
       "handle_javascript": false,
       "name": "tricare_redstone",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * SUN",
+      "schedule": "00 04 * * SUN",
       "starting_urls": "https://redstone.tricare.mil/"
    },
    {
@@ -1206,7 +1206,7 @@
       "handle_javascript": false,
       "name": "tricare_desmonddoss",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * SUN",
+      "schedule": "00 05 * * SUN",
       "starting_urls": "https://desmond-doss.tricare.mil/"
    },
    {
@@ -1216,7 +1216,7 @@
       "handle_javascript": false,
       "name": "tricare_diegogarcia",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * SUN",
+      "schedule": "00 06 * * SUN",
       "starting_urls": "https://diegogarcia.tricare.mil/"
    },
    {
@@ -1226,7 +1226,7 @@
       "handle_javascript": false,
       "name": "tricare_belvoir",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * SUN",
+      "schedule": "00 07 * * SUN",
       "starting_urls": "https://belvoirhospital.tricare.mil/"
    },
    {
@@ -1236,7 +1236,7 @@
       "handle_javascript": false,
       "name": "tricare_womack",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * SUN",
+      "schedule": "00 08 * * SUN",
       "starting_urls": "https://womack.tricare.mil/"
    },
    {
@@ -1246,7 +1246,7 @@
       "handle_javascript": false,
       "name": "tricare_brianallgood",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * SUN",
+      "schedule": "00 09 * * SUN",
       "starting_urls": "https://briandallgood.tricare.mil/"
    },
    {
@@ -1256,7 +1256,7 @@
       "handle_javascript": false,
       "name": "tricare_charleston",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * SUN",
+      "schedule": "00 10 * * SUN",
       "starting_urls": "https://nhc-charleston.tricare.mil/"
    },
    {
@@ -1266,7 +1266,7 @@
       "handle_javascript": false,
       "name": "tricare_guantanamo",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * SUN",
+      "schedule": "00 11 * * SUN",
       "starting_urls": "https://guantanamo.tricare.mil/"
    },
    {
@@ -1276,7 +1276,7 @@
       "handle_javascript": false,
       "name": "tricare_paxriver",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * SUN",
+      "schedule": "00 12 * * SUN",
       "starting_urls": "https://paxriver.tricare.mil/"
    },
    {
@@ -1286,7 +1286,7 @@
       "handle_javascript": false,
       "name": "tricare_eisenhower",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * SUN",
+      "schedule": "00 13 * * SUN",
       "starting_urls": "https://eisenhower.tricare.mil/"
    },
    {
@@ -1296,7 +1296,7 @@
       "handle_javascript": false,
       "name": "tricare_raymondbliss",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * SUN",
+      "schedule": "00 14 * * SUN",
       "starting_urls": "https://raymond-bliss.tricare.mil/"
    },
    {
@@ -1306,7 +1306,7 @@
       "handle_javascript": false,
       "name": "tricare_munson",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * SUN",
+      "schedule": "00 15 * * SUN",
       "starting_urls": "https://munson.tricare.mil/"
    },
    {
@@ -1316,7 +1316,7 @@
       "handle_javascript": false,
       "name": "tricare_leonardwood",
       "output_target": "elasticsearch",
-      "schedule": "30 22 * * SUN",
+      "schedule": "00 16 * * SUN",
       "starting_urls": "https://leonard-wood.tricare.mil/"
    },
    {
@@ -1326,7 +1326,7 @@
       "handle_javascript": false,
       "name": "tricare_williambeaumont",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * MON",
+      "schedule": "00 17 * * SUN",
       "starting_urls": "https://william-beaumont.tricare.mil/"
    },
    {
@@ -1336,7 +1336,7 @@
       "handle_javascript": false,
       "name": "tricare_weedirwin",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * MON",
+      "schedule": "00 18 * * SUN",
       "starting_urls": "https://weed-irwin.tricare.mil/"
    },
    {
@@ -1346,7 +1346,7 @@
       "handle_javascript": false,
       "name": "tricare_brooke",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * MON",
+      "schedule": "00 01 * * MON",
       "starting_urls": "https://bamc.tricare.mil/"
    },
    {
@@ -1356,7 +1356,7 @@
       "handle_javascript": false,
       "name": "tricare_bgcrawford",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * MON",
+      "schedule": "00 02 * * MON",
       "starting_urls": "https://bg-crawford.tricare.mil/"
    },
    {
@@ -1366,7 +1366,7 @@
       "handle_javascript": false,
       "name": "tricare_baynejones",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * MON",
+      "schedule": "00 03 * * MON",
       "starting_urls": "https://bayne-jones.tricare.mil/"
    },
    {
@@ -1376,7 +1376,7 @@
       "handle_javascript": false,
       "name": "tricare_reynolds",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * MON",
+      "schedule": "00 04 * * MON",
       "starting_urls": "https://reynolds.tricare.mil/"
    },
    {
@@ -1386,7 +1386,7 @@
       "handle_javascript": false,
       "name": "tricare_nhch",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * MON",
+      "schedule": "00 05 * * MON",
       "starting_urls": "https://nhchawaii.tricare.mil/"
    },
    {
@@ -1396,7 +1396,7 @@
       "handle_javascript": false,
       "name": "tricare_blanchfield",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * MON",
+      "schedule": "00 06 * * MON",
       "starting_urls": "https://blanchfield.tricare.mil/"
    },
    {
@@ -1406,7 +1406,7 @@
       "handle_javascript": false,
       "name": "tricare_southcomclinic",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * MON",
+      "schedule": "00 07 * * MON",
       "starting_urls": "https://southcomclinic.tricare.mil/"
    },
    {
@@ -1416,7 +1416,7 @@
       "handle_javascript": false,
       "name": "tricare_guthrie",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * MON",
+      "schedule": "00 08 * * MON",
       "starting_urls": "https://guthrie.tricare.mil/"
    },
    {
@@ -1426,7 +1426,7 @@
       "handle_javascript": false,
       "name": "tricare_kenner",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * MON",
+      "schedule": "00 09 * * MON",
       "starting_urls": "https://kenner.tricare.mil/"
    },
    {
@@ -1436,7 +1436,7 @@
       "handle_javascript": false,
       "name": "tricare_kimbrough",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * MON",
+      "schedule": "00 10 * * MON",
       "starting_urls": "https://kimbrough.tricare.mil/"
    },
    {
@@ -1446,7 +1446,7 @@
       "handle_javascript": false,
       "name": "tricare_rodriguez",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * MON",
+      "schedule": "00 11 * * MON",
       "starting_urls": "https://rodriguez.tricare.mil/"
    },
    {
@@ -1456,7 +1456,7 @@
       "handle_javascript": false,
       "name": "tricare_tripler",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * MON",
+      "schedule": "00 12 * * MON",
       "starting_urls": "https://tripler.tricare.mil/"
    },
    {
@@ -1466,7 +1466,7 @@
       "handle_javascript": false,
       "name": "tricare_yokosuka",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * MON",
+      "schedule": "00 13 * * MON",
       "starting_urls": "https://yokosuka.tricare.mil/"
    },
    {
@@ -1476,7 +1476,7 @@
       "handle_javascript": false,
       "name": "tricare_mdahc",
       "output_target": "elasticsearch",
-      "schedule": "30 22 * * MON",
+      "schedule": "00 14 * * MON",
       "starting_urls": "https://mcdonald.tricare.mil/"
    },
    {
@@ -1486,7 +1486,7 @@
       "handle_javascript": false,
       "name": "tricare_bmv",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * TUE",
+      "schedule": "00 15 * * MON",
       "starting_urls": "https://mhs-europe.tricare.mil/"
    },
    {
@@ -1496,7 +1496,7 @@
       "handle_javascript": false,
       "name": "tricare_lrmc",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * TUE",
+      "schedule": "00 16 * * MON",
       "starting_urls": "https://landstuhl.tricare.mil/"
    },
    {
@@ -1506,7 +1506,7 @@
       "handle_javascript": false,
       "name": "tricare_nmcp",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * TUE",
+      "schedule": "00 17 * * MON",
       "starting_urls": "https://portsmouth.tricare.mil/"
    },
    {
@@ -1516,7 +1516,7 @@
       "handle_javascript": false,
       "name": "tricare_guam",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * TUE",
+      "schedule": "00 18 * * MON",
       "starting_urls": "https://guam.tricare.mil/"
    },
    {
@@ -1526,7 +1526,7 @@
       "handle_javascript": false,
       "name": "tricare_nhcc",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * TUE",
+      "schedule": "00 01 * * TUE",
       "starting_urls": "http,://harleston.tricare.mil/"
    },
    {
@@ -1536,7 +1536,7 @@
       "handle_javascript": false,
       "name": "tricare_camplejeune",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * TUE",
+      "schedule": "00 02 * * TUE",
       "starting_urls": "https://camp-lejeune.tricare.mil/"
    },
    {
@@ -1546,7 +1546,7 @@
       "handle_javascript": false,
       "name": "tricare_lemoore",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * TUE",
+      "schedule": "00 03 * * TUE",
       "starting_urls": "https://lemoore.tricare.mil/"
    },
    {
@@ -1556,7 +1556,7 @@
       "handle_javascript": false,
       "name": "tricare_beaufort",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * TUE",
+      "schedule": "00 04 * * TUE",
       "starting_urls": "https://beaufort.tricare.mil/"
    },
    {
@@ -1566,7 +1566,7 @@
       "handle_javascript": false,
       "name": "tricare_annapolis",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * TUE",
+      "schedule": "00 05 * * TUE",
       "starting_urls": "https://annapolis.tricare.mil/"
    },
    {
@@ -1576,7 +1576,7 @@
       "handle_javascript": false,
       "name": "tricare_carldarnall",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * TUE",
+      "schedule": "00 06 * * TUE",
       "starting_urls": "https://darnall.tricare.mil/"
    },
    {
@@ -1586,7 +1586,7 @@
       "handle_javascript": false,
       "name": "tricare_sigonella",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * TUE",
+      "schedule": "00 07 * * TUE",
       "starting_urls": "https://sigonella.tricare.mil/"
    },
    {
@@ -1596,7 +1596,7 @@
       "handle_javascript": false,
       "name": "tricare_evans",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * TUE",
+      "schedule": "00 08 * * TUE",
       "starting_urls": "https://evans.tricare.mil/"
    },
    {
@@ -1606,7 +1606,7 @@
       "handle_javascript": false,
       "name": "tricare_nhcp",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * TUE",
+      "schedule": "00 09 * * TUE",
       "starting_urls": "https://camp-pendleton.tricare.mil/"
    },
    {
@@ -1616,7 +1616,7 @@
       "handle_javascript": false,
       "name": "tricare_nhp",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * TUE",
+      "schedule": "00 10 * * TUE",
       "starting_urls": "https://pensacola.tricare.mil/"
    },
    {
@@ -1626,7 +1626,7 @@
       "handle_javascript": false,
       "name": "tricare_nhr",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * TUE",
+      "schedule": "00 11 * * TUE",
       "starting_urls": "https://rota.tricare.mil/"
    },
    {
@@ -1636,7 +1636,7 @@
       "handle_javascript": false,
       "name": "tricare_nhcne",
       "output_target": "elasticsearch",
-      "schedule": "30 22 * * TUE",
+      "schedule": "00 12 * * TUE",
       "starting_urls": "https://newengland.tricare.mil/"
    },
    {
@@ -1646,7 +1646,7 @@
       "handle_javascript": false,
       "name": "tricare_cherrypoint",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * WED",
+      "schedule": "00 13 * * TUE",
       "starting_urls": "https://cherrypoint.tricare.mil/"
    },
    {
@@ -1656,7 +1656,7 @@
       "handle_javascript": false,
       "name": "tricare_irwin",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * WED",
+      "schedule": "00 14 * * TUE",
       "starting_urls": "https://irwin.tricare.mil/"
    },
    {
@@ -1666,7 +1666,7 @@
       "handle_javascript": false,
       "name": "tricare_twentynine-palms",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * WED",
+      "schedule": "00 15 * * TUE",
       "starting_urls": "https://twentynine-palms.tricare.mil/"
    },
    {
@@ -1676,7 +1676,7 @@
       "handle_javascript": false,
       "name": "tricare_bremerton",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * WED",
+      "schedule": "00 16 * * TUE",
       "starting_urls": "https://bremerton.tricare.mil/"
    },
    {
@@ -1686,7 +1686,7 @@
       "handle_javascript": false,
       "name": "tricare_nmcsd",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * WED",
+      "schedule": "00 17 * * TUE",
       "starting_urls": "https://sandiego.tricare.mil/"
    },
    {
@@ -1696,7 +1696,7 @@
       "handle_javascript": false,
       "name": "tricare_nhj",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * WED",
+      "schedule": "00 18 * * TUE",
       "starting_urls": "https://jacksonville.tricare.mil/"
    },
    {
@@ -1706,7 +1706,7 @@
       "handle_javascript": false,
       "name": "tricare_nhcq",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * WED",
+      "schedule": "00 01 * * WED",
       "starting_urls": "https://quantico.tricare.mil/"
    },
    {
@@ -1716,7 +1716,7 @@
       "handle_javascript": false,
       "name": "tricare_wrnmc",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * WED",
+      "schedule": "00 02 * * WED",
       "starting_urls": "https://walterreed.tricare.mil/"
    },
    {
@@ -1726,7 +1726,7 @@
       "handle_javascript": false,
       "name": "tricare_nhccc",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * WED",
+      "schedule": "00 03 * * WED",
       "starting_urls": "https://corpuschristi.tricare.mil/"
    },
    {
@@ -1736,7 +1736,7 @@
       "handle_javascript": false,
       "name": "tricare_62ms",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * WED",
+      "schedule": "00 04 * * WED",
       "starting_urls": "https://lewismcchord.tricare.mil/"
    },
    {
@@ -1746,7 +1746,7 @@
       "handle_javascript": false,
       "name": "tricare_naples",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * WED",
+      "schedule": "00 05 * * WED",
       "starting_urls": "https://naples.tricare.mil/"
    },
    {
@@ -1756,7 +1756,7 @@
       "handle_javascript": false,
       "name": "tricare_okinawa",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * WED",
+      "schedule": "00 06 * * WED",
       "starting_urls": "https://okinawa.tricare.mil/"
    },
    {
@@ -1766,7 +1766,7 @@
       "handle_javascript": false,
       "name": "tricare_cmd",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * WED",
+      "schedule": "00 07 * * WED",
       "starting_urls": "https://calmed.tricare.mil/"
    },
    {
@@ -1776,7 +1776,7 @@
       "handle_javascript": false,
       "name": "tricare_wach",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * WED",
+      "schedule": "00 08 * * WED",
       "starting_urls": "https://winn.tricare.mil/"
    },
    {
@@ -1786,7 +1786,7 @@
       "handle_javascript": false,
       "name": "tricare_dusahc",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * WED",
+      "schedule": "00 09 * * WED",
       "starting_urls": "https://dunham.tricare.mil/"
    },
    {
@@ -1796,7 +1796,7 @@
       "handle_javascript": false,
       "name": "tricare_mahc",
       "output_target": "elasticsearch",
-      "schedule": "30 22 * * WED",
+      "schedule": "00 10 * * WED",
       "starting_urls": "https://moncrief.tricare.mil/"
    },
    {
@@ -1806,7 +1806,7 @@
       "handle_javascript": false,
       "name": "tricare_omc",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * THU",
+      "schedule": "00 11 * * WED",
       "starting_urls": "https://oakharbor.tricare.mil/"
    },
    {
@@ -1816,7 +1816,7 @@
       "handle_javascript": false,
       "name": "tricare_ahcbw",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * THU",
+      "schedule": "00 12 * * WED",
       "starting_urls": "https://bassett-wainwright.tricare.mil/"
    },
    {
@@ -1826,7 +1826,7 @@
       "handle_javascript": false,
       "name": "tricare_mamc",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * THU",
+      "schedule": "00 13 * * WED",
       "starting_urls": "https://madigan.tricare.mil/"
    },
    {
@@ -1836,7 +1836,7 @@
       "handle_javascript": false,
       "name": "tricare_lyster",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * THU",
+      "schedule": "00 14 * * WED",
       "starting_urls": "https://lyster.tricare.mil/"
    },
    {
@@ -1846,7 +1846,7 @@
       "handle_javascript": false,
       "name": "tricare_keller",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * THU",
+      "schedule": "00 15 * * WED",
       "starting_urls": "https://keller.tricare.mil/"
    },
    {
@@ -1856,7 +1856,7 @@
       "handle_javascript": false,
       "name": "tricare_ireland",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * THU",
+      "schedule": "00 16 * * WED",
       "starting_urls": "https://ireland.tricare.mil/"
    },
    {
@@ -1866,7 +1866,7 @@
       "handle_javascript": false,
       "name": "tricare_dyess",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * THU",
+      "schedule": "00 17 * * WED",
       "starting_urls": "https://dyess.tricare.mil/"
    },
    {
@@ -1876,7 +1876,7 @@
       "handle_javascript": false,
       "name": "tricare_412mg",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * THU",
+      "schedule": "00 18 * * WED",
       "starting_urls": "https://edwards.tricare.mil/"
    },
    {
@@ -1886,7 +1886,7 @@
       "handle_javascript": false,
       "name": "tricare_96mg",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * THU",
+      "schedule": "00 01 * * FRI",
       "starting_urls": "https://eglin.tricare.mil/"
    },
    {
@@ -1896,7 +1896,7 @@
       "handle_javascript": false,
       "name": "tricare_dover",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * THU",
+      "schedule": "00 02 * * FRI",
       "starting_urls": "https://dover.tricare.mil/"
    },
    {
@@ -1906,7 +1906,7 @@
       "handle_javascript": false,
       "name": "tricare_rafalconbury",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * THU",
+      "schedule": "00 03 * * FRI",
       "starting_urls": "https://rafalconbury.tricare.mil/"
    },
    {
@@ -1916,7 +1916,7 @@
       "handle_javascript": false,
       "name": "tricare_goodfellow",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * THU",
+      "schedule": "00 04 * * FRI",
       "starting_urls": "https://goodfellow.tricare.mil/"
    },
    {
@@ -1926,7 +1926,7 @@
       "handle_javascript": false,
       "name": "tricare_seymourjohnson",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * THU",
+      "schedule": "00 05 * * FRI",
       "starting_urls": "https://seymourjohnson.tricare.mil/"
    },
    {
@@ -1936,7 +1936,7 @@
       "handle_javascript": false,
       "name": "tricare_scott",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * THU",
+      "schedule": "00 06 * * FRI",
       "starting_urls": "https://scott.tricare.mil/"
    },
    {
@@ -1946,7 +1946,7 @@
       "handle_javascript": false,
       "name": "tricare_robins",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * THU",
+      "schedule": "00 07 * * FRI",
       "starting_urls": "https://robins.tricare.mil/"
    },
    {
@@ -1956,7 +1956,7 @@
       "handle_javascript": false,
       "name": "tricare_20mg",
       "output_target": "elasticsearch",
-      "schedule": "30 22 * * THU",
+      "schedule": "00 08 * * FRI",
       "starting_urls": "https://shaw.tricare.mil/"
    },
    {
@@ -1966,7 +1966,7 @@
       "handle_javascript": false,
       "name": "tricare_ramstein",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * FRI",
+      "schedule": "00 09 * * FRI",
       "starting_urls": "https://ramstein.tricare.mil/"
    },
    {
@@ -1976,7 +1976,7 @@
       "handle_javascript": false,
       "name": "tricare_82mg",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * FRI",
+      "schedule": "00 10 * * FRI",
       "starting_urls": "https://sheppard.tricare.mil/"
    },
    {
@@ -1986,7 +1986,7 @@
       "handle_javascript": false,
       "name": "tricare_30mg",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * FRI",
+      "schedule": "00 11 * * FRI",
       "starting_urls": "https://vandenberg.tricare.mil/"
    },
    {
@@ -1996,7 +1996,7 @@
       "handle_javascript": false,
       "name": "tricare_pope",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * FRI",
+      "schedule": "00 12 * * FRI",
       "starting_urls": "https://pope.tricare.mil/"
    },
    {
@@ -2006,7 +2006,7 @@
       "handle_javascript": false,
       "name": "tricare_peterson",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * FRI",
+      "schedule": "00 13 * * FRI",
       "starting_urls": "https://peterson.tricare.mil/"
    },
    {
@@ -2016,7 +2016,7 @@
       "handle_javascript": false,
       "name": "tricare_losangeles",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * FRI",
+      "schedule": "00 14 * * FRI",
       "starting_urls": "https://losangeles.tricare.mil/"
    },
    {
@@ -2026,7 +2026,7 @@
       "handle_javascript": false,
       "name": "tricare_macdill",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * FRI",
+      "schedule": "00 15 * * FRI",
       "starting_urls": "https://macdill.tricare.mil/"
    },
    {
@@ -2036,7 +2036,7 @@
       "handle_javascript": false,
       "name": "tricare_luke",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * FRI",
+      "schedule": "00 16 * * FRI",
       "starting_urls": "https://luke.tricare.mil/"
    },
    {
@@ -2046,7 +2046,7 @@
       "handle_javascript": false,
       "name": "tricare_langleyeustis",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * FRI",
+      "schedule": "00 17 * * FRI",
       "starting_urls": "https://langleyeustis.tricare.mil/"
    },
    {
@@ -2056,7 +2056,7 @@
       "handle_javascript": false,
       "name": "tricare_grandforks",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * FRI",
+      "schedule": "00 18 * * FRI",
       "starting_urls": "https://grandforks.tricare.mil/"
    },
    {
@@ -2066,7 +2066,7 @@
       "handle_javascript": false,
       "name": "tricare_fewarren",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * FRI",
+      "schedule": "00 01 * * SAT",
       "starting_urls": "https://fewarren.tricare.mil/"
    },
    {
@@ -2076,7 +2076,7 @@
       "handle_javascript": false,
       "name": "tricare_elmendorfrichardson",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * FRI",
+      "schedule": "00 02 * * SAT",
       "starting_urls": "https://elmendorfrichardson.tricare.mil/"
    },
    {
@@ -2086,7 +2086,7 @@
       "handle_javascript": false,
       "name": "tricare_beale",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * FRI",
+      "schedule": "00 03 * * SAT",
       "starting_urls": "https://beale.tricare.mil/"
    },
    {
@@ -2096,7 +2096,7 @@
       "handle_javascript": false,
       "name": "tricare_barksdale",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * FRI",
+      "schedule": "00 04 * * SAT",
       "starting_urls": "https://barksdale.tricare.mil/"
    },
    {
@@ -2106,7 +2106,7 @@
       "handle_javascript": false,
       "name": "tricare_andersen",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * FRI",
+      "schedule": "00 05 * * SAT",
       "starting_urls": "https://andersen.tricare.mil/"
    },
    {
@@ -2116,7 +2116,7 @@
       "handle_javascript": false,
       "name": "tricare_buckley",
       "output_target": "elasticsearch",
-      "schedule": "30 22 * * FRI",
+      "schedule": "00 06 * * SAT",
       "starting_urls": "https://buckley.tricare.mil/"
    },
    {
@@ -2126,7 +2126,7 @@
       "handle_javascript": false,
       "name": "tricare_altus",
       "output_target": "elasticsearch",
-      "schedule": "0 0 * * SAT",
+      "schedule": "00 07 * * SAT",
       "starting_urls": "https://altus.tricare.mil/"
    },
    {
@@ -2136,7 +2136,7 @@
       "handle_javascript": false,
       "name": "tricare_offutt",
       "output_target": "elasticsearch",
-      "schedule": "30 1 * * SAT",
+      "schedule": "00 08 * * SAT",
       "starting_urls": "https://offutt.tricare.mil/"
    },
    {
@@ -2146,7 +2146,7 @@
       "handle_javascript": false,
       "name": "tricare_osan",
       "output_target": "elasticsearch",
-      "schedule": "0 3 * * SAT",
+      "schedule": "00 09 * * SAT",
       "starting_urls": "https://osan.tricare.mil/"
    },
    {
@@ -2156,7 +2156,7 @@
       "handle_javascript": false,
       "name": "tricare_nellis",
       "output_target": "elasticsearch",
-      "schedule": "30 4 * * SAT",
+      "schedule": "00 10 * * SAT",
       "starting_urls": "https://nellis.tricare.mil/"
    },
    {
@@ -2166,7 +2166,7 @@
       "handle_javascript": false,
       "name": "tricare_tyndall",
       "output_target": "elasticsearch",
-      "schedule": "0 6 * * SAT",
+      "schedule": "00 11 * * SAT",
       "starting_urls": "https://tyndall.tricare.mil/"
    },
    {
@@ -2176,7 +2176,7 @@
       "handle_javascript": false,
       "name": "tricare_vance",
       "output_target": "elasticsearch",
-      "schedule": "30 7 * * SAT",
+      "schedule": "00 12 * * SAT",
       "starting_urls": "https://vance.tricare.mil/"
    },
    {
@@ -2186,7 +2186,7 @@
       "handle_javascript": false,
       "name": "tricare_whiteman",
       "output_target": "elasticsearch",
-      "schedule": "0 9 * * SAT",
+      "schedule": "00 13 * * SAT",
       "starting_urls": "https://whiteman.tricare.mil/"
    },
    {
@@ -2196,7 +2196,7 @@
       "handle_javascript": false,
       "name": "tricare_willfordhall",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * SAT",
+      "schedule": "00 14 * * SAT",
       "starting_urls": "https://wilfordhall.tricare.mil/"
    },
    {
@@ -2206,7 +2206,7 @@
       "handle_javascript": false,
       "name": "tricare_kirtland",
       "output_target": "elasticsearch",
-      "schedule": "0 12 * * SAT",
+      "schedule": "00 15 * * SAT",
       "starting_urls": "https://kirtland.tricare.mil/"
    },
    {
@@ -2216,7 +2216,7 @@
       "handle_javascript": false,
       "name": "tricare_wrightpatterson",
       "output_target": "elasticsearch",
-      "schedule": "30 13 * * SAT",
+      "schedule": "00 16 * * SAT",
       "starting_urls": "https://wrightpatterson.tricare.mil/"
    },
    {
@@ -2226,7 +2226,7 @@
       "handle_javascript": false,
       "name": "tricare_keesler",
       "output_target": "elasticsearch",
-      "schedule": "0 15 * * SAT",
+      "schedule": "00 17 * * SAT",
       "starting_urls": "https://keesler.tricare.mil/"
    },
    {
@@ -2236,7 +2236,7 @@
       "handle_javascript": false,
       "name": "tricare_374mg",
       "output_target": "elasticsearch",
-      "schedule": "30 16 * * SAT",
+      "schedule": "00 18 * * SAT",
       "starting_urls": "https://yokota.tricare.mil/"
    },
    {
@@ -2246,7 +2246,7 @@
       "handle_javascript": false,
       "name": "tricare_10mgafa",
       "output_target": "elasticsearch",
-      "schedule": "0 18 * * SAT",
+      "schedule": "00 19 * * SAT",
       "starting_urls": "https://airforceacademy.tricare.mil/"
    },
    {
@@ -2256,7 +2256,7 @@
       "handle_javascript": false,
       "name": "tricare_incirlik",
       "output_target": "elasticsearch",
-      "schedule": "30 19 * * SAT",
+      "schedule": "00 20 * * SAT",
       "starting_urls": "https://incirlik.tricare.mil/"
    },
    {
@@ -2266,7 +2266,7 @@
       "handle_javascript": false,
       "name": "tricare_hurlburt",
       "output_target": "elasticsearch",
-      "schedule": "0 21 * * SAT",
+      "schedule": "00 21 * * SAT",
       "starting_urls": "https://hurlburt.tricare.mil/"
    }
 ]
