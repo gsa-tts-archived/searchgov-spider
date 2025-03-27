@@ -2268,5 +2268,115 @@
       "output_target": "elasticsearch",
       "schedule": "00 21 * * SAT",
       "starting_urls": "https://hurlburt.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ccac.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "ccac.gov",
+      "output_target": "elasticsearch",
+      "schedule": "15 01 * * FRI",
+      "starting_urls": "https://www.ccac.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cdo.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "cdo_gov",
+      "output_target": "elasticsearch",
+      "schedule": "15 02 * * FRI",
+      "starting_urls": "https://www.cdo.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "affoa.org",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "affoa",
+      "output_target": "elasticsearch",
+      "schedule": "15 03 * * FRI",
+      "starting_urls": "https://affoa.org/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "chemm.hhs.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "chemicalhazardsemergencymedicalma",
+      "output_target": "elasticsearch",
+      "schedule": "15 04 * * FRI",
+      "starting_urls": "https://chemm.hhs.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "zerowaste.dc.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "dc_zerowaste",
+      "output_target": "elasticsearch",
+      "schedule": "15 05 * * FRI",
+      "starting_urls": "https://zerowaste.dc.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "girlshealth.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "girlshealth.gov",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * FRI",
+      "starting_urls": "https://girlshealth.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "mmc.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "mmc",
+      "output_target": "elasticsearch",
+      "schedule": "15 07 * * FRI",
+      "starting_urls": "https://www.mmc.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "crb.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "crb",
+      "output_target": "elasticsearch",
+      "schedule": "15 08 * * FRI",
+      "starting_urls": "https://www.crb.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "firstnet.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "firstnet",
+      "output_target": "elasticsearch",
+      "schedule": "15 09 * * FRI",
+      "starting_urls": "https://firstnet.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "boem.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "boem",
+      "output_target": "elasticsearch",
+      "schedule": "15 10 * * FRI",
+      "starting_urls": "https://www.boem.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tva.com",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "tva",
+      "output_target": "elasticsearch",
+      "schedule": "15 11 * * FRI",
+      "starting_urls": "https://www.tva.com/"
    }
 ]
