@@ -84,7 +84,6 @@ class DomainSpider(CrawlSpider):
                 follow=True,
             ),
         )
-
         super().__init__(*args, **kwargs)
         self.allow_query_string = allow_query_string
         self.output_target = output_target
@@ -101,6 +100,9 @@ class DomainSpider(CrawlSpider):
         self.start_urls = (
             start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=False)
         )
+
+        # store input args as private attributes for use in logging
+        self._deny_paths = deny_paths
 
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpider":

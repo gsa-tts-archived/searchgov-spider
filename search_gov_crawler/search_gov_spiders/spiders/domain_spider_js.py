@@ -128,6 +128,9 @@ class DomainSpiderJs(CrawlSpider):
         self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
         self.output_target = output_target
 
+        # store input args as private attributes for use in logging
+        self._deny_paths = deny_paths
+
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpiderJs":
         """
