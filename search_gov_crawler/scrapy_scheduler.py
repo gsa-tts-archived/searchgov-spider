@@ -41,7 +41,7 @@ def run_scrapy_crawl(
     start_urls: str,
     output_target: str,
     depth_limit: int,
-    deny_paths: set[str],
+    deny_paths: list[str],
 ) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
