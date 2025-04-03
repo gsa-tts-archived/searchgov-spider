@@ -8,6 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import os
+import boto3
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -123,8 +124,11 @@ SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
 SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
 SPIDERMON_EMAIL_SENDER = os.environ.get("SPIDERMON_EMAIL_SENDER")
 SPIDERMON_EMAIL_TO = os.environ.get("SPIDERMON_EMAIL_TO")
-SPIDERMON_AWS_ACCESS_KEY_ID = os.environ.get("SEARCH_AWS_ACCESS_KEY_ID")
-SPIDERMON_AWS_SECRET_ACCESS_KEY = os.environ.get("SEARCH_AWS_SECRET_ACCESS_KEY")
+
+session = boto3.Session()
+credentials = session.get_credentials()
+SPIDERMON_AWS_ACCESS_KEY_ID = credentials.access_key
+SPIDERMON_AWS_SECRET_ACCESS_KEY = credentials.secret_key
 SPIDERMON_AWS_REGION_NAME = "us-east-1"
 SPIDERMON_PERIODIC_MONITORS = {
     "search_gov_spiders.monitors.PeriodicMonitorSuite": SPIDERMON_TIME_INTERVAL,

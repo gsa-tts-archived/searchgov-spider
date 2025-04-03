@@ -20,8 +20,6 @@ PARAMS="
   SPIDER_RUN_WITH_UI
   SPIDER_SCRAPY_MAX_WORKERS
   SPIDER_URLS_API
-  SEARCH_AWS_ACCESS_KEY_ID
-  SEARCH_AWS_SECRET_ACCESS_KEY
 "
 
 # For each param in list, get the value from parameter store and add it to the .profile.  If an export
