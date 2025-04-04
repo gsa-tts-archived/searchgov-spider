@@ -85,7 +85,6 @@ def test_split_allowed_domains():
     [
         (None, helpers.LINK_DENY_REGEX_STR),
         ("", helpers.LINK_DENY_REGEX_STR),
-        ("calendar", helpers.LINK_DENY_REGEX_STR),
         ("path1", helpers.LINK_DENY_REGEX_STR | {"path1"}),
         ("path1,path1", helpers.LINK_DENY_REGEX_STR | {"path1"}),
         ("path1,PATH1", helpers.LINK_DENY_REGEX_STR | {"path1", "PATH1"}),

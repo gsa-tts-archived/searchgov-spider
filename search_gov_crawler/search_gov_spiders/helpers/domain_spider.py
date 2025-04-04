@@ -49,7 +49,7 @@ ALLOWED_CONTENT_TYPE_OUTPUT_MAP = {
     "elasticsearch": ES_ALLOWED_CONTENT_TYPE,
 }
 
-LINK_DENY_REGEX_STR = {"calendar", "location-contact", "DTMO-Site-Map/FileId/"}
+LINK_DENY_REGEX_STR = set()  # place global deny regex strings here
 
 LINK_TAGS = ("a", "area", "va-link")  # specified to account for custom link tags
 
