@@ -65,7 +65,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv", 3, None],
+            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv", 3, []],
         },
         {
             "func": run_scrapy_crawl,
@@ -78,7 +78,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
                 "https://quotes.toscrape.com/js/",
                 "csv",
                 3,
-                None,
+                [],
             ],
         },
         {

@@ -30,7 +30,8 @@ logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
 CRAWL_SITES_FILE = (
-    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    # Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    Path(__file__).parent.parent / "tests" / "search_gov_spiders" / "crawl-sites-test.json"
 )
 
 
@@ -97,7 +98,7 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
                     crawl_site.starting_urls,
                     crawl_site.output_target,
                     crawl_site.depth_limit,
-                    crawl_site.deny_paths,
+                    crawl_site.deny_paths if crawl_site.deny_paths else [],
                 ],
             },
         )

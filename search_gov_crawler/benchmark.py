@@ -99,7 +99,7 @@ def create_apscheduler_job(
             starting_urls,
             output_target,
             depth_limit,
-            deny_paths,
+            deny_paths if deny_paths else [],
         ],
     }
 
@@ -175,7 +175,7 @@ def benchmark_from_args(
         "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
         "depth_limit": depth_limit,
-        "deny_paths": deny_paths,
+        "deny_paths": deny_paths.split(","),
     }
 
     scheduler = init_scheduler()
