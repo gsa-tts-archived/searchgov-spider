@@ -1,6 +1,6 @@
 from pathlib import Path
 from spidermon import MonitorSuite
-from spidermon.contrib.actions.email.ses import SendSESEmail
+from spidermon.contrib.actions.email.smtp import SendSmtpEmail
 from spidermon.contrib.actions.reports.files import CreateFileReport
 from spidermon.contrib.scrapy.monitors.monitors import (
     ItemCountMonitor,
@@ -17,4 +17,4 @@ class CreateCustomFileReport(CreateFileReport):
 class PeriodicMonitorSuite(MonitorSuite):
     monitors = [ItemCountMonitor, UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor]
 
-    monitors_failed_actions = [CreateCustomFileReport, SendSESEmail]
+    monitors_failed_actions = [CreateCustomFileReport, SendSmtpEmail]
