@@ -3316,7 +3316,7 @@ local output_target = 'elasticsearch';
   {
     name: 'tricare_nhcc',
     config: DomainConfig(allowed_domains='charleston.tricare.mil',
-                         starting_urls='http://charleston.tricare.mil/',
+                         starting_urls='https://charleston.tricare.mil/',
                          schedule='00 01 * * TUE',
                          output_target=output_target,
                          depth_limit=8),

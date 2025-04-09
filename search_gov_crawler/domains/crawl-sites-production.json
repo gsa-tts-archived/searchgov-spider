@@ -4991,7 +4991,7 @@
       "name": "tricare_nhcc",
       "output_target": "elasticsearch",
       "schedule": "00 01 * * TUE",
-      "starting_urls": "http://charleston.tricare.mil/"
+      "starting_urls": "https://charleston.tricare.mil/"
    },
    {
       "allow_query_string": false,
