@@ -129,3 +129,4 @@ SPIDERMON_AWS_REGION_NAME = "us-east-1"
 SPIDERMON_PERIODIC_MONITORS = {
     "search_gov_spiders.monitors.PeriodicMonitorSuite": SPIDERMON_TIME_INTERVAL,
 }
+SPIDERMON_SPIDER_CLOSE_MONITORS = ("search_gov_spiders.monitors.SpiderCloseMonitorSuite",)

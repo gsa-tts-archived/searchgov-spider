@@ -14,7 +14,13 @@ class CreateCustomFileReport(CreateFileReport):
     template_paths = [Path(__file__).parent / "actions"]
 
 
+class SpiderCloseMonitorSuite(MonitorSuite):
+    monitors = [ItemCountMonitor, UnwantedHTTPCodesMonitor]
+
+    monitors_failed_actions = [CreateCustomFileReport, SendSESEmail]
+
+
 class PeriodicMonitorSuite(MonitorSuite):
-    monitors = [ItemCountMonitor, UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor]
+    monitors = [PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor]
 
     monitors_failed_actions = [CreateCustomFileReport, SendSESEmail]
