@@ -110,7 +110,7 @@ date_time = spider_start.isoformat()
 body_html_template = Path(__file__).parent / "actions" / "results.jinja"
 
 SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "True")
-SPIDERMON_MIN_ITEMS = 1000
+SPIDERMON_MIN_ITEMS = 10
 SPIDERMON_TIME_INTERVAL = 60  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 10
 SPIDERMON_MAX_EXECUTION_TIME = 86400
