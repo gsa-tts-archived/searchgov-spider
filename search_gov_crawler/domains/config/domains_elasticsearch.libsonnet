@@ -5936,7 +5936,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nei.nih.gov/',
                          schedule='28 6 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['medialibrary.nei.nih.gov/search']),
   },
   {
     name: 'National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)',
