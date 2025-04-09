@@ -108,6 +108,8 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 # SPIDERMON SETTINGS
 date_time = spider_start.isoformat()
 body_html_template = Path(__file__).parent / "actions" / "results.jinja"
+SPIDER_URLS_API = os.environ.get("SPIDER_URLS_API", "local")
+env_name = SPIDER_URLS_API.split("https://")[1].split(".")[0]
 
 SPIDERMON_ENABLED = os.environ.get("SPIDER_SPIDERMON_ENABLED", "True")
 SPIDERMON_MIN_ITEMS = 10
@@ -120,7 +122,7 @@ SPIDERMON_REPORT_TEMPLATE = "results.jinja"
 SPIDERMON_BODY_HTML_TEMPLATE = body_html_template
 SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
-SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
+SPIDERMON_EMAIL_SUBJECT = f"{env_name} Spidermon Report".capitalize()
 SPIDERMON_EMAIL_SENDER = "search@support.digitalgov.gov"
 SPIDERMON_EMAIL_TO = "tts-search-devs@gsa.gov"
 SPIDERMON_AWS_ACCESS_KEY_ID = os.environ.get("SEARCH_AWS_ACCESS_KEY_ID")
