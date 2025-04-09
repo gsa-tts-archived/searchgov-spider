@@ -108,7 +108,7 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 # SPIDERMON SETTINGS
 date_time = spider_start.isoformat()
 body_html_template = Path(__file__).parent / "actions" / "results.jinja"
-SPIDER_URLS_API = os.environ.get("SPIDER_URLS_API", "local")
+SPIDER_URLS_API = os.environ.get("SPIDER_URLS_API", "https://local.search.usa.gov/urls")
 env_name = SPIDER_URLS_API.split("https://")[1].split(".")[0]
 
 SPIDERMON_ENABLED = os.environ.get("SPIDER_SPIDERMON_ENABLED", "True")
