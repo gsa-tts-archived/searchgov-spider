@@ -4973,7 +4973,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "guam.dod.afpims.mil",
+      "allowed_domains": "guam.tricare.mil",
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
