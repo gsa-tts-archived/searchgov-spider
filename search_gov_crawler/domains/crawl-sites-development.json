@@ -4676,11 +4676,11 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "brianallgood.tricare.mil",
+      "allowed_domains": "briandallgood.tricare.mil",
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "tricare_brianallgood",
+      "name": "tricare_briandallgood",
       "output_target": "elasticsearch",
       "schedule": "00 09 * * SUN",
       "starting_urls": "https://briandallgood.tricare.mil/"
@@ -4991,7 +4991,7 @@
       "name": "tricare_nhcc",
       "output_target": "elasticsearch",
       "schedule": "00 01 * * TUE",
-      "starting_urls": "http,://harleston.tricare.mil/"
+      "starting_urls": "https://charleston.tricare.mil/"
    },
    {
       "allow_query_string": false,
@@ -5787,7 +5787,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "lncirlik.tricare.mil",
+      "allowed_domains": "incirlik.tricare.mil",
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
@@ -6132,7 +6132,7 @@
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "125th Fighter Wing (afpw_125fw)",
+      "name": "125th Fighter Wing (afpw_125fw and afpw_flang)",
       "output_target": "elasticsearch",
       "schedule": "15 13 * * SUN",
       "starting_urls": "https://www.125fw.ang.af.mil/"
@@ -6667,14 +6667,14 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "62aw.af.mil,www.mcchord.af.mil",
+      "allowed_domains": "mcchord.af.mil",
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Team McChord (afpw_62aw)",
       "output_target": "elasticsearch",
       "schedule": "24 23 * * MON",
-      "starting_urls": "https://www.62aw.af.mil,www.mcchord.af.mil/"
+      "starting_urls": "https://www.mcchord.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -6876,14 +6876,14 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "afsoc.af.mil,www2.afsoc.af.mil",
+      "allowed_domains": "afsoc.af.mil",
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Special Operations Command (afsoc)",
       "output_target": "elasticsearch",
       "schedule": "39 12 * * TUE",
-      "starting_urls": "https://www.afsoc.af.mil,www2.afsoc.af.mil/"
+      "starting_urls": "https://www.afsoc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -7406,25 +7406,14 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "static.e-publishing.af.mil,www.e-publishing.af.mil",
+      "allowed_domains": "e-publishing.af.mil",
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Department of the Air Force - E-Publishing (afpw_epubs)",
       "output_target": "elasticsearch",
       "schedule": "6 22 * * WED",
-      "starting_urls": "https://static.e-publishing.af.mil,www.e-publishing.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "125fw.ang.af.mil,www.fl.ang.af.mil",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Florida Air National Guard (afpw_flang)",
-      "output_target": "elasticsearch",
-      "schedule": "48 22 * * WED",
-      "starting_urls": "https://www.125fw.ang.af.mil,www.fl.ang.af.mil/"
+      "starting_urls": "https://www.e-publishing.af.mil/"
    },
    {
       "allow_query_string": false,
