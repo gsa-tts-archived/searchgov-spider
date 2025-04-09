@@ -21,6 +21,8 @@ PARAMS="
   SPIDER_URLS_API
   SEARCH_AWS_ACCESS_KEY_ID
   SEARCH_AWS_SECRET_ACCESS_KEY
+  SPIDERMON_EMAIL_SENDER
+  SPIDERMON_EMAIL_TO
 "
 
 # For each param in list, get the value from parameter store and add it to the .profile.  If an export
