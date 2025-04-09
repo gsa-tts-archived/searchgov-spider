@@ -4150,7 +4150,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '125th Fighter Wing (afpw_125fw)',
+    name: '125th Fighter Wing (afpw_125fw and afpw_flang)',
     config: DomainConfig(allowed_domains='125fw.ang.af.mil',
                          starting_urls='https://www.125fw.ang.af.mil/',
                          schedule='15 13 * * SUN',
@@ -5083,14 +5083,6 @@ local output_target = 'elasticsearch';
     config: DomainConfig(allowed_domains='e-publishing.af.mil',
                          starting_urls='https://www.e-publishing.af.mil/',
                          schedule='6 22 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'Florida Air National Guard (afpw_flang)',
-    config: DomainConfig(allowed_domains='125fw.ang.af.mil',
-                         starting_urls='https://www.125fw.ang.af.mil',
-                         schedule='48 22 * * WED',
                          output_target=output_target,
                          depth_limit=8),
   },

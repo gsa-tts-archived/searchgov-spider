@@ -6132,7 +6132,7 @@
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "125th Fighter Wing (afpw_125fw)",
+      "name": "125th Fighter Wing (afpw_125fw and afpw_flang)",
       "output_target": "elasticsearch",
       "schedule": "15 13 * * SUN",
       "starting_urls": "https://www.125fw.ang.af.mil/"
@@ -7414,17 +7414,6 @@
       "output_target": "elasticsearch",
       "schedule": "6 22 * * WED",
       "starting_urls": "https://www.e-publishing.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "125fw.ang.af.mil",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Florida Air National Guard (afpw_flang)",
-      "output_target": "elasticsearch",
-      "schedule": "48 22 * * WED",
-      "starting_urls": "https://www.125fw.ang.af.mil"
    },
    {
       "allow_query_string": false,
