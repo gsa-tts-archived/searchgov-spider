@@ -3307,7 +3307,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'tricare_guam',
-    config: DomainConfig(allowed_domains='guam.dod.afpims.mil',
+    config: DomainConfig(allowed_domains='guam.tricare.mil',
                          starting_urls='https://guam.tricare.mil/',
                          schedule='00 18 * * MON',
                          output_target=output_target,
