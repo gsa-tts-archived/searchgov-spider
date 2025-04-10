@@ -11,11 +11,13 @@ jobs finishes.
 import logging
 import os
 import subprocess
+import time
+from datetime import UTC, datetime
 from pathlib import Path
 
 from apscheduler.executors.pool import ThreadPoolExecutor
-from apscheduler.jobstores.memory import MemoryJobStore
-from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.jobstores.redis import RedisJobStore
+from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
@@ -30,8 +32,11 @@ logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
 CRAWL_SITES_FILE = (
-    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    # Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    Path(__file__).parent / "redis-test.json"
 )
+
+logging.getLogger("apscheduler.events").setLevel(logging.DEBUG)
 
 
 def run_scrapy_crawl(
@@ -105,7 +110,7 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
     return transformed_crawl_sites
 
 
-def init_scheduler() -> BlockingScheduler:
+def init_scheduler() -> BackgroundScheduler:
     """
     Create and return instance of scheduler.  Set `max_workers`, i.e. the maximum number of spider
     processes this scheduler will spawn at one time to either the value of an environment variable
@@ -114,15 +119,31 @@ def init_scheduler() -> BlockingScheduler:
 
     # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
     # but set to default of 5 to ensure consistent numbers between environments and for schedule
-    max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
+    max_workers = 1  # int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
-    return BlockingScheduler(
-        jobstores={"memory": MemoryJobStore()},
+    return BackgroundScheduler(
+        jobstores={
+            "redis": RedisJobStore(
+                jobs_key="spider.schedule.jobs",
+                run_times_key="spider.schedule.run_times",
+                host="localhost",
+                port=6379,
+                db=0,
+                password=None,
+            ),
+        },
         executors={"default": ThreadPoolExecutor(max_workers)},
         job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": None},
         timezone="UTC",
     )
+
+
+from apscheduler.events import EVENT_ALL
+
+
+def my_listener(event):
+    log.info(f"EVENT: {event} | {event.alias}")
 
 
 def start_scrapy_scheduler(input_file: Path) -> None:
@@ -135,11 +156,34 @@ def start_scrapy_scheduler(input_file: Path) -> None:
 
     # Schedule Jobs
     scheduler = init_scheduler()
+    scheduler.add_listener(my_listener, EVENT_ALL)
+    scheduler.start(paused=True)
+
     for apscheduler_job in apscheduler_jobs:
-        scheduler.add_job(**apscheduler_job, jobstore="memory")
+        if job := scheduler.get_job(apscheduler_job["id"]):
+            log.info("JOB = %s", job)
+            pass
+            # job_id = apscheduler_job.pop("id")
+            # scheduler.modify_job(job_id=job_id, jobstore="redis", **apscheduler_job)
+        else:
+            scheduler.add_job(**apscheduler_job, jobstore="redis")
 
     # Run Scheduler
-    scheduler.start()
+    scheduler.resume()
+    log.info("Scheduler started and running")
+    try:
+        while True:
+            time.sleep(10)
+            # for job in scheduler.get_jobs():
+            #    log.info("JOB= %s | is_pending= %s", job, job.pending)
+    except Exception:
+        log.info("Scheduler shutting down")
+        for job in scheduler._jobstores.get("redis").get_due_jobs(now=datetime.now(UTC)):
+            log.info("DUE JOB= %s", job)
+
+        scheduler.shutdown(wait=False)
+
+    ### TODO: catpure queued jobs and make sure they run
 
 
 if __name__ == "__main__":
