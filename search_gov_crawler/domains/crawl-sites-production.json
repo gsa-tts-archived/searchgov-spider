@@ -8882,7 +8882,7 @@
       "name": "48th Medical Group - RAF Lakenheath",
       "output_target": "elasticsearch",
       "schedule": "00 12 * * SAT",
-      "starting_urls": "http://raflakenheath.tricare.mil/"
+      "starting_urls": "https://raflakenheath.tricare.mil/"
    },
    {
       "allow_query_string": false,

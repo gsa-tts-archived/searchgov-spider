@@ -6150,7 +6150,7 @@ local output_target = 'elasticsearch';
   {
     name: '48th Medical Group - RAF Lakenheath',
     config: DomainConfig(allowed_domains='raflakenheath.tricare.mil',
-                         starting_urls='http://raflakenheath.tricare.mil/',
+                         starting_urls='https://raflakenheath.tricare.mil/',
                          schedule='00 12 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
