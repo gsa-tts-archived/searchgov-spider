@@ -35,8 +35,7 @@ log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 logging.getLogger("apscheduler.scheduler").setLevel(logging.DEBUG)
 
 CRAWL_SITES_FILE = (
-    Path(__file__).parent / "redis-test.json"
-    # Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
 
 
@@ -120,8 +119,7 @@ def init_scheduler() -> SpiderBackgroundScheduler:
 
     # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
     # but set to default of 5 to ensure consistent numbers between environments and for schedule
-    # max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
-    max_workers = 1  # int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
+    max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
     return SpiderBackgroundScheduler(
@@ -130,10 +128,9 @@ def init_scheduler() -> SpiderBackgroundScheduler:
                 jobs_key="spider.schedule.jobs",
                 run_times_key="spider.schedule.run_times",
                 pending_jobs_key="spider.schedule.pending_jobs",
-                host="localhost",
-                port=6379,
-                db=0,
-                password=None,
+                host=os.getenv("REDIS_HOST", "localhost"),
+                port=int(os.getenv("REDIS_PORT", "6379")),
+                db=1,  # The searchgov app uses db 0
             ),
         },
         executors={"default": ThreadPoolExecutor(max_workers)},
