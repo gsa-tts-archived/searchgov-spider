@@ -146,6 +146,7 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     """Initializes schedule from input file, schedules jobs and runs scheduler"""
     if isinstance(input_file, str):
         input_file = Path(input_file)
+
     # Load and transform crawl sites
     crawl_sites = CrawlSites.from_file(file=input_file)
     apscheduler_jobs = transform_crawl_sites(crawl_sites)
@@ -156,11 +157,8 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
     scheduler.start(paused=True)
 
-    # Remove all jobs from the scheduler, do not include the pending queue
+    # Remove all jobs from scheduler
     scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
-
-    # check for pending jobs and start immediately, clear out existing pending queue
-    scheduler.trigger_pending_jobs(jobstore="redis")
 
     # Add jobs into scheduler
     for apscheduler_job in apscheduler_jobs:
@@ -171,14 +169,13 @@ def start_scrapy_scheduler(input_file: Path) -> None:
             scheduler.remove_job(job_id=job_id, jobstore="redis")
             scheduler.add_job(id=job_id, jobstore="redis", **apscheduler_job)
 
-    # clear out the pending queue
-    scheduler.remove_all_pending_jobs(jobstore="redis")
+    # Set any pending jobs to run immeidately and clear the pending jobs queue
+    scheduler.trigger_pending_jobs()
 
     # Run Scheduler
     scheduler.resume()
     while True:
-        time.sleep(10)
-        log.info("WORK QUEUE: %s", scheduler.get_pending_jobs())
+        time.sleep(5)
 
 
 if __name__ == "__main__":
