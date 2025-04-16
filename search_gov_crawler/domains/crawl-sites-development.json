@@ -3061,7 +3061,7 @@
       "allow_query_string": false,
       "allowed_domains": "faa.gov",
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 0,
       "handle_javascript": false,
       "name": "www.faa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -11042,17 +11042,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "faa.gov",
-      "deny_paths": null,
-      "depth_limit": 0,
-      "handle_javascript": false,
-      "name": "faa",
-      "output_target": "elasticsearch",
-      "schedule": "15 04 * * MON",
-      "starting_urls": "https://www.faa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "rosap.ntl.bts.gov",
       "deny_paths": null,
       "depth_limit": 0,
@@ -11097,28 +11086,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "data.transportation.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "data.transportation",
-      "output_target": "elasticsearch",
-      "schedule": "30 05 * * MON",
-      "starting_urls": "https://data.transportation.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "fly.faa.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "fly.faa",
-      "output_target": "elasticsearch",
-      "schedule": "45 05 * * MON",
-      "starting_urls": "https://www.fly.faa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "registry.faa.gov",
       "deny_paths": null,
       "depth_limit": 3,
@@ -11138,17 +11105,6 @@
       "output_target": "elasticsearch",
       "schedule": "15 06 * * MON",
       "starting_urls": "https://myaccessreg.faa.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "dfas.mil",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "dfas",
-      "output_target": "elasticsearch",
-      "schedule": "30 06 * * MON",
-      "starting_urls": "https://www.dfas.mil"
    },
    {
       "allow_query_string": false,
@@ -11185,39 +11141,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "usgs.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "usgs",
-      "output_target": "elasticsearch",
-      "schedule": "30 07 * * MON",
-      "starting_urls": "https://www.usgs.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "climate.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "climate",
-      "output_target": "elasticsearch",
-      "schedule": "45 07 * * MON",
-      "starting_urls": "https://www.climate.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ncdc.noaa.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ncdc.noaa",
-      "output_target": "elasticsearch",
-      "schedule": "00 08 * * MON",
-      "starting_urls": "https://www.ncdc.noaa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "drought.gov",
       "deny_paths": null,
       "depth_limit": 3,
@@ -11229,17 +11152,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "bea.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "bea",
-      "output_target": "elasticsearch",
-      "schedule": "30 08 * * MON",
-      "starting_urls": "https://www.bea.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "apps.bea.gov",
       "deny_paths": null,
       "depth_limit": 3,
@@ -11248,28 +11160,6 @@
       "output_target": "elasticsearch",
       "schedule": "45 08 * * MON",
       "starting_urls": "https://apps.bea.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "coastalscience.noaa.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "coastalscience.noaa",
-      "output_target": "elasticsearch",
-      "schedule": "00 09 * * MON",
-      "starting_urls": "https://coastalscience.noaa.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "atf.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "atf",
-      "output_target": "elasticsearch",
-      "schedule": "15 09 * * MON",
-      "starting_urls": "https://www.atf.gov"
    },
    {
       "allow_query_string": false,

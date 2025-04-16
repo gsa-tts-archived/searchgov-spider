@@ -25,7 +25,6 @@
 |Office of Transformational Innovation (afpw_transform)|03:53|
 |tricare_reynolds|04:00|
 |transportation|04:00|
-|faa|04:15|
 |rosap.ntl.bts|04:30|
 |15th Wing (afpw_15wing)|04:35|
 |bts|04:45|
@@ -33,16 +32,13 @@
 |data.transportation|05:00|
 |fly.faa|05:15|
 |National Air and Space Intelligence Center (afpw_nasic)|05:17|
-|data.transportation|05:30|
 |Seymour Johnson AFB (seymourjohnson)|05:32|
-|fly.faa|05:45|
 |Profession of Arms Center of Excellence (PACE) (afpw_pace)|05:59|
 |Navy All Hands Magazine|06:00|
 |tricare_blanchfield|06:00|
 |registry.faa|06:00|
 |myaccessreg.faa|06:15|
 |SAF/CN (safxc)|06:28|
-|dfas|06:30|
 |Professional Development Guide (afpw_pdg)|06:40|
 |corpweb1.dfas|06:45|
 |tricare_southcomclinic|07:00|
@@ -51,10 +47,7 @@
 |American Forces Network Europe (afneurope)|07:22|
 |Principal DoD Space Advisor Staff (safsp)|07:23|
 |USDA NFC Help Documentation|07:30|
-|usgs|07:30|
-|climate|07:45|
 |tricare_guthrie|08:00|
-|ncdc.noaa|08:00|
 |American Forces Network Pacific (afnpacific)|08:04|
 |drought|08:15|
 |National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)|08:18|
@@ -64,13 +57,10 @@
 |NOAA CoastWatch East Coast Node|08:30|
 |VA Benefits.va.gov|08:30|
 |VA Research & Development|08:30|
-|bea|08:30|
 |apps.bea|08:45|
 |GoSERE (afpw_gosere)|08:46|
 |tricare_kenner|09:00|
-|coastalscience.noaa|09:00|
 |Air Force Financial Management & Comptroller (saffm)|09:14|
-|atf|09:15|
 |Air Force Public Affairs (afpw_publicaffairs)|09:28|
 |DOD Defense Travel Management Office|09:30|
 |DOS AIS USVISA INFO|09:30|
