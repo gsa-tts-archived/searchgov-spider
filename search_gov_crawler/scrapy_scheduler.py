@@ -32,8 +32,6 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
-logging.getLogger("apscheduler.scheduler").setLevel(logging.DEBUG)
-
 CRAWL_SITES_FILE = (
     Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
@@ -139,10 +137,20 @@ def init_scheduler() -> SpiderBackgroundScheduler:
     )
 
 
+def keep_scheduler_alive() -> None:
+    """
+    Keeps the scheduler alive by sleeping in an infinite loop
+
+    """
+    while True:
+        time.sleep(5)
+
+
 def start_scrapy_scheduler(input_file: Path) -> None:
     """Initializes schedule from input file, schedules jobs and runs scheduler"""
-    if isinstance(input_file, str):
-        input_file = Path(input_file)
+    if not input_file.exists():
+        msg = f"Cannot start scheduler! Input file {input_file} does not exist."
+        raise ValueError(msg)
 
     # Load and transform crawl sites
     crawl_sites = CrawlSites.from_file(file=input_file)
@@ -169,10 +177,9 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     # Set any pending jobs to run immeidately and clear the pending jobs queue
     scheduler.trigger_pending_jobs()
 
-    # Run Scheduler
+    # Resume Scheduler and start infinite loop to keep the scheduler process open
     scheduler.resume()
-    while True:
-        time.sleep(5)
+    keep_scheduler_alive()
 
 
 if __name__ == "__main__":

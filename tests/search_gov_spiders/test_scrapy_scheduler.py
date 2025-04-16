@@ -1,12 +1,13 @@
 import os
 import subprocess
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from elasticsearch import Elasticsearch
 
+from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
 from search_gov_crawler.scrapy_scheduler import (
     init_scheduler,
     run_scrapy_crawl,
@@ -15,13 +16,20 @@ from search_gov_crawler.scrapy_scheduler import (
 )
 
 
-@pytest.fixture
-def mock_es_client():
+@pytest.fixture(name="mock_es_client")
+def fixtture_mock_es_client() -> MagicMock:
     client = MagicMock(spec=Elasticsearch)
     client.indices = MagicMock()
     client.indices.exists = MagicMock()
     client.indices.create = MagicMock()
     return client
+
+
+@pytest.fixture(name="mock_jobstore")
+def fixture_mock_jobstore() -> MagicMock:
+    jobstore = MagicMock(spec=SpiderRedisJobStore)
+    jobstore.get_due_jobs = MagicMock(return_value=[])
+    return jobstore
 
 
 @pytest.mark.parametrize(
@@ -113,7 +121,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
 
 
 @pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
-def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
+def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val, mock_jobstore):
     if scrapy_max_workers:
         monkeypatch.setenv("SPIDER_SCRAPY_MAX_WORKERS", scrapy_max_workers)
     else:
@@ -121,7 +129,10 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
 
     monkeypatch.setattr(os, "cpu_count", lambda: 10)
 
-    with caplog.at_level("INFO"):
+    with (
+        caplog.at_level("INFO"),
+        patch("search_gov_crawler.scrapy_scheduler.SpiderRedisJobStore", return_value=mock_jobstore),
+    ):
         scheduler = init_scheduler()
 
     # ensure config does not change without a failure here
@@ -130,18 +141,28 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
         "coalesce": True,
         "max_instances": 1,
     }
+    assert list(scheduler._jobstores.keys()) == ["redis"]
     assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
-def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock_es_client):
-    with patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
-        return_value=mock_es_client,
+def test_start_scrapy_scheduler_bad_input_file():
+    with pytest.raises(ValueError, match="Cannot start scheduler! Input file invalid_file.json does not exist."):
+        start_scrapy_scheduler(input_file=Path("invalid_file.json"))
+
+
+def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock_es_client, mock_jobstore):
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.SpiderBackgroundScheduler.resume", lambda _: True)
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.keep_scheduler_alive", lambda: True)
+
+    with (
+        caplog.at_level("INFO"),
+        patch(
+            "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
+            return_value=mock_es_client,
+        ),
+        patch("search_gov_crawler.scrapy_scheduler.SpiderRedisJobStore", return_value=mock_jobstore),
     ):
-        monkeypatch.setattr(BlockingScheduler, "start", lambda x: True)
+        start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
-        with caplog.at_level("INFO"):
-            start_scrapy_scheduler(input_file=crawl_sites_test_file)
-
-        assert len(caplog.messages) == 5
-        assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages
+        messages = [f'Added job "Quotes {job_num}" to job store "redis"' for job_num in range(1, 5)]
+        assert all(message in caplog.messages for message in messages)
