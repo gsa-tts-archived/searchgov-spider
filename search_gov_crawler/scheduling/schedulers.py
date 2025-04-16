@@ -2,6 +2,7 @@ import logging
 from datetime import UTC, datetime, timedelta
 from typing import ClassVar
 
+from apscheduler.events import JobExecutionEvent, JobSubmissionEvent
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
@@ -12,7 +13,7 @@ log = logging.getLogger(__name__)
 class SpiderBackgroundScheduler(BackgroundScheduler):
     """Extends the BackgroundScheduler to add methods for managing pending jobs."""
 
-    supposed_jobstore_classes: ClassVar[tuple] = (SpiderRedisJobStore,)
+    supported_jobstore_classes: ClassVar[tuple] = (SpiderRedisJobStore,)
 
     def _get_pending_jobstore(self, alias: str | None = "redis") -> SpiderRedisJobStore:
         """
@@ -21,13 +22,13 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
         """
         pending_jobstore = self._jobstores[alias]
 
-        if not any([isinstance(pending_jobstore, cls) for cls in self.supposed_jobstore_classes]):
-            msg = f"Unsupported jobstore: {type(pending_jobstore)}, please use one of {self.supposed_jobstore_classes}"
+        if not any(pending_jobstore.__class__ is cls for cls in self.supported_jobstore_classes):
+            msg = f"Unsupported jobstore: {type(pending_jobstore)}, please use one of {self.supported_jobstore_classes}"
             raise ValueError(msg)
 
         return pending_jobstore
 
-    def add_pending_job(self, event) -> None:
+    def add_pending_job(self, event: JobSubmissionEvent) -> None:
         """
         Add a job to the pending jobs list when sent to the executor. Assume we mean redis.
         """
@@ -35,7 +36,7 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
         if jobstore:
             jobstore.add_pending_job(event.job_id)
 
-    def remove_pending_job(self, event) -> None:
+    def remove_pending_job(self, event: JobExecutionEvent) -> None:
         """
         Remove a job from the pending jobs list in the case of success or error. Assume we mean redis.
         """
