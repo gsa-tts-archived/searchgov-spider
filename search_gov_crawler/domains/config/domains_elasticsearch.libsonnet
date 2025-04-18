@@ -1915,7 +1915,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.faa.gov/',
                          schedule='30 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=0),
+                         depth_limit=8),
   },
   {
     name: 'www.sss.gov (usagov-replacement)',
@@ -7724,7 +7724,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.transportation.gov',
                          schedule='00 04 * * MON',
                          output_target=output_target,
-                         depth_limit=0),
+                         depth_limit=8),
   },
   {
     name: 'rosap.ntl.bts',
@@ -7732,7 +7732,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://rosap.ntl.bts.gov',
                          schedule='30 04 * * MON',
                          output_target=output_target,
-                         depth_limit=0),
+                         depth_limit=8),
   },
   {
     name: 'bts',
@@ -7740,7 +7740,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.bts.gov',
                          schedule='45 04 * * MON',
                          output_target=output_target,
-                         depth_limit=0),
+                         depth_limit=8),
   },
   {
     name: 'data.transportation',
