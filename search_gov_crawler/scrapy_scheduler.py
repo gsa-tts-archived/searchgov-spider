@@ -16,7 +16,6 @@ from pathlib import Path
 
 from apscheduler.events import EVENT_JOB_ERROR, EVENT_JOB_EXECUTED, EVENT_JOB_SUBMITTED
 from apscheduler.executors.pool import ThreadPoolExecutor
-from apscheduler.jobstores.base import ConflictingIdError
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
@@ -162,17 +161,10 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
     scheduler.start(paused=True)
 
-    # Remove all jobs from scheduler
+    # Remove all jobs from scheduler, and add new version of jobs from config
     scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
-
-    # Add jobs into scheduler
     for apscheduler_job in apscheduler_jobs:
-        try:
-            scheduler.add_job(**apscheduler_job, jobstore="redis")
-        except ConflictingIdError:
-            job_id = apscheduler_job.pop("id")
-            scheduler.remove_job(job_id=job_id, jobstore="redis")
-            scheduler.add_job(id=job_id, jobstore="redis", **apscheduler_job)
+        scheduler.add_job(**apscheduler_job, jobstore="redis")
 
     # Set any pending jobs to run immeidately and clear the pending jobs queue
     scheduler.trigger_pending_jobs()
