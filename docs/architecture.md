@@ -15,6 +15,22 @@ flowchart LR
 
 The [Scrapy documentation](https://docs.scrapy.org/en/latest/topics/architecture.html) does a good job of explaning the internals of Scrapy, which for us, is encapsulated in each of the "Scrapy Process" blocks above.
 
+## Scheduler State
+The state of the scheduler is stored in Redis so that it can persist between restarts and deployments.  The spider scheduler uses three keys: one to hold information about the job (Job State), one to hold information about the next time the job will run (Next Run Time), and a third that keeps tracks of jobs that have been sent to the executor but have not yet finished (Pending Jobs).  The Job State and Next Run Time keys are native to APScheduler.  The Pending Jobs key is a custom Spider APSchedule extension that allows us to keep our often significantly large queue of jobs in place between restarts or deployments.
+
+```mermaid
+flowchart LR
+    subgraph Spider
+    S[Scheduler]
+    end
+    subgraph Redis
+    direction TB
+    J[Job State Key]
+    P[Pending Jobs Key]
+    N[Next Run Time Key]
+    end
+    S <--> Redis
+```
 ## Output Targets
 We support three output targets for our scrapy jobs.  These are specified in a `crawl-sites.json` file or as a command line argument to a scrapy or benchmark job.  The options are:
 
