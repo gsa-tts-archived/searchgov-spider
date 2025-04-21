@@ -23,6 +23,8 @@ class CrawlSite:
     depth_limit: int
     deny_paths: list | None = None
     schedule: str | None = None
+    sitemap_url: str | None = None
+    check_sitemap_hours: int = 48
 
     def __post_init__(self):
         """Perform validation on record"""
