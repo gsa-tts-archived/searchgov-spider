@@ -40,7 +40,13 @@ class SpiderRedisJobStore(RedisJobStore):
             job_id.decode("utf8").removeprefix(rerun_prefix)
             for job_id in self.redis.zrange(self.pending_jobs_key, 0, -1)
         ]
-        pending_jobs = [self.lookup_job(job_id=pending_job_id) for pending_job_id in pending_job_ids]
+        pending_jobs = []
+        for pending_job_id in pending_job_ids:
+            job = self.lookup_job(job_id=pending_job_id)
+            if not job:
+                log.warning("Job %s not found in job store", pending_job_id)
+                continue
+            pending_jobs.append(job)
 
         log.debug("Found and retrieved %s pending jobs from key %s", len(pending_jobs), self.pending_jobs_key)
         return pending_jobs

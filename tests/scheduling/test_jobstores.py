@@ -28,13 +28,38 @@ def test_basic_commands(caplog, mock_redis_jobstore, method, args, expected_log_
     assert expected_log_message in caplog.messages
 
 
-@pytest.mark.parametrize("pending_job_ids", [[b"test::job1", b"test::job2"], []])
-def test_get_all_pending_jobs(caplog, mock_redis_jobstore, monkeypatch, pending_job_ids):
-    monkeypatch.setattr(SpiderRedisJobStore, "lookup_job", lambda *_args, **_kwargs: True)
+GET_ALL_PENDING_JOB_TEST_CASES = [
+    (
+        [b"test::job1", b"test::job2"],
+        True,
+        ("Found and retrieved 2 pending jobs from key test_pending_jobs",),
+    ),
+    ([], None, ("Found and retrieved 0 pending jobs from key test_pending_jobs",)),
+    (
+        [b"test::job1", b"test::job2"],
+        None,
+        (
+            "Found and retrieved 0 pending jobs from key test_pending_jobs",
+            "Job job1 not found in job store",
+            "Job job2 not found in job store",
+        ),
+    ),
+]
+
+
+@pytest.mark.parametrize(("pending_job_ids", "lookup_job_result", "expected_messages"), GET_ALL_PENDING_JOB_TEST_CASES)
+def test_get_all_pending_jobs(
+    caplog,
+    mock_redis_jobstore,
+    monkeypatch,
+    pending_job_ids,
+    lookup_job_result,
+    expected_messages,
+):
+    monkeypatch.setattr(SpiderRedisJobStore, "lookup_job", lambda *_args, **_kwargs: lookup_job_result)
     monkeypatch.setattr(mock_redis_jobstore.redis, "zrange", lambda *_args, **_kwargs: pending_job_ids)
 
     with caplog.at_level("DEBUG"):
         mock_redis_jobstore.get_all_pending_jobs(rerun_prefix="test::")
 
-    expected_messages = (f"Found and retrieved {len(pending_job_ids)} pending jobs from key test_pending_jobs",)
     assert all(expected_message in caplog.messages for expected_message in expected_messages)
