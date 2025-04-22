@@ -31,7 +31,7 @@ class CrawlSite:
         # check required fields
         missing_field_names = []
         for field in fields(self):
-            if field.name in {"schedule", "deny_paths"}:
+            if field.name in {"schedule", "deny_paths", "sitemap_url", "check_sitemap_hours"}:
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)

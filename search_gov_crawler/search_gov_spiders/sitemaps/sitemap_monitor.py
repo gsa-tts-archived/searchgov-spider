@@ -241,14 +241,24 @@ class SitemapMonitor:
                     
                     record = self.records_map[sitemap_url]
 
-                    spider = DomainSpider(
-                        allow_query_string=record.allow_query_string,
-                        allowed_domains=None,
-                        deny_paths=record.deny_paths,
-                        start_urls=",".join(new_urls),
-                        output_target=record.output_target,
-                        prevent_follow=True
-                    )
+                    if record.handle_javascript:
+                        spider = DomainSpiderJs(
+                            allow_query_string=record.allow_query_string,
+                            allowed_domains=None,
+                            deny_paths=record.deny_paths,
+                            start_urls=",".join(new_urls),
+                            output_target=record.output_target,
+                            prevent_follow=True
+                        )
+                    else:
+                        spider = DomainSpider(
+                            allow_query_string=record.allow_query_string,
+                            allowed_domains=None,
+                            deny_paths=record.deny_paths,
+                            start_urls=",".join(new_urls),
+                            output_target=record.output_target,
+                            prevent_follow=True
+                        )
 
                     process = CrawlerProcess(get_project_settings(), install_root_handler=False)
                     process.crawl(spider)
