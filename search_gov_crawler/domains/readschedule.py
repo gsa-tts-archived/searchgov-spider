@@ -59,7 +59,7 @@ def create_markdown(day, data, file_name):
     if not data:
         return ""
 
-    md_table = f"""\n\n## {day} \n|Domain|Time (UTC)|\n|---|---|\n"""
+    md_table = f"""\n\n## {day}\n|Domain|Time (UTC)|\n|---|---|\n"""
 
     for entry in data:
         name = entry["name"]
