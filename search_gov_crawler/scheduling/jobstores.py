@@ -7,9 +7,7 @@ log = logging.getLogger(__name__)
 
 
 class SpiderRedisJobStore(RedisJobStore):
-    """
-    An extension to the APScheduler RedisJobStore that adds functionality to manage pending jobs.
-    """
+    """An extension to the APScheduler RedisJobStore that adds functionality to manage pending jobs."""
 
     def __init__(self, pending_jobs_key: str, *args, **kwargs):
         self.pending_jobs_key = pending_jobs_key
@@ -18,6 +16,7 @@ class SpiderRedisJobStore(RedisJobStore):
     @property
     def alias(self) -> str:
         """Return the alias of the job store."""
+
         if self._alias is None:
             msg = "Job store alias is not set. Please set the alias before using it."
             raise ValueError(msg)

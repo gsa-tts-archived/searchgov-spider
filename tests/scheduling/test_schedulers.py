@@ -1,9 +1,9 @@
 import pytest
-from apscheduler.events import JobSubmissionEvent, JobExecutionEvent
+from apscheduler.events import JobExecutionEvent, JobSubmissionEvent
 from apscheduler.executors.pool import ThreadPoolExecutor
-from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.job import Job
-from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
+from apscheduler.jobstores.memory import MemoryJobStore
+
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
 
 
