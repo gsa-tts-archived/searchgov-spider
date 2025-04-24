@@ -6,7 +6,7 @@ Usage:
 
 import argparse
 
-from elasticsearch._sync.client import Elasticsearch
+from elasticsearch import Elasticsearch
 
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
