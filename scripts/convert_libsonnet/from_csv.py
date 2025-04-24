@@ -8,7 +8,7 @@ day_names = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 def generate_cron_expressions(current_expression: int, total_expressions: int  = 30):
     """
     Generate a cron expression that's evenly spread throughout the week.
-    
+
     :param current_expression: Current expression number
     :param total_expressions: Total expressions expected (does not need to be exact)
     :return: Cron expression as strings.
@@ -41,11 +41,11 @@ def convert_to_libsonnet(options):
 
     with open(ROOT_DIR / options["file_name"], "r", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
-        
-        # Skips the header row, though might not always have a header depending on 
+
+        # Skips the header row, though might not always have a header depending on
         # how you exported it from google sheets (or SuperAdmin)
         next(reader)
-        
+
         items: list[str] = []
         unique_map: Dict[str, bool] = {}
         rows = []
@@ -63,9 +63,9 @@ def convert_to_libsonnet(options):
             if allowed_domains in unique_map:
                 print(f"Found a duplicate of: {allowed_domains}")
                 continue
-            
+
             unique_map[allowed_domains] = True
-            
+
             rows.append({
                 "name": name,
                 "affiliate": affiliate,
@@ -73,7 +73,7 @@ def convert_to_libsonnet(options):
                 "starting_urls": starting_urls,
                 "depth_limit": options["depth_limit"],
             })
-        
+
         # We need to do this in a seperate loop since we need the exact number of expected items.
         # There's no way to get it from the byte reader since the head can not go back/re-read
         rows_length = len(rows)
@@ -84,7 +84,7 @@ def convert_to_libsonnet(options):
             depth_limit = row.get("depth_limit")
             starting_urls = row.get("starting_urls")
             schedule = generate_cron_expressions(index, rows_length)
-            
+
             jsonnet_array_item = \
 f"""  {{
     name: '{name} ({affiliate})',
@@ -96,12 +96,12 @@ f"""  {{
   }}"""
 
             items.append(jsonnet_array_item)
-        
+
         objects_str = ",\n".join(items)
         libsonnet_str = f"[\n{objects_str}\n]"
-        
+
         output_file = os.path.splitext(options["file_name"])[0] + ".libsonnet"
-        
+
         with open(ROOT_DIR / output_file, "w", encoding="utf-8") as f:
             f.write(libsonnet_str)
 
@@ -116,5 +116,5 @@ if __name__ == "__main__":
         },
         "depth_limit": 8,
     }
-    
+
     convert_to_libsonnet(options)
