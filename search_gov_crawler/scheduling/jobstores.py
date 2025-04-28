@@ -23,6 +23,13 @@ class SpiderRedisJobStore(RedisJobStore):
 
         return self._alias
 
+    def count_pending_jobs(self) -> int:
+        """Count the number of pending jobs in the job store"""
+
+        count = self.redis.zcard(self.pending_jobs_key)
+        log.debug("Counted %s pending jobs in key %s", count, self.pending_jobs_key)
+        return count
+
     def add_pending_job(self, job_id) -> None:
         """Add a job to the pending jobs set"""
 

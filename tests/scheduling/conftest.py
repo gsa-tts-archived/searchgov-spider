@@ -25,6 +25,10 @@ def fixture_mock_redis_jobstore() -> SpiderRedisJobStore:
         def lookup_job(*_args, **_kwargs):
             return True
 
+        @staticmethod
+        def zcard(*_args, **_kwargs):
+            return 0
+
     jobstore = SpiderRedisJobStore(pending_jobs_key="test_pending_jobs")
     jobstore._alias = "redis"
     jobstore.redis = MockRedisClient()
