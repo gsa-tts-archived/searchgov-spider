@@ -21,6 +21,7 @@ from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
+from search_gov_crawler.scheduling.redis import get_redis_connection_args
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
@@ -119,15 +120,15 @@ def init_scheduler() -> SpiderBackgroundScheduler:
     max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
+    redis_connection_kwargs = get_redis_connection_args()
+
     return SpiderBackgroundScheduler(
         jobstores={
             "redis": SpiderRedisJobStore(
                 jobs_key="spider.schedule.jobs",
                 run_times_key="spider.schedule.run_times",
                 pending_jobs_key="spider.schedule.pending_jobs",
-                host=os.getenv("REDIS_HOST", "localhost"),
-                port=int(os.getenv("REDIS_PORT", "6379")),
-                db=1,  # The searchgov app uses db 0
+                **redis_connection_kwargs,
             ),
         },
         executors={"default": ThreadPoolExecutor(max_workers)},
