@@ -2157,7 +2157,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nsf.gov/',
                          schedule='00 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.disasterassistance.gov (usagov-replacement)',
@@ -2997,7 +2997,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://training.fema.gov/',
                          schedule='00 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USDA Service Center Locator (usagov-replacement)',
@@ -7855,5 +7855,55 @@ local output_target = 'elasticsearch';
                          schedule='30 10 * * MON',
                          output_target=output_target,
                          depth_limit=3),
+  },
+
+  // Batch 9 (fixed)
+  {
+    name: 'new.nsf.gov (nsf)',
+    config: DomainConfig(allowed_domains='new.nsf.gov',
+                         starting_urls='https://new.nsf.gov/',
+                         schedule='0 0 * * SUN',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'nsf-gov-resources.nsf.gov (nsf)',
+    config: DomainConfig(allowed_domains='nsf-gov-resources.nsf.gov',
+                         starting_urls='https://nsf-gov-resources.nsf.gov/',
+                         schedule='0 4 * * MON',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'seedfund.nsf.gov (nsf)',
+    config: DomainConfig(allowed_domains='seedfund.nsf.gov',
+                         starting_urls='https://seedfund.nsf.gov/',
+                         schedule='0 8 * * TUE',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'iucrc.nsf.gov (nsf)',
+    config: DomainConfig(allowed_domains='iucrc.nsf.gov',
+                         starting_urls='https://iucrc.nsf.gov/',
+                         schedule='0 12 * * WED',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'ncsesdata.nsf.gov (nsf)',
+    config: DomainConfig(allowed_domains='ncsesdata.nsf.gov',
+                         starting_urls='https://ncsesdata.nsf.gov/',
+                         schedule='0 16 * * THU',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'static.e-publishing.af.mil (afpw_epubs)',
+    config: DomainConfig(allowed_domains='static.e-publishing.af.mil',
+                         starting_urls='https://static.e-publishing.af.mil/',
+                         schedule='0 20 * * FRI',
+                         output_target=output_target,
+                         depth_limit=8),
   },
 ]

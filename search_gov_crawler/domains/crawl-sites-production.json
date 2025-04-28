@@ -3391,7 +3391,7 @@
       "allow_query_string": false,
       "allowed_domains": "nsf.gov",
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.nsf.gov (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -4546,7 +4546,7 @@
       "allow_query_string": false,
       "allowed_domains": "training.fema.gov",
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "FEMA Training (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -11219,5 +11219,71 @@
       "output_target": "elasticsearch",
       "schedule": "30 10 * * MON",
       "starting_urls": "https://clu-in.org"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "new.nsf.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "new.nsf.gov (nsf)",
+      "output_target": "elasticsearch",
+      "schedule": "0 0 * * SUN",
+      "starting_urls": "https://new.nsf.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nsf-gov-resources.nsf.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "nsf-gov-resources.nsf.gov (nsf)",
+      "output_target": "elasticsearch",
+      "schedule": "0 4 * * MON",
+      "starting_urls": "https://nsf-gov-resources.nsf.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "seedfund.nsf.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "seedfund.nsf.gov (nsf)",
+      "output_target": "elasticsearch",
+      "schedule": "0 8 * * TUE",
+      "starting_urls": "https://seedfund.nsf.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "iucrc.nsf.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "iucrc.nsf.gov (nsf)",
+      "output_target": "elasticsearch",
+      "schedule": "0 12 * * WED",
+      "starting_urls": "https://iucrc.nsf.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ncsesdata.nsf.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "ncsesdata.nsf.gov (nsf)",
+      "output_target": "elasticsearch",
+      "schedule": "0 16 * * THU",
+      "starting_urls": "https://ncsesdata.nsf.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "static.e-publishing.af.mil",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "static.e-publishing.af.mil (afpw_epubs)",
+      "output_target": "elasticsearch",
+      "schedule": "0 20 * * FRI",
+      "starting_urls": "https://static.e-publishing.af.mil/"
    }
 ]
