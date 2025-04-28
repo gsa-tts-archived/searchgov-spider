@@ -1155,7 +1155,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.weather.gov/',
                          schedule='30 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.federalreserve.gov (usagov-replacement)',
@@ -1859,7 +1859,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://forecast.weather.gov/',
                          schedule='00 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.usmarshals.gov (usagov-replacement)',
@@ -2003,7 +2003,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.climate.gov/',
                          schedule='00 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nhlbi.nih.gov (usagov-replacement)',
@@ -7853,6 +7853,40 @@ local output_target = 'elasticsearch';
     config: DomainConfig(allowed_domains='clu-in.org',
                          starting_urls='https://clu-in.org',
                          schedule='30 10 * * MON',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+
+  // Batch 8 (fixed)
+    {
+    name: 'radar.weather.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='radar.weather.gov',
+                         starting_urls='https://radar.weather.gov/',
+                         schedule='0 0 * * SUN',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'mag.ncep.noaa.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='mag.ncep.noaa.gov',
+                         starting_urls='https://mag.ncep.noaa.gov/',
+                         schedule='0 18 * * MON',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'www.aviationweather.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='aviationweather.gov',
+                         starting_urls='https://www.aviationweather.gov/',
+                         schedule='0 12 * * WED',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'www.roc.noaa.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='roc.noaa.gov',
+                         starting_urls='https://www.roc.noaa.gov/',
+                         schedule='0 6 * * FRI',
                          output_target=output_target,
                          depth_limit=3),
   },
