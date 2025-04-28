@@ -1,3 +1,17 @@
+"""
+This script provides functionality to view and clear jobs in the Redis job store.
+It includes commands to show all jobs, show pending jobs, show run times,
+and clear pending jobs.
+
+Usage:
+    python cache_tools.py <command>
+    where <command> is one of:
+        - clear-pending-jobs: Clear all pending jobs from the Redis job store.
+        - show-all-jobs: Show all jobs in the Redis job store.
+        - show-pending-jobs: Show pending jobs in the Redis job store.
+        - show-run-times: Show run times of jobs in the Redis job store.
+"""
+
 import argparse
 from datetime import UTC, datetime
 
