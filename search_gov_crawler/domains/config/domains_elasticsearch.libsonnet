@@ -7858,7 +7858,7 @@ local output_target = 'elasticsearch';
   },
 
   // Batch 8 (fixed)
-    {
+  {
     name: 'radar.weather.gov (nws.noaa.gov)',
     config: DomainConfig(allowed_domains='radar.weather.gov',
                          starting_urls='https://radar.weather.gov/',
