@@ -286,6 +286,7 @@
 |Joint Base Langley-Eustis (langley)|07:23|
 |109th Airlift Wing, New York ANG (afpw_109aw)|07:46|
 |tricare_evans|08:00|
+|seedfund.nsf.gov (nsf)|08:00|
 |RAF Lakenheath (lakenheath)|08:18|
 |105th Airlift Wing (afpw_105aw)|08:28|
 |tricare_nhcp|09:00|
@@ -486,6 +487,7 @@
 |tricare_ahcbw|12:00|
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|
 |www.aviationweather.gov (nws.noaa.gov)|12:00|
+|iucrc.nsf.gov (nsf)|12:00|
 |Altus Air Force Base (afpw_altus)|12:21|
 |Davis-Monthan Air Force Base (davismonthan)|12:55|
 |tricare_mamc|13:00|
@@ -673,6 +675,7 @@
 |180th Fighter Wing, Ohio Air National Guard (afpw_180fw)|14:50|
 |181st Intelligence Wing, Indiana ANG (afpw_181iw)|15:32|
 |Headquarters RIO (airforce_hqrio)|15:42|
+|ncsesdata.nsf.gov (nsf)|16:00|
 |182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)|16:14|
 |Department of the Air Force Open Data Program (airforce_data)|16:37|
 |184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)|16:56|
