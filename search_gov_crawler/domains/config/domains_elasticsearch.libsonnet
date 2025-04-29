@@ -1155,7 +1155,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.weather.gov/',
                          schedule='30 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.federalreserve.gov (usagov-replacement)',
@@ -1859,7 +1859,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://forecast.weather.gov/',
                          schedule='00 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.usmarshals.gov (usagov-replacement)',
@@ -2003,7 +2003,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.climate.gov/',
                          schedule='00 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nhlbi.nih.gov (usagov-replacement)',
@@ -7857,23 +7857,41 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
 
-  // Batch 9 (fixed)
+  // Batch 8 (fixed)
   {
-    name: 'new.nsf.gov (nsf)',
-    config: DomainConfig(allowed_domains='new.nsf.gov',
-                         starting_urls='https://new.nsf.gov/',
+    name: 'radar.weather.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='radar.weather.gov',
+                         starting_urls='https://radar.weather.gov/',
                          schedule='0 0 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'nsf-gov-resources.nsf.gov (nsf)',
-    config: DomainConfig(allowed_domains='nsf-gov-resources.nsf.gov',
-                         starting_urls='https://nsf-gov-resources.nsf.gov/',
-                         schedule='0 4 * * MON',
                          output_target=output_target,
                          depth_limit=3),
   },
+  {
+    name: 'mag.ncep.noaa.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='mag.ncep.noaa.gov',
+                         starting_urls='https://mag.ncep.noaa.gov/',
+                         schedule='0 18 * * MON',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'www.aviationweather.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='aviationweather.gov',
+                         starting_urls='https://www.aviationweather.gov/',
+                         schedule='0 12 * * WED',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+  {
+    name: 'www.roc.noaa.gov (nws.noaa.gov)',
+    config: DomainConfig(allowed_domains='roc.noaa.gov',
+                         starting_urls='https://www.roc.noaa.gov/',
+                         schedule='0 6 * * FRI',
+                         output_target=output_target,
+                         depth_limit=3),
+  },
+
+  // Batch 9 (fixed)
   {
     name: 'seedfund.nsf.gov (nsf)',
     config: DomainConfig(allowed_domains='seedfund.nsf.gov',
@@ -7897,13 +7915,5 @@ local output_target = 'elasticsearch';
                          schedule='0 16 * * THU',
                          output_target=output_target,
                          depth_limit=3),
-  },
-  {
-    name: 'static.e-publishing.af.mil (afpw_epubs)',
-    config: DomainConfig(allowed_domains='static.e-publishing.af.mil',
-                         starting_urls='https://static.e-publishing.af.mil/',
-                         schedule='0 20 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
   },
 ]

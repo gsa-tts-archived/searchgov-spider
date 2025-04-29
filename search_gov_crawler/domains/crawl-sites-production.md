@@ -27,7 +27,6 @@
 |Office of Transformational Innovation (afpw_transform)|03:53|
 |tricare_reynolds|04:00|
 |transportation|04:00|
-|nsf-gov-resources.nsf.gov (nsf)|04:00|
 |rosap.ntl.bts|04:30|
 |15th Wing (afpw_15wing)|04:35|
 |bts|04:45|
@@ -134,6 +133,7 @@
 |Air Force NETCENTS (netcents)|17:32|
 |Air Force Public Affairs Agency (afpw_afpaa)|17:50|
 |tricare_guam|18:00|
+|mag.ncep.noaa.gov (nws.noaa.gov)|18:00|
 |Nellis Air Force Base (nellis)|18:28|
 |Scott Air Force Base (afpw_scott)|18:31|
 |Joint Base Charleston (afpw_charleston)|19:13|
@@ -486,6 +486,7 @@
 |Air Force Week (afpw_afweek)|11:39|
 |tricare_ahcbw|12:00|
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|
+|www.aviationweather.gov (nws.noaa.gov)|12:00|
 |iucrc.nsf.gov (nsf)|12:00|
 |Altus Air Force Base (afpw_altus)|12:21|
 |Davis-Monthan Air Force Base (davismonthan)|12:55|
@@ -727,6 +728,7 @@
 |140th Wing, Colorado Air National Guard (afpw_140wg)|05:29|
 |920th Rescue Wing (920rqw)|05:32|
 |tricare_scott|06:00|
+|www.roc.noaa.gov (nws.noaa.gov)|06:00|
 |141st Air Refueling Wing, Washington ANG (afpw_141arw)|06:10|
 |girlshealth.gov|06:15|
 |919th Special Operations Wing (919sow)|06:28|
@@ -851,7 +853,6 @@
 |446th Airlift Wing (446aw)|19:23|
 |Blog - NOAA Restoration (blogresponse)|19:24|
 |162nd FW, Arizona ANG (afpw_162fw)|19:25|
-|static.e-publishing.af.mil (afpw_epubs)|20:00|
 |163rd RW, California Air National Guard (afpw_163rw)|20:07|
 |445th Airlift Wing (445aw)|20:18|
 |163rd ATKW, California Air National Guard (afpw_163rw)|20:49|
@@ -977,7 +978,7 @@
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
 |Youngstown Air Reserve Station (youngstown)|00:00|
-|new.nsf.gov (nsf)|00:00|
+|radar.weather.gov (nws.noaa.gov)|00:00|
 |Yokota Air Base (yokota)|00:55|
 |tricare_newsroom|01:00|
 |22d Medical Group - McConnell Air Force Base|01:00|
