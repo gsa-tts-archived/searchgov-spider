@@ -40,25 +40,33 @@ def fixture_job_execution_event() -> JobExecutionEvent:
 def test_add_pending_job(caplog, spider_scheduler, job_submission_event):
     with caplog.at_level("DEBUG"):
         spider_scheduler.add_pending_job(job_submission_event)
-    assert "Added test_job_id to pending jobs key test_pending_jobs" in caplog.messages
+
+    log_messages = ("Added test_job_id to pending jobs key test_pending_jobs", "Jobs in pending queue: 0")
+    assert all(log_message in caplog.messages for log_message in log_messages)
 
 
 def test_remove_pending_job(caplog, spider_scheduler, job_execution_event):
     with caplog.at_level("DEBUG"):
         spider_scheduler.remove_pending_job(job_execution_event)
-    assert "Removed test_job_id from pending jobs key test_pending_jobs" in caplog.messages
+
+    log_messages = ("Removed test_job_id from pending jobs key test_pending_jobs", "Jobs in pending queue: 0")
+    assert all(log_message in caplog.messages for log_message in log_messages)
 
 
 def test_remove_pending_job_by_id(caplog, spider_scheduler):
     with caplog.at_level("DEBUG"):
         spider_scheduler.remove_pending_job_by_id("test_job_id")
-    assert "Removed test_job_id from pending jobs key test_pending_jobs" in caplog.messages
+
+    log_messages = ("Removed test_job_id from pending jobs key test_pending_jobs", "Jobs in pending queue: 0")
+    assert all(log_message in caplog.messages for log_message in log_messages)
 
 
 def test_remove_all_pending_jobs(caplog, spider_scheduler):
     with caplog.at_level("DEBUG"):
         spider_scheduler.remove_all_pending_jobs()
-    assert "Removed all pending jobs from key test_pending_jobs" in caplog.messages
+
+    log_messages = ("Removed all pending jobs from key test_pending_jobs", "Jobs in pending queue: 0")
+    assert all(log_message in caplog.messages for log_message in log_messages)
 
 
 @pytest.mark.parametrize("include_pending_jobs", [True, False])

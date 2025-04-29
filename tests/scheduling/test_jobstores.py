@@ -47,6 +47,13 @@ GET_ALL_PENDING_JOB_TEST_CASES = [
 ]
 
 
+def test_count_pending_jobs(caplog, mock_redis_jobstore):
+    with caplog.at_level("DEBUG"):
+        mock_redis_jobstore.count_pending_jobs()
+
+    assert "Counted 0 pending jobs in key test_pending_jobs" in caplog.messages
+
+
 @pytest.mark.parametrize(("pending_job_ids", "lookup_job_result", "expected_messages"), GET_ALL_PENDING_JOB_TEST_CASES)
 def test_get_all_pending_jobs(
     caplog,

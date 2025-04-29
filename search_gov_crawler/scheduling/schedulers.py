@@ -36,12 +36,16 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
         if jobstore:
             jobstore.add_pending_job(event.job_id)
 
+        log.info("Jobs in pending queue: %s", jobstore.count_pending_jobs())
+
     def remove_pending_job(self, event: JobExecutionEvent) -> None:
         """Remove a job from the pending jobs list in the case of success or error. Assume we mean redis."""
 
         jobstore = self._get_pending_jobstore()
         if jobstore:
             jobstore.remove_pending_job(event.job_id)
+
+        log.info("Jobs in pending queue: %s", jobstore.count_pending_jobs())
 
     def remove_pending_job_by_id(self, job_id: str) -> None:
         """Remove a job from the pending jobs list by job_id. Assume we mean redis."""
@@ -50,12 +54,16 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
         if jobstore:
             jobstore.remove_pending_job(job_id)
 
+        log.info("Jobs in pending queue: %s", jobstore.count_pending_jobs())
+
     def remove_all_pending_jobs(self) -> None:
         """Remove all pending jobs from the job store.  Assume we mean redis."""
 
         jobstore = self._get_pending_jobstore()
         if jobstore:
             jobstore.remove_all_pending_jobs()
+
+        log.info("Jobs in pending queue: %s", jobstore.count_pending_jobs())
 
     def remove_all_jobs(self, jobstore: str | None = None, include_pending_jobs: bool = True) -> None:
         """Remove all jobs from the job store with an option to include pending jobs."""
