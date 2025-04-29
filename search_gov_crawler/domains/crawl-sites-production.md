@@ -133,6 +133,7 @@
 |Air Force NETCENTS (netcents)|17:32|
 |Air Force Public Affairs Agency (afpw_afpaa)|17:50|
 |tricare_guam|18:00|
+|mag.ncep.noaa.gov (nws.noaa.gov)|18:00|
 |Nellis Air Force Base (nellis)|18:28|
 |Scott Air Force Base (afpw_scott)|18:31|
 |Joint Base Charleston (afpw_charleston)|19:13|
@@ -484,6 +485,7 @@
 |Air Force Week (afpw_afweek)|11:39|
 |tricare_ahcbw|12:00|
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|
+|www.aviationweather.gov (nws.noaa.gov)|12:00|
 |Altus Air Force Base (afpw_altus)|12:21|
 |Davis-Monthan Air Force Base (davismonthan)|12:55|
 |tricare_mamc|13:00|
@@ -723,6 +725,7 @@
 |140th Wing, Colorado Air National Guard (afpw_140wg)|05:29|
 |920th Rescue Wing (920rqw)|05:32|
 |tricare_scott|06:00|
+|www.roc.noaa.gov (nws.noaa.gov)|06:00|
 |141st Air Refueling Wing, Washington ANG (afpw_141arw)|06:10|
 |girlshealth.gov|06:15|
 |919th Special Operations Wing (919sow)|06:28|
@@ -972,6 +975,7 @@
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
 |Youngstown Air Reserve Station (youngstown)|00:00|
+|radar.weather.gov (nws.noaa.gov)|00:00|
 |Yokota Air Base (yokota)|00:55|
 |tricare_newsroom|01:00|
 |22d Medical Group - McConnell Air Force Base|01:00|
