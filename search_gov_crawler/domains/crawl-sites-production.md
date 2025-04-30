@@ -6,7 +6,9 @@
  * [Friday](#friday)
  * [Saturday](#saturday)
  * [Sunday](#sunday)
-## Monday 
+
+
+## Monday
 |Domain|Time (UTC)|
 |---|---|
 |Texas Air National Guard (txang)|00:00|
@@ -24,21 +26,32 @@
 |Sheppard Air Force Base (sheppard)|03:42|
 |Office of Transformational Innovation (afpw_transform)|03:53|
 |tricare_reynolds|04:00|
+|transportation|04:00|
+|rosap.ntl.bts|04:30|
 |15th Wing (afpw_15wing)|04:35|
+|bts|04:45|
 |tricare_nhch|05:00|
+|data.transportation|05:00|
+|fly.faa|05:15|
 |National Air and Space Intelligence Center (afpw_nasic)|05:17|
 |Seymour Johnson AFB (seymourjohnson)|05:32|
 |Profession of Arms Center of Excellence (PACE) (afpw_pace)|05:59|
 |Navy All Hands Magazine|06:00|
 |tricare_blanchfield|06:00|
+|registry.faa|06:00|
+|myaccessreg.faa|06:15|
 |SAF/CN (safxc)|06:28|
 |Professional Development Guide (afpw_pdg)|06:40|
+|corpweb1.dfas|06:45|
 |tricare_southcomclinic|07:00|
+|mypay.dfas|07:00|
+|smartvoucher.dfas|07:15|
 |American Forces Network Europe (afneurope)|07:22|
 |Principal DoD Space Advisor Staff (safsp)|07:23|
 |USDA NFC Help Documentation|07:30|
 |tricare_guthrie|08:00|
 |American Forces Network Pacific (afnpacific)|08:04|
+|drought|08:15|
 |National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)|08:18|
 |Air Force Installations, Environment & Logistics (safie)|08:18|
 |DOD Army MWR|08:30|
@@ -46,6 +59,7 @@
 |NOAA CoastWatch East Coast Node|08:30|
 |VA Benefits.va.gov|08:30|
 |VA Research & Development|08:30|
+|apps.bea|08:45|
 |GoSERE (afpw_gosere)|08:46|
 |tricare_kenner|09:00|
 |Air Force Financial Management & Comptroller (saffm)|09:14|
@@ -83,9 +97,14 @@
 |VA QUERI Research|09:30|
 |VA Resources|09:30|
 |DOD DANTES|09:30|
+|eforms.atf|09:30|
+|regulations.atf|09:45|
 |tricare_kimbrough|10:00|
+|fflezcheck.atf|10:00|
 |557th Weather Wing (afpw_557ww)|10:09|
 |Air Force Scientific Advisory Board (sab)|10:09|
+|etrace.atf|10:15|
+|clu-in|10:30|
 |352nd Special Operations Wing (afpw_352sow)|10:51|
 |tricare_rodriguez|11:00|
 |Robins Air Force Base (robins)|11:05|
@@ -114,6 +133,7 @@
 |Air Force NETCENTS (netcents)|17:32|
 |Air Force Public Affairs Agency (afpw_afpaa)|17:50|
 |tricare_guam|18:00|
+|mag.ncep.noaa.gov (nws.noaa.gov)|18:00|
 |Nellis Air Force Base (nellis)|18:28|
 |Scott Air Force Base (afpw_scott)|18:31|
 |Joint Base Charleston (afpw_charleston)|19:13|
@@ -131,7 +151,7 @@
 |Team McChord (afpw_62aw)|23:24|
 
 
-## Tuesday 
+## Tuesday
 |Domain|Time (UTC)|
 |---|---|
 |Minot Air Force Base (minot)|00:00|
@@ -266,6 +286,7 @@
 |Joint Base Langley-Eustis (langley)|07:23|
 |109th Airlift Wing, New York ANG (afpw_109aw)|07:46|
 |tricare_evans|08:00|
+|seedfund.nsf.gov (nsf)|08:00|
 |RAF Lakenheath (lakenheath)|08:18|
 |105th Airlift Wing (afpw_105aw)|08:28|
 |tricare_nhcp|09:00|
@@ -319,7 +340,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|
 
 
-## Wednesday 
+## Wednesday
 |Domain|Time (UTC)|
 |---|---|
 |Hancock Field Air National Guard Base (hancockfield)|00:00|
@@ -465,6 +486,8 @@
 |Air Force Week (afpw_afweek)|11:39|
 |tricare_ahcbw|12:00|
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|
+|www.aviationweather.gov (nws.noaa.gov)|12:00|
+|iucrc.nsf.gov (nsf)|12:00|
 |Altus Air Force Base (afpw_altus)|12:21|
 |Davis-Monthan Air Force Base (davismonthan)|12:55|
 |tricare_mamc|13:00|
@@ -502,7 +525,7 @@
 |477th Fighter Group (afpw_477fg)|23:30|
 
 
-## Thursday 
+## Thursday
 |Domain|Time (UTC)|
 |---|---|
 |USAF Band of the Golden West (bandgoldenwest)|00:00|
@@ -652,6 +675,7 @@
 |180th Fighter Wing, Ohio Air National Guard (afpw_180fw)|14:50|
 |181st Intelligence Wing, Indiana ANG (afpw_181iw)|15:32|
 |Headquarters RIO (airforce_hqrio)|15:42|
+|ncsesdata.nsf.gov (nsf)|16:00|
 |182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)|16:14|
 |Department of the Air Force Open Data Program (airforce_data)|16:37|
 |184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)|16:56|
@@ -675,7 +699,7 @@
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|
 
 
-## Friday 
+## Friday
 |Domain|Time (UTC)|
 |---|---|
 |944th Fighter Wing (944fw)|00:00|
@@ -704,6 +728,7 @@
 |140th Wing, Colorado Air National Guard (afpw_140wg)|05:29|
 |920th Rescue Wing (920rqw)|05:32|
 |tricare_scott|06:00|
+|www.roc.noaa.gov (nws.noaa.gov)|06:00|
 |141st Air Refueling Wing, Washington ANG (afpw_141arw)|06:10|
 |girlshealth.gov|06:15|
 |919th Special Operations Wing (919sow)|06:28|
@@ -840,7 +865,7 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|
 
 
-## Saturday 
+## Saturday
 |Domain|Time (UTC)|
 |---|---|
 |419th Fighter Wing (419fw)|00:00|
@@ -948,11 +973,12 @@
 |Air Force Outreach (afoutreach)|23:18|
 
 
-## Sunday 
+## Sunday
 |Domain|Time (UTC)|
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
 |Youngstown Air Reserve Station (youngstown)|00:00|
+|radar.weather.gov (nws.noaa.gov)|00:00|
 |Yokota Air Base (yokota)|00:55|
 |tricare_newsroom|01:00|
 |22d Medical Group - McConnell Air Force Base|01:00|
@@ -1041,5 +1067,3 @@
 |Armed Forces Pest Management Board (afpmb)|23:00|
 |Tyndall Air Force Base (tyndall)|23:05|
 |9th Air Force (afpw_ninth)|23:42|
-
-

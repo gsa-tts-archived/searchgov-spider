@@ -18,9 +18,12 @@ local CrawlSite(domain) = {
   check_sitemap_hours: domain.config.check_sitemap_hours,
 };
 
-// define output file names and their contents below
+// Define output file names and their contents below.  Development files are a subset of the production files.
 {
   'crawl-sites-production.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + elasticsearch_domains],
   'crawl-sites-staging.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + elasticsearch_domains],
-  'crawl-sites-development.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + elasticsearch_domains],
+  'crawl-sites-development.json': [
+    CrawlSite(domain)
+    for domain in csv_domains[0::10] + endpoint_domains[0::10] + elasticsearch_domains[0::25]
+  ],
 }

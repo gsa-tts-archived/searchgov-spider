@@ -11,15 +11,18 @@ jobs finishes.
 import logging
 import os
 import subprocess
+import time
 from pathlib import Path
 
+from apscheduler.events import EVENT_JOB_ERROR, EVENT_JOB_EXECUTED, EVENT_JOB_SUBMITTED
 from apscheduler.executors.pool import ThreadPoolExecutor
-from apscheduler.jobstores.memory import MemoryJobStore
-from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
+from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
+from search_gov_crawler.scheduling.redis import get_redis_connection_args
+from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
@@ -105,7 +108,7 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
     return transformed_crawl_sites
 
 
-def init_scheduler() -> BlockingScheduler:
+def init_scheduler() -> SpiderBackgroundScheduler:
     """
     Create and return instance of scheduler.  Set `max_workers`, i.e. the maximum number of spider
     processes this scheduler will spawn at one time to either the value of an environment variable
@@ -117,29 +120,59 @@ def init_scheduler() -> BlockingScheduler:
     max_workers = int(os.environ.get("SPIDER_SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
-    return BlockingScheduler(
-        jobstores={"memory": MemoryJobStore()},
+    redis_connection_kwargs = get_redis_connection_args()
+
+    return SpiderBackgroundScheduler(
+        jobstores={
+            "redis": SpiderRedisJobStore(
+                jobs_key="spider.schedule.jobs",
+                run_times_key="spider.schedule.run_times",
+                pending_jobs_key="spider.schedule.pending_jobs",
+                **redis_connection_kwargs,
+            ),
+        },
         executors={"default": ThreadPoolExecutor(max_workers)},
         job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": None},
         timezone="UTC",
     )
 
 
+def keep_scheduler_alive() -> None:
+    """
+    Keeps the scheduler alive by sleeping in an infinite loop
+
+    """
+    while True:
+        time.sleep(5)
+
+
 def start_scrapy_scheduler(input_file: Path) -> None:
     """Initializes schedule from input file, schedules jobs and runs scheduler"""
-    if isinstance(input_file, str):
-        input_file = Path(input_file)
+    if not input_file.exists():
+        msg = f"Cannot start scheduler! Input file {input_file} does not exist."
+        raise ValueError(msg)
+
     # Load and transform crawl sites
     crawl_sites = CrawlSites.from_file(file=input_file)
     apscheduler_jobs = transform_crawl_sites(crawl_sites)
 
-    # Schedule Jobs
+    # Initialize Scheduler and add listeners
     scheduler = init_scheduler()
-    for apscheduler_job in apscheduler_jobs:
-        scheduler.add_job(**apscheduler_job, jobstore="memory")
+    scheduler.add_listener(scheduler.add_pending_job, EVENT_JOB_SUBMITTED)
+    scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
+    scheduler.start(paused=True)
 
-    # Run Scheduler
-    scheduler.start()
+    # Remove all jobs from scheduler, and add new version of jobs from config
+    scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
+    for apscheduler_job in apscheduler_jobs:
+        scheduler.add_job(**apscheduler_job, jobstore="redis")
+
+    # Set any pending jobs to run immeidately and clear the pending jobs queue
+    scheduler.trigger_pending_jobs()
+
+    # Resume Scheduler and start infinite loop to keep the scheduler process open
+    scheduler.resume()
+    keep_scheduler_alive()
 
 
 if __name__ == "__main__":
