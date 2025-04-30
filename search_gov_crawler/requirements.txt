@@ -5,8 +5,9 @@ elasticsearch==8.17.1,<9.0.0 # 9.0.0 is not compatible with elasticsearch7
 freezegun==1.5.1
 langdetect==1.0.9
 
-### These two packages are required by newspaper4k, but not explicitly installed by it
-lxml_html_clean==0.4.1
+### These two packages are required by newspaper4k, but not explicitly installed by it.
+### Ingored by dependabot so we can keep them in sync with newspaper4k.
+lxml-html-clean==0.4.1
 ###
 
 newspaper4k[all]==0.9.3.1 # This also installs the nltk library
@@ -27,4 +28,4 @@ redis==5.2.1
 scrapy==2.12.0
 scrapy-playwright==0.0.42
 spidermon[monitoring]==1.24.0
-typing_extensions==4.12.2
+typing-extensions==4.12.2
