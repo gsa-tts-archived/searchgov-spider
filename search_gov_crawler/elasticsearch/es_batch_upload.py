@@ -25,6 +25,7 @@ Temporary variable to disable the PDF functionality until we're ready to launch 
 """
 DISABLE_PDF = False
 
+
 class SearchGovElasticsearch:
     """Defines the shape and methods of the spider's connection to Elasticsearch"""
 
@@ -81,6 +82,20 @@ class SearchGovElasticsearch:
 
             hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
         return hosts
+
+    @property
+    def client(self) -> Elasticsearch:
+        """
+        Returns the Elasticsearch client.  Helper method for scripts and other external useage.
+        """
+        if not self._es_client:
+            self._es_client = self._get_client()
+        return self._es_client
+
+    @property
+    def index_name(self) -> str:
+        """Returns the index name.  Helper method for scripts and other external usage."""
+        return self._env_es_index_name
 
     def _get_client(self):
         """
