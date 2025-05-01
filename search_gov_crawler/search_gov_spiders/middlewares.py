@@ -9,7 +9,7 @@ import warnings
 from typing import Self
 from urllib.parse import urlparse
 
-from scrapy import signals
+from scrapy import Request, signals
 from scrapy.crawler import Crawler
 from scrapy.downloadermiddlewares.offsite import OffsiteMiddleware
 from scrapy.exceptions import IgnoreRequest
@@ -151,6 +151,19 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
         host = cahched_request.hostname or ""
 
         return bool(self.host_regex.search(host) and self.host_path_regex.search(cahched_request.geturl()))
+
+    def process_request(self, request: Request, spider: Spider) -> None:
+        """If the superclass process_request() raises an IgnoreRequest, log the error"""
+        try:
+            return super().process_request(request, spider)
+        except IgnoreRequest:
+            if request.url in spider.start_urls:
+                spider.logger.exception(
+                    "IgnoreRequest raised for starting URL due to Offsite request: %s, allowed_domains: %s",
+                    request.url,
+                    spider.allowed_domains,
+                )
+            raise
 
     def get_host_path_regex(self, spider: Spider) -> re.Pattern:
         """New method, modified from 'get_host_regex' method to return path related regex"""

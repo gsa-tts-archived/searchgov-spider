@@ -66,7 +66,9 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
     # pylint: disable=protected-access
     crawler = get_crawler(Spider)
     spider = crawler._create_spider(
-        name="offsite_test", allowed_domains=allowed_domain, allowed_domain_paths=allowed_domain_path
+        name="offsite_test",
+        allowed_domains=allowed_domain,
+        allowed_domain_paths=allowed_domain_path,
     )
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
 
@@ -75,6 +77,25 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
 
     request = Request("http://www.example.com")
     assert mw.process_request(request, spider) is None
+
+
+def test_offsite_invalid_domain_in_starting_urls(caplog):
+    crawler = get_crawler(Spider)
+    spider = crawler._create_spider(
+        name="offsite_test", allowed_domains=["example.com"], start_urls=["http://www.not-an-example.com"]
+    )
+    mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
+    mw.spider_opened(spider)
+
+    request = Request("http://www.not-an-example.com")
+    with pytest.raises(IgnoreRequest), caplog.at_level("ERROR"):
+        mw.process_request(request=request, spider=spider)
+
+    msg = (
+        "IgnoreRequest raised for starting URL due to Offsite request: "
+        f"{request.url}, allowed_domains: {spider.allowed_domains}"
+    )
+    assert msg in caplog.messages
 
 
 def test_spider_downloader_middleware():
