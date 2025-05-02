@@ -1,114 +1,121 @@
 import json
 import sys
+from collections import defaultdict
+from pathlib import Path
 
 
-def read_json_file(file_path) -> str:
-    try:
-        with open(file_path, "r", encoding="utf-8") as file:
-            data = json.load(file)
-            return data
-    except FileNotFoundError:
-        print(f"Error: File not found: {file_path}")
-        return None
-    except json.JSONDecodeError:
-        print(f"Error: Invalid JSON format in: {file_path}")
-        return None
+def clean_schedule_time(time: str) -> str:
+    """Clean the schedule time string to a standard format."""
+    minute, hour, *_ = time.split(" ")
+    return f"{hour:0>2}:{minute:0>2}"
 
 
-def create_time(time):
-    minute = time.split(" ")[0]
-    hour = time.split(" ")[1]
+def expand_day_name(day: str) -> str:
+    """Expand day abbreviations to full names."""
 
-    if len(minute) < 2:
-        minute = "0" + minute
+    match day.lower().strip():
+        case "sun":
+            return "Sunday"
+        case "mon":
+            return "Monday"
+        case "tue":
+            return "Tuesday"
+        case "wed":
+            return "Wednesday"
+        case "thu":
+            return "Thursday"
+        case "fri":
+            return "Friday"
+        case "sat":
+            return "Saturday"
+        case _:
+            msg = "Invalid day abbreviation: {day}"
+            raise ValueError(msg)
 
-    if len(hour) < 2:
-        hour = "0" + hour
 
-    time = hour + ":" + minute
-    return time
+def transform_schedule(raw_schedule: dict) -> defaultdict:
+    """Transform the raw schedule into a more usable format."""
 
-
-def put_into_schedule_format(data):
-    unsorted_schedule = [[], [], [], [], [], [], []]
-    for entry in data:
-        name = entry["name"]
+    transformed_schedule = defaultdict(list)
+    for entry in raw_schedule:
         schedule = entry["schedule"]
-        day = schedule.split("*")[2]
-        time = schedule.split("*")[0]
-        time = create_time(time)
-        match day.strip():
-            case "MON":
-                unsorted_schedule[0].append({"name": name, "time": time})
-            case "TUE":
-                unsorted_schedule[1].append({"name": name, "time": time})
-            case "WED":
-                unsorted_schedule[2].append({"name": name, "time": time})
-            case "THU":
-                unsorted_schedule[3].append({"name": name, "time": time})
-            case "FRI":
-                unsorted_schedule[4].append({"name": name, "time": time})
-            case "SAT":
-                unsorted_schedule[5].append({"name": name, "time": time})
-            case "SUN":
-                unsorted_schedule[6].append({"name": name, "time": time})
-    return unsorted_schedule
+        schedule_time, _, schedule_day, *_ = schedule.split("*")
+        day = expand_day_name(schedule_day)
+        entry["time"] = clean_schedule_time(schedule_time)
+        transformed_schedule[day].append(entry)
+
+    # Sort the schedule by time
+    for day, entries in transformed_schedule.items():
+        transformed_schedule[day] = sorted(entries, key=lambda x: x["time"])
+
+    return transformed_schedule
 
 
-def create_markdown(day, data, file_name):
-    if not data:
-        return ""
+def create_markdown_tables(transformed_schedule: dict) -> str:
+    """Create a markdown table for the given day and data."""
+    days_of_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
 
-    md_table = f"""\n\n## {day}\n|Domain|Time (UTC)|\n|---|---|\n"""
+    md_tables = ""
+    for day in days_of_week:
+        entries = transformed_schedule[day]
+        md_tables += f"\n\n## {day} ({len(entries)})\n|Name|Time (UTC)|Allowed Domains|Depth|\n"
+        md_tables += "|---|---|---|---|\n"
+        for entry in entries:
+            name = entry["name"]
+            schedule = entry["time"]
+            allowed_domains = entry["allowed_domains"]
+            depth = entry["depth_limit"]
+            row = f"|{name}|{schedule}|{allowed_domains}|{depth}|\n"
+            md_tables += row
 
-    for entry in data:
-        name = entry["name"]
-        schedule = entry["time"]
-        row = f"|{name}|{schedule}|\n"
-        md_table = md_table + row
-    write_schedule(md_table, file_name)
-
-
-def write_schedule(md_table, file_path):
-    file_name = file_path.split(".")[0] + ".md"
-    with open(file_name, "a+", encoding="utf-8") as file:
-        file.write(md_table)
-
-
-def create_sorted_markdown(unsorted_schedule, file_path):
-    days_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    for i, schedule in enumerate(unsorted_schedule):
-        day = days_names[i]
-        sorted_by_time = sorted(schedule, key=lambda x: x["time"])
-        create_markdown(day, sorted_by_time, file_path)
+    return md_tables
 
 
-def create_markdown_schedule_file(file_path):
-    env = file_path.split(".")[0]
-    file_name = env + ".md"
-    title = env.split("-")[-1]
-    header = "# " + title.capitalize() + " Schedule\n"
-    toc = " * [Monday](#monday)\n * [Tuesday](#tuesday)\n * [Wednesday](#wednesday)\n * [Thursday](#thursday)\n * [Friday](#friday)\n * [Saturday](#saturday)\n * [Sunday](#sunday)\n"
+def create_header_and_toc(environment: str, transformed_schedule: dict) -> tuple[str, str]:
+    """Generate the header and table of contents for the markdown file."""
 
-    with open(file_name, "w", encoding="utf-8") as file:
-        file.write(header)
-        file.write(toc)
+    header = f"# {environment.capitalize()} Schedule\n"
+
+    toc = ""
+    days_of_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    for day in days_of_week:
+        daily_entries = len(transformed_schedule[day])
+        toc += f" * [{day} ({daily_entries})](#{day.lower()})\n"
+
+    return header, toc
 
 
-def main(file_path):
-    data = read_json_file(file_path)
-    if data is not None:
-        unsorted_schedule = put_into_schedule_format(data)
-        create_markdown_schedule_file(file_path)
-        create_sorted_markdown(unsorted_schedule, file_path)
-    else:
-        print(f"No data found in {file_path}")
+def create_markdown_schedule(input_file: Path) -> None:
+    """Create a markdown schedule file from the input JSON file."""
+    with input_file.open("r", encoding="utf-8") as f:
+        raw_schedule = json.load(f)
+
+    if not raw_schedule:
+        print(f"Error: {input_file} is empty or not a valid JSON file.")
+
+    transformed_schedule = transform_schedule(raw_schedule)
+
+    environment = input_file.stem.split("-")[2]
+    header, toc = create_header_and_toc(environment, transformed_schedule)
+    schedule_tables = create_markdown_tables(transformed_schedule)
+
+    output_file = input_file.with_suffix(".md")
+
+    with output_file.open("w", encoding="utf-8") as f:
+        f.write(header)
+        f.write(toc)
+        f.write(schedule_tables)
+
+    print(f"Generated markdown schedule {output_file.name} based on {input_file.name}")
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        main(sys.argv[1])
+        schedule_file = Path(sys.argv[1]).resolve()
+        create_markdown_schedule(schedule_file)
     else:
-        schedules = ["crawl-sites-development.json", "crawl-sites-staging.json", "crawl-sites-production.json"]
-        for json_schedule in schedules:
-            main(json_schedule)
+        domains_dir = Path(__file__).parent
+        schedule_filenames = ["crawl-sites-development.json", "crawl-sites-staging.json", "crawl-sites-production.json"]
+        for schedule_filename in schedule_filenames:
+            schedule_file = domains_dir / schedule_filename
+            create_markdown_schedule(schedule_file)
