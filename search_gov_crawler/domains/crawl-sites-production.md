@@ -1,14 +1,14 @@
 # Production Schedule
- * [Sunday (121)](#sunday-121)
+ * [Sunday (126)](#sunday-126)
  * [Monday (140)](#monday-140)
  * [Tuesday (155)](#tuesday-155)
  * [Wednesday (153)](#wednesday-153)
  * [Thursday (158)](#thursday-158)
  * [Friday (161)](#friday-161)
- * [Saturday (138)](#saturday-138)
+ * [Saturday (145)](#saturday-145)
 
 
-## Sunday (121)
+## Sunday (126)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|learningprofessionals.af.mil|8|
@@ -33,11 +33,13 @@
 |Wavelength Detachment 1, 850th Spectrum Warfare Group (af_wavelength)|02:47|wavelength.af.mil|8|
 |tricare_mhseurope|03:00|mhs-europe.tricare.mil|8|
 |18th Medical Group - Kadena Air Base|03:00|kadena.tricare.mil|8|
+|Office of Financial Management (nih)|03:11|ofm.od.nih.gov|8|
 |AFWERX (af_werx)|03:29|afwerx.af.mil|8|
 |Westover Air Reserve Base, Mass (westover)|03:42|westover.afrc.af.mil|8|
 |tricare_redstone|04:00|redstone.tricare.mil|8|
 |15th Medical Group - Joint Base Pearl Harbor-Hickam|04:00|pearlharborhickam.tricare.mil|8|
 |521st Air Mobility Operations Wing (af_521amow)|04:11|521amow.af.mil|8|
+|Office of Management (nih)|04:13|om.od.nih.gov|8|
 |Vandenberg Air Force Base (vandenberg)|04:37|vandenberg.af.mil|8|
 |CSAF Strategic Integration Group (afpw_afsig)|04:53|afsig.af.mil|8|
 |tricare_desmonddoss|05:00|desmond-doss.tricare.mil|8|
@@ -117,16 +119,19 @@
 |156th Airlift Wing (afpw_156aw)|17:26|156aw.ang.af.mil|8|
 |DAF Learning Services (usaf_aetc)|17:32|daflearning.af.mil|8|
 |tricare_weedirwin|18:00|weed-irwin.tricare.mil|8|
+|Office of Research Facilities (nih)|18:03|orf.od.nih.gov|8|
 |150th Special Operations Wing (afpw_150sow)|18:07|150sow.ang.af.mil|8|
 |805th Combat Training Squadron (usaf_805cts)|18:28|shoc.usaf.mil|8|
 |Air Force Historical Support Division (afpw-afhm)|18:49|afhistory.af.mil|8|
 |53rd Wing (usaf_53wing)|19:23|53rdwing.af.mil|8|
 |Air Force History and Museums (afhm)|19:31|afhistoryandmuseums.af.mil|8|
+|Office of Research Services (nih)|20:05|ors.od.nih.gov|8|
 |Air University (afpw_au)|20:13|airuniversity.af.edu|8|
 |492nd Special Operations Wing (usaf_492sow)|20:18|492sow.af.mil|8|
 |Chief of Staff Reading List (afpw_cosrl)|20:55|chief-of-staff-reading-list.af.mil|8|
 |350th Spectrum Warfare Wing (usaf_350thsww)|21:14|350sww.af.mil|8|
 |Portraits in Courage (afpw_pic)|21:37|portraits-in-courage.af.mil|8|
+|OALM (nih)|22:07|oalm.od.nih.gov|8|
 |16th Air Force (usaf_16af)|22:09|16af.af.mil|8|
 |Veterans in Blue (afpw_vib)|22:18|veterans-in-blue.af.mil|8|
 |Armed Forces Pest Management Board (afpmb)|23:00|acq.osd.mil/eie/afpmb|8|
@@ -926,7 +931,7 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|171arw.ang.af.mil|8|
 
 
-## Saturday (138)
+## Saturday (145)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|fec.gov|3|
@@ -962,6 +967,7 @@
 |tricare_andersen|05:00|andersen.tricare.mil|8|
 |72d Medical Group - Tinker Air Force Base|05:00|tinker.tricare.mil|8|
 |117th Air Refueling Wing (afpw_117arw)|05:11|117arw.ang.af.mil|8|
+|Office of Management Assessment (nih)|05:15|oma.od.nih.gov|8|
 |340th Flying Training Wing (340ftg)|05:32|340ftg.afrc.af.mil|8|
 |118th Wing (afpw_118aw)|05:53|118wg.ang.af.mil|8|
 |www.esd.whs.mil (usagov-replacement)|06:00|esd.whs.mil|3|
@@ -973,6 +979,7 @@
 |www.bop.gov (usagov-replacement)|07:00|bop.gov|3|
 |tricare_altus|07:00|altus.tricare.mil|8|
 |120th Airlift Wing (afpw_120fw)|07:16|120thairliftwing.ang.af.mil|8|
+|Policy Manual (nih)|07:17|policymanual.nih.gov|8|
 |315th Airlift Wing (315aw)|07:23|315aw.afrc.af.mil|8|
 |120th FW (afpw_120fw)|07:58|120fw.ang.af.mil|8|
 |safer.fmcsa.dot.gov (usagov-replacement)|08:00|safer.fmcsa.dot.gov|3|
@@ -985,6 +992,7 @@
 |tricare_osan|09:00|osan.tricare.mil|8|
 |5th Medical Group - Minot Air Force Base|09:00|minot.tricare.mil|8|
 |301st Fighter Wing (301fw)|09:14|301fw.afrc.af.mil|8|
+|DPCPSI (nih)|09:19|dpcpsi.nih.gov|8|
 |122nd Fighter Wing, Indiana ANG (afpw_122fw)|09:22|122fw.ang.af.mil|8|
 |www.reginfo.gov (usagov-replacement)|10:00|reginfo.gov|3|
 |www.nlrb.gov (usagov-replacement)|10:00|nlrb.gov|3|
@@ -998,6 +1006,7 @@
 |49th Medical Group - Holloman Air Force Base|11:00|holloman.tricare.mil|8|
 |National Center for Advancing Translational Sciences (NCATS) (ncats.nih.gov)|11:05|ncats.nih.gov|8|
 |Air Forces Cyber (24af)|11:05|afcyber.af.mil|8|
+|NIH Security (nih)|11:21|security.nih.gov|8|
 |127th Wing, Michigan Air National Guard (afpw_127wg)|11:27|127wg.ang.af.mil|8|
 |uk.usembassy.gov (usagov-replacement)|12:00|uk.usembassy.gov|3|
 |catalog.data.gov (usagov-replacement)|12:00|catalog.data.gov|3|
@@ -1010,6 +1019,7 @@
 |www.bea.gov (usagov-replacement)|13:00|bea.gov|3|
 |tricare_whiteman|13:00|whiteman.tricare.mil|8|
 |47th Medical Group - Laughlin Air Force Base|13:00|laughlin.tricare.mil|8|
+|NIH Library (nih)|13:23|nihlibrary.nih.gov|8|
 |130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)|13:33|130aw.ang.af.mil|8|
 |187th Fighter Wing, Alabama ANG (187fw)|13:51|187fw.ang.af.mil|8|
 |www.nist.gov (usagov-replacement)|14:00|nist.gov|3|
@@ -1022,6 +1032,7 @@
 |www.helpwithmybank.gov (usagov-replacement)|15:00|helpwithmybank.gov|3|
 |tricare_kirtland|15:00|kirtland.tricare.mil|8|
 |42d Medical Group - Maxwell Air Force Base|15:00|maxwell.tricare.mil|8|
+|NIH Traffic (nih)|15:25|traffic.nih.gov|8|
 |132nd DWing, Iowa ANG (afpw_132fw)|15:38|132dwing.ang.af.mil|8|
 |165th Airlift Wing (165aw)|15:42|165aw.ang.af.mil|8|
 |www.nimh.nih.gov (usagov-replacement)|16:00|nimh.nih.gov|3|
@@ -1034,6 +1045,7 @@
 |tricare_keesler|17:00|keesler.tricare.mil|8|
 |366th Medical Treatment Facility|17:00|mountainhome.tricare.mil|8|
 |Air Force Audit Agency (afaa)|17:02|afaa.af.mil|8|
+|Office of Human Resources (nih)|17:27|hr.nih.gov|8|
 |National Center for Complementary and Integrative Health (NCCIH) (www.nccih.nih.gov)|17:32|nccih.nih.gov|8|
 |Air Force Agency for Modeling and Simulation (afams)|17:44|afams.af.mil|8|
 |2009-2017.state.gov (usagov-replacement)|18:00|2009-2017.state.gov|3|
