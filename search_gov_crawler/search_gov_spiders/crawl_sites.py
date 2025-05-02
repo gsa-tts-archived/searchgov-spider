@@ -3,6 +3,8 @@ from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 from typing import Self
 
+from apscheduler.triggers.cron import CronTrigger
+
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 
 
@@ -74,6 +76,14 @@ class CrawlSite:
                 f"Must be one of {list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys())}"
             )
             raise TypeError(msg)
+
+        # validate schedules
+        if self.schedule:
+            try:
+                CronTrigger.from_crontab(self.schedule)
+            except ValueError as err:
+                msg = f"Invalid cron expression in schedule value: {self.schedule}"
+                raise ValueError(msg) from err
 
     def to_dict(self, *, exclude: tuple = ()) -> dict:
         """Helper method to return dataclass as dictionary.  Exclude fields listed in exclude arg."""
