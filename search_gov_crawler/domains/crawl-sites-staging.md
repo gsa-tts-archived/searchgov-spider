@@ -1,14 +1,14 @@
 # Staging Schedule
- * [Sunday (118)](#sunday-118)
+ * [Sunday (121)](#sunday-121)
  * [Monday (140)](#monday-140)
  * [Tuesday (155)](#tuesday-155)
- * [Wednesday (180)](#wednesday-180)
- * [Thursday (169)](#thursday-169)
+ * [Wednesday (153)](#wednesday-153)
+ * [Thursday (158)](#thursday-158)
  * [Friday (161)](#friday-161)
- * [Saturday (103)](#saturday-103)
+ * [Saturday (138)](#saturday-138)
 
 
-## Sunday (118)
+## Sunday (121)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|learningprofessionals.af.mil|8|
@@ -45,6 +45,7 @@
 |Vance Air Force Base (vance)|05:32|vance.af.mil|8|
 |Air Force Resilience (afpw_resil)|05:35|resilience.af.mil|8|
 |USA Jobs (usagov-replacement)|06:00|usajobs.gov|3|
+|www.nga.gov (usagov-replacement)|06:00|nga.gov|3|
 |tricare_diegogarcia|06:00|diegogarcia.tricare.mil|8|
 |316th Medical Group - Joint Base Andrews (Malcolm Grow Medical Clinics and Surgery Center)|06:00|andrews.tricare.mil|8|
 |FDA (usagov-replacement)|06:15|fda.gov|3|
@@ -66,6 +67,7 @@
 |Kirk U.S. Army Medical Health Clinic|08:00|kirk.tricare.mil|8|
 |Tesseract AF (HAF/A4L) (usaf_tesseract)|08:18|tesseract.af.mil|8|
 |Air Force Innovation (afpw_innovation)|08:22|innovation.af.mil|8|
+|seasonaljobs.dol.gov (usagov-replacement)|09:00|seasonaljobs.dol.gov|3|
 |tricare_briandallgood|09:00|briandallgood.tricare.mil|8|
 |Barquist Army Health Clinic|09:00|barquist.tricare.mil|8|
 |12th Flying Training Wing (afpw_12ftw)|09:04|12ftw.af.mil|8|
@@ -100,6 +102,7 @@
 |tricare_raymondbliss|14:00|raymond-bliss.tricare.mil|8|
 |Air Force Test Center (afpw_aftc)|14:38|aftc.af.mil|8|
 |Air Force Manpower Analysis Agency (usaf_afmaa)|14:46|afmaa.af.mil|8|
+|www.pbgc.gov (usagov-replacement)|15:00|pbgc.gov|3|
 |tricare_munson|15:00|munson.tricare.mil|8|
 |Air Force BES (afpw_gunter)|15:20|airforcebes.af.mil|8|
 |www.senate.gov (usagov-replacement)|16:00|senate.gov|3|
@@ -297,6 +300,7 @@
 |March Air Reserve Base, Calif. (march)|02:46|march.afrc.af.mil|8|
 |106th Rescue Wing (afpw_106rqw)|02:53|106rqw.ang.af.mil|8|
 |tricare_lemoore|03:00|lemoore.tricare.mil|8|
+|www.faa.gov (usagov-replacement)|03:06|faa.gov|8|
 |www.dhs.gov (usagov-replacement)|03:19|dhs.gov|3|
 |www.gao.gov (usagov-replacement)|03:21|gao.gov|3|
 |guides.loc.gov (usagov-replacement)|03:30|guides.loc.gov|3|
@@ -331,7 +335,6 @@
 |Laughlin Air Force Base (laughlin)|06:28|laughlin.af.mil|8|
 |USA.gov (usagov-replacement)|06:30|usa.gov|3|
 |fred.stlouisfed.org (usagov-replacement)|06:30|fred.stlouisfed.org|3|
-|www.faa.gov (usagov-replacement)|06:30|faa.gov|8|
 |oversight.house.gov (usagov-replacement)|06:44|oversight.house.gov|3|
 |tricare_sigonella|07:00|sigonella.tricare.mil|8|
 |10th Air Force (afpw_10af)|07:04|10af.afrc.af.mil|8|
@@ -436,362 +439,324 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|mcconnell.af.mil|8|
 
 
-## Wednesday (180)
+## Wednesday (153)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Hancock Field Air National Guard Base (hancockfield)|00:00|hancockfield.ang.af.mil|8|
 |Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)|00:30|jbmdl.jb.mil|8|
 |Maxwell Gunter Annex (gunter)|00:55|gunter.af.mil|8|
 |tricare_nhcq|01:00|quantico.tricare.mil|8|
+|www.chcoc.gov (usagov-replacement)|01:01|chcoc.gov|3|
+|www.rrb.gov (usagov-replacement)|01:02|rrb.gov|3|
 |Air Force Mortuary Affairs Operations (afpw_mortuary)|01:12|mortuary.af.mil|8|
 |Grissom Air Reserve Base, Ind. (grissom)|01:51|grissom.afrc.af.mil|8|
 |Offutt Air Force Base (afpw_offutt)|01:54|offutt.af.mil|8|
+|ml.usembassy.gov (usagov-replacement)|01:59|ml.usembassy.gov|3|
 |tricare_wrnmc|02:00|walterreed.tricare.mil|8|
+|www.donotcall.gov (usagov-replacement)|02:02|donotcall.gov|3|
+|www.sss.gov (usagov-replacement)|02:04|sss.gov|3|
 |Ohio Air National Guard (afpw_ohang)|02:35|oh.ang.af.mil|8|
 |Goodfellow Air Force Base (goodfellow)|02:46|goodfellow.af.mil|8|
+|www.ers.usda.gov (usagov-replacement)|02:58|ers.usda.gov|3|
 |tricare_nhccc|03:00|corpuschristi.tricare.mil|8|
+|www.cdph.ca.gov (usagov-replacement)|03:03|cdph.ca.gov|3|
 |Pope Field (afpw_pope)|03:17|pope.af.mil|8|
 |F.E. Warren Air Force Base (fewarren)|03:42|warren.af.mil|8|
+|www.e-verify.gov (usagov-replacement)|03:57|e-verify.gov|3|
 |Personal Property Activity Headquarters (afpw_ppahq)|03:59|ppahq.af.mil|8|
 |tricare_62ms|04:00|lewismcchord.tricare.mil|8|
+|www.aphis.usda.gov (usagov-replacement)|04:04|aphis.usda.gov|3|
+|tsaenrollmentbyidemia.tsa.dhs.gov (usagov-replacement)|04:08|tsaenrollmentbyidemia.tsa.dhs.gov|3|
 |FARSite Test (farsitetest)|04:37|farsite.hill.af.mil/reghtml|8|
 |Air Force Entertainment Liaison Office HQ (afpw_hollywood)|04:41|airforcehollywood.af.mil|8|
+|stacks.cdc.gov (usagov-replacement)|04:56|stacks.cdc.gov|3|
 |tricare_naples|05:00|naples.tricare.mil|8|
+|www.patientcare.va.gov (usagov-replacement)|05:05|patientcare.va.gov|3|
+|www.nutrition.gov (usagov-replacement)|05:10|nutrition.gov|3|
 |Air Force Entertainment Liaison Office (afpw_hollywood)|05:23|airforcehollywood.hq.af.mil|8|
-|www.fec.gov (usagov-replacement)|06:00|fec.gov|3|
-|tricare.mil (usagov-replacement)|06:00|tricare.mil|3|
-|www.taxpayeradvocate.irs.gov (usagov-replacement)|06:00|taxpayeradvocate.irs.gov|3|
-|sam.gov (usagov-replacement)|06:00|sam.gov|3|
-|fiscal.treasury.gov (usagov-replacement)|06:00|fiscal.treasury.gov|3|
-|www.nhtsa.gov (usagov-replacement)|06:00|nhtsa.gov|3|
-|www.esd.whs.mil (usagov-replacement)|06:00|esd.whs.mil|3|
-|www.bop.gov (usagov-replacement)|06:00|bop.gov|3|
-|safer.fmcsa.dot.gov (usagov-replacement)|06:00|safer.fmcsa.dot.gov|3|
-|nces.ed.gov (usagov-replacement)|06:00|nces.ed.gov|3|
-|www.reginfo.gov (usagov-replacement)|06:00|reginfo.gov|3|
-|waysandmeans.house.gov (usagov-replacement)|06:00|waysandmeans.house.gov|3|
-|uk.usembassy.gov (usagov-replacement)|06:00|uk.usembassy.gov|3|
-|www.bea.gov (usagov-replacement)|06:00|bea.gov|3|
-|www.nist.gov (usagov-replacement)|06:00|nist.gov|3|
-|www.helpwithmybank.gov (usagov-replacement)|06:00|helpwithmybank.gov|3|
-|www.nimh.nih.gov (usagov-replacement)|06:00|nimh.nih.gov|3|
-|home.army.mil (usagov-replacement)|06:00|home.army.mil|3|
-|2009-2017.state.gov (usagov-replacement)|06:00|2009-2017.state.gov|3|
-|www.copyright.gov (usagov-replacement)|06:00|copyright.gov|3|
-|department.va.gov (usagov-replacement)|06:00|department.va.gov|3|
-|ustr.gov (usagov-replacement)|06:00|ustr.gov|3|
-|encyclopedia.ushmm.org (usagov-replacement)|06:00|encyclopedia.ushmm.org|3|
-|www.nih.gov (usagov-replacement)|06:00|nih.gov|3|
-|www.donotcall.gov (usagov-replacement)|06:00|donotcall.gov|3|
-|www.cdph.ca.gov (usagov-replacement)|06:00|cdph.ca.gov|3|
-|www.chcoc.gov (usagov-replacement)|06:00|chcoc.gov|3|
-|www.aphis.usda.gov (usagov-replacement)|06:00|aphis.usda.gov|3|
-|www.patientcare.va.gov (usagov-replacement)|06:00|patientcare.va.gov|3|
-|www.dla.mil (usagov-replacement)|06:00|dla.mil|3|
-|dvprogram.state.gov (usagov-replacement)|06:00|dvprogram.state.gov|3|
-|www.cbo.gov (usagov-replacement)|06:00|cbo.gov|3|
-|www.militaryonesource.mil (usagov-replacement)|06:00|militaryonesource.mil|3|
-|benefits.va.gov (usagov-replacement)|06:00|benefits.va.gov|3|
-|aspe.hhs.gov (usagov-replacement)|06:00|aspe.hhs.gov|3|
-|www.eia.gov (usagov-replacement)|06:00|eia.gov|3|
-|nida.nih.gov (usagov-replacement)|06:00|nida.nih.gov|3|
-|www.acquisition.gov (usagov-replacement)|06:00|acquisition.gov|3|
-|docs.house.gov (usagov-replacement)|06:00|docs.house.gov|3|
-|www.usmint.gov (usagov-replacement)|06:00|usmint.gov|3|
-|www.usaid.gov (usagov-replacement)|06:00|usaid.gov|3|
-|www.osti.gov (usagov-replacement)|06:00|osti.gov|3|
-|www.nia.nih.gov (usagov-replacement)|06:00|nia.nih.gov|3|
-|www.hiv.gov (usagov-replacement)|06:00|hiv.gov|3|
-|oig.hhs.gov (usagov-replacement)|06:00|oig.hhs.gov|3|
-|www.cancer.gov (usagov-replacement)|06:00|cancer.gov|3|
-|www.ada.gov (usagov-replacement)|06:00|ada.gov|3|
-|www.cga.ct.gov (usagov-replacement)|06:00|cga.ct.gov|3|
-|ofac.treasury.gov (usagov-replacement)|06:00|ofac.treasury.gov|3|
-|bjs.ojp.gov (usagov-replacement)|06:00|bjs.ojp.gov|3|
-|www.uspsoig.gov (usagov-replacement)|06:00|uspsoig.gov|3|
-|oig.usaid.gov (usagov-replacement)|06:00|oig.usaid.gov|3|
-|www.nrc.gov (usagov-replacement)|06:00|nrc.gov|3|
-|mhvidp-prod.myhealth.va.gov (usagov-replacement)|06:00|mhvidp-prod.myhealth.va.gov|3|
-|blogs.loc.gov (usagov-replacement)|06:00|blogs.loc.gov|3|
-|www.flsenate.gov (usagov-replacement)|06:00|flsenate.gov|3|
-|www.eac.gov (usagov-replacement)|06:00|eac.gov|3|
-|science.nasa.gov (usagov-replacement)|06:00|science.nasa.gov|3|
-|mx.usembassy.gov (usagov-replacement)|06:00|mx.usembassy.gov|3|
-|forecast.weather.gov (usagov-replacement)|06:00|forecast.weather.gov|8|
-|www.usmarshals.gov (usagov-replacement)|06:00|usmarshals.gov|3|
-|www.af.mil (usagov-replacement)|06:00|af.mil|3|
-|acf.gov (usagov-replacement)|06:00|acf.gov|3|
-|www.tsp.gov (usagov-replacement)|06:00|tsp.gov|3|
-|www.nutrition.gov (usagov-replacement)|06:00|nutrition.gov|3|
-|tsaenrollmentbyidemia.tsa.dhs.gov (usagov-replacement)|06:00|tsaenrollmentbyidemia.tsa.dhs.gov|3|
-|www.sss.gov (usagov-replacement)|06:00|sss.gov|3|
-|www.rrb.gov (usagov-replacement)|06:00|rrb.gov|3|
-|ml.usembassy.gov (usagov-replacement)|06:00|ml.usembassy.gov|3|
-|www.ers.usda.gov (usagov-replacement)|06:00|ers.usda.gov|3|
-|www.e-verify.gov (usagov-replacement)|06:00|e-verify.gov|3|
-|stacks.cdc.gov (usagov-replacement)|06:00|stacks.cdc.gov|3|
-|dailymed.nlm.nih.gov (usagov-replacement)|06:00|dailymed.nlm.nih.gov|3|
-|www.flhsmv.gov (usagov-replacement)|06:00|flhsmv.gov|3|
-|georgewbush-whitehouse.archives.gov (usagov-replacement)|06:00|georgewbush-whitehouse.archives.gov|3|
-|www.ncdhhs.gov (usagov-replacement)|06:00|ncdhhs.gov|3|
-|www.climate.gov (usagov-replacement)|06:00|climate.gov|8|
-|www.nhlbi.nih.gov (usagov-replacement)|06:00|nhlbi.nih.gov|3|
-|www.dcpas.osd.mil (usagov-replacement)|06:00|dcpas.osd.mil|3|
-|www.bia.gov (usagov-replacement)|06:00|bia.gov|3|
-|th.usembassy.gov (usagov-replacement)|06:00|th.usembassy.gov|3|
-|2001-2009.state.gov (usagov-replacement)|06:00|2001-2009.state.gov|3|
-|www.energystar.gov (usagov-replacement)|06:00|energystar.gov|3|
-|www.cftc.gov (usagov-replacement)|06:00|cftc.gov|3|
-|www.blm.gov (usagov-replacement)|06:00|blm.gov|3|
-|ncblpc.org (usagov-replacement)|06:00|ncblpc.org|3|
-|my.uscis.gov (usagov-replacement)|06:00|my.uscis.gov|3|
-|acl.gov (usagov-replacement)|06:00|acl.gov|3|
-|www.redcross.org (usagov-replacement)|06:00|redcross.org|3|
-|milconnect.dmdc.osd.mil (usagov-replacement)|06:00|milconnect.dmdc.osd.mil|3|
-|www.recreation.gov (usagov-replacement)|06:00|recreation.gov|3|
-|www.pbgc.gov (usagov-replacement)|06:00|pbgc.gov|3|
-|www.nga.gov (usagov-replacement)|06:00|nga.gov|3|
-|seasonaljobs.dol.gov (usagov-replacement)|06:00|seasonaljobs.dol.gov|3|
-|www.nsf.gov (usagov-replacement)|06:00|nsf.gov|8|
-|www.disasterassistance.gov (usagov-replacement)|06:00|disasterassistance.gov|3|
+|dailymed.nlm.nih.gov (usagov-replacement)|05:55|dailymed.nlm.nih.gov|3|
 |bean.house.gov (usagov-replacement)|06:00|bean.house.gov|3|
 |tricare_okinawa|06:00|okinawa.tricare.mil|8|
 |United States Air Force Honor Guard (afpw_honor)|06:04|honorguard.af.mil|8|
+|www.dla.mil (usagov-replacement)|06:06|dla.mil|3|
+|www.tsp.gov (usagov-replacement)|06:12|tsp.gov|3|
 |Ellsworth Air Force Base (ellsworth)|06:28|ellsworth.af.mil|8|
-|www.govinfo.gov (usagov-replacement)|06:30|govinfo.gov|3|
 |www.voanews.com (usagov-replacement)|06:30|voanews.com|3|
 |Smithsonian Magazine (usagov-replacement)|06:30|smithsonianmag.com|3|
 |Grants.gov (usagov-replacement)|06:30|grants.gov|3|
 |Air Force Network Integration Center (afnic)|06:46|afnic.af.mil|8|
+|www.flhsmv.gov (usagov-replacement)|06:54|flhsmv.gov|3|
 |tricare_cmd|07:00|calmed.tricare.mil|8|
+|dvprogram.state.gov (usagov-replacement)|07:07|dvprogram.state.gov|3|
+|acf.gov (usagov-replacement)|07:14|acf.gov|3|
 |Eielson Air Force Base (eielson)|07:23|eielson.af.mil|8|
 |Fairchild Air Force Base (afpw_fairchild)|07:28|fairchild.af.mil|8|
+|georgewbush-whitehouse.archives.gov (usagov-replacement)|07:53|georgewbush-whitehouse.archives.gov|3|
 |tricare_wach|08:00|winn.tricare.mil|8|
+|www.cbo.gov (usagov-replacement)|08:08|cbo.gov|3|
 |Air Force Compliance Division (afpw_foia)|08:10|compliance.af.mil|8|
+|www.af.mil (usagov-replacement)|08:16|af.mil|3|
 |Eglin Air Force Base (eglin)|08:18|eglin.af.mil|8|
+|www.ncdhhs.gov (usagov-replacement)|08:52|ncdhhs.gov|3|
 |Grand Forks Air Force Base (afpw_grandforks)|08:52|grandforks.af.mil|8|
+|www.nsf.gov (usagov-replacement)|09:00|nsf.gov|8|
 |tricare_dusahc|09:00|dunham.tricare.mil|8|
+|www.militaryonesource.mil (usagov-replacement)|09:09|militaryonesource.mil|3|
 |Edwards Air Force Base (edwards)|09:14|edwards.af.mil|8|
+|www.usmarshals.gov (usagov-replacement)|09:18|usmarshals.gov|3|
 |Air Force Retirees Services (afpw_afro)|09:34|retirees.af.mil|8|
+|www.climate.gov (usagov-replacement)|09:51|climate.gov|8|
 |tricare_mahc|10:00|moncrief.tricare.mil|8|
 |Dyess Air Force Base (dyess)|10:09|dyess.af.mil|8|
+|benefits.va.gov (usagov-replacement)|10:10|benefits.va.gov|3|
 |Air Force Recruiting Service (afpw_afrs)|10:15|rs.af.mil|8|
+|forecast.weather.gov (usagov-replacement)|10:20|forecast.weather.gov|8|
+|www.nhlbi.nih.gov (usagov-replacement)|10:50|nhlbi.nih.gov|3|
 |Air Force Security Forces Center (afpw_afsfc)|10:57|afsfc.af.mil|8|
 |tricare_omc|11:00|oakharbor.tricare.mil|8|
 |Airman Magazine (dodlive_amnmag)|11:05|airmanmagazine.af.mil|8|
+|aspe.hhs.gov (usagov-replacement)|11:11|aspe.hhs.gov|3|
+|mx.usembassy.gov (usagov-replacement)|11:22|mx.usembassy.gov|3|
 |Air Force Week (afpw_afweek)|11:39|airforceweek.af.mil|8|
+|www.dcpas.osd.mil (usagov-replacement)|11:49|dcpas.osd.mil|3|
+|www.disasterassistance.gov (usagov-replacement)|12:00|disasterassistance.gov|3|
 |tricare_ahcbw|12:00|bassett-wainwright.tricare.mil|8|
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|dobbins.afrc.af.mil|8|
 |www.aviationweather.gov (nws.noaa.gov)|12:00|aviationweather.gov|3|
 |iucrc.nsf.gov (nsf)|12:00|iucrc.nsf.gov|3|
+|www.eia.gov (usagov-replacement)|12:12|eia.gov|3|
 |Altus Air Force Base (afpw_altus)|12:21|altus.af.mil|8|
+|science.nasa.gov (usagov-replacement)|12:24|science.nasa.gov|3|
+|www.bia.gov (usagov-replacement)|12:48|bia.gov|3|
 |Davis-Monthan Air Force Base (davismonthan)|12:55|dm.af.mil|8|
 |tricare_mamc|13:00|madigan.tricare.mil|8|
 |Joint Base Andrews (afpw_andrews)|13:03|jba.af.mil|8|
+|nida.nih.gov (usagov-replacement)|13:13|nida.nih.gov|3|
+|www.eac.gov (usagov-replacement)|13:26|eac.gov|3|
 |Air National Guard (afpw_ang)|13:45|ang.af.mil|8|
+|th.usembassy.gov (usagov-replacement)|13:47|th.usembassy.gov|3|
 |Columbus Air Force Base (columbus)|13:51|columbus.af.mil|8|
 |tricare_lyster|14:00|lyster.tricare.mil|8|
+|www.acquisition.gov (usagov-replacement)|14:14|acquisition.gov|3|
 |Air National Guard Band of the Midwest (afpw_angbandmidwest)|14:26|bandofthemidwest.ang.af.mil|8|
+|www.flsenate.gov (usagov-replacement)|14:28|flsenate.gov|3|
+|2001-2009.state.gov (usagov-replacement)|14:46|2001-2009.state.gov|3|
 |Citizen Airman Magazine (citizenairman)|14:46|citamn.afrc.af.mil|8|
 |tricare_keller|15:00|keller.tricare.mil|8|
 |Air National Guard Band of the Northeast (afpw_angbandnortheast)|15:08|bandofthenortheast.ang.af.mil|8|
+|docs.house.gov (usagov-replacement)|15:15|docs.house.gov|3|
+|blogs.loc.gov (usagov-replacement)|15:30|blogs.loc.gov|3|
 |Cannon Air Force Base (cannon)|15:42|cannon.af.mil|8|
+|www.energystar.gov (usagov-replacement)|15:45|energystar.gov|3|
 |Air National Guard Band of the West Coast (afpw_angbandwestcoast)|15:50|bandofthewestcoast.ang.af.mil|8|
 |tricare_ireland|16:00|ireland.tricare.mil|8|
+|www.usmint.gov (usagov-replacement)|16:16|usmint.gov|3|
+|mhvidp-prod.myhealth.va.gov (usagov-replacement)|16:32|mhvidp-prod.myhealth.va.gov|3|
 |Air Force Bands Program (afpw_bandsprogram)|16:32|bands.af.mil|8|
 |Boards (boards1)|16:37|boards.law.af.mil|8|
+|www.cftc.gov (usagov-replacement)|16:44|cftc.gov|3|
 |tricare_dyess|17:00|dyess.tricare.mil|8|
 |The United States Air Force Band (afpw_bandusaf)|17:14|usafband.af.mil|8|
+|www.usaid.gov (usagov-replacement)|17:17|usaid.gov|3|
 |USAF BMT Flight Photos (bmtflightphotos)|17:32|bmtflightphotos.af.mil|8|
+|www.nrc.gov (usagov-replacement)|17:34|nrc.gov|3|
+|www.blm.gov (usagov-replacement)|17:43|blm.gov|3|
 |USAF Band of the West (afpw_bandwest)|17:56|bandofthewest.af.mil|8|
 |tricare_412mg|18:00|edwards.tricare.mil|8|
+|www.osti.gov (usagov-replacement)|18:18|osti.gov|3|
 |National Institute of General Medical Sciences (NIGMS) (www.nigms.nih.gov)|18:28|nigms.nih.gov|8|
 |Beale Air Force Base (beale)|18:28|beale.af.mil|8|
+|oig.usaid.gov (usagov-replacement)|18:36|oig.usaid.gov|3|
+|ncblpc.org (usagov-replacement)|18:37|ncblpc.org|3|
 |Creech Air Force Base (afpw_creech)|18:37|creech.af.mil|8|
+|www.nia.nih.gov (usagov-replacement)|19:19|nia.nih.gov|3|
 |AF Declassification (afpw_dclass)|19:19|secretsdeclassified.af.mil|8|
 |Barksdale Air Force Base (barksdale)|19:23|barksdale.af.mil|8|
+|my.uscis.gov (usagov-replacement)|19:29|my.uscis.gov|3|
+|www.uspsoig.gov (usagov-replacement)|19:38|uspsoig.gov|3|
 |Defense Institute for Medical Operations (afpw_dimo)|20:01|dimo.af.mil|8|
+|acl.gov (usagov-replacement)|20:13|acl.gov|3|
 |USAF Band of Mid-America (bandmidamerica)|20:18|bandofmidamerica.af.mil|8|
+|www.hiv.gov (usagov-replacement)|20:20|hiv.gov|3|
+|bjs.ojp.gov (usagov-replacement)|20:40|bjs.ojp.gov|3|
 |Dover Air Force Base (afpw_dover)|20:43|dover.af.mil|8|
+|www.redcross.org (usagov-replacement)|21:05|redcross.org|3|
 |USAF Heritage of America Band (bandheritage)|21:14|heritageofamericaband.af.mil|8|
+|www.govinfo.gov (usagov-replacement)|21:21|govinfo.gov|3|
 |Eastern Air Defense Sector (afpw_eads)|21:25|eads.ang.af.mil|8|
+|ofac.treasury.gov (usagov-replacement)|21:42|ofac.treasury.gov|3|
 |Department of the Air Force - E-Publishing (afpw_epubs)|22:06|e-publishing.af.mil|8|
 |USAF Heartland of America Band (bandheartland)|22:09|heartlandofamericaband.af.mil|8|
+|oig.hhs.gov (usagov-replacement)|22:22|oig.hhs.gov|3|
+|www.cga.ct.gov (usagov-replacement)|22:44|cga.ct.gov|3|
+|milconnect.dmdc.osd.mil (usagov-replacement)|22:48|milconnect.dmdc.osd.mil|3|
 |USAF Band of the Pacific-Hawaii (bandhawaii)|23:05|bandofthepacific-hawaii.af.mil|8|
+|www.cancer.gov (usagov-replacement)|23:23|cancer.gov|3|
 |477th Fighter Group (afpw_477fg)|23:30|477fg.afrc.af.mil|8|
+|www.recreation.gov (usagov-replacement)|23:33|recreation.gov|3|
+|www.ada.gov (usagov-replacement)|23:46|ada.gov|3|
 
 
-## Thursday (169)
+## Thursday (158)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |USAF Band of the Golden West (bandgoldenwest)|00:00|bandofthegoldenwest.af.mil|8|
+|j1visa.state.gov (usagov-replacement)|00:12|j1visa.state.gov|3|
 |505th Command and Control Wing (afpw_505ccw)|00:12|505ccw.acc.af.mil|8|
+|www.nifc.gov (usagov-replacement)|00:22|nifc.gov|3|
+|prologue.blogs.archives.gov (usagov-replacement)|00:32|prologue.blogs.archives.gov|3|
+|State Dept Foreign Affairs Manual (usagov-replacement)|00:42|fam.state.gov|3|
 |618th Air and Space Operations Center (TACC) (afpw_618tacc)|00:54|618tacc.amc.af.mil|8|
 |USAF Band of Flight (bandflight)|00:55|bandofflight.af.mil|8|
+|childcare.gov (usagov-replacement)|01:12|childcare.gov|3|
+|www.fueleconomy.gov (usagov-replacement)|01:22|fueleconomy.gov|3|
+|ojjdp.ojp.gov (usagov-replacement)|01:32|ojjdp.ojp.gov|3|
 |624th Regional Support Group (afpw_624rsg)|01:36|624rsg.afrc.af.mil|8|
+|NIH NIEHS (usagov-replacement)|01:42|niehs.nih.gov|3|
 |U.S. Air Forces in Europe Band (bandeurope)|01:51|usafeuropeband.af.mil|8|
+|www.ic3.gov (usagov-replacement)|02:12|ic3.gov|3|
 |8th Air Force (afpw_8af)|02:17|8af.af.mil|8|
+|ohss.dhs.gov (usagov-replacement)|02:22|ohss.dhs.gov|3|
+|lostandfound.dol.gov (usagov-replacement)|02:32|lostandfound.dol.gov|3|
+|Common Access Card (usagov-replacement)|02:42|cac.mil|3|
 |USAF Band of the Pacific-Asia (bandasia)|02:46|bandofthepacific-asia.af.mil|8|
 |926th Group (afpw_926gp)|02:59|926wing.afrc.af.mil|8|
+|earthquake.usgs.gov (usagov-replacement)|03:12|earthquake.usgs.gov|3|
+|www.hsgac.senate.gov (usagov-replacement)|03:22|hsgac.senate.gov|3|
+|installations.militaryonesource.mil (usagov-replacement)|03:32|installations.militaryonesource.mil|3|
 |ANG AFRC Command Test Center (afpw_aatc)|03:41|aatc.ang.af.mil|8|
+|ods.od.nih.gov (usagov-replacement)|03:42|ods.od.nih.gov|3|
 |USAF Academy Band (bandacademy)|03:42|usafacademyband.af.mil|8|
+|corp.commissaries.com (usagov-replacement)|04:12|corp.commissaries.com|3|
+|www.ams.usda.gov (usagov-replacement)|04:22|ams.usda.gov|3|
 |Alternative Dispute Resolution (afpw_adr)|04:23|adr.af.mil|8|
+|careers.state.gov (usagov-replacement)|04:32|careers.state.gov|3|
 |Arizona Air National Guard (azang)|04:37|az.ang.af.mil|8|
+|ies.ed.gov (usagov-replacement)|04:42|ies.ed.gov|3|
 |Air Force Be Ready (afpw_afbr)|05:05|beready.af.mil|8|
+|banks.data.fdic.gov (usagov-replacement)|05:12|banks.data.fdic.gov|3|
+|jp.usembassy.gov (usagov-replacement)|05:22|jp.usembassy.gov|3|
+|americanenglish.state.gov (usagov-replacement)|05:32|americanenglish.state.gov|3|
 |Aviano Air Base (aviano)|05:32|aviano.af.mil|8|
+|NASA Earth Observatory (usagov-replacement)|05:42|earthobservatory.nasa.gov|3|
 |Air Force Global Strike Command (afpw_afgsc)|05:47|afgsc.af.mil|8|
-|oversightdemocrats.house.gov (usagov-replacement)|06:00|oversightdemocrats.house.gov|3|
-|www.uspis.gov (usagov-replacement)|06:00|uspis.gov|3|
-|www.ukraineoversight.gov (usagov-replacement)|06:00|ukraineoversight.gov|3|
-|www.trumanlibrary.gov (usagov-replacement)|06:00|trumanlibrary.gov|3|
-|www.nlrb.gov (usagov-replacement)|06:00|nlrb.gov|3|
-|catalog.data.gov (usagov-replacement)|06:00|catalog.data.gov|3|
-|www.navsea.navy.mil (usagov-replacement)|06:00|navsea.navy.mil|3|
-|www.marines.mil (usagov-replacement)|06:00|marines.mil|3|
-|www.foia.gov (usagov-replacement)|06:00|foia.gov|3|
-|share.america.gov (usagov-replacement)|06:00|share.america.gov|3|
-|wwwnc.cdc.gov (usagov-replacement)|06:00|wwwnc.cdc.gov|3|
-|j1visa.state.gov (usagov-replacement)|06:00|j1visa.state.gov|3|
-|childcare.gov (usagov-replacement)|06:00|childcare.gov|3|
-|www.ic3.gov (usagov-replacement)|06:00|ic3.gov|3|
-|earthquake.usgs.gov (usagov-replacement)|06:00|earthquake.usgs.gov|3|
-|corp.commissaries.com (usagov-replacement)|06:00|corp.commissaries.com|3|
-|banks.data.fdic.gov (usagov-replacement)|06:00|banks.data.fdic.gov|3|
-|www.secretservice.gov (usagov-replacement)|06:00|secretservice.gov|3|
-|oig.ssa.gov (usagov-replacement)|06:00|oig.ssa.gov|3|
-|data.gov (usagov-replacement)|06:00|data.gov|3|
-|www.usich.gov (usagov-replacement)|06:00|usich.gov|3|
-|www.blackburn.senate.gov (usagov-replacement)|06:00|blackburn.senate.gov|3|
-|help.usajobs.gov (usagov-replacement)|06:00|help.usajobs.gov|3|
-|www.phila.gov (usagov-replacement)|06:00|phila.gov|3|
-|www.occ.gov (usagov-replacement)|06:00|occ.gov|3|
-|www.goarmy.com (usagov-replacement)|06:00|goarmy.com|3|
-|foreignaffairs.house.gov (usagov-replacement)|06:00|foreignaffairs.house.gov|3|
-|digital.gov (usagov-replacement)|06:00|digital.gov|3|
-|democrats-appropriations.house.gov (usagov-replacement)|06:00|democrats-appropriations.house.gov|3|
-|careers.cbp.gov (usagov-replacement)|06:00|careers.cbp.gov|3|
-|www.judiciary.senate.gov (usagov-replacement)|06:00|judiciary.senate.gov|3|
-|www.iowacourts.gov (usagov-replacement)|06:00|iowacourts.gov|3|
-|www.armyupress.army.mil (usagov-replacement)|06:00|armyupress.army.mil|3|
-|health.mil (usagov-replacement)|06:00|health.mil|3|
-|bensguide.gpo.gov (usagov-replacement)|06:00|bensguide.gpo.gov|3|
-|www.nifc.gov (usagov-replacement)|06:00|nifc.gov|3|
-|www.fueleconomy.gov (usagov-replacement)|06:00|fueleconomy.gov|3|
-|ohss.dhs.gov (usagov-replacement)|06:00|ohss.dhs.gov|3|
-|www.hsgac.senate.gov (usagov-replacement)|06:00|hsgac.senate.gov|3|
-|www.ams.usda.gov (usagov-replacement)|06:00|ams.usda.gov|3|
-|jp.usembassy.gov (usagov-replacement)|06:00|jp.usembassy.gov|3|
-|dfpi.ca.gov (usagov-replacement)|06:00|dfpi.ca.gov|3|
-|www.ussc.gov (usagov-replacement)|06:00|ussc.gov|3|
-|www.ready.gov (usagov-replacement)|06:00|ready.gov|3|
-|www.navy.mil (usagov-replacement)|06:00|navy.mil|3|
-|www.ihs.gov (usagov-replacement)|06:00|ihs.gov|3|
-|www.airforce.com (usagov-replacement)|06:00|airforce.com|3|
-|planthardiness.ars.usda.gov (usagov-replacement)|06:00|planthardiness.ars.usda.gov|3|
-|ovc.ojp.gov (usagov-replacement)|06:00|ovc.ojp.gov|3|
-|oig.justice.gov (usagov-replacement)|06:00|oig.justice.gov|3|
-|law.lis.virginia.gov (usagov-replacement)|06:00|law.lis.virginia.gov|3|
-|www.fsa.usda.gov (usagov-replacement)|06:00|fsa.usda.gov|3|
-|www.ffiec.gov (usagov-replacement)|06:00|ffiec.gov|3|
-|www.ars.usda.gov (usagov-replacement)|06:00|ars.usda.gov|3|
-|www.stopbullying.gov (usagov-replacement)|06:00|stopbullying.gov|3|
-|www.pandemicoversight.gov (usagov-replacement)|06:00|pandemicoversight.gov|3|
-|vacareers.va.gov (usagov-replacement)|06:00|vacareers.va.gov|3|
-|prologue.blogs.archives.gov (usagov-replacement)|06:00|prologue.blogs.archives.gov|3|
-|ojjdp.ojp.gov (usagov-replacement)|06:00|ojjdp.ojp.gov|3|
-|lostandfound.dol.gov (usagov-replacement)|06:00|lostandfound.dol.gov|3|
-|installations.militaryonesource.mil (usagov-replacement)|06:00|installations.militaryonesource.mil|3|
-|careers.state.gov (usagov-replacement)|06:00|careers.state.gov|3|
-|americanenglish.state.gov (usagov-replacement)|06:00|americanenglish.state.gov|3|
-|www.spaceforce.mil (usagov-replacement)|06:00|spaceforce.mil|3|
-|www.mda.mil (usagov-replacement)|06:00|mda.mil|3|
-|www.genome.gov (usagov-replacement)|06:00|genome.gov|3|
-|public.cyber.mil (usagov-replacement)|06:00|public.cyber.mil|3|
-|eg.usembassy.gov (usagov-replacement)|06:00|eg.usembassy.gov|3|
-|consumer.gov (usagov-replacement)|06:00|consumer.gov|3|
-|clerk.house.gov (usagov-replacement)|06:00|clerk.house.gov|3|
-|2017-2021.state.gov (usagov-replacement)|06:00|2017-2021.state.gov|3|
-|www.msha.gov (usagov-replacement)|06:00|msha.gov|3|
-|mikejohnson.house.gov (usagov-replacement)|06:00|mikejohnson.house.gov|3|
-|democrats-judiciary.house.gov (usagov-replacement)|06:00|democrats-judiciary.house.gov|3|
-|www.shaw.af.mil (usagov-replacement)|06:00|shaw.af.mil|3|
-|www.mynavyhr.navy.mil (usagov-replacement)|06:00|mynavyhr.navy.mil|3|
-|www.ferc.gov (usagov-replacement)|06:00|ferc.gov|3|
-|www.dote.osd.mil (usagov-replacement)|06:00|dote.osd.mil|3|
-|learningenglish.voanews.com (usagov-replacement)|06:00|learningenglish.voanews.com|3|
-|appropriations.house.gov (usagov-replacement)|06:00|appropriations.house.gov|3|
-|www.arts.gov (usagov-replacement)|06:00|arts.gov|3|
-|National Credit Union Assn (usagov-replacement)|06:00|ncua.gov|3|
-|State Dept Foreign Affairs Manual (usagov-replacement)|06:00|fam.state.gov|3|
-|NIH NIEHS (usagov-replacement)|06:00|niehs.nih.gov|3|
-|Common Access Card (usagov-replacement)|06:00|cac.mil|3|
-|ods.od.nih.gov (usagov-replacement)|06:00|ods.od.nih.gov|3|
-|ies.ed.gov (usagov-replacement)|06:00|ies.ed.gov|3|
-|NASA Earth Observatory (usagov-replacement)|06:00|earthobservatory.nasa.gov|3|
-|US Embassy (usa.gov-replacement)|06:00|usembassy.gov|3|
-|US Direct Express (usagov-replacement)|06:00|usdirectexpress.com|3|
-|US Army Reserves (usagov-replacement)|06:00|usar.army.mil|3|
-|NTSB (usagov-replacement)|06:00|ntsb.gov|3|
-|NIH NLM (usagov-replacement)|06:00|nlm.nih.gov|3|
-|Sen Cruz (usagov-replacement)|06:00|cruz.senate.gov|3|
-|Rep Larson (usagov-replacement)|06:00|larson.house.gov|3|
-|US Embassy in Dominican Republic (usagov-replacement)|06:00|do.usembassy.gov|3|
-|US Embassy in Canada (usagov-replacement)|06:00|ca.usembassy.gov|3|
-|FEMA Training (usagov-replacement)|06:00|training.fema.gov|8|
-|USDA Service Center Locator (usagov-replacement)|06:00|offices.sc.egov.usda.gov|3|
+|www.secretservice.gov (usagov-replacement)|06:12|secretservice.gov|3|
+|www.treasury.gov (usagov-replacement)|06:22|treasury.gov|3|
 |Air Force Historical Research Agency (afpw_afhra)|06:28|dafhistory.af.mil|8|
 |Air Reserve Personnel Center (arpc)|06:28|arpc.afrc.af.mil|8|
-|www.treasury.gov (usagov-replacement)|06:30|treasury.gov|3|
-|vault.fbi.gov (usagov-replacement)|06:30|vault.fbi.gov|3|
-|TSA Jobs (usagov-replacement)|06:30|jobs.tsa.gov|3|
 |VA (usagov-replacement)|06:30|va.gov|3|
 |NATA Technical Reports Server (usagov-replacement)|06:30|ntrs.nasa.gov|3|
+|www.spaceforce.mil (usagov-replacement)|06:32|spaceforce.mil|3|
+|US Embassy (usa.gov-replacement)|06:42|usembassy.gov|3|
 |Air Force Historical Studies Office (afpw_afhso)|07:10|afhso.af.mil|8|
+|oig.ssa.gov (usagov-replacement)|07:12|oig.ssa.gov|3|
+|dfpi.ca.gov (usagov-replacement)|07:22|dfpi.ca.gov|3|
 |National Institute on Minority Health and Health Disparities (NIMHD) (www.nimhd.nih.gov)|07:23|nimhd.nih.gov|8|
 |Arnold Air Force Base (arnold)|07:23|arnold.af.mil|8|
+|www.mda.mil (usagov-replacement)|07:32|mda.mil|3|
+|US Direct Express (usagov-replacement)|07:42|usdirectexpress.com|3|
 |USAF - www.afia.af.mil (afpw_afia) (afpw_afia)|07:52|afia.af.mil|8|
+|data.gov (usagov-replacement)|08:12|data.gov|3|
 |ANG Training and Education Center (angtec)|08:18|angtec.ang.af.mil|8|
+|www.ussc.gov (usagov-replacement)|08:22|ussc.gov|3|
+|www.genome.gov (usagov-replacement)|08:32|genome.gov|3|
 |Air Force Judge Advocate General's Corps (afpw_afjag)|08:34|afjag.af.mil|8|
+|US Army Reserves (usagov-replacement)|08:42|usar.army.mil|3|
+|www.usich.gov (usagov-replacement)|09:12|usich.gov|3|
 |Air National Guard Readiness Center (angrc)|09:14|angrc.ang.af.mil|8|
 |172nd Airlift Wing, Mississippi Air National Guard (afpw_172aw)|09:16|172aw.ang.af.mil|8|
+|www.ready.gov (usagov-replacement)|09:22|ready.gov|3|
+|public.cyber.mil (usagov-replacement)|09:32|public.cyber.mil|3|
+|NTSB (usagov-replacement)|09:42|ntsb.gov|3|
 |173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)|09:58|173fw.ang.af.mil|8|
 |Gulfport Combat Readiness Training Center (ang_gulfportcrtc)|10:09|gulfportcrtc.ang.af.mil|8|
+|www.blackburn.senate.gov (usagov-replacement)|10:12|blackburn.senate.gov|3|
+|www.navy.mil (usagov-replacement)|10:22|navy.mil|3|
+|eg.usembassy.gov (usagov-replacement)|10:32|eg.usembassy.gov|3|
 |175th Wing, Maryland Air National Guard (afpw_175wg)|10:39|175wg.ang.af.mil|8|
+|NIH NLM (usagov-replacement)|10:42|nlm.nih.gov|3|
 |Andersen Air Force Base (andersen)|11:05|andersen.af.mil|8|
+|help.usajobs.gov (usagov-replacement)|11:12|help.usajobs.gov|3|
 |176th Wing, Alaska Air National Guard (afpw_176wg)|11:21|176wg.ang.af.mil|8|
+|www.ihs.gov (usagov-replacement)|11:22|ihs.gov|3|
+|consumer.gov (usagov-replacement)|11:32|consumer.gov|3|
+|Sen Cruz (usagov-replacement)|11:42|cruz.senate.gov|3|
 |Air Mobility Command (amc)|12:00|amc.af.mil|8|
 |177th Fighter Wing, New Jersey ANG (afpw_177fw)|12:03|177fw.ang.af.mil|8|
+|www.phila.gov (usagov-replacement)|12:12|phila.gov|3|
+|www.airforce.com (usagov-replacement)|12:22|airforce.com|3|
+|clerk.house.gov (usagov-replacement)|12:32|clerk.house.gov|3|
 |178th Wing, Ohio Air National Guard (afpw_178fw)|12:45|178wing.ang.af.mil|8|
 |Air Force Chief Modeling And Simulation Office (airforce_modsim)|12:55|modsim.af.mil|8|
+|www.occ.gov (usagov-replacement)|13:12|occ.gov|3|
+|planthardiness.ars.usda.gov (usagov-replacement)|13:22|planthardiness.ars.usda.gov|3|
 |178th Wing, Ohio Air National Guard FW (afpw_178fw)|13:27|178fw.ang.af.mil|8|
+|2017-2021.state.gov (usagov-replacement)|13:32|2017-2021.state.gov|3|
+|www.msha.gov (usagov-replacement)|13:32|msha.gov|3|
 |National Institute of Neurological Disorders and Stroke (NINDS) (www.ninds.nih.gov)|13:51|ninds.nih.gov|8|
 |Copy of Little Rock Air Force Base (airforce_littlerock)|13:51|littlerock.af.mil|8|
 |179th Airlift Wing, Ohio ANG (afpw_179aw)|14:08|179aw.ang.af.mil|8|
+|www.goarmy.com (usagov-replacement)|14:12|goarmy.com|3|
+|ovc.ojp.gov (usagov-replacement)|14:22|ovc.ojp.gov|3|
+|mikejohnson.house.gov (usagov-replacement)|14:32|mikejohnson.house.gov|3|
 |JAG Reporter (airforce_jagreporter)|14:46|jagreporter.af.mil|8|
 |180th Fighter Wing, Ohio Air National Guard (afpw_180fw)|14:50|180fw.ang.af.mil|8|
+|foreignaffairs.house.gov (usagov-replacement)|15:12|foreignaffairs.house.gov|3|
+|oig.justice.gov (usagov-replacement)|15:22|oig.justice.gov|3|
+|democrats-judiciary.house.gov (usagov-replacement)|15:32|democrats-judiciary.house.gov|3|
 |181st Intelligence Wing, Indiana ANG (afpw_181iw)|15:32|181iw.ang.af.mil|8|
 |Headquarters RIO (airforce_hqrio)|15:42|hqrio.afrc.af.mil|8|
 |ncsesdata.nsf.gov (nsf)|16:00|ncsesdata.nsf.gov|3|
+|digital.gov (usagov-replacement)|16:12|digital.gov|3|
 |182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)|16:14|182aw.ang.af.mil|8|
+|law.lis.virginia.gov (usagov-replacement)|16:22|law.lis.virginia.gov|3|
+|www.shaw.af.mil (usagov-replacement)|16:32|shaw.af.mil|3|
 |Department of the Air Force Open Data Program (airforce_data)|16:37|data.af.mil|8|
 |184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)|16:56|184iw.ang.af.mil|8|
+|democrats-appropriations.house.gov (usagov-replacement)|17:12|democrats-appropriations.house.gov|3|
+|www.fsa.usda.gov (usagov-replacement)|17:22|fsa.usda.gov|3|
+|www.mynavyhr.navy.mil (usagov-replacement)|17:32|mynavyhr.navy.mil|3|
 |Air Force Center of Excellence for Medical Multimedia (airforce_cemm)|17:32|cemm.af.mil|8|
 |185th Air Refueling Wing, Iowa ANG (afpw_185arw)|17:38|185arw.ang.af.mil|8|
+|careers.cbp.gov (usagov-replacement)|18:12|careers.cbp.gov|3|
 |186th Air Refueling Wing, Mississippi Air National Guard (afpw_186arw)|18:19|186arw.ang.af.mil|8|
+|vault.fbi.gov (usagov-replacement)|18:22|vault.fbi.gov|3|
 |Cyberspace Capabilities Center (airforce_ccc)|18:28|cyberspacecapabilitiescenter.af.mil|8|
+|www.ferc.gov (usagov-replacement)|18:32|ferc.gov|3|
+|USDA Service Center Locator (usagov-replacement)|18:42|offices.sc.egov.usda.gov|3|
 |188th FW, Arkansas ANG (afpw_188fw)|19:01|188fw.ang.af.mil|8|
+|www.judiciary.senate.gov (usagov-replacement)|19:12|judiciary.senate.gov|3|
+|www.ffiec.gov (usagov-replacement)|19:22|ffiec.gov|3|
 |913th Airlift Group (airforce_913ag)|19:23|913ag.afrc.af.mil|8|
+|www.dote.osd.mil (usagov-replacement)|19:32|dote.osd.mil|3|
+|FEMA Training (usagov-replacement)|19:42|training.fema.gov|8|
 |188th WG, Arkansas ANG (afpw_188fw)|19:43|188wg.ang.af.mil|8|
+|www.iowacourts.gov (usagov-replacement)|20:12|iowacourts.gov|3|
 |National Institute of Nursing Research (NINR) (www.ninr.nih.gov)|20:18|ninr.nih.gov|8|
 |Air Education and Training Command (aetc)|20:18|aetc.af.mil|8|
+|www.ars.usda.gov (usagov-replacement)|20:22|ars.usda.gov|3|
 |18th Air Force (afpw_18af)|20:25|18af.amc.af.mil|8|
+|learningenglish.voanews.com (usagov-replacement)|20:32|learningenglish.voanews.com|3|
+|US Embassy in Canada (usagov-replacement)|20:42|ca.usembassy.gov|3|
 |190th Air Refueling Wing, Kansas Air National Guard (afpw_190arw)|21:07|190arw.ang.af.mil|8|
+|www.armyupress.army.mil (usagov-replacement)|21:12|armyupress.army.mil|3|
 |Alpena Combat Readiness Training Center (acrtc)|21:14|alpenacrtc.ang.af.mil|8|
+|www.stopbullying.gov (usagov-replacement)|21:22|stopbullying.gov|3|
+|appropriations.house.gov (usagov-replacement)|21:32|appropriations.house.gov|3|
+|US Embassy in Dominican Republic (usagov-replacement)|21:42|do.usembassy.gov|3|
 |192D Fighter Wing (afpw_192fw)|21:49|192fw.ang.af.mil|8|
 |Air Combat Command (acc)|22:09|acc.af.mil|8|
+|health.mil (usagov-replacement)|22:12|health.mil|3|
+|www.pandemicoversight.gov (usagov-replacement)|22:22|pandemicoversight.gov|3|
 |192D WG (afpw_192fw)|22:30|192wg.ang.af.mil|8|
+|www.arts.gov (usagov-replacement)|22:32|arts.gov|3|
+|TSA Jobs (usagov-replacement)|22:42|jobs.tsa.gov|3|
 |U.S. Air Forces Central Command (9af)|23:05|afcent.af.mil|8|
+|bensguide.gpo.gov (usagov-replacement)|23:12|bensguide.gpo.gov|3|
 |193rd SOW, Pa. ANG (afpw_193sow)|23:12|193sow.ang.af.mil|8|
+|vacareers.va.gov (usagov-replacement)|23:22|vacareers.va.gov|3|
+|National Credit Union Assn (usagov-replacement)|23:32|ncua.gov|3|
+|Rep Larson (usagov-replacement)|23:42|larson.house.gov|3|
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|214rg.ang.af.mil|8|
 
 
@@ -961,109 +926,144 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|171arw.ang.af.mil|8|
 
 
-## Saturday (103)
+## Saturday (138)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
+|www.fec.gov (usagov-replacement)|00:00|fec.gov|3|
 |419th Fighter Wing (419fw)|00:00|419fw.afrc.af.mil|8|
 |107th AW (afpw_107aw)|00:18|107aw.ang.af.mil|8|
 |403rd Wing (403wg)|00:55|403wg.afrc.af.mil|8|
+|tricare.mil (usagov-replacement)|01:00|tricare.mil|3|
 |tricare_fewarren|01:00|fewarren.tricare.mil|8|
 |108th Wing (afpw_108arw)|01:00|108arw.ang.af.mil|8|
 |92nd Medical Group - Fairchild Air Force Base|01:00|fairchild.tricare.mil|8|
 |110th Wing (afpw_110aw)|01:42|110wg.ang.af.mil|8|
 |388th Fighter Wing (388fw)|01:51|388fw.acc.af.mil|8|
+|www.taxpayeradvocate.irs.gov (usagov-replacement)|02:00|taxpayeradvocate.irs.gov|3|
+|oversightdemocrats.house.gov (usagov-replacement)|02:00|oversightdemocrats.house.gov|3|
 |tricare_elmendorfrichardson|02:00|elmendorfrichardson.tricare.mil|8|
 |8th Medical Group - Kunsan Air Base|02:00|kunsan.tricare.mil|8|
 |111th Attack Wing FW (afpw_111fw)|02:23|111fw.ang.af.mil|8|
 |37th Training Wing (37trw)|02:46|37trw.af.mil|8|
+|sam.gov (usagov-replacement)|03:00|sam.gov|3|
 |tricare_beale|03:00|beale.tricare.mil|8|
 |87th Medical Group - Joint Base McGuire-Dix-Lakehurst|03:00|mcguiredixlakehurst.tricare.mil|8|
 |111th Attack Wing (afpw_111fw)|03:05|111attackwing.ang.af.mil|8|
 |353rd Special Operations Group (353sog)|03:42|353sog.af.mil|8|
 |114th Fighter Wing (afpw_114fw)|03:47|114fw.ang.af.mil|8|
+|fiscal.treasury.gov (usagov-replacement)|04:00|fiscal.treasury.gov|3|
+|www.uspis.gov (usagov-replacement)|04:00|uspis.gov|3|
 |tricare_barksdale|04:00|barksdale.tricare.mil|8|
 |75th Medical Group - Hill Air Force Base|04:00|hill.tricare.mil|8|
 |115th Fighter Wing (afpw_115fw)|04:29|115fw.ang.af.mil|8|
 |Fogarty International Center (FIC) (www.fic.nih.gov)|04:37|fic.nih.gov|8|
 |349th Air Mobility Wing (349amw)|04:37|349amw.afrc.af.mil|8|
+|www.nhtsa.gov (usagov-replacement)|05:00|nhtsa.gov|3|
 |tricare_andersen|05:00|andersen.tricare.mil|8|
 |72d Medical Group - Tinker Air Force Base|05:00|tinker.tricare.mil|8|
 |117th Air Refueling Wing (afpw_117arw)|05:11|117arw.ang.af.mil|8|
 |340th Flying Training Wing (340ftg)|05:32|340ftg.afrc.af.mil|8|
 |118th Wing (afpw_118aw)|05:53|118wg.ang.af.mil|8|
+|www.esd.whs.mil (usagov-replacement)|06:00|esd.whs.mil|3|
+|www.ukraineoversight.gov (usagov-replacement)|06:00|ukraineoversight.gov|3|
 |tricare_buckley|06:00|buckley.tricare.mil|8|
 |66th Medical Squadron - Hanscom Air Force Base|06:00|hanscom.tricare.mil|8|
 |33rd Fighter Wing (33fw)|06:28|33fw.af.mil|8|
 |119th Wing, North Dakota Air National Guard (afpw_119wg)|06:34|119wg.ang.af.mil|8|
+|www.bop.gov (usagov-replacement)|07:00|bop.gov|3|
 |tricare_altus|07:00|altus.tricare.mil|8|
 |120th Airlift Wing (afpw_120fw)|07:16|120thairliftwing.ang.af.mil|8|
 |315th Airlift Wing (315aw)|07:23|315aw.afrc.af.mil|8|
 |120th FW (afpw_120fw)|07:58|120fw.ang.af.mil|8|
+|safer.fmcsa.dot.gov (usagov-replacement)|08:00|safer.fmcsa.dot.gov|3|
+|www.trumanlibrary.gov (usagov-replacement)|08:00|trumanlibrary.gov|3|
 |tricare_offutt|08:00|offutt.tricare.mil|8|
 |60th Medical Group - Travis Air Force Base|08:00|travis.tricare.mil|8|
 |302nd Airlift Wing (302aw)|08:18|302aw.afrc.af.mil|8|
 |121st ARW, Ohio Air National Guard (afpw_121arw)|08:40|121arw.ang.af.mil|8|
+|nces.ed.gov (usagov-replacement)|09:00|nces.ed.gov|3|
 |tricare_osan|09:00|osan.tricare.mil|8|
 |5th Medical Group - Minot Air Force Base|09:00|minot.tricare.mil|8|
 |301st Fighter Wing (301fw)|09:14|301fw.afrc.af.mil|8|
 |122nd Fighter Wing, Indiana ANG (afpw_122fw)|09:22|122fw.ang.af.mil|8|
+|www.reginfo.gov (usagov-replacement)|10:00|reginfo.gov|3|
+|www.nlrb.gov (usagov-replacement)|10:00|nlrb.gov|3|
 |tricare_nellis|10:00|nellis.tricare.mil|8|
 |52nd Medical Group - Spangdahlem Air Base|10:00|spangdahlem.tricare.mil|8|
 |123rd Airlift Wing, Kentucky ANG (afpw_123aw)|10:03|123aw.ang.af.mil|8|
 |24th Special Operations Wing (24sow)|10:09|24sow.af.mil|8|
 |126th Air Refueling Wing, Illinois Air National Guard (afpw_126arw)|10:45|126arw.ang.af.mil|8|
+|waysandmeans.house.gov (usagov-replacement)|11:00|waysandmeans.house.gov|3|
 |tricare_tyndall|11:00|tyndall.tricare.mil|8|
 |49th Medical Group - Holloman Air Force Base|11:00|holloman.tricare.mil|8|
 |National Center for Advancing Translational Sciences (NCATS) (ncats.nih.gov)|11:05|ncats.nih.gov|8|
 |Air Forces Cyber (24af)|11:05|afcyber.af.mil|8|
 |127th Wing, Michigan Air National Guard (afpw_127wg)|11:27|127wg.ang.af.mil|8|
+|uk.usembassy.gov (usagov-replacement)|12:00|uk.usembassy.gov|3|
+|catalog.data.gov (usagov-replacement)|12:00|catalog.data.gov|3|
 |tricare_vance|12:00|vance.tricare.mil|8|
 |48th Medical Group - RAF Lakenheath|12:00|raflakenheath.tricare.mil|8|
 |20th Air Force (20af)|12:00|20af.af.mil|8|
 |128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)|12:09|128arw.ang.af.mil|8|
 |129th Rescue Wing, California ANG (afpw_129rqw)|12:51|129rqw.ang.af.mil|8|
 |1st Air Force (1af)|12:55|1af.acc.af.mil|8|
+|www.bea.gov (usagov-replacement)|13:00|bea.gov|3|
 |tricare_whiteman|13:00|whiteman.tricare.mil|8|
 |47th Medical Group - Laughlin Air Force Base|13:00|laughlin.tricare.mil|8|
 |130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)|13:33|130aw.ang.af.mil|8|
 |187th Fighter Wing, Alabama ANG (187fw)|13:51|187fw.ang.af.mil|8|
+|www.nist.gov (usagov-replacement)|14:00|nist.gov|3|
+|www.navsea.navy.mil (usagov-replacement)|14:00|navsea.navy.mil|3|
 |tricare_willfordhall|14:00|wilfordhall.tricare.mil|8|
 |45th Medical Group - Patrick Air Force Base|14:00|patrick.tricare.mil|8|
 |131st Bomb Wing, Missouri ANG (afpw_131bw)|14:14|131bw.ang.af.mil|8|
 |183rd Fighter Wing, Illinois ANG (183fw)|14:46|183wg.ang.af.mil|8|
 |132nd FW, Iowa ANG (afpw_132fw)|14:56|132fw.ang.af.mil|8|
+|www.helpwithmybank.gov (usagov-replacement)|15:00|helpwithmybank.gov|3|
 |tricare_kirtland|15:00|kirtland.tricare.mil|8|
 |42d Medical Group - Maxwell Air Force Base|15:00|maxwell.tricare.mil|8|
 |132nd DWing, Iowa ANG (afpw_132fw)|15:38|132dwing.ang.af.mil|8|
 |165th Airlift Wing (165aw)|15:42|165aw.ang.af.mil|8|
+|www.nimh.nih.gov (usagov-replacement)|16:00|nimh.nih.gov|3|
+|www.marines.mil (usagov-replacement)|16:00|marines.mil|3|
 |tricare_wrightpatterson|16:00|wrightpatterson.tricare.mil|8|
 |422d Medical Squadron - RAF Croughton|16:00|rafcroughton.tricare.mil|8|
 |133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)|16:20|133aw.ang.af.mil|8|
 |164th Airlift Wing, Tennessee ANG (164aw)|16:37|164aw.ang.af.mil|8|
+|home.army.mil (usagov-replacement)|17:00|home.army.mil|3|
 |tricare_keesler|17:00|keesler.tricare.mil|8|
 |366th Medical Treatment Facility|17:00|mountainhome.tricare.mil|8|
 |Air Force Audit Agency (afaa)|17:02|afaa.af.mil|8|
 |National Center for Complementary and Integrative Health (NCCIH) (www.nccih.nih.gov)|17:32|nccih.nih.gov|8|
 |Air Force Agency for Modeling and Simulation (afams)|17:44|afams.af.mil|8|
+|2009-2017.state.gov (usagov-replacement)|18:00|2009-2017.state.gov|3|
+|www.foia.gov (usagov-replacement)|18:00|foia.gov|3|
 |tricare_374mg|18:00|yokota.tricare.mil|8|
 |35th Medical Group - Misawa Air Base|18:00|misawa.tricare.mil|8|
 |Air Force Basic Military Training (afbmt)|18:25|basictraining.af.mil|8|
 |150th Fighter Wing (150fw)|18:28|150fw.ang.af.mil|8|
+|www.copyright.gov (usagov-replacement)|19:00|copyright.gov|3|
 |tricare_10mgafa|19:00|airforceacademy.tricare.mil|8|
 |355th Medical Group - Davis-Monthan Air Force Base|19:00|davismonthan.tricare.mil|8|
 |Air Force District of Washington (afdw)|19:07|afdw.af.mil|8|
 |12th Air Force (12af)|19:23|12af.acc.af.mil|8|
 |25th Air Force (afisra)|19:49|25af.af.mil|8|
+|department.va.gov (usagov-replacement)|20:00|department.va.gov|3|
+|share.america.gov (usagov-replacement)|20:00|share.america.gov|3|
 |tricare_incirlik|20:00|incirlik.tricare.mil|8|
 |354th Medical Group - Eielson Air Force Base|20:00|eielson.tricare.mil|8|
 |116th Air Control Wing (116acw)|20:18|116acw.ang.af.mil|8|
 |Air Force Materiel Command (afmc)|20:31|afmc.af.mil|8|
+|ustr.gov (usagov-replacement)|21:00|ustr.gov|3|
 |tricare_hurlburt|21:00|hurlburt.tricare.mil|8|
 |341st Medical Group - Malmstrom Air Force Base|21:00|malmstrom.tricare.mil|8|
 |Office of Special Investigations (afosi)|21:13|osi.af.mil|8|
 |Office of Special Investigations Andrews (afosi)|21:55|osi.andrews.af.mil|8|
+|encyclopedia.ushmm.org (usagov-replacement)|22:00|encyclopedia.ushmm.org|3|
+|wwwnc.cdc.gov (usagov-replacement)|22:00|wwwnc.cdc.gov|3|
 |28th Medical Group - Ellsworth Air Force Base|22:00|ellsworth.tricare.mil|8|
 |Copy of Air Force for Search.gov Testing (aflink_searchgov)|22:09|static.dma.mil/usaf,www.af.mil|8|
 |Air Force Operational Test and Evaluation Center (afotec)|22:36|afotec.af.mil|8|
+|www.nih.gov (usagov-replacement)|23:00|nih.gov|3|
 |23d Medical Group - Moody Air Force Base|23:00|moody.tricare.mil|8|
 |Air Force Outreach (afoutreach)|23:18|afoutreach.af.mil|8|

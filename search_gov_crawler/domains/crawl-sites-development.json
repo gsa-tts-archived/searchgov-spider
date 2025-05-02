@@ -128,7 +128,7 @@
       "handle_javascript": false,
       "name": "fiscal.treasury.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
+      "schedule": "00 04 * * SAT",
       "starting_urls": "https://fiscal.treasury.gov/"
    },
    {
@@ -139,7 +139,7 @@
       "handle_javascript": false,
       "name": "www.dla.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
+      "schedule": "06 06 * * WED",
       "starting_urls": "https://www.dla.mil/"
    },
    {
@@ -150,7 +150,7 @@
       "handle_javascript": false,
       "name": "mhvidp-prod.myhealth.va.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
+      "schedule": "32 16 * * WED",
       "starting_urls": "https://mhvidp-prod.myhealth.va.gov/"
    },
    {
@@ -161,7 +161,7 @@
       "handle_javascript": false,
       "name": "www.nhlbi.nih.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
+      "schedule": "50 10 * * WED",
       "starting_urls": "https://www.nhlbi.nih.gov/"
    },
    {
@@ -172,7 +172,7 @@
       "handle_javascript": false,
       "name": "www.ukraineoversight.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
+      "schedule": "00 06 * * SAT",
       "starting_urls": "https://www.ukraineoversight.gov/"
    },
    {
@@ -183,7 +183,7 @@
       "handle_javascript": false,
       "name": "digital.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
+      "schedule": "12 16 * * THU",
       "starting_urls": "https://digital.gov/"
    },
    {
@@ -194,7 +194,7 @@
       "handle_javascript": false,
       "name": "www.fsa.usda.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
+      "schedule": "22 17 * * THU",
       "starting_urls": "https://www.fsa.usda.gov/"
    },
    {
@@ -205,7 +205,7 @@
       "handle_javascript": false,
       "name": "www.mynavyhr.navy.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
+      "schedule": "32 17 * * THU",
       "starting_urls": "https://www.mynavyhr.navy.mil/"
    },
    {
