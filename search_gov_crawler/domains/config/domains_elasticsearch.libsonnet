@@ -7753,9 +7753,9 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'fly.faa',
-    config: DomainConfig(allowed_domains='fly.faa.gov',
-                         starting_urls='https://www.fly.faa.gov',
+    name: 'fly.faa / NAS Status',
+    config: DomainConfig(allowed_domains='nasstatus.faa.gov',
+                         starting_urls='https://nasstatus.faa.gov/',
                          schedule='15 05 * * MON',
                          output_target=output_target,
                          depth_limit=3),
@@ -7763,7 +7763,7 @@ local output_target = 'elasticsearch';
   {
     name: 'registry.faa',
     config: DomainConfig(allowed_domains='registry.faa.gov',
-                         starting_urls='https://registry.faa.gov',
+                         starting_urls='https://registry.faa.gov/aircraftinquiry',
                          schedule='00 06 * * MON',
                          output_target=output_target,
                          depth_limit=3),

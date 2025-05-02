@@ -158,7 +158,7 @@
 |bts|04:45|bts.gov|8|
 |tricare_nhch|05:00|nhchawaii.tricare.mil|8|
 |data.transportation|05:00|data.transportation.gov|3|
-|fly.faa|05:15|fly.faa.gov|3|
+|fly.faa / NAS Status|05:15|nasstatus.faa.gov|3|
 |National Air and Space Intelligence Center (afpw_nasic)|05:17|nasic.af.mil|8|
 |Seymour Johnson AFB (seymourjohnson)|05:32|seymourjohnson.af.mil|8|
 |Profession of Arms Center of Excellence (PACE) (afpw_pace)|05:59|airman.af.mil|8|

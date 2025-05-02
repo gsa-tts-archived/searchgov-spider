@@ -11079,14 +11079,14 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "fly.faa.gov",
+      "allowed_domains": "nasstatus.faa.gov",
       "deny_paths": null,
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "fly.faa",
+      "name": "fly.faa / NAS Status",
       "output_target": "elasticsearch",
       "schedule": "15 05 * * MON",
-      "starting_urls": "https://www.fly.faa.gov"
+      "starting_urls": "https://nasstatus.faa.gov/"
    },
    {
       "allow_query_string": false,
@@ -11097,7 +11097,7 @@
       "name": "registry.faa",
       "output_target": "elasticsearch",
       "schedule": "00 06 * * MON",
-      "starting_urls": "https://registry.faa.gov"
+      "starting_urls": "https://registry.faa.gov/aircraftinquiry"
    },
    {
       "allow_query_string": false,
