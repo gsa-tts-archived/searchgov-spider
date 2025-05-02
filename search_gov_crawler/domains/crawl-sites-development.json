@@ -95,7 +95,7 @@
       "handle_javascript": false,
       "name": "passportstatus.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 07 * * SUN",
       "starting_urls": "https://passportstatus.state.gov/"
    },
    {
@@ -106,7 +106,7 @@
       "handle_javascript": false,
       "name": "www.ecfr.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "01 05 * * TUE",
       "starting_urls": "https://www.ecfr.gov/"
    },
    {
@@ -117,7 +117,7 @@
       "handle_javascript": false,
       "name": "guides.loc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 03 * * TUE",
       "starting_urls": "https://guides.loc.gov/"
    },
    {

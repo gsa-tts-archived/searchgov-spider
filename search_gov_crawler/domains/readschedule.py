@@ -80,7 +80,7 @@ def create_header_and_toc(environment: str, transformed_schedule: dict) -> tuple
     days_of_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     for day in days_of_week:
         daily_entries = len(transformed_schedule[day])
-        toc += f" * [{day} ({daily_entries})](#{day.lower()})\n"
+        toc += f" * [{day} ({daily_entries})](#{day.lower()}-{daily_entries})\n"
 
     return header, toc
 

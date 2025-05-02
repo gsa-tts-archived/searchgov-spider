@@ -1,17 +1,18 @@
 # Development Schedule
- * [Sunday (3)](#sunday)
- * [Monday (8)](#monday)
- * [Tuesday (8)](#tuesday)
- * [Wednesday (6)](#wednesday)
- * [Thursday (7)](#thursday)
- * [Friday (8)](#friday)
- * [Saturday (4)](#saturday)
+ * [Sunday (4)](#sunday-4)
+ * [Monday (8)](#monday-8)
+ * [Tuesday (7)](#tuesday-7)
+ * [Wednesday (6)](#wednesday-6)
+ * [Thursday (7)](#thursday-7)
+ * [Friday (8)](#friday-8)
+ * [Saturday (4)](#saturday-4)
 
 
-## Sunday (3)
+## Sunday (4)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |MIT-AF AI Accelerator (af_aiaccelerator)|01:24|aiaccelerator.af.mil|8|
+|passportstatus.state.gov (usagov-replacement)|07:45|passportstatus.state.gov|3|
 |Military Auxiliary Radio System (usaf_mars)|09:14|mars.af.mil|8|
 |Air Force Historical Support Division (afpw-afhm)|18:49|afhistory.af.mil|8|
 
@@ -29,14 +30,13 @@
 |Air National Guard Band of the Southwest (afpw_angbandsouthwest)|12:15|bandofthesouthwest.ang.af.mil|8|
 
 
-## Tuesday (8)
+## Tuesday (7)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
+|guides.loc.gov (usagov-replacement)|03:30|guides.loc.gov|3|
+|www.ecfr.gov (usagov-replacement)|05:01|ecfr.gov|3|
 |Air Force Sustainment Center (afpw_sustainment)|05:41|afsc.af.mil|8|
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|3|
-|passportstatus.state.gov (usagov-replacement)|06:30|passportstatus.state.gov|3|
-|www.ecfr.gov (usagov-replacement)|06:30|ecfr.gov|3|
-|guides.loc.gov (usagov-replacement)|06:30|guides.loc.gov|3|
 |Lajes Field (lajes)|09:14|lajes.af.mil|8|
 |tricare_cherrypoint|13:00|cherrypoint.tricare.mil|8|
 |McConnell Air Force Base Public (afpw_mcconnell)|23:06|public.mcconnell.amc.af.mil|8|

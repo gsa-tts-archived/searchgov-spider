@@ -1294,7 +1294,7 @@
       "handle_javascript": false,
       "name": "IRS (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 20 * * TUE",
       "starting_urls": "https://www.irs.gov/"
    },
    {
@@ -1305,7 +1305,7 @@
       "handle_javascript": false,
       "name": "SSA (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 17 * * TUE",
       "starting_urls": "https://www.ssa.gov/"
    },
    {
@@ -1327,7 +1327,7 @@
       "handle_javascript": false,
       "name": "travel.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "19 02 * * TUE",
       "starting_urls": "https://travel.state.gov/"
    },
    {
@@ -1338,7 +1338,7 @@
       "handle_javascript": false,
       "name": "NIH PubMed Central (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 04 * * TUE",
       "starting_urls": "https://www.ncbi.nlm.nih.gov/pmc/"
    },
    {
@@ -1349,7 +1349,7 @@
       "handle_javascript": false,
       "name": "Whitehouse (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 13 * * TUE",
       "starting_urls": "https://www.whitehouse.gov/"
    },
    {
@@ -1360,7 +1360,7 @@
       "handle_javascript": false,
       "name": "USCIS (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 22 * * TUE",
       "starting_urls": "https://www.uscis.gov/"
    },
    {
@@ -1371,7 +1371,7 @@
       "handle_javascript": false,
       "name": "Justice Dept (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 21 * * TUE",
       "starting_urls": "https://www.justice.gov/"
    },
    {
@@ -1382,7 +1382,7 @@
       "handle_javascript": false,
       "name": "OPM (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "19 19 * * TUE",
       "starting_urls": "https://www.opm.gov/"
    },
    {
@@ -1393,7 +1393,7 @@
       "handle_javascript": false,
       "name": "FTC Consumer Advice (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 00 * * SUN",
       "starting_urls": "https://consumer.ftc.gov/"
    },
    {
@@ -1404,7 +1404,7 @@
       "handle_javascript": false,
       "name": "National Park Service (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 00 * * SUN",
       "starting_urls": "https://www.nps.gov/"
    },
    {
@@ -1415,7 +1415,7 @@
       "handle_javascript": false,
       "name": "State Dept Forms (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 00 * * SUN",
       "starting_urls": "https://eforms.state.gov/"
    },
    {
@@ -1426,7 +1426,7 @@
       "handle_javascript": false,
       "name": "Customs and Border Protection (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 02 * * SUN",
       "starting_urls": "https://www.cbp.gov/"
    },
    {
@@ -1437,7 +1437,7 @@
       "handle_javascript": false,
       "name": "Centers for Disease Control and Prevention (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 02 * * SUN",
       "starting_urls": "https://www.cdc.gov/"
    },
    {
@@ -1448,7 +1448,7 @@
       "handle_javascript": false,
       "name": "State Dept (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 02 * * SUN",
       "starting_urls": "https://www.state.gov/"
    },
    {
@@ -1459,7 +1459,7 @@
       "handle_javascript": false,
       "name": "Housing and Urban Development (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 02 * * SUN",
       "starting_urls": "https://www.hud.gov/"
    },
    {
@@ -1470,7 +1470,7 @@
       "handle_javascript": false,
       "name": "USA Jobs (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 06 * * SUN",
       "starting_urls": "https://www.usajobs.gov/"
    },
    {
@@ -1481,7 +1481,7 @@
       "handle_javascript": false,
       "name": "FDA (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 06 * * SUN",
       "starting_urls": "https://www.fda.gov/"
    },
    {
@@ -1492,7 +1492,7 @@
       "handle_javascript": false,
       "name": "Dept of Labor (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 06 * * SUN",
       "starting_urls": "https://www.dol.gov/"
    },
    {
@@ -1503,7 +1503,7 @@
       "handle_javascript": false,
       "name": "Dept of Treasury (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 06 * * SUN",
       "starting_urls": "https://home.treasury.gov/"
    },
    {
@@ -1514,7 +1514,7 @@
       "handle_javascript": false,
       "name": "SSA Blog (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 07 * * SUN",
       "starting_urls": "https://blog.ssa.gov/"
    },
    {
@@ -1525,7 +1525,7 @@
       "handle_javascript": false,
       "name": "CFPB (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 07 * * SUN",
       "starting_urls": "https://www.consumerfinance.gov/"
    },
    {
@@ -1536,7 +1536,7 @@
       "handle_javascript": false,
       "name": "CIA (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 07 * * SUN",
       "starting_urls": "https://www.cia.gov/"
    },
    {
@@ -1547,7 +1547,7 @@
       "handle_javascript": false,
       "name": "passportstatus.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 07 * * SUN",
       "starting_urls": "https://passportstatus.state.gov/"
    },
    {
@@ -1558,7 +1558,7 @@
       "handle_javascript": false,
       "name": "www.census.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 11 * * SUN",
       "starting_urls": "https://www.census.gov/"
    },
    {
@@ -1569,7 +1569,7 @@
       "handle_javascript": false,
       "name": "doge.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 11 * * SUN",
       "starting_urls": "https://www.doge.gov/"
    },
    {
@@ -1580,7 +1580,7 @@
       "handle_javascript": false,
       "name": "www.federalregister.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 11 * * SUN",
       "starting_urls": "https://www.federalregister.gov/"
    },
    {
@@ -1591,7 +1591,7 @@
       "handle_javascript": false,
       "name": "www.loc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 11 * * SUN",
       "starting_urls": "https://www.loc.gov/"
    },
    {
@@ -1602,7 +1602,7 @@
       "handle_javascript": false,
       "name": "www.defense.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 12 * * SUN",
       "starting_urls": "https://www.defense.gov/"
    },
    {
@@ -1613,7 +1613,7 @@
       "handle_javascript": false,
       "name": "www.epa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 12 * * SUN",
       "starting_urls": "https://www.epa.gov/"
    },
    {
@@ -1624,7 +1624,7 @@
       "handle_javascript": false,
       "name": "www.ed.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 12 * * SUN",
       "starting_urls": "https://www.ed.gov/"
    },
    {
@@ -1635,7 +1635,7 @@
       "handle_javascript": false,
       "name": "www.ncbi.nlm.nih.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 12 * * SUN",
       "starting_urls": "https://www.ncbi.nlm.nih.gov/"
    },
    {
@@ -1646,7 +1646,7 @@
       "handle_javascript": false,
       "name": "www.senate.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 16 * * SUN",
       "starting_urls": "https://www.senate.gov/"
    },
    {
@@ -1657,7 +1657,7 @@
       "handle_javascript": false,
       "name": "www.gsa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 16 * * SUN",
       "starting_urls": "https://www.gsa.gov/"
    },
    {
@@ -1668,7 +1668,7 @@
       "handle_javascript": false,
       "name": "bidenwhitehouse.archives.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 16 * * SUN",
       "starting_urls": "https://bidenwhitehouse.archives.gov/"
    },
    {
@@ -1679,7 +1679,7 @@
       "handle_javascript": false,
       "name": "secure.login.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 16 * * SUN",
       "starting_urls": "https://secure.login.gov/"
    },
    {
@@ -1690,7 +1690,7 @@
       "handle_javascript": false,
       "name": "www.dhs.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "19 03 * * TUE",
       "starting_urls": "https://www.dhs.gov/"
    },
    {
@@ -1701,7 +1701,7 @@
       "handle_javascript": false,
       "name": "www.fbi.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "28 06 * * TUE",
       "starting_urls": "https://www.fbi.gov/"
    },
    {
@@ -1712,7 +1712,7 @@
       "handle_javascript": false,
       "name": "www.medicare.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "37 09 * * TUE",
       "starting_urls": "https://www.medicare.gov/"
    },
    {
@@ -1723,7 +1723,7 @@
       "handle_javascript": false,
       "name": "www.ftc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "48 12 * * TUE",
       "starting_urls": "https://www.ftc.gov/"
    },
    {
@@ -1734,7 +1734,7 @@
       "handle_javascript": false,
       "name": "www.house.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "57 15 * * TUE",
       "starting_urls": "https://www.house.gov/"
    },
    {
@@ -1745,7 +1745,7 @@
       "handle_javascript": false,
       "name": "www.tsa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "00 18 * * TUE",
       "starting_urls": "https://www.tsa.gov/"
    },
    {
@@ -1756,7 +1756,7 @@
       "handle_javascript": false,
       "name": "www.treasurydirect.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "44 21 * * TUE",
       "starting_urls": "https://www.treasurydirect.gov/"
    },
    {
@@ -1767,7 +1767,7 @@
       "handle_javascript": false,
       "name": "www.cms.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "54 00 * * TUE",
       "starting_urls": "https://www.cms.gov/"
    },
    {
@@ -1778,7 +1778,7 @@
       "handle_javascript": false,
       "name": "secure.ssa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "43 01 * * TUE",
       "starting_urls": "https://secure.ssa.gov/"
    },
    {
@@ -1789,7 +1789,7 @@
       "handle_javascript": false,
       "name": "www.energy.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "32 02 * * TUE",
       "starting_urls": "https://www.energy.gov/"
    },
    {
@@ -1800,7 +1800,7 @@
       "handle_javascript": false,
       "name": "www.gao.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "21 03 * * TUE",
       "starting_urls": "https://www.gao.gov/"
    },
    {
@@ -1811,7 +1811,7 @@
       "handle_javascript": false,
       "name": "www.ice.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "10 04 * * TUE",
       "starting_urls": "https://www.ice.gov/"
    },
    {
@@ -1822,7 +1822,7 @@
       "handle_javascript": false,
       "name": "www.ecfr.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "01 05 * * TUE",
       "starting_urls": "https://www.ecfr.gov/"
    },
    {
@@ -1833,7 +1833,7 @@
       "handle_javascript": false,
       "name": "www.fema.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "12 06 * * TUE",
       "starting_urls": "https://www.fema.gov/"
    },
    {
@@ -1844,7 +1844,7 @@
       "handle_javascript": false,
       "name": "www.sba.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "23 07 * * TUE",
       "starting_urls": "https://www.sba.gov/"
    },
    {
@@ -1855,7 +1855,7 @@
       "handle_javascript": false,
       "name": "www.usda.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "34 08 * * TUE",
       "starting_urls": "https://www.usda.gov/"
    },
    {
@@ -1866,7 +1866,7 @@
       "handle_javascript": false,
       "name": "www.fns.usda.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "45 09 * * TUE",
       "starting_urls": "https://www.fns.usda.gov/"
    },
    {
@@ -1877,7 +1877,7 @@
       "handle_javascript": false,
       "name": "www.ojp.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "56 10 * * TUE",
       "starting_urls": "https://www.ojp.gov/"
    },
    {
@@ -1888,7 +1888,7 @@
       "handle_javascript": false,
       "name": "www.usgs.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "11 11 * * TUE",
       "starting_urls": "https://www.usgs.gov/"
    },
    {
@@ -1899,7 +1899,7 @@
       "handle_javascript": false,
       "name": "uscode.house.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "12 12 * * TUE",
       "starting_urls": "https://uscode.house.gov/"
    },
    {
@@ -1910,7 +1910,7 @@
       "handle_javascript": false,
       "name": "trumpwhitehouse.archives.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "13 13 * * TUE",
       "starting_urls": "https://trumpwhitehouse.archives.gov/"
    },
    {
@@ -1921,7 +1921,7 @@
       "handle_javascript": false,
       "name": "www.healthcare.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "14 14 * * TUE",
       "starting_urls": "https://www.healthcare.gov/"
    },
    {
@@ -1932,7 +1932,7 @@
       "handle_javascript": false,
       "name": "www.fincen.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "15 15 * * TUE",
       "starting_urls": "https://www.fincen.gov/"
    },
    {
@@ -1943,7 +1943,7 @@
       "handle_javascript": false,
       "name": "www.trade.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "16 16 * * TUE",
       "starting_urls": "https://www.trade.gov/"
    },
    {
@@ -1954,7 +1954,7 @@
       "handle_javascript": false,
       "name": "obamawhitehouse.archives.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "17 17 * * TUE",
       "starting_urls": "https://obamawhitehouse.archives.gov/"
    },
    {
@@ -1965,7 +1965,7 @@
       "handle_javascript": false,
       "name": "www.fcc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "18 18 * * TUE",
       "starting_urls": "https://www.fcc.gov/"
    },
    {
@@ -1976,7 +1976,7 @@
       "handle_javascript": false,
       "name": "www.fmcsa.dot.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "19 19 * * TUE",
       "starting_urls": "https://www.fmcsa.dot.gov/"
    },
    {
@@ -1987,7 +1987,7 @@
       "handle_javascript": false,
       "name": "www.uscourts.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "20 20 * * TUE",
       "starting_urls": "https://www.uscourts.gov/"
    },
    {
@@ -1998,7 +1998,7 @@
       "handle_javascript": false,
       "name": "www.supremecourt.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "21 21 * * TUE",
       "starting_urls": "https://www.supremecourt.gov/"
    },
    {
@@ -2009,7 +2009,7 @@
       "handle_javascript": false,
       "name": "budget.house.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "22 22 * * TUE",
       "starting_urls": "https://budget.house.gov/"
    },
    {
@@ -2020,7 +2020,7 @@
       "handle_javascript": false,
       "name": "www.weather.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "23 23 * * TUE",
       "starting_urls": "https://www.weather.gov/"
    },
    {
@@ -2031,7 +2031,7 @@
       "handle_javascript": false,
       "name": "www.federalreserve.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 06 * * MON",
       "starting_urls": "https://www.federalreserve.gov/"
    },
    {
@@ -2042,7 +2042,7 @@
       "handle_javascript": false,
       "name": "www.eeoc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 09 * * MON",
       "starting_urls": "https://www.eeoc.gov/"
    },
    {
@@ -2053,7 +2053,7 @@
       "handle_javascript": false,
       "name": "www.army.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "22 06 * * TUE",
       "starting_urls": "https://www.army.mil/"
    },
    {
@@ -2064,7 +2064,7 @@
       "handle_javascript": false,
       "name": "oversight.house.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "44 06 * * TUE",
       "starting_urls": "https://oversight.house.gov/"
    },
    {
@@ -2075,7 +2075,7 @@
       "handle_javascript": false,
       "name": "login.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 01 * * TUE",
       "starting_urls": "https://www.login.gov/"
    },
    {
@@ -2086,7 +2086,7 @@
       "handle_javascript": false,
       "name": "www.nasa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 02 * * TUE",
       "starting_urls": "https://www.nasa.gov/"
    },
    {
@@ -2097,7 +2097,7 @@
       "handle_javascript": false,
       "name": "guides.loc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 03 * * TUE",
       "starting_urls": "https://guides.loc.gov/"
    },
    {
@@ -2108,7 +2108,7 @@
       "handle_javascript": false,
       "name": "2021-2025.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 04 * * TUE",
       "starting_urls": "https://2021-2025.state.gov/"
    },
    {
@@ -2119,7 +2119,7 @@
       "handle_javascript": false,
       "name": "www.atf.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 05 * * TUE",
       "starting_urls": "https://www.atf.gov/"
    },
    {
@@ -2141,7 +2141,7 @@
       "handle_javascript": false,
       "name": "www.fdic.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 07 * * TUE",
       "starting_urls": "https://www.fdic.gov/"
    },
    {
@@ -2152,7 +2152,7 @@
       "handle_javascript": false,
       "name": "www.myhealth.va.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 08 * * TUE",
       "starting_urls": "https://www.myhealth.va.gov/"
    },
    {
@@ -2163,7 +2163,7 @@
       "handle_javascript": false,
       "name": "www.doi.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 09 * * TUE",
       "starting_urls": "https://www.doi.gov/"
    },
    {
@@ -2174,7 +2174,7 @@
       "handle_javascript": false,
       "name": "www.uspto.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 10 * * TUE",
       "starting_urls": "https://www.uspto.gov/"
    },
    {
@@ -2185,7 +2185,7 @@
       "handle_javascript": false,
       "name": "apps.irs.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 11 * * TUE",
       "starting_urls": "https://apps.irs.gov/"
    },
    {
@@ -2196,7 +2196,7 @@
       "handle_javascript": false,
       "name": "odphp.health.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 12 * * TUE",
       "starting_urls": "https://odphp.health.gov/"
    },
    {
@@ -2207,7 +2207,7 @@
       "handle_javascript": false,
       "name": "www.annualcreditreport.com (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 13 * * TUE",
       "starting_urls": "https://www.annualcreditreport.com/"
    },
    {
@@ -2218,7 +2218,7 @@
       "handle_javascript": false,
       "name": "www.dfas.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 14 * * TUE",
       "starting_urls": "https://www.dfas.mil/"
    },
    {
@@ -2229,7 +2229,7 @@
       "handle_javascript": false,
       "name": "www.medicaid.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 15 * * TUE",
       "starting_urls": "https://www.medicaid.gov/"
    },
    {
@@ -2240,7 +2240,7 @@
       "handle_javascript": false,
       "name": "medlineplus.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 16 * * TUE",
       "starting_urls": "https://medlineplus.gov/"
    },
    {
@@ -2251,7 +2251,7 @@
       "handle_javascript": false,
       "name": "eric.ed.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 17 * * TUE",
       "starting_urls": "https://eric.ed.gov/"
    },
    {
@@ -2262,7 +2262,7 @@
       "handle_javascript": false,
       "name": "www.samhsa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 18 * * TUE",
       "starting_urls": "https://www.samhsa.gov/"
    },
    {
@@ -2273,7 +2273,7 @@
       "handle_javascript": false,
       "name": "www.commerce.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 19 * * TUE",
       "starting_urls": "https://www.commerce.gov/"
    },
    {
@@ -2284,7 +2284,7 @@
       "handle_javascript": false,
       "name": "www.fws.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 20 * * TUE",
       "starting_urls": "https://www.fws.gov/"
    },
    {
@@ -2295,7 +2295,7 @@
       "handle_javascript": false,
       "name": "news.va.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 21 * * TUE",
       "starting_urls": "https://news.va.gov/"
    },
    {
@@ -2306,7 +2306,7 @@
       "handle_javascript": false,
       "name": "history.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
+      "schedule": "30 22 * * TUE",
       "starting_urls": "https://history.state.gov/"
    },
    {
