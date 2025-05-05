@@ -1,404 +1,336 @@
+import os
+import csv
 import pytest
-import requests # Import requests to mock exceptions like requests.exceptions.Timeout
-
-# Import the class to be tested (assuming the script is saved as sitemap_finder.py)
-# If your tests are in a 'tests' directory, you might need to adjust the import path
-# depending on your project structure (e.g., 'from ..src.sitemap_finder import SitemapFinder'
-# or ensure your project root is in PYTHONPATH)
-from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
-
-# --- Constants for Testing ---
-TEST_BASE_URL_NO_SLASH = "example.com"
-TEST_BASE_URL_WITH_SLASH = "https://example.com/"
-TEST_BASE_URL_HTTP = "http://example.com/"
-
-
-# --- Pytest Fixture for SitemapFinder Instance ---
-
-@pytest.fixture
-def finder():
-    """Provides a SitemapFinder instance for tests."""
-    return SitemapFinder()
-
-# --- Test Helper Methods ---
-
-def test_join_base_relative(finder):
-    """Test joining a relative path."""
-    assert finder._join_base(TEST_BASE_URL_WITH_SLASH, "relative/path.xml") == "https://example.com/relative/path.xml"
-
-def test_join_base_absolute(finder):
-    """Test joining an absolute path (should return it unchanged)."""
-    assert finder._join_base(TEST_BASE_URL_WITH_SLASH, "https://othersite.com/sitemap.xml") == "https://othersite.com/sitemap.xml"
-    assert finder._join_base(TEST_BASE_URL_WITH_SLASH, "http://othersite.com/sitemap.xml") == "http://othersite.com/sitemap.xml"
-
-def test_find_base_url_normalization(finder, mocker):
-    """Test that the find method normalizes the base URL correctly."""
-    mock_head = mocker.patch('sitemap_finder.requests.head')
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.headers = {"Content-Type": "application/xml"}
-    mock_head.return_value = mock_response
-
-    # Test without scheme and without slash
-    finder.find(TEST_BASE_URL_NO_SLASH)
-    mock_head.assert_called_with(
-        "https://example.com/sitemap.xml", # Note: normalized URL
-        timeout=finder.timeout_seconds,
-        headers=finder.headers,
-        allow_redirects=True
-    )
-
-    # Reset mock and test with http scheme and trailing slash
-    mock_head.reset_mock()
-    finder.find(TEST_BASE_URL_HTTP)
-    mock_head.assert_called_with(
-        "http://example.com/sitemap.xml", # Note: normalized URL
-        timeout=finder.timeout_seconds,
-        headers=finder.headers,
-        allow_redirects=True
-    )
-
-
-# --- Test Finding Methods ---
-
-def test_check_common_locations_found(finder, mocker):
-    """Test finding a sitemap in a common location."""
-    mock_head = mocker.patch('sitemap_finder.requests.head')
-
-    mock_response_200 = mocker.MagicMock()
-    mock_response_200.status_code = 200
-    # The 'or True' in the original code means content-type doesn't strictly matter
-    mock_response_200.headers = {"Content-Type": "text/html"}
-
-    # Simulate finding the sitemap at the second common location
-    mock_head.side_effect = [
-        requests.exceptions.Timeout("Timeout for first"), # Simulate error on first
-        mock_response_200, # Simulate success on second
-        # No need for more mocks as it should return after success
-    ]
-
-    expected_url = f"{TEST_BASE_URL_WITH_SLASH}{finder.common_sitemap_names[1]}"
-    result = finder._check_common_locations(TEST_BASE_URL_WITH_SLASH)
-
-    assert result == expected_url
-    # Check that HEAD was called for the first two common locations
-    assert mock_head.call_count == 2
-    mock_head.assert_has_calls([
-        mocker.call(f"{TEST_BASE_URL_WITH_SLASH}{finder.common_sitemap_names[0]}", timeout=finder.timeout_seconds, headers=finder.headers, allow_redirects=True),
-        mocker.call(expected_url, timeout=finder.timeout_seconds, headers=finder.headers, allow_redirects=True),
-    ])
-
-def test_check_common_locations_not_found(finder, mocker):
-    """Test when no common sitemap locations are found."""
-    mock_head = mocker.patch('sitemap_finder.requests.head')
-    mock_response_404 = mocker.MagicMock()
-    mock_response_404.status_code = 404
-    mock_head.side_effect = [mock_response_404] * len(finder.common_sitemap_names)
-
-    result = finder._check_common_locations(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-    assert mock_head.call_count == len(finder.common_sitemap_names)
-
-def test_check_robots_txt_found(finder, mocker):
-    """Test finding a sitemap URL in robots.txt."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    robots_content = """
-    User-agent: *
-    Allow: /
-    Sitemap: https://example.com/main_sitemap.xml
-    """
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = robots_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_robots_txt(TEST_BASE_URL_WITH_SLASH)
-    assert result == "https://example.com/main_sitemap.xml"
-    mock_get.assert_called_once_with(
-        f"{TEST_BASE_URL_WITH_SLASH}robots.txt",
-        timeout=finder.timeout_seconds,
-        headers=finder.headers
-    )
-
-def test_check_robots_txt_found_case_insensitive(finder, mocker):
-    """Test finding a sitemap URL in robots.txt with different casing."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    robots_content = "User-agent: *\nsitemap: http://example.com/another_sitemap.xml"
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = robots_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_robots_txt(TEST_BASE_URL_WITH_SLASH)
-    assert result == "http://example.com/another_sitemap.xml"
-
-
-def test_check_robots_txt_not_found(finder, mocker):
-    """Test when robots.txt exists but doesn't contain a Sitemap directive."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    robots_content = "User-agent: *\nAllow: /"
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = robots_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_robots_txt(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-
-def test_check_robots_txt_fetch_error(finder, mocker):
-    """Test when fetching robots.txt results in an error."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_get.side_effect = requests.exceptions.ConnectionError("Failed to connect")
-
-    result = finder._check_robots_txt(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-
-def test_check_robots_txt_fetch_404(finder, mocker):
-    """Test when robots.txt returns a 404 status."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 404
-    mock_get.return_value = mock_response
-
-    result = finder._check_robots_txt(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-
-def test_check_html_source_link_tag(finder, mocker):
-    """Test finding sitemap via <link rel='sitemap'> tag."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    html_content = """
-    <html><head>
-    <link rel="sitemap" type="application/xml" href="/sitemap_from_link.xml" />
-    </head><body></body></html>
-    """
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = html_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_html_source(TEST_BASE_URL_WITH_SLASH)
-    assert result == "https://example.com/sitemap_from_link.xml"
-    mock_get.assert_called_once_with(
-        TEST_BASE_URL_WITH_SLASH,
-        timeout=finder.timeout_seconds,
-        headers=finder.headers
-    )
-
-def test_check_html_source_alternate_link_tag(finder, mocker):
-    """Test finding sitemap via <link rel='alternate' type='application/xml'> tag."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    html_content = """
-    <html><head>
-    <link rel="alternate" type="application/xml" title="Sitemap" href="https://example.com/sitemap_alternate.xml" />
-    </head><body></body></html>
-    """
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = html_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_html_source(TEST_BASE_URL_WITH_SLASH)
-    assert result == "https://example.com/sitemap_alternate.xml"
-
-def test_check_html_source_href_xml(finder, mocker):
-    """Test finding sitemap via href containing 'sitemap' and '.xml'."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    html_content = """
-    <html><body>
-    <a href="/path/my-sitemap-file.xml">Check Sitemap</a>
-    </body></html>
-    """
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = html_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_html_source(TEST_BASE_URL_WITH_SLASH)
-    assert result == "https://example.com/path/my-sitemap-file.xml"
-
-def test_check_html_source_not_found(finder, mocker):
-    """Test when HTML doesn't contain any sitemap references."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    html_content = "<html><body><h1>Hello</h1></body></html>"
-    mock_response = mocker.MagicMock()
-    mock_response.status_code = 200
-    mock_response.text = html_content
-    mock_get.return_value = mock_response
-
-    result = finder._check_html_source(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-
-def test_check_html_source_fetch_error(finder, mocker):
-    """Test error fetching HTML source."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_get.side_effect = requests.exceptions.Timeout("Timeout")
-    result = finder._check_html_source(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-
-def test_check_xml_files_in_root_found(finder, mocker):
-    """Test finding sitemap via XML file link in root directory listing."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_head = mocker.patch('sitemap_finder.requests.head')
-    html_content = """
-    <html><body>Directory Listing:
-    <a href="image.jpg">Image</a>
-    <a href="root_sitemap.xml">Root Sitemap XML</a>
-    <a href="another.xml">Another XML</a>
-    </body></html>
-    """
-    # Mock GET for the directory listing
-    mock_get_response = mocker.MagicMock()
-    mock_get_response.status_code = 200
-    mock_get_response.text = html_content
-    mock_get.return_value = mock_get_response
-
-    # Mock HEAD for verifying the found XML file
-    mock_head_response = mocker.MagicMock()
-    mock_head_response.status_code = 200
-    mock_head.return_value = mock_head_response
-
-    result = finder._check_xml_files_in_root(TEST_BASE_URL_WITH_SLASH)
-    expected_url = f"{TEST_BASE_URL_WITH_SLASH}root_sitemap.xml"
-
-    assert result == expected_url
-    mock_get.assert_called_once_with(
-         TEST_BASE_URL_WITH_SLASH,
-         timeout=finder.timeout_seconds,
-         headers=finder.headers
-    )
-    # Ensure HEAD was called to verify the *correct* sitemap URL
-    mock_head.assert_called_once_with(
-        expected_url,
-        timeout=finder.timeout_seconds,
-        headers=finder.headers
-    )
-
-def test_check_xml_files_in_root_found_but_head_fails(finder, mocker):
-    """Test finding XML in root, but verification via HEAD fails."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_head = mocker.patch('sitemap_finder.requests.head')
-    html_content = '<a href="sitemap_exists_but_404.xml">Sitemap</a>'
-    # Mock GET
-    mock_get_response = mocker.MagicMock()
-    mock_get_response.status_code = 200
-    mock_get_response.text = html_content
-    mock_get.return_value = mock_get_response
-
-    # Mock HEAD to return 404
-    mock_head_response = mocker.MagicMock()
-    mock_head_response.status_code = 404
-    mock_head.return_value = mock_head_response
-
-    result = finder._check_xml_files_in_root(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-    mock_head.assert_called_once() # Ensure HEAD was attempted
-
-def test_check_xml_files_in_root_no_sitemap_xml(finder, mocker):
-    """Test root listing exists but no XML file contains 'sitemap'."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_head = mocker.patch('sitemap_finder.requests.head')
-    html_content = '<a href="data.xml">Data</a> <a href="config.xml">Config</a>'
-    mock_get_response = mocker.MagicMock()
-    mock_get_response.status_code = 200
-    mock_get_response.text = html_content
-    mock_get.return_value = mock_get_response
-
-    result = finder._check_xml_files_in_root(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-    mock_head.assert_not_called() # HEAD shouldn't be called
-
-def test_check_xml_files_in_root_get_fails(finder, mocker):
-    """Test root listing check when GET fails."""
-    mock_get = mocker.patch('sitemap_finder.requests.get')
-    mock_get.side_effect = requests.exceptions.RequestException("Error")
-    result = finder._check_xml_files_in_root(TEST_BASE_URL_WITH_SLASH)
-    assert result is None
-
-# --- Test Main `find` Method Orchestration ---
-
-def test_find_prioritization_common_first(finder, mocker):
-    """Test find() returns URL from common locations first."""
-    common_url = "https://example.com/sitemap.xml"
-    robots_url = "https://example.com/robots_sitemap.xml"
-
-    # Mock the internal check methods
-    mock_common = mocker.patch.object(finder, '_check_common_locations', return_value=common_url)
-    mock_robots = mocker.patch.object(finder, '_check_robots_txt', return_value=robots_url)
-    mock_html = mocker.patch.object(finder, '_check_html_source', return_value=None)
-    mock_xml = mocker.patch.object(finder, '_check_xml_files_in_root', return_value=None)
-
-    result = finder.find(TEST_BASE_URL_NO_SLASH)
-
-    assert result == common_url
-    mock_common.assert_called_once()
-    mock_robots.assert_not_called()
-    mock_html.assert_not_called()
-    mock_xml.assert_not_called()
-
-def test_find_prioritization_robots_second(finder, mocker):
-    """Test find() returns URL from robots.txt if common fails."""
-    robots_url = "https://example.com/robots_sitemap.xml"
-    html_url = "https://example.com/html_sitemap.xml"
-
-    mock_common = mocker.patch.object(finder, '_check_common_locations', return_value=None)
-    mock_robots = mocker.patch.object(finder, '_check_robots_txt', return_value=robots_url)
-    mock_html = mocker.patch.object(finder, '_check_html_source', return_value=html_url)
-    mock_xml = mocker.patch.object(finder, '_check_xml_files_in_root', return_value=None)
-
-    result = finder.find(TEST_BASE_URL_WITH_SLASH)
-
-    assert result == robots_url
-    mock_common.assert_called_once()
-    mock_robots.assert_called_once()
-    mock_html.assert_not_called()
-    mock_xml.assert_not_called()
-
-def test_find_prioritization_html_third(finder, mocker):
-    """Test find() returns URL from HTML if common and robots fail."""
-    html_url = "https://example.com/html_sitemap.xml"
-    xml_url = "https://example.com/xml_sitemap.xml"
-
-    mock_common = mocker.patch.object(finder, '_check_common_locations', return_value=None)
-    mock_robots = mocker.patch.object(finder, '_check_robots_txt', return_value=None)
-    mock_html = mocker.patch.object(finder, '_check_html_source', return_value=html_url)
-    mock_xml = mocker.patch.object(finder, '_check_xml_files_in_root', return_value=xml_url)
-
-    result = finder.find(TEST_BASE_URL_WITH_SLASH)
-
-    assert result == html_url
-    mock_common.assert_called_once()
-    mock_robots.assert_called_once()
-    mock_html.assert_called_once()
-    mock_xml.assert_not_called()
-
-def test_find_prioritization_xml_last(finder, mocker):
-    """Test find() returns URL from root XML check if others fail."""
-    xml_url = "https://example.com/xml_sitemap.xml"
-
-    mock_common = mocker.patch.object(finder, '_check_common_locations', return_value=None)
-    mock_robots = mocker.patch.object(finder, '_check_robots_txt', return_value=None)
-    mock_html = mocker.patch.object(finder, '_check_html_source', return_value=None)
-    mock_xml = mocker.patch.object(finder, '_check_xml_files_in_root', return_value=xml_url)
-
-    result = finder.find(TEST_BASE_URL_WITH_SLASH)
-
-    assert result == xml_url
-    mock_common.assert_called_once()
-    mock_robots.assert_called_once()
-    mock_html.assert_called_once()
-    mock_xml.assert_called_once()
-
-def test_find_not_found_any_method(finder, mocker):
-    """Test find() returns None when no method finds a sitemap."""
-    mock_common = mocker.patch.object(finder, '_check_common_locations', return_value=None)
-    mock_robots = mocker.patch.object(finder, '_check_robots_txt', return_value=None)
-    mock_html = mocker.patch.object(finder, '_check_html_source', return_value=None)
-    mock_xml = mocker.patch.object(finder, '_check_xml_files_in_root', return_value=None)
-
-    result = finder.find(TEST_BASE_URL_WITH_SLASH)
-
-    assert result is None
-    mock_common.assert_called_once()
-    mock_robots.assert_called_once()
-    mock_html.assert_called_once()
-    mock_xml.assert_called_once()
+import requests
+from unittest.mock import patch, mock_open, MagicMock
+
+from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import (
+    SitemapFinder,
+    write_dict_to_csv
+)
+
+
+class TestWriteDictToCsv:
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("os.path.exists")
+    def test_write_dict_to_csv_overwrite(self, mock_exists, mock_file):
+        """Test overwriting a CSV file with the dictionary data"""
+        mock_exists.return_value = True
+        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        
+        write_dict_to_csv(data, "test_file.csv", overwrite=True)
+        
+        mock_file.assert_called_once_with("test_file.csv", mode="w", newline="", encoding="utf-8")
+        handle = mock_file()
+        calls = handle.write.call_args_list
+        assert "starting_urls,sitemap_url\r\n" in calls[0][0][0]  # Header
+        assert "https://example.com,https://example.com/sitemap.xml\r\n" in calls[1][0][0]  # Data
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("os.path.exists")
+    def test_write_dict_to_csv_append_existing(self, mock_exists, mock_file):
+        """Test appending data to an existing CSV file without header"""
+        mock_exists.return_value = True
+        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        
+        write_dict_to_csv(data, "test_file.csv", overwrite=False)
+        
+        mock_file.assert_called_once_with("test_file.csv", mode="a", newline="", encoding="utf-8")
+        handle = mock_file()
+        calls = handle.write.call_args_list
+        # No header should be written when appending to existing file
+        assert len(calls) == 1
+        assert "https://example.com,https://example.com/sitemap.xml\r\n" in calls[0][0][0]
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("os.path.exists")
+    def test_write_dict_to_csv_append_new(self, mock_exists, mock_file):
+        """Test appending data to a new CSV file with header"""
+        mock_exists.return_value = False
+        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        
+        write_dict_to_csv(data, "test_file.csv", overwrite=False)
+        
+        mock_file.assert_called_once_with("test_file.csv", mode="a", newline="", encoding="utf-8")
+        handle = mock_file()
+        calls = handle.write.call_args_list
+        # Header should be written when appending to non-existing file
+        assert "starting_urls,sitemap_url\r\n" in calls[0][0][0]
+        assert "https://example.com,https://example.com/sitemap.xml\r\n" in calls[1][0][0]
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("os.path.exists")
+    def test_write_dict_to_csv_adds_extension(self, mock_exists, mock_file):
+        """Test that .csv extension is added if not provided"""
+        mock_exists.return_value = True
+        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        
+        write_dict_to_csv(data, "test_file", overwrite=True)
+        
+        mock_file.assert_called_once_with("test_file.csv", mode="w", newline="", encoding="utf-8")
+
+
+class TestSitemapFinder:
+    def setup_method(self):
+        self.finder = SitemapFinder()
+        self.base_url = "https://example.com"
+    
+    def test_init(self):
+        """Test initialization of SitemapFinder"""
+        assert self.finder.timeout_seconds == 5
+        assert len(self.finder.common_sitemap_names) > 0
+        assert "sitemap.xml" in self.finder.common_sitemap_names
+    
+    def test_join_base_with_relative_path(self):
+        """Test joining base URL with relative path"""
+        result = self.finder._join_base("https://example.com/", "sitemap.xml")
+        assert result == "https://example.com/sitemap.xml"
+    
+    def test_join_base_with_absolute_url(self):
+        """Test that absolute URLs are not modified when joining"""
+        absolute_url = "https://another-domain.com/sitemap.xml"
+        result = self.finder._join_base("https://example.com/", absolute_url)
+        assert result == absolute_url
+    
+    def test_fix_http(self):
+        """Test that http URLs are converted to https"""
+        http_url = "http://example.com/sitemap.xml"
+        result = self.finder._fix_http(http_url)
+        assert result == "https://example.com/sitemap.xml"
+
+    @patch.object(SitemapFinder, "confirm_sitemap_url")
+    def test_check_common_locations_found(self, mock_confirm):
+        """Test finding sitemap in common locations"""
+        mock_confirm.return_value = True
+        result = self.finder._check_common_locations(self.base_url)
+        assert result == f"{self.base_url}/sitemap.xml"  # First in the list
+        mock_confirm.assert_called_once()
+
+    @patch.object(SitemapFinder, "confirm_sitemap_url")
+    def test_check_common_locations_not_found(self, mock_confirm):
+        """Test when sitemap is not found in common locations"""
+        mock_confirm.return_value = False
+        result = self.finder._check_common_locations(self.base_url)
+        assert result is None
+        # Should be called for each common sitemap name
+        assert mock_confirm.call_count == len(self.finder.common_sitemap_names)
+
+    @patch("requests.get")
+    def test_check_robots_txt_found(self, mock_get):
+        """Test finding sitemap in robots.txt"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "User-agent: *\nDisallow: /admin\nSitemap: https://example.com/custom-sitemap.xml"
+        mock_get.return_value = mock_response
+        
+        result = self.finder._check_robots_txt(self.base_url)
+        assert result == "https://example.com/custom-sitemap.xml"
+        mock_get.assert_called_once_with(f"{self.base_url}/robots.txt", timeout=self.finder.timeout_seconds)
+
+    @patch("requests.get")
+    def test_check_robots_txt_not_found(self, mock_get):
+        """Test when sitemap is not found in robots.txt"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "User-agent: *\nDisallow: /admin"  # No Sitemap: directive
+        mock_get.return_value = mock_response
+        
+        result = self.finder._check_robots_txt(self.base_url)
+        assert result is None
+        mock_get.assert_called_once_with(f"{self.base_url}/robots.txt", timeout=self.finder.timeout_seconds)
+
+    @patch("requests.get")
+    def test_check_robots_txt_exception(self, mock_get):
+        """Test handling exception when checking robots.txt"""
+        mock_get.side_effect = Exception("Connection error")
+        
+        result = self.finder._check_robots_txt(self.base_url)
+        assert result is None
+        mock_get.assert_called_once()
+
+    @patch("requests.get")
+    def test_check_html_source_link_tag(self, mock_get):
+        """Test finding sitemap in HTML link tag"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = '<html><head><link rel="sitemap" href="/sitemap.xml"></head></html>'
+        mock_get.return_value = mock_response
+        
+        result = self.finder._check_html_source(self.base_url)
+        assert result == f"{self.base_url}/sitemap.xml"
+        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+
+    @patch("requests.get")
+    def test_check_html_source_href(self, mock_get):
+        """Test finding sitemap reference in HTML href"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = '<html><body><a href="sitemap.xml">Sitemap</a></body></html>'
+        mock_get.return_value = mock_response
+        
+        result = self.finder._check_html_source(self.base_url)
+        assert result == "https://example.com/sitemap.xml"
+        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+
+    @patch("requests.get")
+    def test_check_html_source_not_found(self, mock_get):
+        """Test when sitemap is not found in HTML source"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = '<html><body>No sitemap references here</body></html>'
+        mock_get.return_value = mock_response
+        
+        result = self.finder._check_html_source(self.base_url)
+        assert result is None
+        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+
+    @patch("requests.get")
+    @patch.object(SitemapFinder, "confirm_sitemap_url")
+    def test_check_xml_files_in_root(self, mock_confirm, mock_get):
+        """Test finding XML files in root directory"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = '<html><body><a href="sitemap-index.xml">Sitemap</a></body></html>'
+        mock_get.return_value = mock_response
+        mock_confirm.return_value = True
+        
+        result = self.finder._check_xml_files_in_root(self.base_url)
+        assert result == f"{self.base_url}/sitemap-index.xml"
+        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+        mock_confirm.assert_called_once()
+
+    @patch("requests.get")
+    @patch.object(SitemapFinder, "confirm_sitemap_url")
+    def test_check_xml_files_in_root_not_found(self, mock_confirm, mock_get):
+        """Test when XML files are not found in root directory"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = '<html><body><a href="page.html">Not sitemap</a></body></html>'
+        mock_get.return_value = mock_response
+        mock_confirm.return_value = True
+        
+        result = self.finder._check_xml_files_in_root(self.base_url)
+        assert result is None
+        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+        # Confirm should not be called since no sitemap-like XML files were found
+        mock_confirm.assert_not_called()
+
+    @patch("requests.head")
+    def test_confirm_sitemap_url_success(self, mock_head):
+        """Test successful confirmation of sitemap URL"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_head.return_value = mock_response
+        
+        result = self.finder.confirm_sitemap_url("https://example.com/sitemap.xml")
+        assert result is True
+        mock_head.assert_called_once_with(
+            "https://example.com/sitemap.xml", 
+            timeout=self.finder.timeout_seconds,
+            allow_redirects=True
+        )
+
+    @patch("requests.head")
+    def test_confirm_sitemap_url_not_found(self, mock_head):
+        """Test confirmation when sitemap URL returns 404"""
+        mock_response = MagicMock()
+        mock_response.status_code = 404
+        mock_head.return_value = mock_response
+        
+        result = self.finder.confirm_sitemap_url("https://example.com/sitemap.xml")
+        assert result is False
+        mock_head.assert_called_once()
+
+    @patch("requests.head")
+    def test_confirm_sitemap_url_exception(self, mock_head):
+        """Test handling exception when confirming sitemap URL"""
+        mock_head.side_effect = Exception("Connection error")
+        
+        result = self.finder.confirm_sitemap_url("https://example.com/sitemap.xml")
+        assert result is False
+        mock_head.assert_called_once()
+
+    def test_confirm_sitemap_url_none(self):
+        """Test confirmation with None URL"""
+        result = self.finder.confirm_sitemap_url(None)
+        assert result is False
+
+    @patch.object(SitemapFinder, "_check_common_locations")
+    @patch.object(SitemapFinder, "_check_robots_txt")
+    @patch.object(SitemapFinder, "_check_html_source")
+    @patch.object(SitemapFinder, "_check_xml_files_in_root")
+    @patch.object(SitemapFinder, "_fix_http")
+    def test_find_found_in_common_locations(
+        self, mock_fix, mock_xml, mock_html, mock_robots, mock_common
+    ):
+        """Test finding sitemap using common locations method"""
+        mock_common.return_value = "https://example.com/sitemap.xml"
+        mock_fix.return_value = "https://example.com/sitemap.xml"
+        
+        result = self.finder.find(self.base_url)
+        
+        assert result == "https://example.com/sitemap.xml"
+        mock_common.assert_called_once()
+        mock_fix.assert_called_once_with("https://example.com/sitemap.xml")
+        # Other methods should not be called
+        mock_robots.assert_not_called()
+        mock_html.assert_not_called()
+        mock_xml.assert_not_called()
+
+    @patch.object(SitemapFinder, "_check_common_locations")
+    @patch.object(SitemapFinder, "_check_robots_txt")
+    @patch.object(SitemapFinder, "_check_html_source")
+    @patch.object(SitemapFinder, "_check_xml_files_in_root")
+    @patch.object(SitemapFinder, "_fix_http")
+    def test_find_found_in_robots(
+        self, mock_fix, mock_xml, mock_html, mock_robots, mock_common
+    ):
+        """Test finding sitemap using robots.txt method"""
+        mock_common.return_value = None
+        mock_robots.return_value = "https://example.com/sitemap-from-robots.xml"
+        mock_fix.return_value = "https://example.com/sitemap-from-robots.xml"
+        
+        result = self.finder.find(self.base_url)
+        
+        assert result == "https://example.com/sitemap-from-robots.xml"
+        mock_common.assert_called_once()
+        mock_robots.assert_called_once()
+        mock_fix.assert_called_once_with("https://example.com/sitemap-from-robots.xml")
+        # Later methods should not be called
+        mock_html.assert_not_called()
+        mock_xml.assert_not_called()
+
+    @patch.object(SitemapFinder, "_check_common_locations")
+    @patch.object(SitemapFinder, "_check_robots_txt")
+    @patch.object(SitemapFinder, "_check_html_source")
+    @patch.object(SitemapFinder, "_check_xml_files_in_root")
+    def test_find_not_found(self, mock_xml, mock_html, mock_robots, mock_common):
+        """Test when sitemap is not found using any method"""
+        mock_common.return_value = None
+        mock_robots.return_value = None
+        mock_html.return_value = None
+        mock_xml.return_value = None
+        
+        result = self.finder.find(self.base_url)
+        
+        assert result is None
+        mock_common.assert_called_once()
+        mock_robots.assert_called_once()
+        mock_html.assert_called_once()
+        mock_xml.assert_called_once()
+
+    def test_find_normalizes_url(self):
+        """Test that URLs are normalized before processing"""
+        with patch.object(SitemapFinder, "_check_common_locations", return_value=None) as mock_common, \
+             patch.object(SitemapFinder, "_check_robots_txt", return_value=None) as mock_robots, \
+             patch.object(SitemapFinder, "_check_html_source", return_value=None) as mock_html, \
+             patch.object(SitemapFinder, "_check_xml_files_in_root", return_value=None) as mock_xml:
+            
+            # Test without protocol
+            self.finder.find("example.com")
+            mock_common.assert_called_with("https://example.com/")
+            
+            # Test without trailing slash
+            mock_common.reset_mock()
+            self.finder.find("https://example.com")
+            mock_common.assert_called_with("https://example.com/")

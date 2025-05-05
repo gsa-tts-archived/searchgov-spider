@@ -1,5 +1,5 @@
 import os
-import json
+import sys
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -8,7 +8,6 @@ import xml.etree.ElementTree as ET
 import time
 import logging
 from datetime import datetime
-import os
 from typing import Dict, List, Set, Tuple
 import hashlib
 import heapq
@@ -17,8 +16,6 @@ from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite
-from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
-
 
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
@@ -27,23 +24,30 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
     DomainSpiderJs,
 )
 
+from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
+from search_gov_crawler.scrapy_scheduler import CRAWL_SITES_FILE
+
 load_dotenv()
 
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-log = logging.getLogger("search_gov_crawler.sitemaps")
+log = logging.getLogger("search_gov_crawler.search_gov_spiders.sitemaps")
 
+TARGET_DIR = Path("/var/tmp/spider_sitemaps")
 
-CRAWL_SITES_FILE = (
-    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
-)
-
-HOME_DIR = os.path.expanduser("~")
-
-def get_json_dict(file_path: Path) -> list[CrawlSite]:
-    records = json.loads(file_path.read_text(encoding="UTF-8"))
-    crawl_sites = [CrawlSite(**record) for record in records]
-    return crawl_sites
+def create_directory(path: Path):
+    """Creates the directory using pathlib if it doesn't exist."""
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+        print(f"Directory '{path}' ensured.")
+    except OSError as e:
+        # Handle potential permission errors or other OS issues
+        # Note: pathlib raises FileExistsError if exist_ok=False and dir exists
+        print(f"Error creating directory '{path}': {e}", file=sys.stderr)
+        sys.exit(1) # Exit if we can't create the directory
+    except Exception as e:
+        print(f"An unexpected error occurred creating directory '{path}': {e}", file=sys.stderr)
+        sys.exit(1)
 
 class SitemapMonitor:
     def __init__(self, records: List[CrawlSite]):
@@ -53,6 +57,9 @@ class SitemapMonitor:
         Args:
             sitemap_configs: List of tuples containing (sitemap_url, check_interval_in_hours)
         """
+        # Filter, to only use sitemaps that exists
+        records = [record for record in records if record.sitemap_url]
+
         # Convert hours to seconds for internal use
         records = [(record.check_sitemap_hours * 3600) for record in records]
         self.records_map = {record[record.sitemap_url]: record for record in records}
@@ -61,8 +68,7 @@ class SitemapMonitor:
         self.next_check_times: Dict[str, float] = {}
         
         # Create data directory if it doesn't exist
-        sitemap_dir = HOME_DIR / "sitemap_data"
-        os.makedirs(sitemap_dir, exist_ok=True)
+        create_directory()
         
         # Load any previously stored sitemaps
         self._load_stored_sitemaps()
@@ -76,7 +82,7 @@ class SitemapMonitor:
         """Load previously stored sitemaps from disk if they exist."""
         for record in self.records:
             url_hash = hashlib.md5(record.sitemap_url.encode()).hexdigest()
-            file_path = HOME_DIR / "sitemap_data" / f"{url_hash}.txt"
+            file_path = TARGET_DIR / f"{url_hash}.txt"
             
             if os.path.exists(file_path):
                 try:
@@ -93,7 +99,7 @@ class SitemapMonitor:
     def _save_sitemap(self, sitemap_url: str, urls: Set[str]):
         """Save sitemap URLs to disk."""
         url_hash = hashlib.md5(sitemap_url.encode()).hexdigest()
-        file_path = HOME_DIR / "sitemap_data" / f"{url_hash}.txt"
+        file_path = TARGET_DIR / f"{url_hash}.txt"
         
         try:
             with open(file_path, "w") as f:
@@ -284,18 +290,8 @@ class SitemapMonitor:
             log.error(f"Sitemap Monitor stopped due to error: {e}")
             raise
 
+
 if __name__ == "__main__":
-    records = get_json_dict(CRAWL_SITES_FILE)
-
-    sitemap_finder = SitemapFinder()
-
-    sitemap_configs = []
-    
-    for record in records:
-        if not record.sitemap_url:
-            starting_url = record.starting_urls.split(",")[0]
-            record.sitemap_url = sitemap_finder.find(starting_url)
-
-    
+    records = CrawlSites.from_file(file=CRAWL_SITES_FILE) 
     monitor = SitemapMonitor(records)
-    monitor.run()      
+    monitor.run()  
