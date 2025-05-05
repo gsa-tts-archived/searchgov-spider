@@ -11296,5 +11296,137 @@
       "output_target": "elasticsearch",
       "schedule": "0 16 * * THU",
       "starting_urls": "https://ncsesdata.nsf.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "orf.od.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of Research Facilities (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "03 18 * * SUN",
+      "starting_urls": "https://www.orf.od.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ors.od.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of Research Services (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "05 20 * * SUN",
+      "starting_urls": "https://www.ors.od.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oalm.od.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "OALM (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "07 22 * * SUN",
+      "starting_urls": "https://oalm.od.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ofm.od.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of Financial Management (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "11 03 * * SUN",
+      "starting_urls": "https://ofm.od.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "om.od.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of Management (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "13 04 * * SUN",
+      "starting_urls": "https://om.od.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oma.od.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of Management Assessment (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "15 05 * * SAT",
+      "starting_urls": "https://oma.od.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "policymanual.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Policy Manual (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "17 07 * * SAT",
+      "starting_urls": "https://policymanual.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dpcpsi.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "DPCPSI (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "19 09 * * SAT",
+      "starting_urls": "https://dpcpsi.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "security.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH Security (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "21 11 * * SAT",
+      "starting_urls": "https://www.security.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nihlibrary.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH Library (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "23 13 * * SAT",
+      "starting_urls": "https://www.nihlibrary.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "traffic.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH Traffic (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "25 15 * * SAT",
+      "starting_urls": "https://www.traffic.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "hr.nih.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of Human Resources (nih)",
+      "output_target": "elasticsearch",
+      "schedule": "27 17 * * SAT",
+      "starting_urls": "https://www.hr.nih.gov/"
    }
 ]
