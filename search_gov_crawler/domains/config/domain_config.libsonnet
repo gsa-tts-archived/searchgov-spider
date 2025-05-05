@@ -13,7 +13,7 @@ Exports the domain config function used for all domain output targets. Expects t
   - check_sitemap_hours: (int): Optional check sitemap in X hours, default is 48 (2 days)
 */
 
-function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3, options=[], deny_paths=null, sitemap_url=null, check_sitemap_hours=48) {
+function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3, options=[], deny_paths=null, sitemap_url=null, check_sitemap_hours=null) {
   allowed_domains: allowed_domains,
   allow_query_string: if ['allow_query_string'] == [o for o in options if o == 'allow_query_string'] then true else false,
   starting_urls: starting_urls,
