@@ -15,8 +15,6 @@ updates:
           - "apscheduler"
           - "elasticsearch"
           - "redis"
-          - "lxml_html_clean"
-          - "typing-extensions"
           - "newspaper4k*"
           - "cchardet"
           - "python-dotenv"
@@ -28,3 +26,6 @@ updates:
           - "freezegun"
           - "pylint"
           - "pytest*"
+    ignore:
+      - dependency-name: "lxml-html-clean"
+      - dependency-name: "typing-extensions"

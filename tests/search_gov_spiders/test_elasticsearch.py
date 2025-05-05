@@ -23,6 +23,7 @@ html_content = """
 
 response_bytes = html_content.encode()
 
+
 @pytest.fixture
 def sample_spider():
     """Fixture for a mock spider with a logger."""
@@ -146,8 +147,8 @@ def test_parse_es_urls_valid_urls():
 def test_get_client(search_gov_es, mock_es_client):
     with patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch", return_value=mock_es_client):
         client = search_gov_es._get_client()
-        assert client is mock_es_client
-        assert search_gov_es._es_client is mock_es_client
+        assert client == mock_es_client
+        assert search_gov_es._es_client == mock_es_client
 
 
 def test_get_client_exception(search_gov_es):
@@ -189,3 +190,12 @@ async def test_batch_elasticsearch_upload_error(search_gov_es, sample_spider, mo
         await search_gov_es._batch_elasticsearch_upload(docs, loop, sample_spider)
         sample_spider.logger.error.assert_called_once()  # logged errors from bulk_upload
         sample_spider.logger.exception.assert_not_called()  # did not log and exception
+
+
+def test_client_property(search_gov_es, mock_es_client):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch", return_value=mock_es_client):
+        assert search_gov_es.client == mock_es_client
+
+
+def test_index_name_property(search_gov_es):
+    assert search_gov_es.index_name == "test_index"

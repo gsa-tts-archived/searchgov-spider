@@ -1,13 +1,16 @@
-import pytest
+import re
 
+import pytest
 from scrapy import Request, Spider
 from scrapy.exceptions import IgnoreRequest
+from scrapy.http.response import Response
 from scrapy.utils.test import get_crawler
-from search_gov_crawler.search_gov_spiders.middlewares import (
-    SearchGovSpidersOffsiteMiddleware,
-    SearchGovSpidersDownloaderMiddleware,
-)
 
+from search_gov_crawler.search_gov_spiders.middlewares import (
+    SearchGovSpidersDownloaderMiddleware,
+    SearchGovSpidersOffsiteMiddleware,
+    SearchGovSpidersSpiderMiddleware,
+)
 
 MIDDLEWARE_TEST_CASES = [
     (["example.com"], ["example.com"], "http://www.example.com/1", True),
@@ -63,7 +66,9 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
     # pylint: disable=protected-access
     crawler = get_crawler(Spider)
     spider = crawler._create_spider(
-        name="offsite_test", allowed_domains=allowed_domain, allowed_domain_paths=allowed_domain_path
+        name="offsite_test",
+        allowed_domains=allowed_domain,
+        allowed_domain_paths=allowed_domain_path,
     )
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
 
@@ -72,6 +77,25 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
 
     request = Request("http://www.example.com")
     assert mw.process_request(request, spider) is None
+
+
+def test_offsite_invalid_domain_in_starting_urls(caplog):
+    crawler = get_crawler(Spider)
+    spider = crawler._create_spider(
+        name="offsite_test", allowed_domains=["example.com"], start_urls=["http://www.not-an-example.com"]
+    )
+    mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
+    mw.spider_opened(spider)
+
+    request = Request("http://www.not-an-example.com")
+    with pytest.raises(IgnoreRequest), caplog.at_level("ERROR"):
+        mw.process_request(request=request, spider=spider)
+
+    msg = (
+        "IgnoreRequest raised for starting URL due to Offsite request: "
+        f"{request.url}, allowed_domains: {spider.allowed_domains}"
+    )
+    assert msg in caplog.messages
 
 
 def test_spider_downloader_middleware():
@@ -87,13 +111,46 @@ def test_spider_downloader_middleware():
         mw.process_request(request=request, spider=spider)
 
 
-def test_spider_downloader_middleware_allow_query_string():
+@pytest.mark.parametrize("allow_query_string", [True, False])
+def test_spider_downloader_middleware_allow_query_string(allow_query_string):
     # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(name="test", allow_query_string=True, allowed_domains="example.com")
+    spider = crawler._create_spider(name="test", allow_query_string=allow_query_string, allowed_domains="example.com")
     mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
 
     mw.spider_opened(spider)
-    request = Request("http://www.example.com/test?parm=value")
 
-    assert mw.process_request(request=request, spider=spider) is None
+    request = Request("http://www.example.com/test?parm=value")
+    error_msg = f"Ignoring request with query string: {request.url}"
+    if allow_query_string:
+        assert mw.process_request(request=request, spider=spider) is None
+    else:
+        with pytest.raises(IgnoreRequest, match=re.escape(error_msg)):
+            mw.process_request(request=request, spider=spider)
+
+
+def test_spider_middleware_spider_exception_start_url(caplog):
+    # pylint: disable=protected-access
+    crawler = get_crawler(Spider)
+    spider = crawler._create_spider(
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+        start_urls=["http://www.example.com"],
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
+
+    mw.spider_opened(spider)
+    response = Response(url="http://www.example.com", status=403, request=Request("http://www.example.com"))
+
+    with caplog.at_level("ERROR"):
+        mw.process_spider_exception(
+            response=response,
+            exception=IgnoreRequest("Igore this test request"),
+            spider=spider,
+        )
+        msg = (
+            "Error occured while accessing start url: http://www.example.com: "
+            "response: <403 http://www.example.com>, Igore this test request"
+        )
+        assert msg in caplog.messages

@@ -1,14 +1,15 @@
-# Define here the models for your spider middleware
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+"""Define here the models for your spider middleware
+
+See documentation in:
+https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+"""
 
 import re
 import warnings
 from typing import Self
 from urllib.parse import urlparse
 
-from scrapy import signals
+from scrapy import Request, signals
 from scrapy.crawler import Crawler
 from scrapy.downloadermiddlewares.offsite import OffsiteMiddleware
 from scrapy.exceptions import IgnoreRequest
@@ -40,7 +41,7 @@ class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
 
-    def process_spider_input(self, response, spider):
+    def process_spider_input(self, response, spider) -> None:
         """
         Called for each response that goes through the spider middleware and into the spider.
 
@@ -55,13 +56,19 @@ class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
         """
         yield from result
 
-    def process_spider_exception(self, response, exception, spider):
+    def process_spider_exception(self, response, exception, spider) -> None:
         """Called when a spider or process_spider_input() method
         (from other spider middleware) raises an exception.
 
         Should return either None or an iterable of Request or item objects.
         """
-        return
+        if response.request.url in spider.start_urls:
+            spider.logger.exception(
+                "Error occured while accessing start url: %s: response: %s, %s",
+                response.request.url,
+                response,
+                exception,
+            )
 
     def process_start_requests(self, start_requests, spider):
         """
@@ -99,7 +106,8 @@ class SearchGovSpidersDownloaderMiddleware(MiddlewareBase):
             return
 
         if urlparse(request.url).query:
-            raise IgnoreRequest
+            msg = f"Ignoring request with query string: {request.url}"
+            raise IgnoreRequest(msg)
 
     def process_response(self, request, response, spider):
         """
@@ -144,6 +152,19 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
 
         return bool(self.host_regex.search(host) and self.host_path_regex.search(cahched_request.geturl()))
 
+    def process_request(self, request: Request, spider: Spider) -> None:
+        """If the superclass process_request() raises an IgnoreRequest, log the error"""
+        try:
+            return super().process_request(request, spider)
+        except IgnoreRequest:
+            if request.url in spider.start_urls:
+                spider.logger.exception(
+                    "IgnoreRequest raised for starting URL due to Offsite request: %s, allowed_domains: %s",
+                    request.url,
+                    spider.allowed_domains,
+                )
+            raise
+
     def get_host_path_regex(self, spider: Spider) -> re.Pattern:
         """New method, modified from 'get_host_regex' method to return path related regex"""
         allowed_domain_paths = getattr(spider, "allowed_domain_paths", None)
@@ -170,5 +191,5 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
                 warnings.warn(message)
             else:
                 domains.append(re.escape(domain))
-        regex = rf'{"|".join(domains)}'
+        regex = rf"{'|'.join(domains)}"
         return re.compile(regex)
