@@ -1192,7 +1192,7 @@
                          depth_limit=8),
   },
   {
-    name: 'Air Force Judge Advocate General\'s Corps (afpw_afjag)',
+    name: "Air Force Judge Advocate General's Corps (afpw_afjag)",
     config: DomainConfig(allowed_domains='afjag.af.mil',
                          starting_urls='https://www.afjag.af.mil/',
                          schedule='34 8 * * THU',
@@ -1918,5 +1918,5 @@
                          schedule='18 23 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
-  }
+  },
 ]

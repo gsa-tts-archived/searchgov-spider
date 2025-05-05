@@ -151,6 +151,13 @@ def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
         CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)])
 
 
+def test_invalid_craw_sites_cron_expression(base_crawl_site_args):
+    invalid_schedule_crawl_site_args = {"schedule": "I AM NOT A CRON EXPRESSION"} | base_crawl_site_args
+
+    with pytest.raises(ValueError, match="Invalid cron expression in schedule value: I AM NOT A CRON EXPRESSION"):
+        CrawlSite(**invalid_schedule_crawl_site_args)
+
+
 @pytest.mark.parametrize(
     "file_name",
     [
