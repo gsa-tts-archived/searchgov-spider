@@ -3,6 +3,8 @@ from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 from typing import Self
 
+from apscheduler.triggers.cron import CronTrigger
+
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 
 
@@ -28,19 +30,13 @@ class CrawlSite:
 
     def __post_init__(self):
         """Perform validation on record"""
-        # check required fields
-        missing_field_names = []
-        for field in fields(self):
-            if field.name in {"schedule", "deny_paths", "sitemap_url", "check_sitemap_hours"}:
-                pass
-            elif getattr(self, field.name) is None:
-                missing_field_names.append(field.name)
+        self._validate_required_fields()
+        self._validate_types()
+        self._validate_fields()
 
-        if missing_field_names:
-            msg = f"All CrawlSite fields are required!  Add values for {','.join(missing_field_names)}"
-            raise TypeError(msg)
+    def _validate_types(self) -> None:
+        """Check field types against class definition to ensure compatability"""
 
-        # check types
         for field in fields(self):
             value = getattr(self, field.name)
             if hasattr(field.type, "__args__"):
@@ -62,6 +58,9 @@ class CrawlSite:
                 )
                 raise TypeError(msg)
 
+    def _validate_fields(self) -> None:
+        """Validate Individual Fields"""
+
         # validate no duplicates in deny_paths
         if self.deny_paths is not None:
             unique_deny_paths = set(self.deny_paths)
@@ -75,6 +74,28 @@ class CrawlSite:
                 f"Invalid output_target value {self.output_target}! "
                 f"Must be one of {list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys())}"
             )
+            raise TypeError(msg)
+
+        # validate schedule
+        if self.schedule:
+            try:
+                CronTrigger.from_crontab(self.schedule)
+            except ValueError as err:
+                msg = f"Invalid cron expression in schedule value: {self.schedule}"
+                raise ValueError(msg) from err
+
+    def _validate_required_fields(self) -> None:
+        """Ensure all required fields are present"""
+
+        missing_field_names = []
+        for field in fields(self):
+            if field.name in {"schedule", "deny_paths"}:
+                pass
+            elif getattr(self, field.name) is None:
+                missing_field_names.append(field.name)
+
+        if missing_field_names:
+            msg = f"All CrawlSite fields are required!  Add values for {','.join(missing_field_names)}"
             raise TypeError(msg)
 
     def to_dict(self, *, exclude: tuple = ()) -> dict:
@@ -102,9 +123,11 @@ class CrawlSites:
         for site in self.root:
             site_key = f"{site.output_target}::{site.allowed_domains}"
             if site_key in domains_map:
-                raise TypeError(
-                    f"The combination of allowed_domain and starting_urls must be unique in file. Duplicate site domain:\n{site}"
+                msg = (
+                    "The combination of allowed_domain and starting_urls must be unique in file. "
+                    f"Duplicate site domain:\n{site}"
                 )
+                raise TypeError(msg)
             domains_map[site_key] = True
 
     @classmethod

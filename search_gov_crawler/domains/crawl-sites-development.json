@@ -112,8 +112,7 @@
       "handle_javascript": false,
       "name": "passportstatus.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
-      "sitemap_url": null,
+      "schedule": "45 07 * * SUN",
       "starting_urls": "https://passportstatus.state.gov/"
    },
    {
@@ -125,8 +124,7 @@
       "handle_javascript": false,
       "name": "www.ecfr.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
-      "sitemap_url": null,
+      "schedule": "01 05 * * TUE",
       "starting_urls": "https://www.ecfr.gov/"
    },
    {
@@ -138,8 +136,7 @@
       "handle_javascript": false,
       "name": "guides.loc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
-      "sitemap_url": null,
+      "schedule": "30 03 * * TUE",
       "starting_urls": "https://guides.loc.gov/"
    },
    {
@@ -151,8 +148,7 @@
       "handle_javascript": false,
       "name": "fiscal.treasury.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
-      "sitemap_url": null,
+      "schedule": "00 04 * * SAT",
       "starting_urls": "https://fiscal.treasury.gov/"
    },
    {
@@ -164,8 +160,7 @@
       "handle_javascript": false,
       "name": "www.dla.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
-      "sitemap_url": null,
+      "schedule": "06 06 * * WED",
       "starting_urls": "https://www.dla.mil/"
    },
    {
@@ -177,8 +172,7 @@
       "handle_javascript": false,
       "name": "mhvidp-prod.myhealth.va.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
-      "sitemap_url": null,
+      "schedule": "32 16 * * WED",
       "starting_urls": "https://mhvidp-prod.myhealth.va.gov/"
    },
    {
@@ -190,8 +184,7 @@
       "handle_javascript": false,
       "name": "www.nhlbi.nih.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
-      "sitemap_url": null,
+      "schedule": "50 10 * * WED",
       "starting_urls": "https://www.nhlbi.nih.gov/"
    },
    {
@@ -203,8 +196,7 @@
       "handle_javascript": false,
       "name": "www.ukraineoversight.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
-      "sitemap_url": null,
+      "schedule": "00 06 * * SAT",
       "starting_urls": "https://www.ukraineoversight.gov/"
    },
    {
@@ -216,8 +208,7 @@
       "handle_javascript": false,
       "name": "digital.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
-      "sitemap_url": null,
+      "schedule": "12 16 * * THU",
       "starting_urls": "https://digital.gov/"
    },
    {
@@ -229,8 +220,7 @@
       "handle_javascript": false,
       "name": "www.fsa.usda.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
-      "sitemap_url": null,
+      "schedule": "22 17 * * THU",
       "starting_urls": "https://www.fsa.usda.gov/"
    },
    {
@@ -242,8 +232,7 @@
       "handle_javascript": false,
       "name": "www.mynavyhr.navy.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * THU",
-      "sitemap_url": null,
+      "schedule": "32 17 * * THU",
       "starting_urls": "https://www.mynavyhr.navy.mil/"
    },
    {
