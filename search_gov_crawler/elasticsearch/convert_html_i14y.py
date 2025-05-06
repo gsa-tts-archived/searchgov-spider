@@ -1,18 +1,18 @@
 import newspaper
-from search_gov_crawler.elasticsearch.parse_html_scrapy import convert_html_scrapy
-from search_gov_crawler.search_gov_spiders.helpers import content
-from search_gov_crawler.search_gov_spiders.helpers import encoding
+
 from search_gov_crawler.elasticsearch.i14y_helper import (
     ALLOWED_LANGUAGE_CODE,
-    parse_date_safely,
-    get_url_path,
-    get_base_extension,
     current_utc_iso,
-    generate_url_sha256,
-    get_domain_name,
     detect_lang,
+    generate_url_sha256,
+    get_base_extension,
+    get_domain_name,
+    get_url_path,
+    parse_date_safely,
     summarize_text,
 )
+from search_gov_crawler.elasticsearch.parse_html_scrapy import convert_html_scrapy
+from search_gov_crawler.search_gov_spiders.helpers import content, encoding
 
 
 def convert_html(response_bytes: bytes, url: str, response_language: str = None):
@@ -46,9 +46,11 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
     language = language[:2] if language else None
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
-    summary, keywords = summarize_text(text=main_content, lang_code=language)
-    tags = tags or keywords
-    description = description or summary
+    # Only run summarize text if either tags or description is not populated
+    if not (tags and description):
+        summary, keywords = summarize_text(text=main_content, lang_code=language)
+        tags = tags or keywords
+        description = description or summary
 
     return {
         "audience": article_backup["audience"],
