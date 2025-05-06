@@ -75,12 +75,14 @@ def detect_lang(text: str) -> str:
     return None
 
 
-def summarize_text(text: str, lang_code: str = None):
+def summarize_text(text: str, url: str, lang_code: str = None):
     """
     Summarizes text and extracts keywords using nltk, and calculates execution time.
 
     Args:
         text (str): extracted text/content
+        url (str): url for logging
+        lang_code (str, optional): language code string
 
     Returns:
         tuple: (summary, keywords)
@@ -100,7 +102,7 @@ def summarize_text(text: str, lang_code: str = None):
     try:
         stop_words = set(stopwords.words(ALLOWED_LANGUAGE_CODE[lang_code]))
     except OSError as err:
-        msg = f"Unsupported Language. Missing Stopwords File: {err}"
+        msg = f"Unsupported Language. Error when parsing {url} Missing Stopwords File: {err}"
         logger.warning(msg)
         return empty_response
 

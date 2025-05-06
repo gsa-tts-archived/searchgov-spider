@@ -111,24 +111,30 @@ def test_separate_file_name_only_extension():
 
 
 SUMMARIZE_TEXT_TEST_CASES = [
-    ("", "en", None, None),
-    (10, "en", None, None),
-    ("Hi there! I am testing this function", None, None, None),
-    ("Hi there! I am testing this function", "en", "I am testing this function Hi there!", "hi, testing, function"),
+    ("", "https://example.com", "en", None, None),
+    (10, "https://example.com", "en", None, None),
+    ("Hi there! I am testing this function", "https://example.com", None, None, None),
+    (
+        "Hi there! I am testing this function",
+        "https://example.com",
+        "en",
+        "I am testing this function Hi there!",
+        "hi, testing, function",
+    ),
 ]
 
 
-@pytest.mark.parametrize(("text", "lang_code", "summary", "keyword"), SUMMARIZE_TEXT_TEST_CASES)
-def test_summarize_text(text, lang_code, summary, keyword):
-    assert summarize_text(text=text, lang_code=lang_code) == (summary, keyword)
+@pytest.mark.parametrize(("text", "url", "lang_code", "summary", "keyword"), SUMMARIZE_TEXT_TEST_CASES)
+def test_summarize_text(text, url, lang_code, summary, keyword):
+    assert summarize_text(text=text, url=url, lang_code=lang_code) == (summary, keyword)
 
 
 def test_summarize_text_unsupported_stopwords(caplog):
     with caplog.at_level("WARNING"):
-        results = summarize_text("This is a test for missing stopwork", "ko")
+        results = summarize_text("This is a test for missing stopwork", "https://example.com", "ko")
 
     assert results == (None, None)
     assert (
-        f"Unsupported Language. Missing Stopwords File: No such file or directory: '{stopwords._root.path}/korean'"
+        f"Unsupported Language. Error when parsing https://example.com Missing Stopwords File: No such file or directory: '{stopwords._root.path}/korean'"
         in caplog.messages
     )

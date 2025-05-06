@@ -48,7 +48,7 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
 
     # Only run summarize text if either tags or description is not populated
     if not (tags and description):
-        summary, keywords = summarize_text(text=main_content, lang_code=language)
+        summary, keywords = summarize_text(text=main_content, url=url, lang_code=language)
         tags = tags or keywords
         description = description or summary
 
