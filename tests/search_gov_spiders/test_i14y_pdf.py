@@ -32,7 +32,7 @@ def dummy_separate_file_name(filename):
     return "Fake Title from filename"
 
 
-def dummy_summarize_text(text, lang_code):
+def dummy_summarize_text(text, url, lang_code):
     # Return a tuple: (description, list of keywords)
     return ("Fake description", ["keyword1", "keyword2"])
 
@@ -92,8 +92,8 @@ def test_get_pdf_text():
     """Test that get_pdf_text concatenates text from each page."""
     fake_page_content_1 = """
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
     It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
     """
     fake_page_content_2 = f"Page 2 content: {fake_page_content_1}"
@@ -202,11 +202,11 @@ def test_get_links_set():
 
     fake_page2 = MagicMock()
     fake_page2.get_object.return_value = {}
-    
+
     page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
-    
+
     links = convert_pdf_i14y.get_links_set(page_items)
-    
+
     expected_links = {"https://example.com", "www.test.com"}
 
     assert set(links) == expected_links
