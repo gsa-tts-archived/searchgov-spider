@@ -559,5 +559,16 @@
       "output_target": "elasticsearch",
       "schedule": "12 7 * * SAT",
       "starting_urls": "https://www.dtra.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "afdc.energy.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "AFDC (afdc.energy.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "54 12 * * SUN",
+      "starting_urls": "https://afdc.energy.gov"
    }
 ]

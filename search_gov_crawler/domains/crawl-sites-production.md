@@ -1,6 +1,6 @@
 # Production Schedule
- * [Sunday (156)](#sunday-156)
- * [Monday (156)](#monday-156)
+ * [Sunday (166)](#sunday-166)
+ * [Monday (165)](#monday-165)
  * [Tuesday (174)](#tuesday-174)
  * [Wednesday (177)](#wednesday-177)
  * [Thursday (181)](#thursday-181)
@@ -8,7 +8,7 @@
  * [Saturday (181)](#saturday-181)
 
 
-## Sunday (156)
+## Sunday (166)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|learningprofessionals.af.mil|8|
@@ -16,6 +16,7 @@
 |radar.weather.gov (nws.noaa.gov)|00:00|radar.weather.gov|3|
 |FTC Consumer Advice (usagov-replacement)|00:15|consumer.ftc.gov|3|
 |USACE.Army.mil (u.s.armycorpsofengineersheadquart)|00:15|usace.army.mil|8|
+|CDMRP (cdmrp)|00:15|cdmrp.health.mil|8|
 |National Park Service (usagov-replacement)|00:30|nps.gov|3|
 |State Dept Forms (usagov-replacement)|00:45|eforms.state.gov|3|
 |Yokota Air Base (yokota)|00:55|yokota.af.mil|8|
@@ -30,6 +31,7 @@
 |Yellow Ribbon Reintegration Program (af_yellowribbon)|02:05|yellowribbon.usaf.afpims.mil|8|
 |Centers for Disease Control and Prevention (usagov-replacement)|02:15|cdc.gov|3|
 |Comptroller.Defense.gov (osd_comptroller)|02:15|comptroller.defense.gov|8|
+|StudentAid.gov (usagov_en_az)|02:22|studentaid.gov|8|
 |State Dept (usagov-replacement)|02:30|state.gov|3|
 |Housing and Urban Development (usagov-replacement)|02:45|hud.gov|3|
 |Whiteman Air Force Base (whiteman)|02:46|whiteman.af.mil|8|
@@ -46,6 +48,7 @@
 |Office of Management (nih)|04:13|om.od.nih.gov|8|
 |MED.Navy.mil (navy_med)|04:15|www.med.navy.mil|8|
 |Vandenberg Air Force Base (vandenberg)|04:37|vandenberg.af.mil|8|
+|USFK (usfk)|04:44|usfk.mil|8|
 |CSAF Strategic Integration Group (afpw_afsig)|04:53|afsig.af.mil|8|
 |tricare_desmonddoss|05:00|desmond-doss.tricare.mil|8|
 |11th Medical Squadron - Joint Base Anacostia-Bolling|05:00|anacostiabolling.tricare.mil|8|
@@ -71,6 +74,7 @@
 |The Andrew Rader U.S. Army Health Clinic|07:00|rader.tricare.mil|8|
 |CFPB (usagov-replacement)|07:15|consumerfinance.gov|3|
 |FDC.NAL.USDA.gov (USDA NAL)|07:15|fdc.nal.usda.gov|8|
+|PACOM (dod_pacom)|07:18|pacom.mil|8|
 |United States Air Force Academy (usafacademy)|07:23|usafa.af.mil|8|
 |CIA (usagov-replacement)|07:30|cia.gov|3|
 |Air Force Inspector General (afpw_afinspectorgeneral)|07:40|afinspectorgeneral.af.mil|8|
@@ -92,6 +96,7 @@
 |14th Medical Group - Columbus Air Force Base|10:00|columbus.tricare.mil|8|
 |Copy of Airman Magazine (usaf_amnmag)|10:09|airman.dodlive.mil|8|
 |Curtis E. Lemay Center for Doctrine Development and Education (afpw_lemay)|10:27|doctrine.af.mil|8|
+|DCAA (dod_dcaa)|10:36|dcaa.mil|8|
 |ecos.fws.gov (ecos)|10:52|ecos.fws.gov|8|
 |www.census.gov (usagov-replacement)|11:00|census.gov|3|
 |tricare_guantanamo|11:00|guantanamo.tricare.mil|8|
@@ -114,6 +119,7 @@
 |194th Wing, Wahington ANG (afpw_194wg)|12:33|194wg.ang.af.mil|8|
 |www.ncbi.nlm.nih.gov (usagov-replacement)|12:45|ncbi.nlm.nih.gov|3|
 |www.911.gov (911)|12:51|911.gov|8|
+|AFDC (afdc.energy.gov)|12:54|afdc.energy.gov|8|
 |Air Force Research Laboratory (usaf_afrl)|12:55|afrl.af.mil|8|
 |tricare_eisenhower|13:00|eisenhower.tricare.mil|8|
 |125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|125fw.ang.af.mil|8|
@@ -134,6 +140,7 @@
 |www.gsa.gov (usagov-replacement)|16:15|gsa.gov|3|
 |IWGSC.NAL.USDA.gov (USDA NAL)|16:15|iwgsc.nal.usda.gov|3|
 |bidenwhitehouse.archives.gov (usagov-replacement)|16:30|bidenwhitehouse.archives.gov|3|
+|Great Lakes Division (greatlakes_div)|16:36|lrd.usace.army.mil|8|
 |Air Force Life Cycle Management Center (usaf_aflcmc)|16:37|aflcmc.af.mil|8|
 |195th Wing (afpw_195wg)|16:44|195wg.ang.af.mil|8|
 |secure.login.gov (usagov-replacement)|16:45|secure.login.gov|3|
@@ -146,6 +153,7 @@
 |tricare_weedirwin|18:00|weed-irwin.tricare.mil|8|
 |Office of Research Facilities (nih)|18:03|orf.od.nih.gov|8|
 |150th Special Operations Wing (afpw_150sow)|18:07|150sow.ang.af.mil|8|
+|My Market News (mymarketnews)|18:15|mymarketnews.ams.usda.gov|8|
 |805th Combat Training Squadron (usaf_805cts)|18:28|shoc.usaf.mil|8|
 |www1.grc.nasa.gov (nasa-glenn)|18:47|www1.grc.nasa.gov|8|
 |Air Force Historical Support Division (afpw-afhm)|18:49|afhistory.af.mil|8|
@@ -154,6 +162,7 @@
 |www.grc.nasa.gov (nasa-glenn)|19:46|grc.nasa.gov|8|
 |Office of Research Services (nih)|20:05|ors.od.nih.gov|8|
 |Air University (afpw_au)|20:13|airuniversity.af.edu|8|
+|GPS.gov (gps.gov)|20:15|gps.gov|8|
 |492nd Special Operations Wing (usaf_492sow)|20:18|492sow.af.mil|8|
 |aircrafticing.grc.nasa.gov (nasa-glenn)|20:45|aircrafticing.grc.nasa.gov|8|
 |Chief of Staff Reading List (afpw_cosrl)|20:55|chief-of-staff-reading-list.af.mil|8|
@@ -162,6 +171,7 @@
 |cearun.grc.nasa.gov (nasa-glenn)|21:44|cearun.grc.nasa.gov|8|
 |OALM (nih)|22:07|oalm.od.nih.gov|8|
 |16th Air Force (usaf_16af)|22:09|16af.af.mil|8|
+|US Embassy Dhaka (dos_emb_csa_dhaka)|22:15|bd.usembassy.gov|8|
 |Veterans in Blue (afpw_vib)|22:18|veterans-in-blue.af.mil|8|
 |gipoc.grc.nasa.gov (nasa-glenn)|22:44|gipoc.grc.nasa.gov|8|
 |Armed Forces Pest Management Board (afpmb)|23:00|acq.osd.mil/eie/afpmb|8|
@@ -169,7 +179,7 @@
 |9th Air Force (afpw_ninth)|23:42|ninth.af.mil|8|
 
 
-## Monday (156)
+## Monday (165)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Texas Air National Guard (txang)|00:00|tx.ang.af.mil|8|
@@ -186,6 +196,7 @@
 |Spangdahlem Air Base (spangdahlem)|02:46|spangdahlem.af.mil|8|
 |tricare_baynejones|03:00|bayne-jones.tricare.mil|8|
 |Western Air Defense Sector (afpw_wads)|03:11|wads.ang.af.mil|8|
+|AMA (usagov_en_az)|03:33|ama-assn.org|8|
 |www.nationalguard.mil (nationalguard)|03:40|nationalguard.mil|8|
 |Sheppard Air Force Base (sheppard)|03:42|sheppard.af.mil|8|
 |Office of Transformational Innovation (afpw_transform)|03:53|transform.af.mil|8|
@@ -201,6 +212,7 @@
 |National Air and Space Intelligence Center (afpw_nasic)|05:17|nasic.af.mil|8|
 |Seymour Johnson AFB (seymourjohnson)|05:32|seymourjohnson.af.mil|8|
 |ae.usembassy.gov (dos_emb_mena_uae)|05:39|ae.usembassy.gov|8|
+|NAVSUP (navy_navsup)|05:55|navsup.navy.mil|8|
 |Profession of Arms Center of Excellence (PACE) (afpw_pace)|05:59|airman.af.mil|8|
 |Navy All Hands Magazine|06:00|allhands.navy.mil|3|
 |tricare_blanchfield|06:00|blanchfield.tricare.mil|8|
@@ -223,6 +235,7 @@
 |drought|08:15|drought.gov|3|
 |National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)|08:18|niaaa.nih.gov|8|
 |Air Force Installations, Environment & Logistics (safie)|08:18|safie.hq.af.mil|8|
+|US Embassy Ethiopia (dos_emb_afr_ethiopia)|08:27|et.usembassy.gov|8|
 |DOD Army MWR|08:30|armymwr.com|3|
 |NOAA CoastWatch|08:30|coastwatch.noaa.gov|3|
 |NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|3|
@@ -282,12 +295,14 @@
 |Robins Air Force Base (robins)|11:05|robins.af.mil|8|
 |22nd Air Force (afpw_22af)|11:33|22af.afrc.af.mil|8|
 |militarypay.defense.gov (dod_milpay)|11:35|militarypay.defense.gov|8|
+|CENTCOM (centcom)|11:45|centcom.mil|8|
 |tricare_tripler|12:00|tripler.tricare.mil|8|
 |Ramstein Air Base (ramstein)|12:00|ramstein.af.mil|8|
 |Air National Guard Band of the Southwest (afpw_angbandsouthwest)|12:15|bandofthesouthwest.ang.af.mil|8|
 |Pittsburgh IAP Air Reserve Station (pittsburgh)|12:55|pittsburgh.afrc.af.mil|8|
 |US AFRICOM (africom)|12:57|africom.mil|8|
 |tricare_yokosuka|13:00|yokosuka.tricare.mil|8|
+|US Embassy Israel (dos_emb_mena_israel)|13:03|il.usembassy.gov|8|
 |iperms.hrc.army.mil (dod_milpay)|13:33|iperms.hrc.army.mil|8|
 |Air Force Installation and Mission Support Center (afpw_afimsc)|13:39|afimsc.af.mil|8|
 |Pacific Air Forces (pacaf)|13:51|pacaf.af.mil|8|
@@ -297,6 +312,7 @@
 |Osan Air Base (osan)|14:46|osan.af.mil|8|
 |tricare_bmv|15:00|bavaria.tricare.mil|8|
 |Alaska Fisheries Science Center (afsc)|15:02|afsc.noaa.gov|8|
+|Quartermaster (qm)|15:25|quartermaster.army.mil|8|
 |www2.fmc.gov (www.fmc.gov)|15:32|www2.fmc.gov|8|
 |Niagara Falls Air Reserve Station (niagarafalls)|15:42|niagara.afrc.af.mil|8|
 |Sexual Assault Prevention Response (afsapr)|15:44|sexualassaultpreventionresponse.af.mil|8|
@@ -308,6 +324,7 @@
 |79th Medical Wing (afpw_79mdw)|17:08|79mdw.af.mil|8|
 |servcon.fmc.gov (www.fmc.gov)|17:30|servcon.fmc.gov|8|
 |Air Force NETCENTS (netcents)|17:32|netcents.af.mil|8|
+|DPAA (dpaa)|17:47|dpaa.mil|8|
 |Air Force Public Affairs Agency (afpw_afpaa)|17:50|afpaa.af.mil|8|
 |tricare_guam|18:00|guam.tricare.mil|8|
 |mag.ncep.noaa.gov (nws.noaa.gov)|18:00|mag.ncep.noaa.gov|3|
@@ -318,6 +335,7 @@
 |U.S. Air Force Recordings (music)|19:23|music.af.mil|8|
 |servconadmin.fmc.gov (www.fmc.gov)|19:29|servconadmin.fmc.gov|8|
 |Air Force Chaplain Corps (afpw_chaplain)|19:55|chaplaincorps.af.mil|8|
+|FCA (fca)|19:58|fca.gov|8|
 |National Museum of the USAF (museum)|20:18|nationalmuseum.af.mil|8|
 |California Air National Guard (afpw_caang)|20:37|ca.ang.af.mil|8|
 |National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) (www.niams.nih.gov)|21:14|niams.nih.gov|8|
@@ -327,6 +345,7 @@
 |Moody Air Force Base (moody)|22:09|moody.af.mil|8|
 |AF Command & Control Integration Center (afpw_afc2ic)|22:42|afc2ic.af.mil|8|
 |Misawa Air Base (misawa)|23:05|misawa.af.mil|8|
+|US Embassy Accra (dos_emb_afr_accra)|23:15|gh.usembassy.gov|8|
 |Team McChord (afpw_62aw)|23:24|mcchord.af.mil|8|
 
 
@@ -387,7 +406,7 @@
 |Air Force Personnel Center (afpw_afpc)|06:22|afpc.af.mil|8|
 |www.fbi.gov (usagov-replacement)|06:28|fbi.gov|3|
 |Laughlin Air Force Base (laughlin)|06:28|laughlin.af.mil|8|
-|USA.gov (usagov-replacement)|06:30|usa.gov|3|
+|USA.gov (usagov-replacement)|06:30|usa.gov|8|
 |fred.stlouisfed.org (usagov-replacement)|06:30|fred.stlouisfed.org|3|
 |oversight.house.gov (usagov-replacement)|06:44|oversight.house.gov|3|
 |tricare_sigonella|07:00|sigonella.tricare.mil|8|
@@ -618,7 +637,7 @@
 |nida.nih.gov (usagov-replacement)|13:13|nida.nih.gov|3|
 |www.eac.gov (usagov-replacement)|13:26|eac.gov|3|
 |Air National Guard (afpw_ang)|13:45|ang.af.mil|8|
-|th.usembassy.gov (usagov-replacement)|13:47|th.usembassy.gov|3|
+|th.usembassy.gov (usagov-replacement)|13:47|th.usembassy.gov|8|
 |Columbus Air Force Base (columbus)|13:51|columbus.af.mil|8|
 |capstone.ndu.edu (nduedu)|13:59|capstone.ndu.edu|8|
 |tricare_lyster|14:00|lyster.tricare.mil|8|
@@ -936,7 +955,7 @@
 |146th Airlift Wing, California ANG (afpw_146aw)|09:40|146aw.ang.af.mil|8|
 |tricare_82mg|10:00|sheppard.tricare.mil|8|
 |5th Air Force (5af)|10:09|5af.pacaf.af.mil|8|
-|boem|10:15|boem.gov|3|
+|boem|10:15|boem.gov|8|
 |147th Reconnaissance Wing (afpw_147rw)|10:21|147rw.ang.af.mil|8|
 |tt.usembassy.gov (dos_emb_wha_trinidad)|10:27|tt.usembassy.gov|8|
 |tricare_30mg|11:00|vandenberg.tricare.mil|8|

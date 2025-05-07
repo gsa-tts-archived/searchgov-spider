@@ -1,5 +1,5 @@
 # Development Schedule
- * [Sunday (5)](#sunday-5)
+ * [Sunday (6)](#sunday-6)
  * [Monday (9)](#monday-9)
  * [Tuesday (8)](#tuesday-8)
  * [Wednesday (5)](#wednesday-5)
@@ -8,13 +8,14 @@
  * [Saturday (8)](#saturday-8)
 
 
-## Sunday (5)
+## Sunday (6)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |MIT-AF AI Accelerator (af_aiaccelerator)|01:24|aiaccelerator.af.mil|8|
 |www.healthit.gov (www.healthit.gov)|01:59|healthit.gov|8|
 |passportstatus.state.gov (usagov-replacement)|07:45|passportstatus.state.gov|3|
 |Military Auxiliary Radio System (usaf_mars)|09:14|mars.af.mil|8|
+|AFDC (afdc.energy.gov)|12:54|afdc.energy.gov|8|
 |Air Force Historical Support Division (afpw-afhm)|18:49|afhistory.af.mil|8|
 
 
