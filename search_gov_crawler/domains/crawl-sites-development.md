@@ -1,23 +1,24 @@
 # Development Schedule
- * [Sunday (4)](#sunday-4)
- * [Monday (8)](#monday-8)
- * [Tuesday (7)](#tuesday-7)
+ * [Sunday (5)](#sunday-5)
+ * [Monday (9)](#monday-9)
+ * [Tuesday (8)](#tuesday-8)
  * [Wednesday (5)](#wednesday-5)
- * [Thursday (6)](#thursday-6)
- * [Friday (8)](#friday-8)
- * [Saturday (7)](#saturday-7)
+ * [Thursday (7)](#thursday-7)
+ * [Friday (9)](#friday-9)
+ * [Saturday (8)](#saturday-8)
 
 
-## Sunday (4)
+## Sunday (5)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |MIT-AF AI Accelerator (af_aiaccelerator)|01:24|aiaccelerator.af.mil|8|
+|www.healthit.gov (www.healthit.gov)|01:59|healthit.gov|8|
 |passportstatus.state.gov (usagov-replacement)|07:45|passportstatus.state.gov|3|
 |Military Auxiliary Radio System (usaf_mars)|09:14|mars.af.mil|8|
 |Air Force Historical Support Division (afpw-afhm)|18:49|afhistory.af.mil|8|
 
 
-## Monday (8)
+## Monday (9)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Navy All Hands Magazine|06:00|allhands.navy.mil|3|
@@ -27,10 +28,11 @@
 |VA Access To Care|09:30|accesstocare.va.gov|3|
 |regulations.atf|09:45|regulations.atf.gov|3|
 |Air Force Scientific Advisory Board (sab)|10:09|scientificadvisoryboard.af.mil|8|
+|militarypay.defense.gov (dod_milpay)|11:35|militarypay.defense.gov|8|
 |Air National Guard Band of the Southwest (afpw_angbandsouthwest)|12:15|bandofthesouthwest.ang.af.mil|8|
 
 
-## Tuesday (7)
+## Tuesday (8)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |guides.loc.gov (usagov-replacement)|03:30|guides.loc.gov|3|
@@ -40,6 +42,7 @@
 |Lajes Field (lajes)|09:14|lajes.af.mil|8|
 |tricare_cherrypoint|13:00|cherrypoint.tricare.mil|8|
 |McConnell Air Force Base Public (afpw_mcconnell)|23:06|public.mcconnell.amc.af.mil|8|
+|dodsoco.ogc.osd.mil (dod_sco)|23:09|dodsoco.ogc.osd.mil|8|
 
 
 ## Wednesday (5)
@@ -52,9 +55,10 @@
 |Air Force Bands Program (afpw_bandsprogram)|16:32|bands.af.mil|8|
 
 
-## Thursday (6)
+## Thursday (7)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
+|www.news.uscg.mil (uscg_news)|00:51|news.uscg.mil|8|
 |VA (usagov-replacement)|06:30|va.gov|3|
 |Gulfport Combat Readiness Training Center (ang_gulfportcrtc)|10:09|gulfportcrtc.ang.af.mil|8|
 |175th Wing, Maryland Air National Guard (afpw_175wg)|10:39|175wg.ang.af.mil|8|
@@ -63,10 +67,11 @@
 |www.mynavyhr.navy.mil (usagov-replacement)|17:32|mynavyhr.navy.mil|3|
 
 
-## Friday (8)
+## Friday (9)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |tricare_dover|02:00|dover.tricare.mil|8|
+|www.asafm.army.mil (army_afmc)|03:32|asafm.army.mil|8|
 |138th Fighter Wing, Oklahoma ANG (afpw_138fw)|04:05|138fw.ang.af.mil|8|
 |NIH Clinical Center (CC) (www.cc.nih.gov)|09:14|cc.nih.gov|8|
 |7th Air Force (7af)|09:14|7af.pacaf.af.mil|8|
@@ -76,12 +81,13 @@
 |167th Airlift Wing, West Virginia Air National Guard (afpw_167aw)|21:31|167aw.ang.af.mil|8|
 
 
-## Saturday (7)
+## Saturday (8)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |fiscal.treasury.gov (usagov-replacement)|04:00|fiscal.treasury.gov|3|
 |NAFRI.gov (nwcg)|04:15|nafri.gov|3|
 |www.ukraineoversight.gov (usagov-replacement)|06:00|ukraineoversight.gov|3|
+|www.dtra.mil (dtra)|07:12|dtra.mil|8|
 |tricare_osan|09:00|osan.tricare.mil|8|
 |24th Special Operations Wing (24sow)|10:09|24sow.af.mil|8|
 |132nd FW, Iowa ANG (afpw_132fw)|14:56|132fw.ang.af.mil|8|
