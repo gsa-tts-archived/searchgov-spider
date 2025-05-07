@@ -482,5 +482,82 @@
       "output_target": "elasticsearch",
       "schedule": "45 09 * * MON",
       "starting_urls": "https://regulations.atf.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "healthit.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Batch - 18 (www.healthit.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "28 7 * * SUN",
+      "starting_urls": "https://www.healthit.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dodcui.mil",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Batch - 18 (dod_cui)",
+      "output_target": "elasticsearch",
+      "schedule": "48 4 * * THU",
+      "starting_urls": "https://www.dodcui.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "swpc.noaa.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Batch - 20 (ncep.noaa.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "16 9 * * SUN",
+      "starting_urls": "https://www.swpc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ndupress.ndu.edu",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Batch - 20 (nduedu)",
+      "output_target": "elasticsearch",
+      "schedule": "20 18 * * MON",
+      "starting_urls": "https://ndupress.ndu.edu/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "uscg.mil",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Batch - 20 (uscg_all)",
+      "output_target": "elasticsearch",
+      "schedule": "24 3 * * WED",
+      "starting_urls": "https://www.uscg.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "medcoe.army.mil",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Batch - 20 (medcoe)",
+      "output_target": "elasticsearch",
+      "schedule": "28 12 * * THU",
+      "starting_urls": "https://medcoe.army.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cdhc.noaa.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Batch - 20 (coastalscience.noaa.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "33 21 * * FRI",
+      "starting_urls": "https://cdhc.noaa.gov/"
    }
 ]
