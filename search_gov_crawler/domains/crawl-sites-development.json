@@ -113,6 +113,7 @@
       "name": "passportstatus.state.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "45 07 * * SUN",
+      "sitemap_url": null,
       "starting_urls": "https://passportstatus.state.gov/"
    },
    {
@@ -125,6 +126,7 @@
       "name": "www.ecfr.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "01 05 * * TUE",
+      "sitemap_url": null,
       "starting_urls": "https://www.ecfr.gov/"
    },
    {
@@ -137,6 +139,7 @@
       "name": "guides.loc.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "30 03 * * TUE",
+      "sitemap_url": null,
       "starting_urls": "https://guides.loc.gov/"
    },
    {
@@ -149,6 +152,7 @@
       "name": "fiscal.treasury.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "00 04 * * SAT",
+      "sitemap_url": null,
       "starting_urls": "https://fiscal.treasury.gov/"
    },
    {
@@ -161,6 +165,7 @@
       "name": "www.dla.mil (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "06 06 * * WED",
+      "sitemap_url": null,
       "starting_urls": "https://www.dla.mil/"
    },
    {
@@ -173,6 +178,7 @@
       "name": "mhvidp-prod.myhealth.va.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "32 16 * * WED",
+      "sitemap_url": null,
       "starting_urls": "https://mhvidp-prod.myhealth.va.gov/"
    },
    {
@@ -185,6 +191,7 @@
       "name": "www.nhlbi.nih.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "50 10 * * WED",
+      "sitemap_url": null,
       "starting_urls": "https://www.nhlbi.nih.gov/"
    },
    {
@@ -197,6 +204,7 @@
       "name": "www.ukraineoversight.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "00 06 * * SAT",
+      "sitemap_url": null,
       "starting_urls": "https://www.ukraineoversight.gov/"
    },
    {
@@ -209,6 +217,7 @@
       "name": "digital.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "12 16 * * THU",
+      "sitemap_url": null,
       "starting_urls": "https://digital.gov/"
    },
    {
@@ -221,6 +230,7 @@
       "name": "www.fsa.usda.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "22 17 * * THU",
+      "sitemap_url": null,
       "starting_urls": "https://www.fsa.usda.gov/"
    },
    {
@@ -233,6 +243,7 @@
       "name": "www.mynavyhr.navy.mil (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "32 17 * * THU",
+      "sitemap_url": null,
       "starting_urls": "https://www.mynavyhr.navy.mil/"
    },
    {

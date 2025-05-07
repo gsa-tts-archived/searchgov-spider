@@ -82,6 +82,8 @@ def create_apscheduler_job(
     runtime_offset_seconds: int,
     depth_limit: int,
     deny_paths: str,
+    sitemap_url: str = None,
+    check_sitemap_hours: int = None,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -145,6 +147,8 @@ def benchmark_from_args(
     runtime_offset_seconds: int,
     depth_limit: int,
     deny_paths: str,
+    sitemap_url: str = None,
+    check_sitemap_hours: int = None,
 ):
     """Run an individual benchmarking job based on args"""
 
@@ -152,7 +156,7 @@ def benchmark_from_args(
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s "
         "handle_javascript=%s output_target=%s runtime_offset_seconds=%s "
-        "depth_limit=%s deny_paths=%s"
+        "depth_limit=%s deny_paths=%s sitemap_url=%s check_sitemap_hours=%s"
     )
     log.info(
         msg,
@@ -164,6 +168,8 @@ def benchmark_from_args(
         runtime_offset_seconds,
         depth_limit,
         deny_paths,
+        sitemap_url,
+        check_sitemap_hours,
     )
 
     apscheduler_job_kwargs = {
@@ -176,6 +182,8 @@ def benchmark_from_args(
         "runtime_offset_seconds": runtime_offset_seconds,
         "depth_limit": depth_limit,
         "deny_paths": deny_paths.split(","),
+        "sitemap_url": sitemap_url,
+        "check_sitemap_hours": check_sitemap_hours,
     }
 
     scheduler = init_scheduler()
