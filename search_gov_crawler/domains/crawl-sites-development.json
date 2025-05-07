@@ -493,5 +493,71 @@
       "output_target": "elasticsearch",
       "schedule": "15 04 * * SAT",
       "starting_urls": "https://nafri.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "healthit.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.healthit.gov (www.healthit.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "59 1 * * SUN",
+      "starting_urls": "https://www.healthit.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "militarypay.defense.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "militarypay.defense.gov (dod_milpay)",
+      "output_target": "elasticsearch",
+      "schedule": "35 11 * * MON",
+      "starting_urls": "https://militarypay.defense.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dodsoco.ogc.osd.mil",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "dodsoco.ogc.osd.mil (dod_sco)",
+      "output_target": "elasticsearch",
+      "schedule": "9 23 * * TUE",
+      "starting_urls": "https://dodsoco.ogc.osd.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "news.uscg.mil",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.news.uscg.mil (uscg_news)",
+      "output_target": "elasticsearch",
+      "schedule": "51 0 * * THU",
+      "starting_urls": "https://www.news.uscg.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "asafm.army.mil",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.asafm.army.mil (army_afmc)",
+      "output_target": "elasticsearch",
+      "schedule": "32 3 * * FRI",
+      "starting_urls": "https://www.asafm.army.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dtra.mil",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.dtra.mil (dtra)",
+      "output_target": "elasticsearch",
+      "schedule": "12 7 * * SAT",
+      "starting_urls": "https://www.dtra.mil/"
    }
 ]
