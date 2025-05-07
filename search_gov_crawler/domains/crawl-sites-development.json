@@ -135,7 +135,7 @@
       "allow_query_string": false,
       "allowed_domains": "dla.mil",
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.dla.mil (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -190,7 +190,7 @@
       "allow_query_string": false,
       "allowed_domains": "fsa.usda.gov",
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.fsa.usda.gov (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -482,5 +482,16 @@
       "output_target": "elasticsearch",
       "schedule": "45 09 * * MON",
       "starting_urls": "https://regulations.atf.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nafri.gov",
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NAFRI.gov (nwcg)",
+      "output_target": "elasticsearch",
+      "schedule": "15 04 * * SAT",
+      "starting_urls": "https://nafri.gov"
    }
 ]

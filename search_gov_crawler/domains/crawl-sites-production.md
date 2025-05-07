@@ -1,20 +1,21 @@
 # Production Schedule
- * [Sunday (126)](#sunday-126)
+ * [Sunday (140)](#sunday-140)
  * [Monday (140)](#monday-140)
  * [Tuesday (155)](#tuesday-155)
  * [Wednesday (153)](#wednesday-153)
  * [Thursday (158)](#thursday-158)
  * [Friday (161)](#friday-161)
- * [Saturday (145)](#saturday-145)
+ * [Saturday (158)](#saturday-158)
 
 
-## Sunday (126)
+## Sunday (140)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|learningprofessionals.af.mil|8|
 |Youngstown Air Reserve Station (youngstown)|00:00|youngstown.afrc.af.mil|8|
 |radar.weather.gov (nws.noaa.gov)|00:00|radar.weather.gov|3|
 |FTC Consumer Advice (usagov-replacement)|00:15|consumer.ftc.gov|3|
+|USACE.Army.mil (u.s.armycorpsofengineersheadquart)|00:15|usace.army.mil|8|
 |National Park Service (usagov-replacement)|00:30|nps.gov|3|
 |State Dept Forms (usagov-replacement)|00:45|eforms.state.gov|3|
 |Yokota Air Base (yokota)|00:55|yokota.af.mil|8|
@@ -27,6 +28,7 @@
 |19th Medical Group - Little Rock Air Force Base|02:00|littlerock.tricare.mil|8|
 |Yellow Ribbon Reintegration Program (af_yellowribbon)|02:05|yellowribbon.usaf.afpims.mil|8|
 |Centers for Disease Control and Prevention (usagov-replacement)|02:15|cdc.gov|3|
+|Comptroller.Defense.gov (osd_comptroller)|02:15|comptroller.defense.gov|8|
 |State Dept (usagov-replacement)|02:30|state.gov|3|
 |Housing and Urban Development (usagov-replacement)|02:45|hud.gov|3|
 |Whiteman Air Force Base (whiteman)|02:46|whiteman.af.mil|8|
@@ -34,16 +36,19 @@
 |tricare_mhseurope|03:00|mhs-europe.tricare.mil|8|
 |18th Medical Group - Kadena Air Base|03:00|kadena.tricare.mil|8|
 |Office of Financial Management (nih)|03:11|ofm.od.nih.gov|8|
+|IN.Usembassy.gov (dos_emb_csa_newdelhi)|03:15|in.usembassy.gov|8|
 |AFWERX (af_werx)|03:29|afwerx.af.mil|8|
 |Westover Air Reserve Base, Mass (westover)|03:42|westover.afrc.af.mil|8|
 |tricare_redstone|04:00|redstone.tricare.mil|8|
 |15th Medical Group - Joint Base Pearl Harbor-Hickam|04:00|pearlharborhickam.tricare.mil|8|
 |521st Air Mobility Operations Wing (af_521amow)|04:11|521amow.af.mil|8|
 |Office of Management (nih)|04:13|om.od.nih.gov|8|
+|MED.Navy.mil (navy_med)|04:15|www.med.navy.mil|8|
 |Vandenberg Air Force Base (vandenberg)|04:37|vandenberg.af.mil|8|
 |CSAF Strategic Integration Group (afpw_afsig)|04:53|afsig.af.mil|8|
 |tricare_desmonddoss|05:00|desmond-doss.tricare.mil|8|
 |11th Medical Squadron - Joint Base Anacostia-Bolling|05:00|anacostiabolling.tricare.mil|8|
+|NAL.USDA.gov (USDA NAL)|05:15|nal.usda.gov|8|
 |Vance Air Force Base (vance)|05:32|vance.af.mil|8|
 |Air Force Resilience (afpw_resil)|05:35|resilience.af.mil|8|
 |USA Jobs (usagov-replacement)|06:00|usajobs.gov|3|
@@ -51,6 +56,7 @@
 |tricare_diegogarcia|06:00|diegogarcia.tricare.mil|8|
 |316th Medical Group - Joint Base Andrews (Malcolm Grow Medical Clinics and Surgery Center)|06:00|andrews.tricare.mil|8|
 |FDA (usagov-replacement)|06:15|fda.gov|3|
+|AgDataCommons.NAL.USDA.gov (USDA NAL)|06:15|agdatacommons.nal.usda.gov|8|
 |afcca (afcca)|06:16|afcca.law.af.mil|8|
 |National Eye Institute (www.nei.nih.gov)|06:28|nei.nih.gov|8|
 |US Air Forces in Europe Air Forces Africa (usafe)|06:28|usafe.af.mil|8|
@@ -61,6 +67,7 @@
 |tricare_belvoir|07:00|belvoirhospital.tricare.mil|8|
 |The Andrew Rader U.S. Army Health Clinic|07:00|rader.tricare.mil|8|
 |CFPB (usagov-replacement)|07:15|consumerfinance.gov|3|
+|FDC.NAL.USDA.gov (USDA NAL)|07:15|fdc.nal.usda.gov|8|
 |United States Air Force Academy (usafacademy)|07:23|usafa.af.mil|8|
 |CIA (usagov-replacement)|07:30|cia.gov|3|
 |Air Force Inspector General (afpw_afinspectorgeneral)|07:40|afinspectorgeneral.af.mil|8|
@@ -85,6 +92,7 @@
 |Air Force Warfighting Integration Capability (usaf_afwic)|11:05|afwic.af.mil|8|
 |Air Force Small Business Innovation Research and Small Business Technology Transfer (afpw_sbirsttr)|11:09|afsbirsttr.af.mil|8|
 |doge.gov (usagov-replacement)|11:15|doge.gov|3|
+|LOD.NAL.USDA.gov (USDA NAL)|11:15|lod.nal.usda.gov|8|
 |www.federalregister.gov (usagov-replacement)|11:30|federalregister.gov|3|
 |www.loc.gov (usagov-replacement)|11:45|loc.gov|3|
 |2nd Air Force (afpw_2af)|11:51|2af.aetc.af.mil|8|
@@ -93,29 +101,35 @@
 |31st Medical Group - Aviano Air Base|12:00|aviano.tricare.mil|8|
 |Air Force Technology Transfer and Transition Program (usaf_aft3)|12:00|aft3.af.mil|8|
 |www.epa.gov (usagov-replacement)|12:15|epa.gov|3|
+|Phytochem.NAL.USDA.gov (USDA NAL)|12:15|phytochem.nal.usda.gov|3|
 |www.ed.gov (usagov-replacement)|12:30|ed.gov|3|
 |194th Wing, Wahington ANG (afpw_194wg)|12:33|194wg.ang.af.mil|8|
 |www.ncbi.nlm.nih.gov (usagov-replacement)|12:45|ncbi.nlm.nih.gov|3|
 |Air Force Research Laboratory (usaf_afrl)|12:55|afrl.af.mil|8|
 |tricare_eisenhower|13:00|eisenhower.tricare.mil|8|
 |125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|125fw.ang.af.mil|8|
+|ArchivesSpace.NAL.USDA.gov (USDA NAL)|13:15|archivesspace.nal.usda.gov|3|
 |Air Force Nuclear Weapons Center (usaf_afnwc)|13:51|afnwc.af.mil|8|
 |174th Attack Wing (afpw_174aw)|13:57|174attackwing.ang.af.mil|8|
 |tricare_raymondbliss|14:00|raymond-bliss.tricare.mil|8|
+|I5K.NAL.USDA.gov (USDA NAL)|14:15|i5k.nal.usda.gov|3|
 |Air Force Test Center (afpw_aftc)|14:38|aftc.af.mil|8|
 |Air Force Manpower Analysis Agency (usaf_afmaa)|14:46|afmaa.af.mil|8|
 |www.pbgc.gov (usagov-replacement)|15:00|pbgc.gov|3|
 |tricare_munson|15:00|munson.tricare.mil|8|
+|GeoData.NAL.USDA.gov (USDA NAL)|15:15|geodata.nal.usda.gov|3|
 |Air Force BES (afpw_gunter)|15:20|airforcebes.af.mil|8|
 |www.senate.gov (usagov-replacement)|16:00|senate.gov|3|
 |tricare_leonardwood|16:00|leonard-wood.tricare.mil|8|
 |413th Flight Test Group (afpw_413ftg)|16:02|413ftg.afrc.af.mil|8|
 |www.gsa.gov (usagov-replacement)|16:15|gsa.gov|3|
+|IWGSC.NAL.USDA.gov (USDA NAL)|16:15|iwgsc.nal.usda.gov|3|
 |bidenwhitehouse.archives.gov (usagov-replacement)|16:30|bidenwhitehouse.archives.gov|3|
 |Air Force Life Cycle Management Center (usaf_aflcmc)|16:37|aflcmc.af.mil|8|
 |195th Wing (afpw_195wg)|16:44|195wg.ang.af.mil|8|
 |secure.login.gov (usagov-replacement)|16:45|secure.login.gov|3|
 |tricare_williambeaumont|17:00|william-beaumont.tricare.mil|8|
+|InvasiveSpeciesInfo.gov (USDA NAL)|17:15|invasivespeciesinfo.gov|3|
 |156th Airlift Wing (afpw_156aw)|17:26|156aw.ang.af.mil|8|
 |DAF Learning Services (usaf_aetc)|17:32|daflearning.af.mil|8|
 |tricare_weedirwin|18:00|weed-irwin.tricare.mil|8|
@@ -435,7 +449,7 @@
 |www.treasurydirect.gov (usagov-replacement)|21:44|treasurydirect.gov|3|
 |budget.house.gov (usagov-replacement)|22:22|budget.house.gov|3|
 |Maxwell Air Force Base (afpw_maxwell)|22:24|maxwell.af.mil|8|
-|USCIS (usagov-replacement)|22:30|uscis.gov|3|
+|USCIS (usagov-replacement)|22:30|uscis.gov|8|
 |history.state.gov (usagov-replacement)|22:30|history.state.gov|3|
 |National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) (www.niddk.nih.gov)|23:05|niddk.nih.gov|8|
 |Hanscom Air Force Base (hanscom)|23:05|hanscom.af.mil|8|
@@ -483,7 +497,7 @@
 |bean.house.gov (usagov-replacement)|06:00|bean.house.gov|3|
 |tricare_okinawa|06:00|okinawa.tricare.mil|8|
 |United States Air Force Honor Guard (afpw_honor)|06:04|honorguard.af.mil|8|
-|www.dla.mil (usagov-replacement)|06:06|dla.mil|3|
+|www.dla.mil (usagov-replacement)|06:06|dla.mil|8|
 |www.tsp.gov (usagov-replacement)|06:12|tsp.gov|3|
 |Ellsworth Air Force Base (ellsworth)|06:28|ellsworth.af.mil|8|
 |www.voanews.com (usagov-replacement)|06:30|voanews.com|3|
@@ -666,7 +680,7 @@
 |www.ussc.gov (usagov-replacement)|08:22|ussc.gov|3|
 |www.genome.gov (usagov-replacement)|08:32|genome.gov|3|
 |Air Force Judge Advocate General's Corps (afpw_afjag)|08:34|afjag.af.mil|8|
-|US Army Reserves (usagov-replacement)|08:42|usar.army.mil|3|
+|US Army Reserves (usagov-replacement)|08:42|usar.army.mil|8|
 |www.usich.gov (usagov-replacement)|09:12|usich.gov|3|
 |Air National Guard Readiness Center (angrc)|09:14|angrc.ang.af.mil|8|
 |172nd Airlift Wing, Mississippi Air National Guard (afpw_172aw)|09:16|172aw.ang.af.mil|8|
@@ -719,7 +733,7 @@
 |Department of the Air Force Open Data Program (airforce_data)|16:37|data.af.mil|8|
 |184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)|16:56|184iw.ang.af.mil|8|
 |democrats-appropriations.house.gov (usagov-replacement)|17:12|democrats-appropriations.house.gov|3|
-|www.fsa.usda.gov (usagov-replacement)|17:22|fsa.usda.gov|3|
+|www.fsa.usda.gov (usagov-replacement)|17:22|fsa.usda.gov|8|
 |www.mynavyhr.navy.mil (usagov-replacement)|17:32|mynavyhr.navy.mil|3|
 |Air Force Center of Excellence for Medical Multimedia (airforce_cemm)|17:32|cemm.af.mil|8|
 |185th Air Refueling Wing, Iowa ANG (afpw_185arw)|17:38|185arw.ang.af.mil|8|
@@ -739,7 +753,7 @@
 |www.iowacourts.gov (usagov-replacement)|20:12|iowacourts.gov|3|
 |National Institute of Nursing Research (NINR) (www.ninr.nih.gov)|20:18|ninr.nih.gov|8|
 |Air Education and Training Command (aetc)|20:18|aetc.af.mil|8|
-|www.ars.usda.gov (usagov-replacement)|20:22|ars.usda.gov|3|
+|www.ars.usda.gov (usagov-replacement)|20:22|ars.usda.gov|8|
 |18th Air Force (afpw_18af)|20:25|18af.amc.af.mil|8|
 |learningenglish.voanews.com (usagov-replacement)|20:32|learningenglish.voanews.com|3|
 |US Embassy in Canada (usagov-replacement)|20:42|ca.usembassy.gov|3|
@@ -856,7 +870,7 @@
 |Weather Prediction Center (wpc)|19:03|wpc.ncep.noaa.gov|3|
 |TGFTP NWS (tgftp)|19:03|tgftp.nws.noaa.gov|3|
 |NOAA Ocean Service (oceanservice)|19:03|oceanservice.noaa.gov|3|
-|Space Weather Prediction Center (swpc)|19:04|swpc.noaa.gov|3|
+|Space Weather Prediction Center (swpc)|19:04|swpc.noaa.gov|8|
 |Climate Prediction Center (cpc)|19:04|cpc.ncep.noaa.gov|3|
 |National Centers for Environmental Information (ncdc)|19:04|ncdc.noaa.gov|3|
 |National Hurricane Center (nhc)|19:05|nhc.noaa.gov|3|
@@ -892,7 +906,7 @@
 |NOAA Library (library)|19:15|library.noaa.gov|3|
 |Tsunami Warning Center (tsunami)|19:15|tsunami.noaa.gov|3|
 |Arctic Program (arctic)|19:15|arctic.noaa.gov|3|
-|NOAA Charts (charts)|19:16|charts.noaa.gov|3|
+|NOAA Charts (charts)|19:16|charts.noaa.gov|8|
 |NOAA Marine Debris Program (marinedebris)|19:16|marinedebris.noaa.gov|3|
 |NOAA Climate Program Office (cpo)|19:16|cpo.noaa.gov|3|
 |Marine Navigation (marinenavigation)|19:17|marinenavigation.noaa.gov|3|
@@ -905,7 +919,7 @@
 |Coastwatch (coastwatch)|19:19|coastwatch.glerl.noaa.gov|3|
 |Geodesy (geodesy)|19:19|geodesy.noaa.gov|3|
 |Ocean Acidification (oceanacidification)|19:20|oceanacidification.noaa.gov|3|
-|Nautical Charts (nauticalcharts)|19:20|nauticalcharts.noaa.gov|3|
+|Nautical Charts (nauticalcharts)|19:20|nauticalcharts.noaa.gov|8|
 |Coral Reef Watch (coralreefwatch)|19:20|coralreefwatch.noaa.gov|3|
 |NOAA Fisheries Media (media.fisheries)|19:21|media.fisheries.noaa.gov|3|
 |Geophysical Fluid Dynamics Laboratory (gfdl)|19:21|gfdl.noaa.gov|3|
@@ -931,7 +945,7 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|171arw.ang.af.mil|8|
 
 
-## Saturday (145)
+## Saturday (158)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|fec.gov|3|
@@ -948,18 +962,21 @@
 |oversightdemocrats.house.gov (usagov-replacement)|02:00|oversightdemocrats.house.gov|3|
 |tricare_elmendorfrichardson|02:00|elmendorfrichardson.tricare.mil|8|
 |8th Medical Group - Kunsan Air Base|02:00|kunsan.tricare.mil|8|
+|DCSA.mil (dod_dcsa)|02:15|dcsa.mil|8|
 |111th Attack Wing FW (afpw_111fw)|02:23|111fw.ang.af.mil|8|
 |37th Training Wing (37trw)|02:46|37trw.af.mil|8|
 |sam.gov (usagov-replacement)|03:00|sam.gov|3|
 |tricare_beale|03:00|beale.tricare.mil|8|
 |87th Medical Group - Joint Base McGuire-Dix-Lakehurst|03:00|mcguiredixlakehurst.tricare.mil|8|
 |111th Attack Wing (afpw_111fw)|03:05|111attackwing.ang.af.mil|8|
+|NWCG.gov (nwcg)|03:15|nwcg.gov|8|
 |353rd Special Operations Group (353sog)|03:42|353sog.af.mil|8|
 |114th Fighter Wing (afpw_114fw)|03:47|114fw.ang.af.mil|8|
 |fiscal.treasury.gov (usagov-replacement)|04:00|fiscal.treasury.gov|3|
 |www.uspis.gov (usagov-replacement)|04:00|uspis.gov|3|
 |tricare_barksdale|04:00|barksdale.tricare.mil|8|
 |75th Medical Group - Hill Air Force Base|04:00|hill.tricare.mil|8|
+|NAFRI.gov (nwcg)|04:15|nafri.gov|3|
 |115th Fighter Wing (afpw_115fw)|04:29|115fw.ang.af.mil|8|
 |Fogarty International Center (FIC) (www.fic.nih.gov)|04:37|fic.nih.gov|8|
 |349th Air Mobility Wing (349amw)|04:37|349amw.afrc.af.mil|8|
@@ -986,6 +1003,7 @@
 |www.trumanlibrary.gov (usagov-replacement)|08:00|trumanlibrary.gov|3|
 |tricare_offutt|08:00|offutt.tricare.mil|8|
 |60th Medical Group - Travis Air Force Base|08:00|travis.tricare.mil|8|
+|RMA.USDA.gov (risk-management-agency_sandbox)|08:15|rma.usda.gov|8|
 |302nd Airlift Wing (302aw)|08:18|302aw.afrc.af.mil|8|
 |121st ARW, Ohio Air National Guard (afpw_121arw)|08:40|121arw.ang.af.mil|8|
 |nces.ed.gov (usagov-replacement)|09:00|nces.ed.gov|3|
@@ -1006,6 +1024,7 @@
 |49th Medical Group - Holloman Air Force Base|11:00|holloman.tricare.mil|8|
 |National Center for Advancing Translational Sciences (NCATS) (ncats.nih.gov)|11:05|ncats.nih.gov|8|
 |Air Forces Cyber (24af)|11:05|afcyber.af.mil|8|
+|Legacy RMA.USDA.gov (risk-management-agency_sandbox)|11:15|legacy.rma.usda.gov|8|
 |NIH Security (nih)|11:21|security.nih.gov|8|
 |127th Wing, Michigan Air National Guard (afpw_127wg)|11:27|127wg.ang.af.mil|8|
 |uk.usembassy.gov (usagov-replacement)|12:00|uk.usembassy.gov|3|
@@ -1023,15 +1042,17 @@
 |130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)|13:33|130aw.ang.af.mil|8|
 |187th Fighter Wing, Alabama ANG (187fw)|13:51|187fw.ang.af.mil|8|
 |www.nist.gov (usagov-replacement)|14:00|nist.gov|3|
-|www.navsea.navy.mil (usagov-replacement)|14:00|navsea.navy.mil|3|
+|www.navsea.navy.mil (usagov-replacement)|14:00|navsea.navy.mil|8|
 |tricare_willfordhall|14:00|wilfordhall.tricare.mil|8|
 |45th Medical Group - Patrick Air Force Base|14:00|patrick.tricare.mil|8|
 |131st Bomb Wing, Missouri ANG (afpw_131bw)|14:14|131bw.ang.af.mil|8|
+|Grants.NIH.gov (NIH grants)|14:15|grants.nih.gov|8|
 |183rd Fighter Wing, Illinois ANG (183fw)|14:46|183wg.ang.af.mil|8|
 |132nd FW, Iowa ANG (afpw_132fw)|14:56|132fw.ang.af.mil|8|
 |www.helpwithmybank.gov (usagov-replacement)|15:00|helpwithmybank.gov|3|
 |tricare_kirtland|15:00|kirtland.tricare.mil|8|
 |42d Medical Group - Maxwell Air Force Base|15:00|maxwell.tricare.mil|8|
+|Nexus.OD.NIH.gov (NIH grants)|15:15|nexus.od.nih.gov|8|
 |NIH Traffic (nih)|15:25|traffic.nih.gov|8|
 |132nd DWing, Iowa ANG (afpw_132fw)|15:38|132dwing.ang.af.mil|8|
 |165th Airlift Wing (165aw)|15:42|165aw.ang.af.mil|8|
@@ -1039,12 +1060,14 @@
 |www.marines.mil (usagov-replacement)|16:00|marines.mil|3|
 |tricare_wrightpatterson|16:00|wrightpatterson.tricare.mil|8|
 |422d Medical Squadron - RAF Croughton|16:00|rafcroughton.tricare.mil|8|
+|ERA.NIH.gov (NIH grants)|16:15|era.nih.gov|8|
 |133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)|16:20|133aw.ang.af.mil|8|
 |164th Airlift Wing, Tennessee ANG (164aw)|16:37|164aw.ang.af.mil|8|
 |home.army.mil (usagov-replacement)|17:00|home.army.mil|3|
 |tricare_keesler|17:00|keesler.tricare.mil|8|
 |366th Medical Treatment Facility|17:00|mountainhome.tricare.mil|8|
 |Air Force Audit Agency (afaa)|17:02|afaa.af.mil|8|
+|Report.NIH.gov (NIH grants)|17:15|report.nih.gov|8|
 |Office of Human Resources (nih)|17:27|hr.nih.gov|8|
 |National Center for Complementary and Integrative Health (NCCIH) (www.nccih.nih.gov)|17:32|nccih.nih.gov|8|
 |Air Force Agency for Modeling and Simulation (afams)|17:44|afams.af.mil|8|
@@ -1052,12 +1075,14 @@
 |www.foia.gov (usagov-replacement)|18:00|foia.gov|3|
 |tricare_374mg|18:00|yokota.tricare.mil|8|
 |35th Medical Group - Misawa Air Base|18:00|misawa.tricare.mil|8|
+|JCS.mil (jointchiefsofstaff)|18:15|jcs.mil|8|
 |Air Force Basic Military Training (afbmt)|18:25|basictraining.af.mil|8|
 |150th Fighter Wing (150fw)|18:28|150fw.ang.af.mil|8|
 |www.copyright.gov (usagov-replacement)|19:00|copyright.gov|3|
 |tricare_10mgafa|19:00|airforceacademy.tricare.mil|8|
 |355th Medical Group - Davis-Monthan Air Force Base|19:00|davismonthan.tricare.mil|8|
 |Air Force District of Washington (afdw)|19:07|afdw.af.mil|8|
+|DAIP.JCS.mil (jointchiefsofstaff)|19:15|daip.jcs.mil|3|
 |12th Air Force (12af)|19:23|12af.acc.af.mil|8|
 |25th Air Force (afisra)|19:49|25af.af.mil|8|
 |department.va.gov (usagov-replacement)|20:00|department.va.gov|3|
@@ -1070,6 +1095,7 @@
 |tricare_hurlburt|21:00|hurlburt.tricare.mil|8|
 |341st Medical Group - Malmstrom Air Force Base|21:00|malmstrom.tricare.mil|8|
 |Office of Special Investigations (afosi)|21:13|osi.af.mil|8|
+|USITC.gov (USITC)|21:15|usitc.gov|8|
 |Office of Special Investigations Andrews (afosi)|21:55|osi.andrews.af.mil|8|
 |encyclopedia.ushmm.org (usagov-replacement)|22:00|encyclopedia.ushmm.org|3|
 |wwwnc.cdc.gov (usagov-replacement)|22:00|wwwnc.cdc.gov|3|
@@ -1078,4 +1104,5 @@
 |Air Force Operational Test and Evaluation Center (afotec)|22:36|afotec.af.mil|8|
 |www.nih.gov (usagov-replacement)|23:00|nih.gov|3|
 |23d Medical Group - Moody Air Force Base|23:00|moody.tricare.mil|8|
+|History.Army.mil (army_uacomh)|23:15|history.army.mil|8|
 |Air Force Outreach (afoutreach)|23:18|afoutreach.af.mil|8|
