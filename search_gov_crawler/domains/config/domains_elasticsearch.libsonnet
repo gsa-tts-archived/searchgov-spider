@@ -9379,5 +9379,5 @@ local output_target = 'elasticsearch';
                          schedule='1 23 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
-  }
+  },
 ]
