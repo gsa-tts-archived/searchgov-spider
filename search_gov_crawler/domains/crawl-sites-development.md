@@ -5,7 +5,7 @@
  * [Wednesday (5)](#wednesday-5)
  * [Thursday (6)](#thursday-6)
  * [Friday (8)](#friday-8)
- * [Saturday (6)](#saturday-6)
+ * [Saturday (7)](#saturday-7)
 
 
 ## Sunday (4)
@@ -45,7 +45,7 @@
 ## Wednesday (5)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
-|www.dla.mil (usagov-replacement)|06:06|dla.mil|3|
+|www.dla.mil (usagov-replacement)|06:06|dla.mil|8|
 |www.nhlbi.nih.gov (usagov-replacement)|10:50|nhlbi.nih.gov|3|
 |Airman Magazine (dodlive_amnmag)|11:05|airmanmagazine.af.mil|8|
 |mhvidp-prod.myhealth.va.gov (usagov-replacement)|16:32|mhvidp-prod.myhealth.va.gov|3|
@@ -59,7 +59,7 @@
 |Gulfport Combat Readiness Training Center (ang_gulfportcrtc)|10:09|gulfportcrtc.ang.af.mil|8|
 |175th Wing, Maryland Air National Guard (afpw_175wg)|10:39|175wg.ang.af.mil|8|
 |digital.gov (usagov-replacement)|16:12|digital.gov|3|
-|www.fsa.usda.gov (usagov-replacement)|17:22|fsa.usda.gov|3|
+|www.fsa.usda.gov (usagov-replacement)|17:22|fsa.usda.gov|8|
 |www.mynavyhr.navy.mil (usagov-replacement)|17:32|mynavyhr.navy.mil|3|
 
 
@@ -76,10 +76,11 @@
 |167th Airlift Wing, West Virginia Air National Guard (afpw_167aw)|21:31|167aw.ang.af.mil|8|
 
 
-## Saturday (6)
+## Saturday (7)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |fiscal.treasury.gov (usagov-replacement)|04:00|fiscal.treasury.gov|3|
+|NAFRI.gov (nwcg)|04:15|nafri.gov|3|
 |www.ukraineoversight.gov (usagov-replacement)|06:00|ukraineoversight.gov|3|
 |tricare_osan|09:00|osan.tricare.mil|8|
 |24th Special Operations Wing (24sow)|10:09|24sow.af.mil|8|
