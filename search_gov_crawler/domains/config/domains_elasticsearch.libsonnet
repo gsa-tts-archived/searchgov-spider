@@ -8023,7 +8023,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
 
-  // batch 15 & 16
+  // batch 16 & 17
   {
     name: 'DCSA.mil (dod_dcsa)',
     config: DomainConfig(allowed_domains='dcsa.mil',
