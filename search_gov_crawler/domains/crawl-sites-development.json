@@ -80,7 +80,7 @@
       "allow_query_string": false,
       "allowed_domains": "usa.gov",
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "USA.gov (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -559,5 +559,16 @@
       "output_target": "elasticsearch",
       "schedule": "6 15 * * SAT",
       "starting_urls": "https://www.swg.usace.army.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bd.usembassy.gov",
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "US Embassy Dhaka (dos_emb_csa_dhaka)",
+      "output_target": "elasticsearch",
+      "schedule": "15 22 * * SUN",
+      "starting_urls": "https://bd.usembassy.gov"
    }
 ]

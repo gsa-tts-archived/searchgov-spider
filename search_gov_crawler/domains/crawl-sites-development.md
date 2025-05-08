@@ -1,5 +1,5 @@
 # Development Schedule
- * [Sunday (5)](#sunday-5)
+ * [Sunday (6)](#sunday-6)
  * [Monday (9)](#monday-9)
  * [Tuesday (7)](#tuesday-7)
  * [Wednesday (7)](#wednesday-7)
@@ -8,7 +8,7 @@
  * [Saturday (8)](#saturday-8)
 
 
-## Sunday (5)
+## Sunday (6)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Yellow Ribbon Reintegration Program (af_yellowribbon)|02:05|yellowribbon.usaf.afpims.mil|8|
@@ -16,6 +16,7 @@
 |www.census.gov (usagov-replacement)|11:00|census.gov|3|
 |Air Force Warfighting Integration Capability (usaf_afwic)|11:05|afwic.af.mil|8|
 |Air Force History and Museums (afhm)|19:31|afhistoryandmuseums.af.mil|8|
+|US Embassy Dhaka (dos_emb_csa_dhaka)|22:15|bd.usembassy.gov|8|
 
 
 ## Monday (9)
@@ -38,7 +39,7 @@
 |2021-2025.state.gov (usagov-replacement)|04:30|2021-2025.state.gov|3|
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|3|
 |www.fema.gov (usagov-replacement)|06:12|fema.gov|3|
-|USA.gov (usagov-replacement)|06:30|usa.gov|3|
+|USA.gov (usagov-replacement)|06:30|usa.gov|8|
 |10th Air Force (afpw_10af)|07:04|10af.afrc.af.mil|8|
 |Kunsan Air Base (kunsan)|11:05|kunsan.af.mil|8|
 |tricare_irwin|14:00|irwin.tricare.mil|8|
