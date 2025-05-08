@@ -584,17 +584,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "tgftp.nws.noaa.gov",
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "TGFTP NWS (tgftp)",
-      "output_target": "elasticsearch",
-      "schedule": "03 19 * * FRI",
-      "starting_urls": "https://tgftp.nws.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "oceanservice.noaa.gov",
       "deny_paths": null,
       "depth_limit": 3,
@@ -6282,17 +6271,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "acq.osd.mil/eie/afpmb",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Armed Forces Pest Management Board (afpmb)",
-      "output_target": "elasticsearch",
-      "schedule": "0 23 * * SUN",
-      "starting_urls": "https://www.acq.osd.mil/eie/afpmb/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ninth.af.mil",
       "deny_paths": null,
       "depth_limit": 8,
@@ -11860,17 +11838,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "grc.nasa.gov",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.grc.nasa.gov (nasa-glenn)",
-      "output_target": "elasticsearch",
-      "schedule": "46 19 * * SUN",
-      "starting_urls": "https://www.grc.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "aircrafticing.grc.nasa.gov",
       "deny_paths": null,
       "depth_limit": 8,
@@ -12025,17 +11992,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www2.fmc.gov",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www2.fmc.gov (www.fmc.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "32 15 * * MON",
-      "starting_urls": "https://www2.fmc.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "fmc.gov",
       "deny_paths": null,
       "depth_limit": 8,
@@ -12124,17 +12080,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ftp.nhc.ncep.noaa.gov",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ftp.nhc.ncep.noaa.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "20 8 * * TUE",
-      "starting_urls": "https://ftp.nhc.ncep.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "testbed.aviationweather.gov",
       "deny_paths": null,
       "depth_limit": 8,
@@ -12143,28 +12088,6 @@
       "output_target": "elasticsearch",
       "schedule": "19 9 * * TUE",
       "starting_urls": "https://testbed.aviationweather.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "tgftp.ncep.noaa.gov",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "tgftp.ncep.noaa.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "18 10 * * TUE",
-      "starting_urls": "https://tgftp.ncep.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ftp.cpc.ncep.noaa.gov",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ftp.cpc.ncep.noaa.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "18 11 * * TUE",
-      "starting_urls": "https://ftp.cpc.ncep.noaa.gov/"
    },
    {
       "allow_query_string": false,
@@ -12671,17 +12594,6 @@
       "output_target": "elasticsearch",
       "schedule": "44 10 * * THU",
       "starting_urls": "https://cgmix.uscg.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "my.portal.uscg.mil",
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "my.portal.uscg.mil (uscg_all)",
-      "output_target": "elasticsearch",
-      "schedule": "43 11 * * THU",
-      "starting_urls": "https://my.portal.uscg.mil/"
    },
    {
       "allow_query_string": false,
