@@ -3,33 +3,30 @@ import logging
 import os
 import re
 from datetime import UTC, datetime
+from typing import Any
 from urllib.parse import urlparse
-from dotenv import load_dotenv
+
 from dateutil import parser
+from dateutil.parser import ParserError
 from langdetect import detect
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
-from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from pythonjsonlogger.json import JsonFormatter
-from typing import Any
-from dateutil.parser import ParserError
 
 # fmt: off
 ALLOWED_LANGUAGE_CODE = {
-    "ar": "arabic", "bg": "bulgarian", "bn": "bengali", "ca": "catalan", "cs": "czech", "da": "danish",
-    "de": "german", "el": "greek", "en": "english", "es": "spanish", "et": "estonian", "fa": "persian", "fr": "french",
-    "he": "hebrew", "hi": "hindi", "hr": "croatian", "ht": "haitian creole", "hu": "hungarian", "hy": "armenian", "id": "indonesian",
-    "it": "italian", "ja": "japanese", "km": "khmer", "ko": "korean", "lt": "lithuanian", "lv": "latvian", "mk": "macedonian",
-    "nl": "dutch", "pl": "polish", "ps": "pashto", "pt": "portuguese", "ro": "romanian", "ru": "russian", "sk": "slovak", "so": "somali",
-    "sq": "albanian", "sr": "serbian", "sw": "swahili", "th": "thai", "tr": "turkish", "uk": "ukrainian", "ur": "urdu", "uz": "uzbek",
-    "vi": "vietnamese", "zh": "chinese",
+    "ar": "arabic",     "bg": "bulgarian",      "bn": "bengali",   "ca": "catalan",   "cs": "czech",
+    "da": "danish",     "de": "german",         "el": "greek",     "en": "english",   "es": "spanish",
+    "et": "estonian",   "fa": "persian",        "fr": "french",    "he": "hebrew",    "hi": "hindi",
+    "hr": "croatian",   "ht": "haitian creole", "hu": "hungarian", "hy": "armenian",  "id": "indonesian",
+    "it": "italian",    "ja": "japanese",       "km": "khmer",     "ko": "korean",    "lt": "lithuanian",
+    "lv": "latvian",    "mk": "macedonian",     "nl": "dutch",     "pl": "polish",    "ps": "pashto",
+    "pt": "portuguese", "ro": "romanian",       "ru": "russian",   "sk": "slovak",    "so": "somali",
+    "sq": "albanian",   "sr": "serbian",        "sw": "swahili",   "th": "thai",      "tr": "turkish",
+    "uk": "ukrainian",  "ur": "urdu",           "uz": "uzbek",     "vi": "vietnamese", "zh": "chinese",
 }
 # fmt: on
 
-load_dotenv()
-logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
-logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-logger = logging.getLogger("search_gov_crawler.i14y_helper")
+logger = logging.getLogger(__name__)
 
 
 def parse_date_safely(date_value: Any) -> str | None:
@@ -78,22 +75,38 @@ def detect_lang(text: str) -> str:
     return None
 
 
-def summarize_text(text: str, lang_code: str = None):
+def summarize_text(text: str, url: str, lang_code: str = None):
     """
     Summarizes text and extracts keywords using nltk, and calculates execution time.
 
     Args:
         text (str): extracted text/content
+        url (str): url for logging
+        lang_code (str, optional): language code string
 
     Returns:
         tuple: (summary, keywords)
     """
 
-    if (lang_code not in ALLOWED_LANGUAGE_CODE) or not text or type(text) != str:
-        return None, None
-    stop_words = set(stopwords.words(ALLOWED_LANGUAGE_CODE[lang_code]))
-    sentences = sent_tokenize(text)
+    empty_response = (None, None)
 
+    if not isinstance(text, str):
+        return empty_response
+
+    if not text:
+        return empty_response
+
+    if lang_code not in ALLOWED_LANGUAGE_CODE:
+        return empty_response
+
+    try:
+        stop_words = set(stopwords.words(ALLOWED_LANGUAGE_CODE[lang_code]))
+    except OSError as err:
+        msg = f"Unsupported Language. Error when parsing {url} Missing Stopwords File: {err}"
+        logger.warning(msg)
+        return empty_response
+
+    sentences = sent_tokenize(text)
     word_frequencies = {}
     sentence_scores = {}
 

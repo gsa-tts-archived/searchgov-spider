@@ -1,7 +1,11 @@
+import pytest
+
+from nltk.corpus import stopwords
 from search_gov_crawler.elasticsearch.i14y_helper import (
-    parse_date_safely,
     detect_lang,
+    parse_date_safely,
     separate_file_name,
+    summarize_text,
 )
 
 
@@ -10,36 +14,26 @@ def test_parse_date_safely_valid_date():
     assert parse_date_safely("2025-03-13") == "2025-03-13T00:00:00"
 
 
-def test_for_known_date_issues():
-    sampleDates = {
-        "5/30/2024 7:24:49 AM": "2024-05-30T07:24:49",
-        "Wed, 02 Nov 1998": "1998-11-02T00:00:00",
-        "2025-03-14 00:00:00.0": "2025-03-14T00:00:00",
-        "2024-04-08 18:17:47-04:00": "2024-04-08T18:17:47",
-        "Thursday, August 10, 2023": "2023-08-10T00:00:00",
-        "January 8, 2013 10:05:30 AM EST": "2013-01-08T10:05:30",
-        "jibberish": None,
-        "2025-02-16T04:18:11.491+00:00": "2025-02-16T04:18:11",
-        "2024-02-22T00:00:00": "2024-02-22T00:00:00",
-    }
-    for date in sampleDates:
-        assert parse_date_safely(date) == sampleDates[date]
+PARSE_DATE_TEST_CASES = [
+    ("5/30/2024 7:24:49 AM", "2024-05-30T07:24:49"),
+    ("Wed, 02 Nov 1998", "1998-11-02T00:00:00"),
+    ("2025-03-14 00:00:00.0", "2025-03-14T00:00:00"),
+    ("2024-04-08 18:17:47-04:00", "2024-04-08T18:17:47"),
+    ("Thursday, August 10, 2023", "2023-08-10T00:00:00"),
+    ("January 8, 2013 10:05:30 AM EST", "2013-01-08T10:05:30"),
+    ("jibberish", None),
+    ("2025-02-16T04:18:11.491+00:00", "2025-02-16T04:18:11"),
+    ("2024-02-22T00:00:00", "2024-02-22T00:00:00"),
+    ("", None),
+    (None, None),
+    (0, None),
+    (False, None),
+]
 
 
-def test_parse_date_safely_empty_string():
-    assert parse_date_safely("") is None
-
-
-def test_parse_date_safely_none():
-    assert parse_date_safely(None) is None
-
-
-def test_parse_date_safely_zero():
-    assert parse_date_safely(0) is None
-
-
-def test_parse_date_safely_false():
-    assert parse_date_safely(False) is None
+@pytest.mark.parametrize(("input_str", "output_str"), PARSE_DATE_TEST_CASES)
+def test_for_known_date_issues(input_str, output_str):
+    assert parse_date_safely(input_str) == output_str
 
 
 # Tests for detect_lang
@@ -114,3 +108,33 @@ def test_separate_file_name_empty():
 
 def test_separate_file_name_only_extension():
     assert separate_file_name(".pdf") == ""
+
+
+SUMMARIZE_TEXT_TEST_CASES = [
+    ("", "https://example.com", "en", None, None),
+    (10, "https://example.com", "en", None, None),
+    ("Hi there! I am testing this function", "https://example.com", None, None, None),
+    (
+        "Hi there! I am testing this function",
+        "https://example.com",
+        "en",
+        "I am testing this function Hi there!",
+        "hi, testing, function",
+    ),
+]
+
+
+@pytest.mark.parametrize(("text", "url", "lang_code", "summary", "keyword"), SUMMARIZE_TEXT_TEST_CASES)
+def test_summarize_text(text, url, lang_code, summary, keyword):
+    assert summarize_text(text=text, url=url, lang_code=lang_code) == (summary, keyword)
+
+
+def test_summarize_text_unsupported_stopwords(caplog):
+    with caplog.at_level("WARNING"):
+        results = summarize_text("This is a test for missing stopwork", "https://example.com", "ko")
+
+    assert results == (None, None)
+    assert (
+        f"Unsupported Language. Error when parsing https://example.com Missing Stopwords File: No such file or directory: '{stopwords._root.path}/korean'"
+        in caplog.messages
+    )
