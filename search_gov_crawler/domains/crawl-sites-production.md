@@ -1,14 +1,14 @@
 # Production Schedule
- * [Sunday (156)](#sunday-156)
- * [Monday (156)](#monday-156)
- * [Tuesday (174)](#tuesday-174)
+ * [Sunday (154)](#sunday-154)
+ * [Monday (155)](#monday-155)
+ * [Tuesday (171)](#tuesday-171)
  * [Wednesday (177)](#wednesday-177)
- * [Thursday (181)](#thursday-181)
- * [Friday (182)](#friday-182)
+ * [Thursday (180)](#thursday-180)
+ * [Friday (181)](#friday-181)
  * [Saturday (181)](#saturday-181)
 
 
-## Sunday (156)
+## Sunday (154)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|learningprofessionals.af.mil|8|
@@ -151,7 +151,6 @@
 |Air Force Historical Support Division (afpw-afhm)|18:49|afhistory.af.mil|8|
 |53rd Wing (usaf_53wing)|19:23|53rdwing.af.mil|8|
 |Air Force History and Museums (afhm)|19:31|afhistoryandmuseums.af.mil|8|
-|www.grc.nasa.gov (nasa-glenn)|19:46|grc.nasa.gov|8|
 |Office of Research Services (nih)|20:05|ors.od.nih.gov|8|
 |Air University (afpw_au)|20:13|airuniversity.af.edu|8|
 |492nd Special Operations Wing (usaf_492sow)|20:18|492sow.af.mil|8|
@@ -164,12 +163,11 @@
 |16th Air Force (usaf_16af)|22:09|16af.af.mil|8|
 |Veterans in Blue (afpw_vib)|22:18|veterans-in-blue.af.mil|8|
 |gipoc.grc.nasa.gov (nasa-glenn)|22:44|gipoc.grc.nasa.gov|8|
-|Armed Forces Pest Management Board (afpmb)|23:00|acq.osd.mil/eie/afpmb|8|
 |Tyndall Air Force Base (tyndall)|23:05|tyndall.af.mil|8|
 |9th Air Force (afpw_ninth)|23:42|ninth.af.mil|8|
 
 
-## Monday (156)
+## Monday (155)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Texas Air National Guard (txang)|00:00|tx.ang.af.mil|8|
@@ -297,7 +295,6 @@
 |Osan Air Base (osan)|14:46|osan.af.mil|8|
 |tricare_bmv|15:00|bavaria.tricare.mil|8|
 |Alaska Fisheries Science Center (afsc)|15:02|afsc.noaa.gov|8|
-|www2.fmc.gov (www.fmc.gov)|15:32|www2.fmc.gov|8|
 |Niagara Falls Air Reserve Station (niagarafalls)|15:42|niagara.afrc.af.mil|8|
 |Sexual Assault Prevention Response (afsapr)|15:44|sexualassaultpreventionresponse.af.mil|8|
 |tricare_lrmc|16:00|landstuhl.tricare.mil|8|
@@ -330,7 +327,7 @@
 |Team McChord (afpw_62aw)|23:24|mcchord.af.mil|8|
 
 
-## Tuesday (174)
+## Tuesday (171)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |Minot Air Force Base (minot)|00:00|minot.af.mil|8|
@@ -400,7 +397,6 @@
 |tricare_evans|08:00|evans.tricare.mil|8|
 |seedfund.nsf.gov (nsf)|08:00|seedfund.nsf.gov|3|
 |RAF Lakenheath (lakenheath)|08:18|lakenheath.af.mil|8|
-|ftp.nhc.ncep.noaa.gov (ncep.noaa.gov)|08:20|ftp.nhc.ncep.noaa.gov|8|
 |105th Airlift Wing (afpw_105aw)|08:28|105aw.ang.af.mil|8|
 |www.myhealth.va.gov (usagov-replacement)|08:30|myhealth.va.gov|3|
 |www.usda.gov (usagov-replacement)|08:34|usda.gov|3|
@@ -415,7 +411,6 @@
 |tricare_nhp|10:00|pensacola.tricare.mil|8|
 |Eunice Kennedy Shriver National Institute of Child Health and Human Development (NICHD) (www.nichd.nih.gov)|10:09|nichd.nih.gov|8|
 |Louisiana Air National Guard (laang)|10:09|159fw.ang.af.mil|8|
-|tgftp.ncep.noaa.gov (ncep.noaa.gov)|10:18|tgftp.ncep.noaa.gov|8|
 |www.uspto.gov (usagov-replacement)|10:30|uspto.gov|3|
 |101st Air Refueling Wing (afpw_101arw)|10:33|101arw.ang.af.mil|8|
 |www.ojp.gov (usagov-replacement)|10:56|ojp.gov|3|
@@ -423,7 +418,6 @@
 |Kunsan Air Base (kunsan)|11:05|kunsan.af.mil|8|
 |www.usgs.gov (usagov-replacement)|11:11|usgs.gov|3|
 |102nd Intelligence Wing (afpw_102iw)|11:15|102iw.ang.af.mil|8|
-|ftp.cpc.ncep.noaa.gov (ncep.noaa.gov)|11:18|ftp.cpc.ncep.noaa.gov|8|
 |apps.irs.gov (usagov-replacement)|11:30|apps.irs.gov|3|
 |Air Force Reserve Command (afrc)|11:57|afrc.af.mil|8|
 |tricare_nhcne|12:00|newengland.tricare.mil|8|
@@ -691,7 +685,7 @@
 |prhome.defense.gov (dl_prhome)|23:52|prhome.defense.gov|8|
 
 
-## Thursday (181)
+## Thursday (180)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |USAF Band of the Golden West (bandgoldenwest)|00:00|bandofthegoldenwest.af.mil|8|
@@ -786,7 +780,6 @@
 |www.ihs.gov (usagov-replacement)|11:22|ihs.gov|3|
 |consumer.gov (usagov-replacement)|11:32|consumer.gov|3|
 |Sen Cruz (usagov-replacement)|11:42|cruz.senate.gov|3|
-|my.portal.uscg.mil (uscg_all)|11:43|my.portal.uscg.mil|8|
 |Air Mobility Command (amc)|12:00|amc.af.mil|8|
 |177th Fighter Wing, New Jersey ANG (afpw_177fw)|12:03|177fw.ang.af.mil|8|
 |www.phila.gov (usagov-replacement)|12:12|phila.gov|3|
@@ -877,7 +870,7 @@
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|214rg.ang.af.mil|8|
 
 
-## Friday (182)
+## Friday (181)
 |Name|Time (UTC)|Allowed Domains|Depth|
 |---|---|---|---|
 |944th Fighter Wing (944fw)|00:00|944fw.afrc.af.mil|8|
@@ -983,7 +976,6 @@
 |NOAA Fisheries (fisheries)|19:02|fisheries.noaa.gov|3|
 |NOAA Water (water)|19:02|water.noaa.gov|3|
 |Weather Prediction Center (wpc)|19:03|wpc.ncep.noaa.gov|3|
-|TGFTP NWS (tgftp)|19:03|tgftp.nws.noaa.gov|3|
 |NOAA Ocean Service (oceanservice)|19:03|oceanservice.noaa.gov|3|
 |Space Weather Prediction Center (swpc)|19:04|swpc.noaa.gov|8|
 |Climate Prediction Center (cpc)|19:04|cpc.ncep.noaa.gov|3|
