@@ -1,14 +1,8 @@
-import os
-import csv
-import pytest
-import requests
 from unittest.mock import patch, mock_open, MagicMock
-
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import (
     SitemapFinder,
     write_dict_to_csv
 )
-
 
 class TestWriteDictToCsv:
     @patch("builtins.open", new_callable=mock_open)
@@ -68,7 +62,6 @@ class TestWriteDictToCsv:
         write_dict_to_csv(data, "test_file", overwrite=True)
         
         mock_file.assert_called_once_with("test_file.csv", mode="w", newline="", encoding="utf-8")
-
 
 class TestSitemapFinder:
     def setup_method(self):

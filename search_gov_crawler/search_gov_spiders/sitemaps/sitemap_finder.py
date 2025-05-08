@@ -66,6 +66,7 @@ class SitemapFinder:
     def _fix_http(self, url: str):
         if url.startswith(("http://")):
             return url.replace("http://", "https://")
+        return url
         
     def find(self, base_url) -> Optional[str]:
         """
@@ -99,6 +100,11 @@ class SitemapFinder:
         return None
     
     def confirm_sitemap_url(self, url: str | None) -> bool:
+        """
+        Uses HEAD request to confirm if the site map exists
+        Args:
+            url (str): Sitemap URL to check
+        """
         if not url:
             return False
         try:
@@ -111,18 +117,18 @@ class SitemapFinder:
     
     def _check_common_locations(self, base_url: str) -> Optional[str]:
         """Try common sitemap locations"""
-        print("Checking common sitemap locations...")
+        log.info(f"Method 1: Checking common sitemap locations for: {base_url}")
         
         for name in self.common_sitemap_names:
             potential_url = urljoin(base_url, name)
             if self.confirm_sitemap_url(potential_url):
-                log.info(f"Found sitemap at common location: {potential_url}")
+                log.info(f"Method 1: Found sitemap at common location: {potential_url}")
                 return potential_url
         return None
     
     def _check_robots_txt(self, base_url: str) -> Optional[str]:
         """Check robots.txt for Sitemap directive."""
-        print("Checking robots.txt for sitemap...")
+        log.info(f"Method 2: Checking robots.txt to find sitemaps for: {base_url}")
         
         try:
             robots_url = urljoin(base_url, "robots.txt")
@@ -134,7 +140,7 @@ class SitemapFinder:
                 sitemap_matches = re.findall(r"(?i)Sitemap:\s*(https?://\S+)", content)
                 if sitemap_matches:
                     sitemap_url = sitemap_matches[0].strip()
-                    print(f"Found sitemap in robots.txt: {sitemap_url}")
+                    log.info(f"Method 2: Found sitemap in robots.txt: {sitemap_url}")
                     return sitemap_url
         except Exception:
             # Silent pass, since it might be found in ofther locations
@@ -144,7 +150,7 @@ class SitemapFinder:
     
     def _check_html_source(self, base_url: str) -> Optional[str]:
         """Check HTML source for sitemap references."""
-        print("Checking HTML source for sitemap references...")
+        log.info(f"Method 3: Checking HTML source to find sitemaps for: {base_url}")
         
         try:
             response = requests.get(base_url, timeout=self.timeout_seconds)
@@ -157,7 +163,7 @@ class SitemapFinder:
                 if matches:
                     sitemap_url = matches[0]
                     sitemap_url = self._join_base(base_url, sitemap_url)
-                    print(f"Found sitemap in HTML link tag: {sitemap_url}")
+                    log.info(f"Method 3: Found sitemap in HTML link tag: {sitemap_url}")
                     return sitemap_url
                 
                 # Look for any .xml files that might be sitemaps
@@ -166,7 +172,7 @@ class SitemapFinder:
                 if matches:
                     sitemap_path = matches[0]
                     sitemap_url = self._join_base(base_url, sitemap_path)
-                    print(f"Found sitemap reference in HTML: {sitemap_url}")
+                    log.info(f"Method 3: Found sitemap reference in HTML: {sitemap_url}")
                     return sitemap_url
                 
         except Exception:
@@ -180,7 +186,7 @@ class SitemapFinder:
         Last resort: Sometimes web servers allow directory listing.
         Check if we can find XML files that might be sitemaps.
         """
-        print("Checking for XML files in root directory...")
+        log.info(f"Method 4: Checking for XML files in root directory to find sitemaps for: {base_url}")
         
         try:
             response = requests.get(base_url, timeout=self.timeout_seconds)
@@ -195,11 +201,11 @@ class SitemapFinder:
                     if "sitemap" in match.lower():
                         sitemap_url = urljoin(base_url, match)
                         if self.confirm_sitemap_url(sitemap_url):
-                            print(f"Found potential sitemap XML in directory: {sitemap_url}")
+                            log.info(f"Method 4: Found potential sitemap XML in directory: {sitemap_url}")
                             return sitemap_url
                     
         except Exception:
-            # Silent pass, since it might be found in ofther locations
+            # Silent pass, since we already catch this exception outside
             pass
             
         return None
