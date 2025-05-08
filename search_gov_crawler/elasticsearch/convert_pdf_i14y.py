@@ -95,7 +95,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     language = language[:2] if language else None
     valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
-    description, keywords = summarize_text(text=main_content, lang_code=language)
+    description, keywords = summarize_text(text=main_content, url=url, lang_code=language)
 
     time_now_str = current_utc_iso()
 
