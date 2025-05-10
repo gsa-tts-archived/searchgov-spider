@@ -76,7 +76,6 @@ class SitemapMonitor:
                         log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}")
                 except Exception as e:
                     log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}. Reason: {e}")
-        
         records = [record for record in records if record and record.sitemap_url]
 
         for i, record in enumerate(records):
@@ -198,7 +197,7 @@ class SitemapMonitor:
             Tuple of (new URLs, total URLs count)
         """
         try:
-            if self.is_first_run[sitemap_url]:
+            if sitemap_url in self.is_first_run and self.is_first_run[sitemap_url]:
                 current_urls = self._fetch_sitemap(sitemap_url)
                 self.stored_sitemaps[sitemap_url] = current_urls
                 self._save_sitemap(sitemap_url, current_urls)
@@ -260,26 +259,18 @@ class SitemapMonitor:
                         log.info(f"  - {url}")
                     
                     record = self.records_map[sitemap_url]
-                    if record.handle_javascript:
-                        spider = DomainSpiderJs(
-                            allow_query_string=record.allow_query_string,
-                            allowed_domains=None,
-                            deny_paths=record.deny_paths,
-                            start_urls=",".join(new_urls),
-                            output_target=record.output_target,
-                            prevent_follow=True
-                        )
-                    else:
-                        spider = DomainSpider(
-                            allow_query_string=record.allow_query_string,
-                            allowed_domains=None,
-                            deny_paths=record.deny_paths,
-                            start_urls=",".join(new_urls),
-                            output_target=record.output_target,
-                            prevent_follow=True
-                        )
+                    spider_args = {
+                        "allow_query_string": record.allow_query_string,
+                        "allowed_domains": record.allowed_domains,
+                        "deny_paths": record.deny_paths,
+                        "start_urls": ",".join(new_urls),
+                        "output_target": record.output_target,
+                        "prevent_follow": True,
+                        "depth_limit": 1,
+                    }
+                    spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
                     process = CrawlerProcess(get_project_settings(), install_root_handler=False)
-                    process.crawl(spider)
+                    process.crawl(spider_cls, **spider_args)
                     process.start()
                 else:
                     log.info(f"No new URLs found in {sitemap_url}")
