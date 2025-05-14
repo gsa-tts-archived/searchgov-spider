@@ -49,7 +49,12 @@ def create_directory(path: Path) -> None:
 class SitemapMonitor:
     def __init__(self, records: List[CrawlSite]):
         """Initialize the SitemapMonitor with crawl site records."""
+        self.records = records
+
+    def setup(self):
+        """Setup and filter records based on depth and sitemap availability."""
         # Filter records to only include those with depth_limit >= 8
+        records = self.records
         records = [record for record in records if record.depth_limit >= 8]
         
         sitemap_finder = SitemapFinder()
@@ -224,6 +229,7 @@ class SitemapMonitor:
     
     def run(self) -> None:
         """Run the sitemap monitor continuously."""
+        self.setup()
         log.info(f"Starting Sitemap Monitor for {len(self.records)} sitemaps")
         
         for record in self.records:
@@ -289,8 +295,3 @@ class SitemapMonitor:
         except Exception as e:
             log.error(f"Sitemap Monitor stopped due to error: {e}")
             raise
-
-if __name__ == "__main__":
-    records = CrawlSites.from_file(file=CRAWL_SITES_FILE) 
-    monitor = SitemapMonitor(records)
-    monitor.run()

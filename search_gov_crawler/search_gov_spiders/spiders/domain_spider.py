@@ -73,12 +73,8 @@ class DomainSpider(CrawlSpider):
 
         # assign rules before super()__init__ so they can be processed by CrawlSpider
         if prevent_follow:
-            self.rules = (
-                Rule(
-                    callback="parse_item",
-                    follow=True,
-                ),
-            )
+            self.rules = ()
+            self.parse_start_url = self.parse_item
         else:
             self.rules = (
                 Rule(

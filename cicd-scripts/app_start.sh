@@ -11,7 +11,8 @@ sudo touch $LOG_FILE
 sudo chown -R $(whoami) $LOG_FILE
 
 # Start sitemap monitor
-SITEMAP_SCRIPT=search_gov_crawler/search_gov_spiders/sitemaps/sitemap_monitor.py
+# sitemap_monitor.py file needs to be executed from search_gov_crawler because that's where the scrapy.cfg is
+SITEMAP_SCRIPT=run_sitemap_monitor.py
 SITEMAP_LOG_FILE=/var/log/scrapy_sitemap_monitor.log
 SITEMAP_DIR=/var/tmp/spider_sitemaps
 
@@ -26,8 +27,7 @@ fi
 # Recreate directory and set ownership
 sudo mkdir -p "$SITEMAP_DIR"
 sudo chown -R "$(whoami)" "$SITEMAP_DIR"
-nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$SITEMAP_SCRIPT" >> $SITEMAP_LOG_FILE 2>&1 &
-
+nohup bash -c "source ./venv/bin/activate && cd ./search_gov_crawler && python $SITEMAP_SCRIPT" >> $SITEMAP_LOG_FILE 2>&1 &
 # Start scheduler
 nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$START_SCRIPT" >> $LOG_FILE 2>&1 &
 

@@ -41,5 +41,5 @@ def generate_random_link():
 if __name__ == "__main__":
     with socketserver.TCPServer(("", PORT), SitemapHandler) as httpd:
         endpoint = f"http://localhost:{PORT}/sitemap.xml"
-        print(f"Serving sitemap server on {endpoint} use <Ctrl-C> to stop")
+        print(f"Serving sitemap server on {endpoint} use <CMD-C> to stop")
         httpd.serve_forever()
