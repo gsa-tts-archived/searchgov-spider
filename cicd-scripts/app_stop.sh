@@ -9,7 +9,7 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 
 # Stop sitemap monitor
 stop_sitemap_monitor() {
-    echo "Stopping sitemap_monitor.py (if running)..."
+    echo "Stopping run_sitemap_monitor.py (if running)..."
     ensure_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
 }
 

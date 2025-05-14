@@ -11,7 +11,7 @@ sudo touch $LOG_FILE
 sudo chown -R $(whoami) $LOG_FILE
 
 # Start sitemap monitor
-# sitemap_monitor.py file needs to be executed from search_gov_crawler because that's where the scrapy.cfg is
+# run_sitemap_monitor.py file needs to be executed from search_gov_crawler because that's where the scrapy.cfg is
 SITEMAP_SCRIPT=run_sitemap_monitor.py
 SITEMAP_LOG_FILE=/var/log/scrapy_sitemap_monitor.log
 SITEMAP_DIR=/var/tmp/spider_sitemaps

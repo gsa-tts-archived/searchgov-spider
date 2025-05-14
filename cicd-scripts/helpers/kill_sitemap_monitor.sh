@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Find all process PIDs matching sitemap_monitor.py. Should only be one, but just in case
-pids=$(pgrep -f "sitemap_monitor.py")
+# Find all process PIDs matching run_sitemap_monitor.py. Should only be one, but just in case
+pids=$(pgrep -f "run_sitemap_monitor.py")
 
 if [ -z "$pids" ]; then
-    echo "No 'sitemap_monitor.py' processes found"
+    echo "No 'run_sitemap_monitor.py' processes found"
 else
     for pid in $pids; do
         echo "Sending SIGTERM to process $pid"
