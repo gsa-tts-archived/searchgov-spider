@@ -50,6 +50,9 @@ class SitemapMonitor:
     def __init__(self, records: List[CrawlSite]):
         """Initialize the SitemapMonitor with crawl site records."""
         self.records = records
+        self.stored_sitemaps: Dict[str, Set[str]] = {}
+        self.next_check_times: Dict[str, float] = {}
+        self.is_first_run: Dict[str, bool] = {}
 
     def setup(self):
         """Setup and filter records based on depth and sitemap availability."""
@@ -89,9 +92,6 @@ class SitemapMonitor:
         
         self.records_map = {record.sitemap_url: record for record in records}
         self.records = records
-        self.stored_sitemaps: Dict[str, Set[str]] = {}
-        self.next_check_times: Dict[str, float] = {}
-        self.is_first_run: Dict[str, bool] = {}
         
         # Create data directory if it doesn't exist
         create_directory(TARGET_DIR)

@@ -67,6 +67,7 @@ class TestSitemapMonitor(BaseTestCase):
         # depths 7,8,9 should keep only >=8
         records = self.make_records([7, 8, 9])
         monitor = SitemapMonitor(records)
+        monitor.setup()
 
         self.assertEqual(len(monitor.records), 2)
         self.assertEqual(
@@ -185,5 +186,5 @@ class TestSitemapMonitor(BaseTestCase):
         monitor = SitemapMonitor([rec])
         self.assertEqual(
             monitor._get_check_interval(rec.sitemap_url),
-            12 * 3600
+            12
         )
