@@ -59,8 +59,6 @@ DEPTH_LIMIT = 3
 
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
-# SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
-# SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
 # Enable requests scheduler and dupefilter in redis using scrapy-redis
 # See https://github.com/rmax/scrapy-redis/wiki/Usage
@@ -76,6 +74,7 @@ SCHEDULER_PERSIST = True
 SCHEDULER_QUEUE_KEY = "spider.%(spider_id)s.requests"
 SCHEDULER_QUEUE_CLASS = "search_gov_spiders.job_state.queue.SearchGovSpiderFifoQueue"
 SCHEDULER_DUPEFILTER_KEY = "spider.%(spider_id)s.dupefilter"
+SCHEDULER_KEY_ORPHAN_AGE = 604800  # one week in seconds
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -94,7 +93,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
-    "search_gov_spiders.extensions.on_disk_queue.OnDiskSchedulerQueue": 500,
+    "search_gov_spiders.extensions.scheduler_queue.RedisSchedulerQueue": 500,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 
