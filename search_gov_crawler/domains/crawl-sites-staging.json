@@ -13444,7 +13444,9 @@
       "allow_query_string": false,
       "allowed_domains": "nihlibrary.nih.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/about-us/news/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "NIH Library (nih)",
