@@ -7,10 +7,15 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSp
 
 load_dotenv()
 
+"""
+The error twisted.internet.error.ReactorNotRestartable arieses because scrapy's CrawlerProcess starts and 
+then stops the twisted reactor when process.start() completes. The twisted reactor (which handles asynchronous 
+events for scrapy) cannot be restarted in the same process once it is stopped/completed
+"""
+
 os.environ.setdefault("SPIDER_SPIDERMON_ENABLED", "False")
 
-if __name__ == "__main__":
-
+def doCrawl():
     new_urls = [
         "https://ioos.noaa.gov/project/ocean-enterprise-study/",
         "https://ioos.noaa.gov/about/ioos-history/"
@@ -28,3 +33,8 @@ if __name__ == "__main__":
     process = CrawlerProcess(get_project_settings(), install_root_handler=False)
     process.crawl(spider_cls, **spider_args)
     process.start()
+
+
+if __name__ == "__main__":
+    doCrawl()
+    doCrawl()

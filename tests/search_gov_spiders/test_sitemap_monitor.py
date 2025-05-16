@@ -188,3 +188,4 @@ class TestSitemapMonitor(BaseTestCase):
             monitor._get_check_interval(rec.sitemap_url),
             12
         )
+ 

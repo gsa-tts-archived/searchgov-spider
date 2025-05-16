@@ -1,4 +1,5 @@
 import os
+import gc
 import sys
 from dotenv import load_dotenv
 from pathlib import Path
@@ -6,31 +7,24 @@ from pathlib import Path
 import requests
 import xml.etree.ElementTree as ET
 import time
-import logging
 from datetime import datetime
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set, Tuple, Any
 import hashlib
 import heapq
+from multiprocessing import Process
 
-from pythonjsonlogger.json import JsonFormatter
-
-from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite
-
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
-
-from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
-from search_gov_crawler.scrapy_scheduler import CRAWL_SITES_FILE
+from search_gov_crawler.search_gov_spiders.helpers.get_logger import GetSpiderLogger
+
+log = GetSpiderLogger("search_gov_crawler.search_gov_spiders.sitemaps")
 
 load_dotenv()
 
-logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
-logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-log = logging.getLogger("search_gov_crawler.search_gov_spiders.sitemaps")
 
 TARGET_DIR = Path("/var/tmp/spider_sitemaps")
 
@@ -45,6 +39,31 @@ def create_directory(path: Path) -> None:
     except Exception as e:
         log.error(f"An unexpected error occurred creating directory '{path}': {e}", exc_info=True)
         sys.exit(1)
+
+def force_gc():
+    ref_count = gc.collect()
+    log.info(f"Cleaned {ref_count} unreachable objects.")
+
+def run_crawl_in_dedicated_process(spider_cls: type[DomainSpiderJs] | type[DomainSpider], spider_args: dict[str, Any]):
+    """Runs a Scrapy spider in a new, dedicated process.
+
+    Initializes a scrapy CrawlerProcess with our project settings,
+    disables Spidermon by default for this specific updating crawl.
+    Forces garbage collection after the process has finished to de-ref
+    leftover objects
+
+    Args:
+        spider_cls: The Scrapy spider class (e.g., DomainSpiderJs or DomainSpider)
+            to be run.
+        spider_args: A dictionary containing the arguments to be passed
+            to the spider during initialization.
+    """
+    os.environ.setdefault("SPIDER_SPIDERMON_ENABLED", "False")
+    settings = get_project_settings()
+    process = CrawlerProcess(settings, install_root_handler=False)
+    process.crawl(spider_cls, **spider_args)
+    process.start()
+    force_gc()
 
 class SitemapMonitor:
     def __init__(self, records: List[CrawlSite]):
@@ -275,9 +294,9 @@ class SitemapMonitor:
                         "depth_limit": 1,
                     }
                     spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
-                    process = CrawlerProcess(get_project_settings(), install_root_handler=False)
-                    process.crawl(spider_cls, **spider_args)
-                    process.start()
+                    crawl_process = Process(target=run_crawl_in_dedicated_process, args=(spider_cls, spider_args,))
+                    crawl_process.start()
+                    crawl_process.join() # Wait for the crawl process to complete before continuing, forces blocking
                 else:
                     log.info(f"No new URLs found in {sitemap_url}")
                 

@@ -2,17 +2,13 @@ import re
 import os
 import csv
 import requests
-import logging
 from typing import Optional
 from urllib.parse import urljoin
-from pythonjsonlogger.json import JsonFormatter
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.scrapy_scheduler import CRAWL_SITES_FILE
-from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+from search_gov_crawler.search_gov_spiders.helpers.get_logger import GetSpiderLogger
 
-logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
-logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-log = logging.getLogger("search_gov_crawler.search_gov_spiders.sitemaps")
+log = GetSpiderLogger("search_gov_crawler.search_gov_spiders.sitemaps")
 
 def write_dict_to_csv(data: dict, filename: str, overwrite: bool = False):
     """
