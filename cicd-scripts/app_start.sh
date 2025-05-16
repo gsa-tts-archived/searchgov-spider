@@ -7,15 +7,24 @@ LOG_FILE=/var/log/scrapy_scheduler.log
 START_SCRIPT=search_gov_crawler/scrapy_scheduler.py
 
 source ~/.profile
-
-# Run the script in the background using the virtual environment
-sudo chmod +x ./$START_SCRIPT
-
 sudo touch $LOG_FILE
 sudo chown -R $(whoami) $LOG_FILE
 
-echo PYTHONPATH is $PYTHONPATH
+# Start sitemap monitor
+# run_sitemap_monitor.py file needs to be executed from search_gov_crawler because that's where the scrapy.cfg is
+SITEMAP_SCRIPT=run_sitemap_monitor.py
+SITEMAP_DIR=/var/tmp/spider_sitemaps
 
+# Remove existing sitemap directory (if it exists)
+if [ -d "$SITEMAP_DIR" ]; then
+    sudo rm -rf "$SITEMAP_DIR"
+fi
+
+# Recreate directory and set ownership
+sudo mkdir -p "$SITEMAP_DIR"
+sudo chown -R "$(whoami)" "$SITEMAP_DIR"
+nohup bash -c "source ./venv/bin/activate && cd ./search_gov_crawler && python $SITEMAP_SCRIPT" >> $LOG_FILE 2>&1 &
+# Start scheduler
 nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$START_SCRIPT" >> $LOG_FILE 2>&1 &
 
 # check that scheduler is running before exit, it not raise error

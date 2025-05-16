@@ -7988,7 +7988,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nihlibrary.nih.gov/',
                          schedule='23 13 * * SAT',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/about-us/news/']),
   },
   {
     name: 'NIH Traffic (nih)',
