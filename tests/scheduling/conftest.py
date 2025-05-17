@@ -27,10 +27,13 @@ class MockRedisClient:
     def zcard(*_args, **_kwargs):
         return 0
 
+    @staticmethod
+    def scan_iter(*_args, **_kwargs):
+        return ["test-key"]
 
-@pytest.fixture(name="mock_redis_client")
-def fixture_mock_redis_client():
-    return MockRedisClient()
+    @staticmethod
+    def object(*_args, **_kwargs):
+        return True
 
 
 @pytest.fixture(name="mock_redis_jobstore")

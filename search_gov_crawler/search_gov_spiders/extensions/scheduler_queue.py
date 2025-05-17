@@ -72,7 +72,7 @@ class RedisSchedulerQueue:
 
         if not (crawler.settings.get(cls.dupefilter_queue_key) and crawler.settings.get(cls.scheduler_queue_key)):
             msg = (
-                "RedisSchedulerQueue extension is listed in settings.EXTENSION but "
+                "RedisSchedulerQueue extension is listed in settings.EXTENSIONS but "
                 f"{cls.dupefilter_queue_key} or {cls.scheduler_queue_key} is not set"
             )
             raise NotConfigured(msg)
