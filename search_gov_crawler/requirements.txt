@@ -17,5 +17,6 @@ python-json-logger==3.3.0
 redis==5.2.1
 scrapy==2.12.0
 scrapy-playwright==0.0.42
+scrapy-redis==0.9.1
 spidermon[monitoring]==1.24.0
 typing-extensions==4.12.2 # Required by newspaper4k, ignored by dependabot
