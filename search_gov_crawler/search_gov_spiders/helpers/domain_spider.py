@@ -172,6 +172,9 @@ def generate_spider_id_from_args(*args) -> str:
     Use arguments from spider to generate an ID value that can be used to identify it.
     Chose shake_256 for its short hexdigest output.
     """
+    if not args:
+        msg = "One or more arguments must be passed to generate a spider_id."
+        raise ValueError(msg)
 
     spider_id_input = "".join(str(arg) for arg in args)
     return hashlib.shake_256(spider_id_input.encode()).hexdigest(5)

@@ -22,6 +22,8 @@ from tests.scheduling.conftest import MockRedisClient
 class SpiderForTest(Spider):
     """Mock spider to support extension testing"""
 
+    spider_id = "testtesttest"
+
     def __repr__(self):
         return str(
             {
@@ -29,6 +31,7 @@ class SpiderForTest(Spider):
                 "allowed_domain_paths": getattr(self, "allowed_domain_paths", None),
                 "allowed_domains": getattr(self, "allowed_domains", None),
                 "name": self.name,
+                "spider_id": self.spider_id,
                 "start_urls": self.start_urls,
                 "output_target": getattr(self, "output_target", None),
                 "deny_paths": getattr(self, "_deny_paths", None),
@@ -60,6 +63,7 @@ HANDLER_TEST_CASES = [
                 "allowed_domain_paths": None,
                 "allowed_domains": "example.com",
                 "name": "handler_test",
+                "spider_id": "testtesttest",
                 "start_urls": "https://www.example.com",
                 "output_target": "csv",
                 "deny_paths": None,
@@ -79,6 +83,7 @@ HANDLER_TEST_CASES = [
             "allowed_domain_paths": None,
             "allowed_domains": "example.com",
             "name": "handler_test",
+            "spider_id": "testtesttest",
             "start_urls": "https://www.example.com",
             "output_target": "csv",
             "deny_paths": None,
@@ -205,6 +210,7 @@ def test_extension_spider_opened(caplog, project_settings):
 
     spider = Spider(
         name="test_spider",
+        spider_id="testtesttest",
         allowed_domains=["domain 1", "domain 2"],
         start_urls=["url 1", "url 2"],
         output_target="csv",
@@ -216,7 +222,7 @@ def test_extension_spider_opened(caplog, project_settings):
         extension.spider_opened(spider)
 
     assert (
-        "Starting spider test_spider with following args: "
+        "Starting spider test_spider (spider_id testtesttest) with following args: "
         "allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls=url 1,url 2 "
         "output_target=csv depth_limit=3 deny_paths=path1"
     ) in caplog.messages
