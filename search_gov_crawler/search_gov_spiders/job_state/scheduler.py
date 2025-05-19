@@ -1,5 +1,15 @@
+import scrapy.settings.default_settings as scrapy_defaults
+from scrapy.settings import Settings
 from scrapy.utils.misc import load_object
 from scrapy_redis.scheduler import Scheduler
+
+
+def disable_redis_job_state(settings: Settings) -> Settings:
+    """Helper funciton to disable the scheduler and dupefilter redis functionality"""
+
+    settings.set("SCHEDULER", scrapy_defaults.SCHEDULER)
+    settings.set("DUPEFILTER_CLASS", scrapy_defaults.DUPEFILTER_CLASS)
+    return settings
 
 
 class SearchGovSpiderRedisScheduler(Scheduler):

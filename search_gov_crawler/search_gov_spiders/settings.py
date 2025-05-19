@@ -59,6 +59,9 @@ DEPTH_LIMIT = 3
 
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
+# These settings remain here to enable memory queue for testing and cases when we don't use redis
+SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
+SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
 # Enable requests scheduler and dupefilter in redis using scrapy-redis
 # See https://github.com/rmax/scrapy-redis/wiki/Usage

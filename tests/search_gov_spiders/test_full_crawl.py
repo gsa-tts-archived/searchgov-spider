@@ -4,9 +4,11 @@ import tempfile
 from pathlib import Path
 
 import pytest
+import scrapy.settings.default_settings as scrapy_defaults
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
+from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
     DomainSpiderJs,
@@ -39,6 +41,9 @@ def fixture_mock_scrapy_settings(monkeypatch):
 
     # Ensures cache does not change, set to False if you need to update or replace cache files
     settings.set("HTTPCACHE_IGNORE_MISSING", True)
+
+    # Disable scrapy-redis
+    settings = disable_redis_job_state(settings)
 
     yield settings
 
