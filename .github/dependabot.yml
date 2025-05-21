@@ -21,8 +21,9 @@ updates:
           - "pypdf"
           - "langdetect"
           - "python-dateutil"
-      testing-and-linting:
+      testing-linting-and-scripts:
         patterns:
+          - "click"
           - "freezegun"
           - "pylint"
           - "pytest*"
