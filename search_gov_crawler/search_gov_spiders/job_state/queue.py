@@ -11,4 +11,4 @@ class SearchGovSpiderFifoQueue(FifoQueue):
         """
 
         super().__init__(server, spider, key, serializer)
-        self.key = key % {"spider_id": spider.spider_id}  # Update queue key with spider_id from spider
+        self.key = key % {"spider": spider.spider_id}  # Update queue key with spider_id from spider

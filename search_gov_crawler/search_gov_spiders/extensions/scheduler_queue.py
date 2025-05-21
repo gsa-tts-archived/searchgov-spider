@@ -101,8 +101,8 @@ class RedisSchedulerQueue:
         dupefilter_key = spider.settings.get(self.dupefilter_queue_key)
         orphan_age = spider.settings.getint(self.orphan_age_key)
 
-        scheduler_key_pattern = scheduler_key % {"spider_id": "*"}
-        dupefilter_key_pattern = dupefilter_key % {"spider_id": "*"}
+        scheduler_key_pattern = scheduler_key % {"spider": "*"}
+        dupefilter_key_pattern = dupefilter_key % {"spider": "*"}
 
         redis = init_redis_client(charset="utf-8", decode_responses=True)
         orphan_keys = [

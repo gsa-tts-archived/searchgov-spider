@@ -18,7 +18,9 @@ class SearchGovSpiderRedisScheduler(Scheduler):
     def open(self, spider) -> None:
         """
         Allow more unique naming for queue keys.  Replicate everying from the parent class except
-        the string substitution of the key name
+        the string substitution of the key name.
+
+        Added no cover markers since we don't need to test the code that comes from scrapy-redis, just our changes
         """
 
         self.spider = spider
@@ -27,21 +29,21 @@ class SearchGovSpiderRedisScheduler(Scheduler):
             self.queue = load_object(self.queue_cls)(
                 server=self.server,
                 spider=spider,
-                key=self.queue_key % {"spider_id": spider.spider_id},  # Update queue key with spider_id from spider
+                key=self.queue_key % {"spider": spider.spider_id},  # Update queue key with spider_id from spider
                 serializer=self.serializer,
             )
-        except TypeError as e:
+        except TypeError as e:  # pragma: no cover
             msg = f"Failed to instantiate queue class '{self.queue_cls}': {e}"
             raise ValueError(msg) from e
 
-        if not self.df:
+        if not self.df:  # pragma: no cover
             self.df = load_object(self.dupefilter_cls).from_spider(spider)
 
-        if self.flush_on_start:
+        if self.flush_on_start:  # pragma: no cover
             self.flush()
 
         # notice if there are requests already in the queue to resume the crawl
-        if len(self.queue):
+        if len(self.queue):  # pragma: no cover
             spider.logger.info("Resuming crawl (%s requests scheduled)", len(self.queue))
 
     def close(self, reason: str) -> None:

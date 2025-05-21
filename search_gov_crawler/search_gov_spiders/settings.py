@@ -71,12 +71,12 @@ REDIS_PORT = redis_connection_args["port"]
 REDIS_DB = redis_connection_args["db"]
 
 SCHEDULER = "search_gov_spiders.job_state.scheduler.SearchGovSpiderRedisScheduler"
-DUPEFILTER_CLASS = "search_gov_spiders.job_state.dupefilter.SearchGovSpiderRFPDupefilter"
+DUPEFILTER_CLASS = "search_gov_spiders.job_state.dupefilter.SearchGovSpiderRedisDupeFilter"
 
 SCHEDULER_PERSIST = True
-SCHEDULER_QUEUE_KEY = "spider.%(spider_id)s.requests"
+SCHEDULER_QUEUE_KEY = "spider.%(spider)s.requests"
 SCHEDULER_QUEUE_CLASS = "search_gov_spiders.job_state.queue.SearchGovSpiderFifoQueue"
-SCHEDULER_DUPEFILTER_KEY = "spider.%(spider_id)s.dupefilter"
+SCHEDULER_DUPEFILTER_KEY = "spider.%(spider)s.dupefilter"
 SCHEDULER_KEY_ORPHAN_AGE = 604800  # one week in seconds
 
 # Enable or disable spider middlewares
