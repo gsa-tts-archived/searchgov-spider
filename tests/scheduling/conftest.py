@@ -35,6 +35,14 @@ class MockRedisClient:
     def object(*_args, **_kwargs):
         return True
 
+    @staticmethod
+    def ping():
+        return True
+
+    @staticmethod
+    def llen(*_args, **_kwargs):
+        return 0
+
 
 @pytest.fixture(name="mock_redis_jobstore")
 def fixture_mock_redis_jobstore() -> SpiderRedisJobStore:

@@ -8,7 +8,6 @@ import pytest
 from scrapy.crawler import Crawler
 from scrapy.exceptions import NotConfigured
 from scrapy.spiders import Spider
-from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     JsonLogging,
@@ -37,12 +36,6 @@ class SpiderForTest(Spider):
                 "deny_paths": getattr(self, "_deny_paths", None),
             },
         )
-
-
-@pytest.fixture(name="project_settings")
-def fixture_project_settings(monkeypatch):
-    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
-    return get_project_settings()
 
 
 HANDLER_TEST_CASES = [
