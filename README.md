@@ -19,9 +19,12 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 ├── search_gov_crawler              # scrapy root
 │   ├── domains                     # json files with domains to scrape
 │   ├── elasticsearch               # code related to indexing content in elasticsearch
+|   ├── scheduling                  # code for job scheduling and storing schedules in redis
 │   ├── search_gov_spider           # scrapy project dir
 │   │   ├── extensions              # custom scrapy extensions
 │   │   ├── helpers                 # common functions
+│   │   ├── job_state               # code related to storing job state in redis
+│   │   ├── sitemaps                # code related to indexing based on sitemap data
 │   │   ├── spiders                 # all search_gov_spider spiders
 │   │   │   ├── domain_spider.py    # for html pages
 │   │   │   ├── domain_spider_js.py # for js pages
