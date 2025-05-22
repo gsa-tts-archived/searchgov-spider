@@ -85,3 +85,5 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 * [Scheduler Entrypoint - scrapy_scheduler.py](search_gov_crawler/scrapy_scheduler.py)
 
 * [Benchmark Entrypoint - benchmark.py](search_gov_crawler/benchmark.py)
+
+* [Sitemaps Entrypoint - run_sitemap_monitor.py](search_gov_crawler/run_sitemap_monitor.py)

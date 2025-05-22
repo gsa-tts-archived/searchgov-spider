@@ -22,7 +22,7 @@ from search_gov_crawler.scheduling.redis import init_redis_client
 ALL_JOBS_KEY: str = "spider.schedule.jobs"
 PENDING_JOBS_KEY: str = "spider.schedule.pending_jobs"
 RUN_TIMES_KEY: str = "spider.schedule.run_times"
-JOB_STATE_KEY_PATTERN: str = "spider:%(spider_id)s:%(key_type)s"
+JOB_STATE_KEY_PATTERN: str = "spider.%(spider_id)s.%(key_type)s"
 
 
 def print_headers(key: str, results: list, result_label: str = "Jobs") -> None:
@@ -110,8 +110,8 @@ def show_run_times():
 
 @cli.command()
 @click.option("-t", "--type", type=click.Choice(["requests", "dupefilter"], case_sensitive=False), required=True)
-def show_scheduler_keys(type):
-    """Shows name and size of scheduler keys."""
+def show_job_state_keys(type):
+    """Shows name and size of job state keys."""
     redis_client = init_redis_client(decode_responses=True)
     key_pattern = JOB_STATE_KEY_PATTERN % {"spider_id": "*", "key_type": type}
     keys = list(redis_client.scan_iter(key_pattern))
@@ -121,8 +121,8 @@ def show_scheduler_keys(type):
 @cli.command()
 @click.option("-id", "--spider_id", type=str, required=True)
 @click.option("--apply", is_flag=True, default=False)
-def delete_scheduler_keys(spider_id: str, apply: bool):
-    """Delete scheduler keys (requests and dupefilter) based on spider_id."""
+def delete_job_state_keys(spider_id: str, apply: bool):
+    """Delete job state keys (requests and dupefilter) based on spider_id."""
     redis_client = init_redis_client(decode_responses=True)
     key_pattern = JOB_STATE_KEY_PATTERN % {"spider_id": spider_id, "key_type": "*"}
     keys = list(redis_client.scan_iter(key_pattern))
@@ -133,8 +133,8 @@ def delete_scheduler_keys(spider_id: str, apply: bool):
         if click.confirm("Are you sure you want to delete these keys?"):
             for key in keys:
                 delete_key(redis=redis_client, key=key)
-        else:
-            print("Run command with --apply to delete these keys")
+    elif keys:
+        print("Run command with --apply to delete these keys")
 
 
 if __name__ == "__main__":
