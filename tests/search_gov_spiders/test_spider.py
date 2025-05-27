@@ -78,3 +78,60 @@ INVALID_ARGS_TEST_CASES = [
 def test_invalid_args(spider_cls, kwargs, msg):
     with pytest.raises(ValueError, match=re.escape(msg)):
         spider_cls(**kwargs)
+
+
+@pytest.fixture(name="spider_args")
+def fixture_spider_args() -> dict:
+    return {
+        "allowed_domains": "example.com",
+        "start_urls": "http://example.com/",
+        "output_target": "csv",
+        "allow_query_string": True,
+        "deny_paths": "/deny/path",
+        "prevent_follow": False,
+    }
+
+
+@pytest.fixture(name="domain_spider")
+def fixture_domain_spider(spider_args):
+    return DomainSpider(**spider_args)
+
+
+@pytest.mark.parametrize(
+    ("attribute", "value"),
+    [
+        ("allowed_domains", ["example.com"]),
+        ("start_urls", ["http://example.com/"]),
+        ("output_target", "csv"),
+        ("allow_query_string", True),
+        ("_deny_paths", "/deny/path"),
+    ],
+)
+def test_domain_spider_init(domain_spider, attribute, value):
+    assert getattr(domain_spider, attribute) == value
+
+
+@pytest.fixture(name="domain_spider_js")
+def fixture_domain_spider_js(spider_args):
+    return DomainSpiderJs(**spider_args)
+
+
+@pytest.mark.parametrize(
+    ("attribute", "value"),
+    [
+        ("allowed_domains", ["example.com"]),
+        ("start_urls", ["http://example.com/"]),
+        ("output_target", "csv"),
+        ("allow_query_string", True),
+        ("_deny_paths", "/deny/path"),
+    ],
+)
+def test_domain_spider_js_init(domain_spider_js, attribute, value):
+    assert getattr(domain_spider_js, attribute) == value
+
+
+@pytest.mark.parametrize("spider_cls", [DomainSpider, DomainSpiderJs])
+def test_spider_init_allow_query_string_str_input(spider_cls, spider_args):
+    spider_args["allow_query_string"] = "False"
+    spider = spider_cls(**spider_args)
+    assert spider.allow_query_string is False

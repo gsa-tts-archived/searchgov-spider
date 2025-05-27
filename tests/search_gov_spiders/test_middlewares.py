@@ -26,10 +26,12 @@ MIDDLEWARE_TEST_CASES = [
 
 @pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "url", "allowed"), MIDDLEWARE_TEST_CASES)
 def test_offsite_process_request_domain_filtering(allowed_domain, allowed_domain_path, url, allowed):
-    # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(
-        name="offsite_test", allowed_domains=allowed_domain, allowed_domain_paths=allowed_domain_path
+    spider = Spider.from_crawler(
+        crawler=crawler,
+        name="offsite_test",
+        allowed_domains=allowed_domain,
+        allowed_domain_paths=allowed_domain_path,
     )
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
     mw.spider_opened(spider)
@@ -63,9 +65,9 @@ INVALID_DOMAIN_TEST_CASES = [
 
 @pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "warning_message"), INVALID_DOMAIN_TEST_CASES)
 def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warning_message):
-    # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(
+    spider = Spider.from_crawler(
+        crawler=crawler,
         name="offsite_test",
         allowed_domains=allowed_domain,
         allowed_domain_paths=allowed_domain_path,
@@ -81,8 +83,11 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
 
 def test_offsite_invalid_domain_in_starting_urls(caplog):
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(
-        name="offsite_test", allowed_domains=["example.com"], start_urls=["http://www.not-an-example.com"]
+    spider = Spider.from_crawler(
+        crawler=crawler,
+        name="offsite_test",
+        allowed_domains=["example.com"],
+        start_urls=["http://www.not-an-example.com"],
     )
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
     mw.spider_opened(spider)
@@ -99,9 +104,8 @@ def test_offsite_invalid_domain_in_starting_urls(caplog):
 
 
 def test_spider_downloader_middleware():
-    # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(name="test", allow_query_string=False, allowed_domains="example.com")
+    spider = Spider.from_crawler(crawler=crawler, name="test", allow_query_string=False, allowed_domains="example.com")
     mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
 
     mw.spider_opened(spider)
@@ -113,9 +117,10 @@ def test_spider_downloader_middleware():
 
 @pytest.mark.parametrize("allow_query_string", [True, False])
 def test_spider_downloader_middleware_allow_query_string(allow_query_string):
-    # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(name="test", allow_query_string=allow_query_string, allowed_domains="example.com")
+    spider = Spider.from_crawler(
+        crawler=crawler, name="test", allow_query_string=allow_query_string, allowed_domains="example.com"
+    )
     mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
 
     mw.spider_opened(spider)
@@ -130,9 +135,9 @@ def test_spider_downloader_middleware_allow_query_string(allow_query_string):
 
 
 def test_spider_middleware_spider_exception_start_url(caplog):
-    # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(
+    spider = Spider.from_crawler(
+        crawler=crawler,
         name="test",
         allow_query_string=True,
         allowed_domains="example.com",
