@@ -8,6 +8,7 @@ from scrapy.signals import spider_opened
 from scrapy.spiders import Spider
 
 LOG_FMT = "%(asctime)%(name)%(levelname)%(message)"
+SITEMAP_START_URLS = "Generated from Sitemap"
 
 
 def search_gov_default(obj) -> dict | None:
@@ -18,7 +19,7 @@ def search_gov_default(obj) -> dict | None:
             "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
             "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
-            "start_urls": obj.start_urls,
+            "start_urls": SITEMAP_START_URLS if getattr(obj, "_prevent_follow", None) else obj.start_urls,
             "output_target": getattr(obj, "output_target", None),
             "depth_limit": obj.settings.get("DEPTH_LIMIT", None),
             "deny_paths": getattr(obj, "_deny_paths", None),
@@ -73,6 +74,7 @@ class JsonLogging:
 
     def __init__(self, log_level):
         self.file_hanlder_enabled = False
+        self.stream_handler_enabled = False
         self.log_level = log_level
         self._add_json_handlers()
 
@@ -91,10 +93,18 @@ class JsonLogging:
                 )
                 self.file_hanlder_enabled = True
 
-            if not any(
-                handler for handler in root_logger.handlers if isinstance(handler, SearchGovSpiderStreamHandler)
-            ):
-                root_logger.addHandler(SearchGovSpiderStreamHandler(log_level=self.log_level))
+        if not self.stream_handler_enabled:
+            standard_stream_handlers = [
+                handler for handler in root_logger.handlers if handler.__class__ == logging.StreamHandler
+            ]
+
+            for handler in standard_stream_handlers:
+                root_logger.removeHandler(handler)
+
+            self.stream_handler_enabled = True
+
+        if not any(handler for handler in root_logger.handlers if isinstance(handler, SearchGovSpiderStreamHandler)):
+            root_logger.addHandler(SearchGovSpiderStreamHandler(log_level=self.log_level))
 
     @classmethod
     def from_crawler(cls, crawler: Crawler) -> Self:
@@ -124,7 +134,7 @@ class JsonLogging:
             spider.name,
             ",".join(getattr(spider, "allowed_domains", [])),
             ",".join(getattr(spider, "allowed_domains_paths", [])),
-            ",".join(spider.start_urls),
+            SITEMAP_START_URLS if getattr(spider, "_prevent_follow", None) else ",".join(spider.start_urls),
             getattr(spider, "output_target", None),
             spider.settings.get("DEPTH_LIMIT", None),
             getattr(spider, "_deny_paths", None),
