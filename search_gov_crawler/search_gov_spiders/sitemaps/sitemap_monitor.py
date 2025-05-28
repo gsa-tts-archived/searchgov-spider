@@ -282,9 +282,9 @@ class SitemapMonitor:
 
                 if new_urls:
                     log.info(f"Found {len(new_urls)} new URLs in {sitemap_url}")
-                    log.info("New URLs:")
-                    for url in sorted(new_urls):
-                        log.info(f"  - {url}")
+                    new_urls_msg_lines = ["New URLs:"]
+                    new_urls_msg_lines.extend([f"  - {url}" for url in sorted(new_urls)])
+                    log.info("\n".join(new_urls_msg_lines))
 
                     record = self.records_map[sitemap_url]
                     spider_args = {

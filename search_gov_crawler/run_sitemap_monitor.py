@@ -13,7 +13,7 @@ load_dotenv()
 
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
+log = logging.getLogger("search_gov_crawler.run_sitemap_monitor")
 
 if __name__ == "__main__":
     log.info("Starting Sitemap Monitor...")
