@@ -2989,6 +2989,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://training.fema.gov/',
                          schedule='42 19 * * THU',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
