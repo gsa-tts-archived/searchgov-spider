@@ -90,7 +90,7 @@ class DomainSpider(CrawlSpider):
                 ),
             )
         super().__init__(*args, **kwargs)
-        self.allow_query_string = helpers.force_bool(value=allow_query_string)
+        self.allow_query_string = helpers.force_bool(allow_query_string)
         self.output_target = output_target
         self.allowed_domains = (
             helpers.split_allowed_domains(allowed_domains)
