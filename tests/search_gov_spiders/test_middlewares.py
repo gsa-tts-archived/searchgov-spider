@@ -119,7 +119,10 @@ def test_spider_downloader_middleware():
 def test_spider_downloader_middleware_allow_query_string(allow_query_string):
     crawler = get_crawler(Spider)
     spider = Spider.from_crawler(
-        crawler=crawler, name="test", allow_query_string=allow_query_string, allowed_domains="example.com"
+        crawler=crawler,
+        name="test",
+        allow_query_string=allow_query_string,
+        allowed_domains="example.com",
     )
     mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
 

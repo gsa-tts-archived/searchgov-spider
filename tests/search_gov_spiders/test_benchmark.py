@@ -119,10 +119,13 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
         }
         with caplog.at_level("INFO"):
             benchmark_from_args(**test_args)
-        
-        print("...LOG:", caplog.messages)
 
-        expected_log_msg = "Starting benchmark from args! allow_query_string=True allowed_domains=unit-test.example.com starting_urls=https://unit-test.example.com handle_javascript=False output_target=csv runtime_offset_seconds=0 depth_limit=3 deny_paths=/deny-path1/,/deny-path2/ sitemap_url=None check_sitemap_hours=None"
+        expected_log_msg = (
+            "Starting benchmark from args! allow_query_string=True allowed_domains=unit-test.example.com "
+            "starting_urls=https://unit-test.example.com handle_javascript=False output_target=csv "
+            "runtime_offset_seconds=0 depth_limit=3 deny_paths=/deny-path1/,/deny-path2/ sitemap_url=None "
+            "check_sitemap_hours=None"
+        )
         assert expected_log_msg in caplog.messages
 
 

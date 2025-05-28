@@ -93,3 +93,21 @@ def test_split_allowed_domains():
 )
 def test_set_link_extractor_deny(deny_paths, expected_output):
     assert helpers.set_link_extractor_deny(deny_paths) == expected_output
+
+
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        ("True", True),
+        ("true", True),
+        ("1", False),
+        ("False", False),
+        ("false", False),
+        ("yes", False),
+        (True, True),
+        (False, False),
+        (None, False),
+    ],
+)
+def test_force_bool(value, expected):
+    assert helpers.force_bool(value) is expected

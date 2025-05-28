@@ -130,8 +130,16 @@ def test_domain_spider_js_init(domain_spider_js, attribute, value):
     assert getattr(domain_spider_js, attribute) == value
 
 
-@pytest.mark.parametrize("spider_cls", [DomainSpider, DomainSpiderJs])
-def test_spider_init_allow_query_string_str_input(spider_cls, spider_args):
-    spider_args["allow_query_string"] = "False"
+@pytest.mark.parametrize(
+    ("spider_cls", "allow_query_string"),
+    [
+        (DomainSpider, "False"),
+        (DomainSpider, "something else"),
+        (DomainSpiderJs, "false"),
+        (DomainSpiderJs, "not a boolean"),
+    ],
+)
+def test_spider_init_allow_query_string_str_input(spider_cls, spider_args, allow_query_string):
+    spider_args["allow_query_string"] = allow_query_string
     spider = spider_cls(**spider_args)
     assert spider.allow_query_string is False
