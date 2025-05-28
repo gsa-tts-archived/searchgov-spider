@@ -81,10 +81,10 @@ class JsonLogging:
     def _add_json_handlers(self) -> None:
         """Try to add json hanlders for file and streaming"""
 
-        if not self.file_hanlder_enabled:
-            root_logger = logging.getLogger()
-            root_logger.setLevel(self.log_level)
+        root_logger = logging.getLogger()
+        root_logger.setLevel(self.log_level)
 
+        if not self.file_hanlder_enabled:
             file_handlers = [handler for handler in root_logger.handlers if isinstance(handler, logging.FileHandler)]
 
             for file_handler in file_handlers:
@@ -123,9 +123,7 @@ class JsonLogging:
         """Try to add hanlders and then log arguments passed to the spider"""
 
         self._add_json_handlers()
-        spider_log = logging.getLogger(spider.name)
-
-        spider_log.info(
+        spider.logger.info(
             (
                 "Starting spider %s with following args: "
                 "allowed_domains=%s allowed_domain_paths=%s start_urls=%s "
