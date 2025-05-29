@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 import time
+import itertools
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from multiprocessing import Process
@@ -279,49 +280,39 @@ class SitemapMonitor:
 
                 log.info(f"Processing sitemap: {sitemap_url}")
                 new_urls, total_count = self._check_for_changes(sitemap_url)
-
+                
                 if new_urls:
-                    log.info(f"Found {len(new_urls)} new URLs in {sitemap_url}")
-                    new_urls_msg_lines = ["New URLs:"]
-                    new_urls_msg_lines.extend([f"  - {url}" for url in sorted(new_urls)])
-                    log.info("\n".join(new_urls_msg_lines))
+                    new_urls = list(filter(None, new_urls))  # Remove any None or empty strings
+                    if new_urls:
+                        log.info(f"Found {len(new_urls)} new URLs in {sitemap_url}")
+                        new_urls_msg_lines = ["New URLs:"]
+                        new_urls_msg_lines.extend([f"  - {url}" for url in sorted(new_urls)])
+                        log.info("\n".join(new_urls_msg_lines))
 
-                    record = self.records_map[sitemap_url]
-                    spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
-                    num_batches = (len(new_urls) + 19) // 20
+                        record = self.records_map[sitemap_url]
+                        spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
 
-                    for i in range(num_batches):
-                        start = i * 20
-                        end = min(start + 20, len(new_urls))
-                        batch = new_urls[start:end]
+                        for i, url_batch in enumerate(itertools.batched(new_urls, 20)):
+                            spider_args = {
+                                "allow_query_string": record.allow_query_string,
+                                "allowed_domains": record.allowed_domains,
+                                "deny_paths": record.deny_paths,
+                                "start_urls": ",".join(url_batch),
+                                "output_target": record.output_target,
+                                "prevent_follow": True,
+                                "depth_limit": 1,
+                            }
+                            crawl_process = Process(
+                                target=run_crawl_in_dedicated_process,
+                                args=(spider_cls, spider_args),
+                            )
+                            crawl_process.start()
+                            crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
 
-                        log.info(f"Processing batch {i+1} of {num_batches} with {len(batch)} URLs")
-                        batch_msg_lines = [f"Batch {i+1} URLs:"]
-                        batch_msg_lines.extend([f"  - {url}" for url in batch])
-                        log.info("\n".join(batch_msg_lines))
-
-                        spider_args = {
-                            "allow_query_string": record.allow_query_string,
-                            "allowed_domains": record.allowed_domains,
-                            "deny_paths": record.deny_paths,
-                            "start_urls": ",".join(batch),
-                            "output_target": record.output_target,
-                            "prevent_follow": True,
-                            "depth_limit": 1,
-                        }
-                        crawl_process = Process(
-                            target=run_crawl_in_dedicated_process,
-                            args=(
-                                spider_cls,
-                                spider_args,
-                            ),
-                        )
-                        crawl_process.start()
-                        crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
-
-                        # Wait 3 seconds between batches, except after the last batch
-                        if i < num_batches - 1:
-                            time.sleep(3)
+                            if i < (len(new_urls) - 1) // 20:  # Don't sleep after the last batch
+                                time.sleep(3)
+                    else:
+                        log.info(f"No valid new URLs found in {sitemap_url}")
                 else:
                     log.info(f"No new URLs found in {sitemap_url}")
 
