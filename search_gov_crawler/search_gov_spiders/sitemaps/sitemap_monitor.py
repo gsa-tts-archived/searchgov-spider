@@ -287,25 +287,41 @@ class SitemapMonitor:
                     log.info("\n".join(new_urls_msg_lines))
 
                     record = self.records_map[sitemap_url]
-                    spider_args = {
-                        "allow_query_string": record.allow_query_string,
-                        "allowed_domains": record.allowed_domains,
-                        "deny_paths": record.deny_paths,
-                        "start_urls": ",".join(new_urls),
-                        "output_target": record.output_target,
-                        "prevent_follow": True,
-                        "depth_limit": 1,
-                    }
                     spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
-                    crawl_process = Process(
-                        target=run_crawl_in_dedicated_process,
-                        args=(
-                            spider_cls,
-                            spider_args,
-                        ),
-                    )
-                    crawl_process.start()
-                    crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
+                    num_batches = (len(new_urls) + 19) // 20
+
+                    for i in range(num_batches):
+                        start = i * 20
+                        end = min(start + 20, len(new_urls))
+                        batch = new_urls[start:end]
+
+                        log.info(f"Processing batch {i+1} of {num_batches} with {len(batch)} URLs")
+                        batch_msg_lines = [f"Batch {i+1} URLs:"]
+                        batch_msg_lines.extend([f"  - {url}" for url in batch])
+                        log.info("\n".join(batch_msg_lines))
+
+                        spider_args = {
+                            "allow_query_string": record.allow_query_string,
+                            "allowed_domains": record.allowed_domains,
+                            "deny_paths": record.deny_paths,
+                            "start_urls": ",".join(batch),
+                            "output_target": record.output_target,
+                            "prevent_follow": True,
+                            "depth_limit": 1,
+                        }
+                        crawl_process = Process(
+                            target=run_crawl_in_dedicated_process,
+                            args=(
+                                spider_cls,
+                                spider_args,
+                            ),
+                        )
+                        crawl_process.start()
+                        crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
+
+                        # Wait 3 seconds between batches, except after the last batch
+                        if i < num_batches - 1:
+                            time.sleep(3)
                 else:
                     log.info(f"No new URLs found in {sitemap_url}")
 
