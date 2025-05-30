@@ -1,10 +1,9 @@
 import json
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from scrapy.http.response import Response
-
 
 # fmt: off
 FILTER_EXTENSIONS = [
@@ -165,3 +164,17 @@ def get_response_language_code(response: Response) -> str:
     except Exception:
         pass
     return None
+
+
+def force_bool(value: Any) -> bool:
+    """
+    Converts a string to a boolean value.  Helps with parsing command line arguments.
+
+    Args:
+        value (Any): The value to convert.
+
+    Returns:
+        bool: True if the string repr is "true", False otherwise.
+    """
+
+    return str(value).lower() == "true"

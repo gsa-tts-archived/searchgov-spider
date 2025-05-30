@@ -119,7 +119,7 @@ class DomainSpiderJs(CrawlSpider):
             )
 
         super().__init__(*args, **kwargs)
-        self.allow_query_string = allow_query_string
+        self.allow_query_string = helpers.force_bool(allow_query_string)
         self.allowed_domains = (
             helpers.split_allowed_domains(allowed_domains)
             if allowed_domains
