@@ -2,7 +2,7 @@ import hashlib
 import json
 import re
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from scrapy.http.response import Response
 
@@ -178,3 +178,17 @@ def generate_spider_id_from_args(*args) -> str:
 
     spider_id_input = "".join(str(arg) for arg in args)
     return hashlib.shake_256(spider_id_input.encode()).hexdigest(5)
+
+
+def force_bool(value: Any) -> bool:
+    """
+    Converts a string to a boolean value.  Helps with parsing command line arguments.
+
+    Args:
+        value (Any): The value to convert.
+
+    Returns:
+        bool: True if the string repr is "true", False otherwise.
+    """
+
+    return str(value).lower() == "true"
