@@ -5356,7 +5356,7 @@
       "starting_urls": "https://ca.usembassy.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "training.fema.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,

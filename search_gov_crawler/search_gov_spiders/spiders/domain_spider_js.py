@@ -119,7 +119,7 @@ class DomainSpiderJs(CrawlSpider):
             )
 
         super().__init__(*args, **kwargs)
-        self.allow_query_string = allow_query_string
+        self.allow_query_string = helpers.force_bool(allow_query_string)
         self.allowed_domains = (
             helpers.split_allowed_domains(allowed_domains)
             if allowed_domains
@@ -136,6 +136,14 @@ class DomainSpiderJs(CrawlSpider):
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
         self._prevent_follow = prevent_follow
+
+        # create unique id to help with job state queues and elsewhere
+        self.spider_id = helpers.generate_spider_id_from_args(
+            self.name,
+            self.allowed_domains,
+            self.start_urls,
+            prevent_follow,
+        )
 
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpiderJs":
