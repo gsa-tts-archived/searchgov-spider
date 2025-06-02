@@ -137,6 +137,14 @@ class DomainSpiderJs(CrawlSpider):
         self._deny_paths = deny_paths
         self._prevent_follow = prevent_follow
 
+        # create unique id to help with job state queues and elsewhere
+        self.spider_id = helpers.generate_spider_id_from_args(
+            self.name,
+            self.allowed_domains,
+            self.start_urls,
+            prevent_follow,
+        )
+
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpiderJs":
         """

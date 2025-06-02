@@ -96,6 +96,23 @@ def test_set_link_extractor_deny(deny_paths, expected_output):
 
 
 @pytest.mark.parametrize(
+    ("input_args", "expected_spider_id"),
+    [
+        (("test1", 10, ["test1", "test2", "test3"]), "d918472fb4"),
+        (("test2", 10, ["test1", "test2", "test3"]), "0b97ba301b"),
+        (("test3",), "eeeac91190"),
+    ],
+)
+def test_generate_spider_id_from_args(input_args, expected_spider_id):
+    assert helpers.generate_spider_id_from_args(*input_args) == expected_spider_id
+
+
+def test_generate_spider_id_no_args():
+    with pytest.raises(ValueError, match="One or more arguments must be passed to generate a spider_id."):
+        helpers.generate_spider_id_from_args()
+
+
+@pytest.mark.parametrize(
     ("value", "expected"),
     [
         ("True", True),
