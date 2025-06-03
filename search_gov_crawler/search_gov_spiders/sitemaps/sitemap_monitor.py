@@ -1,11 +1,11 @@
 import gc
 import hashlib
 import heapq
+import itertools
 import logging
 import os
 import sys
 import time
-import itertools
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from multiprocessing import Process
@@ -17,6 +17,7 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite
+from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
@@ -61,6 +62,8 @@ def run_crawl_in_dedicated_process(spider_cls: type[DomainSpiderJs] | type[Domai
     """
     os.environ.setdefault("SPIDER_SPIDERMON_ENABLED", "False")
     settings = get_project_settings()
+    settings = disable_redis_job_state(settings)
+
     process = CrawlerProcess(settings, install_root_handler=False)
     process.crawl(spider_cls, **spider_args)
     process.start()
@@ -280,7 +283,7 @@ class SitemapMonitor:
 
                 log.info(f"Processing sitemap: {sitemap_url}")
                 new_urls, total_count = self._check_for_changes(sitemap_url)
-                
+
                 if new_urls:
                     new_urls = list(filter(None, new_urls))  # Remove any None or empty strings
                     if new_urls:
