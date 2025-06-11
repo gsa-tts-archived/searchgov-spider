@@ -83,6 +83,7 @@ class SitemapMonitor:
         # Filter records to only include those with depth_limit >= 8
         records = self.records
         records = [record for record in records if record.depth_limit >= 8]
+        print("RECORDS a:", records)
 
         sitemap_finder = SitemapFinder()
         records_len = len(records)
@@ -108,7 +109,8 @@ class SitemapMonitor:
                         log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}")
                 except Exception as e:
                     log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}. Reason: {e}")
-        records = [record for record in records if record and record.sitemap_url]
+        records = [record for record in records if record is not None and record.sitemap_url]
+        print("RECORDS b:", records)
 
         for i, record in enumerate(records):
             if not hasattr(record, "sitemap_url"):
@@ -194,7 +196,7 @@ class SitemapMonitor:
                     for sitemap in root.findall(f"{ns}sitemap"):
                         loc = sitemap.find(f"{ns}loc")
                         if loc is not None and loc.text:
-                            loc_text = loc.text.strip()
+                            loc_text = loc.text.strip().lower()
 
                             # Heuristic: treat only likely sitemap URLs as sitemaps
                             if loc_text.endswith(".xml") or "sitemap" in loc_text.lower():
